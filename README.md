@@ -6,6 +6,10 @@
   </a>
 </p>
 
-## :coffee: JAVA
+## :coffee: Java SE
 
-* [Microservices](docs/java/microservices.md)
+* [The Stream API](docs/java-se/the-stream-api.md)
+
+## :coffee: Java EE
+
+* [Microservices](docs/java-ee/microservices.md)
