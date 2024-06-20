@@ -19,18 +19,18 @@ Legend:
 ## :pushpin: Map/Filter/Reduce algorithm implementation in JDK
 
 * Steps of the :star: **Map/Filter/Reduce algorithm** :star::
-  * :star: **Map** :star: - **changes the type** of the data, **does not change the number** of elements. The mapping step **respects the order** of your objects
-  * :star: **Filter** :star: - **does not change the type** of the data, **changes the number** of elements. You may end up with no data
-  * :star: **Reduce** :star: - produces **a result**
-* If we want to create **an efficient implementation** of the Map/Filter/Reduce algorithm, it **should not duplicate any data**. It should work in the same way, performance wise, as the **iterative pattern**. Map/Filter/Reduce algorithm implemented by the Collection API would cause **duplication of the data** (storing the data in an intermediate structure)
-* :star: **The Stream API** :star: is an implementation of the Map/Filter/Reduce algorithm that **does not duplicate any data** and that **does not create any load on the CPU or memory** (Stream by definition is **an empty object** - it does not carry any kind of data)
-* Every time you call a method on a Stream that returns another Stream, it is going to be **a new Stream object**
-* Difference between the Stream API and iterative approach is that in the Stream API we **describe the computation and not how this computation should be conducted**. This is none of my business, this is the business of the API
-* Reduce method triggers **the computation of the elements**, and those elements are going to be taken **one-by-one, first mapped, then filtered and computed if they pass the filtering step**. Using Streams is about **creating pipelines of operations**.
+  * :star: **Map** :star: - **_changes the type_** of the data, **_does not change the number_** of elements. The mapping step **_respects the order_** of your objects
+  * :star: **Filter** :star: - **_does not change the type_** of the data, **_changes the number_** of elements. You may end up with no data
+  * :star: **Reduce** :star: - produces **_a result_**
+* If we want to create **_an efficient implementation_** of the Map/Filter/Reduce algorithm, it **_should not duplicate any data_**. It should work in the same way, performance wise, as the **_iterative pattern_**. Map/Filter/Reduce algorithm implemented by the Collection API would cause **_duplication of the data_** (storing the data in an intermediate structure)
+* :star: **The Stream API** :star: is an implementation of the Map/Filter/Reduce algorithm that **_does not duplicate any data_** and that **_does not create any load on the CPU or memory_** (Stream by definition is **_an empty object_** - it does not carry any kind of data)
+* Every time you call a method on a Stream that returns another Stream, it is going to be **_a new Stream object_**
+* Difference between the Stream API and iterative approach is that in the Stream API we **_describe the computation and not how this computation should be conducted_**. This is none of my business, this is the business of the API
+* Reduce method triggers **_the computation of the elements_**, and those elements are going to be taken **_one-by-one, first mapped, then filtered and computed if they pass the filtering step_**. Using Streams is about **_creating pipelines of operations_**.
   * :star: **Intermediate operation (Map/Filter)** :star: - operation that creates a Stream (it does not do anything, it does not process any data)
   * :star: **Terminal operation (Reduce)** :star: - operation that produces a result (it will trigger the computation of the elements)
-* If you have a pattern using a Stream that does not end up with a Terminal operation, your pattern is not going to process any data. **It will be useless code**
-* You are **not allowed** to process **the same Stream twice**. This is why it is completely useless to create intermittent variables to store the Streams. **You should inline it**
+* If you have a pattern using a Stream that does not end up with a Terminal operation, your pattern is not going to process any data. **_It will be useless code_**
+* You are **_not allowed_** to process **_the same Stream twice_**. This is why it is completely useless to create intermittent variables to store the Streams. **_You should inline it_**
 
 ## :pushpin: The Stream API
 
@@ -80,12 +80,12 @@ Legend:
 
 ## :pushpin: Building a Stream from Data in Memory
 
-* Creating a Stream from **Arrays**:
+* Creating a Stream from **_Arrays_**:
   * :red_circle: [`java.util.Arrays`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html):
     * `stream(T[] array)` - returns a sequential `Stream<T>` with the specified array as its source
   * :white_circle: [`java.util.stream.Stream<T>`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html)
     * `of(T... values)` - returns a sequential ordered `Stream<T>` whose elements are the specified values
-* Creating a Stream from **a Text File**:
+* Creating a Stream from **_a Text File_**:
   * :red_circle: [`java.nio.file.Files`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html)
     * `lines(Path path)` - read all lines from a file as a `Stream<String>`
   ```java
@@ -96,7 +96,7 @@ Legend:
       e.printStackTrace();
   }
   ```
-* Creating a Stream from **a RegEx**:
+* Creating a Stream from **_a RegEx_**:
   * :red_circle: [`java.util.regex.Pattern`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html)
     * `splitAsStream(CharSequence input)` - creates a `Stream<String>` from the given input sequence around matches of this pattern
   ```java
@@ -109,7 +109,7 @@ Legend:
   // Best Practice: we do not create an Array when we create a Stream from Pattern
   long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); // Returns 9
   ```
-* Creating **an `IntStream`** (Stream of ASCII Codes) from a String:
+* Creating an `IntStream` **_(Stream of ASCII Codes)_** from a String:
   * :red_circle: [`java.lang.String`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html)
     * `chars()` - returns an `IntStream` of int zero-extending the char values from this sequence
   ```java
@@ -123,15 +123,15 @@ Legend:
   ```java
   Stream<String> streamOfStrings = Stream.<String>of("abcd");
   ```
-* **Selecting** elements of a Stream:
+* **_Selecting_** elements of a Stream:
   ```java
   IntStream.range(0, 30)
     .skip(10) // Skip first 10 elements
     .limit(10) // Take next 10 elements after skip
     .forEach(index -> System.out.print(index + " ")); // Prints "10 11 12 13 14 15 16 17 18 19"
   ```
-* **Closing** a Stream with **a Predicate**:
-  * `takeWhile` - consume elements of the Stream until Predicate is **true**
+* **_Closing_** a Stream with **_a Predicate_**:
+  * `takeWhile` - consume elements of the Stream until Predicate is **_true_**
   ```java
     Stream.<Class<?>>iterate(ArrayList.class, c -> c.getSuperclass())
       .takeWhile(c -> c != null)
@@ -142,7 +142,7 @@ Legend:
     class java.util.AbstractCollection
     class java.lang.Object
     ```
-  * `dropWhile` - consume remaining elements of the Stream after Predicate becomes **false**
+  * `dropWhile` - consume remaining elements of the Stream after Predicate becomes **_false_**
   ```java
   Stream.<Class<?>>iterate(ArrayList.class, c -> c.getSuperclass())
     .dropWhile(c -> !c.equals(AbstractCollection.class))
@@ -178,7 +178,7 @@ Legend:
     .filter(age -> age > 20)
     .average().orElseThrow();
   ```
-* The Stream API **always computes one thing**. Never sacrifice the **readability** of your code to the **performances**. The performance here is measured in **nanoseconds**:
+* The Stream API **_always computes one thing_**. Never sacrifice the **_readability_** of your code to the **_performance_**. The performance here is measured in **_nanoseconds_**:
   ```java
   double totalAmount = 0;
   int frequentRenterPoints = 0;
@@ -204,19 +204,19 @@ Legend:
     .collect(Collectors.joining());
   statement += composeFooter(totalAmount, frequentRenterPoints);
   ```
-* Forget about **processing your data in one pass** (unless you are doing **an SQL request**). Most of the time when you have a for loop or when you have a Stream, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, **extremely performant, and extremely efficient**. See [Fine-grained optimizations provided by JIT Compiler in Java](https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/)
+* Forget about **_processing your data in one pass_** (unless you are doing **_an SQL request_**). Most of the time when you have a for loop or when you have a Stream, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, **_extremely performant, and extremely efficient_**. See [Fine-grained optimizations provided by JIT Compiler in Java](https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/)
 
 ## :pushpin: Reducing Data to compute Statistics
 
-* The reduction of an empty Stream is :star: **the identity element** :star: of the reduction operation.
-* `Stream#reduce` method can have **2** parameters: **identity element** and **a Binary Operator**. It adds this identity element before the elements of the Stream. If you have an empty Stream, it will **return identity element**. If you have only one element in the Stream, it will **return the reduction of the identity element and this only element**:
+* The reduction of an empty Stream is :star: **_the identity element_** :star: of the reduction operation.
+* `Stream#reduce` method can have **2** parameters: **_identity element_** and **_a Binary Operator_**. It adds this identity element before the elements of the Stream. If you have an empty Stream, it will **_return identity element_**. If you have only one element in the Stream, it will **_return the reduction of the identity element and this only element_**:
 ![stream-reduce.png](image/stream-reduce.png)
-* Some reduction operations **do not have any identity element** (in case for the `IntStream#min`, the `IntStream#max`, the `IntStream#average` and `Stream#reduce` with only **1** parameter: a Binary Operator). **Optionals** are used by the Stream API, because in cases where we have an empty Stream without identity element **we don't have any result**.
+* Some reduction operations **_do not have any identity element_** (in case for the `IntStream#min`, the `IntStream#max`, the `IntStream#average` and `Stream#reduce` with only **1** parameter: a Binary Operator). **_Optionals_** are used by the Stream API, because in cases where we have an empty Stream without identity element **_we don't have any result_**.
 
 ## :pushpin: Collecting Data from Streams to create Lists/Sets/Maps
 
-* :star: **Collector** :star: is a complex object **used to reduce a Stream**
-  * Can be used to gather data in **collections** and **maps** - it is called as **reduction in a "mutable container"** or **mutable reduction**
+* :star: **Collector** :star: is a complex object **_used to reduce a Stream_**
+  * Can be used to gather data in **_collections_** and **_maps_** - it is called as **_reduction in a "mutable container"_** or **_mutable reduction_**
 * :star: **Downstream Collector** :star: - collector that is passed to `Collectors#groupingBy` which is applied to the streaming of the list of values
 * :star: **The Collector API** :star: uses the `Stream#collect(Collector<? super T,A,R> collector)` that takes :white_circle: [`java.util.stream.Collector<T,A,R>`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html) (`T` - the type of input elements to the reduction operation, `A` - the mutable accumulation type of the reduction operation (often hidden as an implementation detail), `R` - the result type of the reduction operation) implementation as a parameter
   * Use :red_circle: [`java.util.stream.Collectors`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html) and their factory methods
