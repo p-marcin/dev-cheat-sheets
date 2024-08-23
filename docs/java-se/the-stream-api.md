@@ -1,4 +1,4 @@
-# :clipboard: THE STREAM API
+# The Stream API
 
 <!-- TOC -->
 * [:pushpin: Map/Filter/Reduce algorithm implementation in JDK](#pushpin-mapfilterreduce-algorithm-implementation-in-jdk)
@@ -210,7 +210,7 @@ Legend:
 
 * The reduction of an empty Stream is :star: **_the identity element_** :star: of the reduction operation.
 * `Stream#reduce` method can have **2** parameters: **_identity element_** and **_a Binary Operator_**. It adds this identity element before the elements of the Stream. If you have an empty Stream, it will **_return identity element_**. If you have only one element in the Stream, it will **_return the reduction of the identity element and this only element_**:
-![stream-reduce.png](image/stream-reduce.png)
+![stream-reduce.png](images/stream-reduce.png)
 * Some reduction operations **_do not have any identity element_** (in case for the `IntStream#min`, the `IntStream#max`, the `IntStream#average` and `Stream#reduce` with only **1** parameter: a Binary Operator). **_Optionals_** are used by the Stream API, because in cases where we have an empty Stream without identity element **_we don't have any result_**.
 
 ## :pushpin: Collecting Data from Streams to create Lists/Sets/Maps

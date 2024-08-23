@@ -1,9 +1,9 @@
-# :clipboard: LAMBDA EXPRESSION
+# Lambda Expression
 
 <!-- TOC -->
 * [:pushpin: Implementing Functional Interfaces with Lambda Expression](#pushpin-implementing-functional-interfaces-with-lambda-expression)
 * [:pushpin: Creating Lambdas with the JDK](#pushpin-creating-lambdas-with-the-jdk)
-* [:pushpin: Invoking a Lambda Expression on Objects and Primitive types](#pushpin-invoking-a-lambda-expression-on-objects-and-primitive-types)
+* [:pushpin: Invoking a Lambda Expression on Objects and primitive types](#pushpin-invoking-a-lambda-expression-on-objects-and-primitive-types)
 * [:pushpin: Creating Lambda Expressions by chaining and composing other Lambda Expressions](#pushpin-creating-lambda-expressions-by-chaining-and-composing-other-lambda-expressions)
 <!-- TOC -->
 
