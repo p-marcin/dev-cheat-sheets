@@ -150,5 +150,4 @@ Legend:
   User{name='John', age=25}
   User{name='John', age=24}
   User{name='James', age=35}
-
   ```
