@@ -1,4 +1,4 @@
-# :clipboard: MICROSERVICES
+# Microservices
 
 <!-- TOC -->
 * [:pushpin: Architectures: Monolithic vs SOA vs Microservice](#pushpin-architectures-monolithic-vs-soa-vs-microservice)
