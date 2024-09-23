@@ -8,6 +8,7 @@
 
 ## :coffee: Java SE
 
+* [Lambda Expression](docs/java-se/lambda-expression.md)
 * [The Stream API](docs/java-se/the-stream-api.md)
 
 ## :coffee: Java EE
