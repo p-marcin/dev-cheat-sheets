@@ -1,0 +1,199 @@
+= Lambda Expression
+
+== Implementing Functional Interfaces with Lambda Expression
+
+Functional Interface::
+Interface that has only *one abstract method*. These do not count:
+* Default methods
+* Static methods
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html[`🟢 Object`^] methods
+
+NOTE: In https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)[`⚪ Collection<E>`^] you may find `🟢 Object` methods which are changing the documentation of those methods. However, `⚪ Collection<E>` itself is not a Functional Interface as it has many abstract methods.
+
+Lambda Expression::
+Implementation of *a Functional Interface*.
+
+Lambda Expression *is not another way* of writing *instances* of *anonymous classes*. Anonymous class may implement *any kind of Interface*, not necessarily Functional, and it can extend *any kind of class*, whether it is a concrete class or an abstract class.
+
+NOTE: Sometimes people say that a Lambda Expression is *an anonymous method*.
+
+Java is object-oriented programming language and thanks to introduction of Lambda Expression *some patterns from functional programming* have been added to it.
+
+Functional Interface *may be annotated* with the special annotation called https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/FunctionalInterface.html[`@FunctionalInterface`^], but it's *not mandatory*. This is for backward compatibility (e.g. since `@FunctionalInterface` is optional, https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html[`⚪ Runnable`^] can be a Functional Interface).
+
+[TIP]
+====
+How to implement a Functional Interface *in 3 easy steps*:
+
+* copy and paste a *block of parameters* of an abstract method: `()`
+* draw an *arrow operator*: `->`
+* provide *an implementation* which is going to fit your needs
+====
+
+== Creating Lambdas with the JDK
+
+The https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html[`java.util.function`^] package is organized in *4* categories:
+
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Supplier.html[⚪ *Suppliers<T>*^] - do not take any argument and return an object of `T` type. Supplier is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)[`generate`^] operation of the Stream API
++
+[,java]
+----
+public interface Supplier<T> {
+    T get();
+}
+...
+Supplier<String> supplier = () -> "Hello!";
+----
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html[⚪ *Consumers<T>*^] - consume an object of `T` type and do not return anything. Consumer is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)[`forEach`^] operation of the Stream API
++
+[,java]
+----
+public interface Consumer<T> {
+    void accept(T t);
+}
+...
+Consumer<String> consumer = s -> System.out.println(s);
+----
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html[⚪ *Predicates<T>*^] - take an object of `T` type, test it and return `boolean`. Predicate is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)[`filter`^] operation of the Stream API
++
+[,java]
+----
+public interface Predicate<T> {
+    boolean test(T t);
+}
+...
+Predicate<String> predicate = s -> s.isEmpty();
+----
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html[⚪ *Functions<T, R>*^] - take an object of `T` type and return an object of `R` type. Function is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#map(java.util.function.Function)[`map`^] operation of the Stream API
++
+[,java]
+----
+public interface Function<T, R> {
+    R apply(T t);
+}
+...
+Function<LocalDate, Month> function = date -> date.getMonth();
+----
+
+Functional Interfaces which are not part of `java.util.function` package:
+
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html[`⚪ Runnable`^] - does not take any argument and does not return anything. Defined to model task in Java concurrent programming
++
+[,java]
+----
+public interface Runnable {
+    void run();
+}
+...
+Runnable alert = () -> System.out.println("I am Groot");
+----
+* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] - takes two objects of `T` type, compares them and returns `int`. A comparison function, which imposes a total ordering on some collection of objects
++
+[,java]
+----
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+...
+Comparator<String> comparator = (s1, s2) -> s1.compareTo(s2);
+----
+
+== Creating Lambdas with specialized Interfaces
+
+Lambda Expressions are *compiled using specific bytecode instruction* called https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic[*_invokedynamic_*^] introduced in Java 7.
+
+*Performance is 60x better in Lambda Expressions than Anonymous Classes*. It can be even faster. Just *avoid autoboxing and unboxing* when writing Lambda Expressions. If you want to improve the performance you need to *use specialized Interfaces for primitive types*:
+
+.Bad Practice: autoboxing and unboxing
+[,java]
+----
+BiFunction<Integer, Integer, Integer> function1 = (i1, i2) -> Math.max(i1, i2);
+int max1 = function1.apply(10, 20);
+----
+
+.Best Practice: use specialized Interfaces for primitive types
+[,java]
+----
+IntBinaryOperator function2 = (i1, i2) -> Math.max(i1, i2);
+int max2 = function2.applyAsInt(10, 20);
+----
+
+Another example would be the creation of https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] for the following list:
+
+[,java]
+----
+List<String> strings = Arrays.asList("one", "two", "three", "four", "five");
+----
+
+.Bad Practice: autoboxing and unboxing
+[,java]
+----
+Comparator<String> cmp1 = (s1, s2) -> Integer.compare(s1.length(), s2.length());
+strings.sort(cmp1);
+----
+
+.Best Practice: use specialized Interfaces for primitive types
+[,java]
+----
+ToIntFunction<String> toLength = s -> s.length();
+Comparator<String> cmp2 = Comparator.comparingInt(toLength);
+strings.sort(cmp2);
+----
+
+== Creating Lambdas by chaining
+
+Lambda Expressions can be chained by using *default methods* of the Interface.
+
+.Creating a Consumer by chaining two Consumers
+[,java]
+----
+Consumer<String> c1 = s -> System.out.println("c1 consumes " + s);
+Consumer<String> c2 = s -> System.out.println("c2 consumes " + s);
+Consumer<String> c3 = c1.andThen(c2);
+c3.accept("Hello");
+
+// Prints
+c1 consumes Hello
+c2 consumes Hello
+----
+
+.Creating a Predicate by chaining two Predicates
+[,java]
+----
+Predicate<String> isNull = s -> s == null;
+Predicate<String> isEmpty = s -> s.isEmpty();
+Predicate<String> notNullAndNotEmpty = isNull.negate().and(isEmpty.negate());
+System.out.println("For null = " + notNullAndNotEmpty.test(null));
+System.out.println("For empty = " + notNullAndNotEmpty.test(""));
+System.out.println("For Hello = " + notNullAndNotEmpty.test("Hello"));
+
+// Prints
+For null = false
+For empty = false
+For Hello = true
+----
+
+.Creating a Comparator<T> by chaining two Comparators<T> (sort by `name` descending, then by `age` descending):
+[,java]
+----
+User sarah = new User("Sarah", 28);
+User james = new User("James", 35);
+User mary = new User("Mary", 33);
+User john1 = new User("John", 24);
+User john2 = new User("John", 25);
+List<User> users = Arrays.asList(sarah, james, mary, john1, john2);
+
+Comparator<User> cmpName = Comparator.comparing(user -> user.getName());
+Comparator<User> cmpAge = Comparator.comparingInt(user -> user.getAge());
+Comparator<User> comparator = cmpName.thenComparing(cmpAge);
+Comparator<User> reversed = comparator.reversed();
+users.sort(reversed);
+users.forEach(user -> System.out.println(user));
+
+// Prints
+User{name='Sarah', age=28}
+User{name='Mary', age=33}
+User{name='John', age=25}
+User{name='John', age=24}
+User{name='James', age=35}
+----
