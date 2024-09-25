@@ -1,0 +1,4 @@
+* 🔴 final class
+* 🟢 class
+* 🟠 abstract class
+* ⚪ interface

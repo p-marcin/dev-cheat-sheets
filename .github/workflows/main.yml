@@ -1,0 +1,33 @@
+name: Deploy Site
+
+on: push
+
+jobs:
+  main:
+    name: Deploy Site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.17.0
+      - name: Install Antora
+        run: ./install.sh
+      - name: Generate Site
+        run: ./generate.sh
+        # https://docs.antora.org/antora/latest/publish-to-github-pages/
+      - name: Disable Jekyll
+        run: touch build/site/.nojekyll
+      - name: Deploy Site
+        # @Patch https://github.com/JamesIves/github-pages-deploy-action/issues/1697
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        with:
+          folder: build/site
+          branch: gh-pages
+          commit-message: "[CI] Deploy Site for ${{ github.sha }}"

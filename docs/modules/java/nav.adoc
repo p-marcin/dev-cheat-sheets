@@ -1,0 +1,6 @@
+* ☕ Java
+** API
+*** xref:java:api/lambda-expression.adoc[]
+*** xref:java:api/the-stream-api.adoc[]
+** Concepts
+*** xref:java:concepts/microservices.adoc[]

@@ -1,0 +1,17 @@
+= DEV Cheat Sheets
+
+include::ROOT:example$README.md[tag=intro]
+
+== Legend
+
+I mark Java types with the below symbols:
+
+include::ROOT:partial$java-type-legend.adoc[]
+
+== Resources
+
+include::java:partial$nav.adoc[]
+
+== External Resources
+
+* https://github.com/HugoMatilla/Effective-JAVA-Summary[Effective Java Summary^]

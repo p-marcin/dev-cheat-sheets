@@ -1,0 +1,19 @@
+site:
+  title: DEV Cheat Sheets
+  start_page: reference::index.adoc
+content:
+  sources:
+    - url: ./
+      branches: [main, feature/*]
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+asciidoc:
+  attributes:
+    icons: font
+antora:
+  extensions:
+    - '@antora/lunr-extension'
