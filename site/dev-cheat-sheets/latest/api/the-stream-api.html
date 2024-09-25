@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>The Stream API :: DEV Cheat Sheets</title>
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">DEV Cheat Sheets</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dev-cheat-sheets" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">DEV Cheat Sheets</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Java</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="lambda-expression.html">Lambda Expression</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="the-stream-api.html">The Stream API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../concepts/microservices.html">Microservices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DEV Cheat Sheets</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">DEV Cheat Sheets</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">DEV Cheat Sheets</a></li>
+    <li>Java</li>
+    <li>API</li>
+    <li><a href="the-stream-api.html">The Stream API</a></li>
+  </ul>
+</nav>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/edit/main/docs/modules/ROOT/pages/api/the-stream-api.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">The Stream API</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Legend:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 final class</p>
+</li>
+<li>
+<p>🟢 class</p>
+</li>
+<li>
+<p>🟠 abstract class</p>
+</li>
+<li>
+<p>⚪ interface</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mapfilterreduce_algorithm_implementation_in_jdk"><a class="anchor" href="#_mapfilterreduce_algorithm_implementation_in_jdk"></a>📌 Map/Filter/Reduce algorithm implementation in JDK</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Steps of the <mark><strong>Map/Filter/Reduce algorithm</strong></mark>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><mark><strong>Map</strong></mark> - <strong><em>changes the type</em></strong> of the data, <strong><em>does not change the number</em></strong> of elements. The mapping step <strong><em>respects the order</em></strong> of your objects</p>
+</li>
+<li>
+<p><mark><strong>Filter</strong></mark> - <strong><em>does not change the type</em></strong> of the data, <strong><em>changes the number</em></strong> of elements. You may end up with no data</p>
+</li>
+<li>
+<p><mark><strong>Reduce</strong></mark> - produces <strong><em>a result</em></strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If we want to create <strong><em>an efficient implementation</em></strong> of the Map/Filter/Reduce algorithm, it <strong><em>should not duplicate any data</em></strong>. It should work in the same way, performance wise, as the <strong><em>iterative pattern</em></strong>. Map/Filter/Reduce algorithm implemented by the Collection API would cause <strong><em>duplication of the data</em></strong> (storing the data in an intermediate structure)</p>
+</li>
+<li>
+<p><mark><strong>The Stream API</strong></mark> is an implementation of the Map/Filter/Reduce algorithm that <strong><em>does not duplicate any data</em></strong> and that <strong><em>does not create any load on the CPU or memory</em></strong> (Stream by definition is <strong><em>an empty object</em></strong> - it does not carry any kind of data)</p>
+</li>
+<li>
+<p>Every time you call a method on a Stream that returns another Stream, it is going to be <strong><em>a new Stream object</em></strong></p>
+</li>
+<li>
+<p>Difference between the Stream API and iterative approach is that in the Stream API we <strong><em>describe the computation and not how this computation should be conducted</em></strong>. This is none of my business, this is the business of the API</p>
+</li>
+<li>
+<p>Reduce method triggers <strong><em>the computation of the elements</em></strong>, and those elements are going to be taken <strong><em>one-by-one, first mapped, then filtered and computed if they pass the filtering step</em></strong>. Using Streams is about <strong><em>creating pipelines of operations</em></strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><mark><strong>Intermediate operation (Map/Filter)</strong></mark> - operation that creates a Stream (it does not do anything, it does not process any data)</p>
+</li>
+<li>
+<p><mark><strong>Terminal operation (Reduce)</strong></mark> - operation that produces a result (it will trigger the computation of the elements)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you have a pattern using a Stream that does not end up with a Terminal operation, your pattern is not going to process any data. <strong><em>It will be useless code</em></strong></p>
+</li>
+<li>
+<p>You are <strong><em>not allowed</em></strong> to process <strong><em>the same Stream twice</em></strong>. This is why it is completely useless to create intermittent variables to store the Streams. <strong><em>You should inline it</em></strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_stream_api"><a class="anchor" href="#_the_stream_api"></a>📌 The Stream API</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The Stream API gives you <strong>4</strong> interfaces:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>java.util.stream.Stream&lt;T&gt;</code></a> (<code>T</code> - the type of the Stream elements) - a sequence of elements supporting sequential and parallel aggregate operations</p>
+</li>
+<li>
+<p><code>map(Function&lt;? super T,? extends R&gt; mapper)</code> - returns a <code>Stream&lt;R&gt;</code> consisting of the results of applying the given function to the elements of this Stream</p>
+</li>
+<li>
+<p><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code> - returns an <code>IntStream</code> consisting of the results of applying the given function to the elements of this Stream</p>
+</li>
+<li>
+<p><code>flatMap(Function&lt;? super T,? extends Stream&lt;? extends R&gt;&gt; mapper)</code> - used to deal with one-to-many relationships between entities (e.g. collection in collection). FlatMap operation is defined by a Function that takes an object and returns a <code>Stream&lt;R&gt;</code> of other objects</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long count = cities.stream() // 3 cities
+.flatMap(city -&gt; city.getPeople().stream()) // With 3 people each
+.count(); // Returns 9</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>filter(Predicate&lt;? super T&gt; predicate)</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the elements of this Stream that match the given predicate</p>
+</li>
+<li>
+<p><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using an associative accumulation function, and returns an <code>Optional&lt;T&gt;</code> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">📌 Reducing Data to compute Statistics</a></p>
+</li>
+<li>
+<p><code>reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using the provided identity value and an associative accumulation function, and returns the reduced value <code>T</code>. See <a href="#_reducing_data_to_compute_statistics">📌 Reducing Data to compute Statistics</a></p>
+</li>
+<li>
+<p><code>collect(Collector&lt;? super T,A,R&gt; collector)</code> - performs a mutable reduction operation on the elements of this Stream using a ⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>java.util.stream.Collector&lt;T,A,R&gt;</code></a> (<code>T</code> - the type of input elements to the reduction operation, <code>A</code> - the mutable accumulation type of the reduction operation (often hidden as an implementation detail), <code>R</code> - the result type of the reduction operation). See <a href="#_the_collectors_api">📌 The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">📌 Collecting Data from Streams to create Lists/Sets/Maps</a></p>
+</li>
+<li>
+<p><code>distinct()</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the distinct elements (according to <code>Object.equals(Object)</code>) of this Stream</p>
+</li>
+<li>
+<p><code>sorted()</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the elements of this Stream, sorted according to natural order</p>
+</li>
+<li>
+<p><code>count()</code> - computes the count of elements and returns <code>long</code></p>
+</li>
+<li>
+<p><code>min(Comparator&lt;? super T&gt; comparator)</code> or <code>max(Comparator&lt;? super T&gt; comparator)</code> - returns <code>Optional&lt;T&gt;</code> of the minimum or the maximum element of this Stream according to the provided <code>Comparator</code></p>
+</li>
+<li>
+<p><code>toArray()</code> - returns an array <code>Object[]</code> containing the elements of this Stream</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>toArray(String[]::new)</code> - returns <code>String[]</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>java.util.stream.IntStream</code></a> - <code>int</code> primitive specialization of Stream</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sum()</code> - computes the sum and returns <code>int</code></p>
+</li>
+<li>
+<p><code>min()</code> or <code>max()</code> - computes the minimum or the maximum number and returns <code>OptionalInt</code></p>
+</li>
+<li>
+<p><code>average()</code> - computes the average value of numbers and returns <code>OptionalDouble</code></p>
+</li>
+<li>
+<p><code>summaryStatistics()</code> - returns <code>IntSummaryStatistics</code> object with statistics like count, sum, min, max and average</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>java.util.stream.LongStream</code></a> - <code>long</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
+</li>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>java.util.stream.DoubleStream</code></a> - <code>double</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_collectors_api"><a class="anchor" href="#_the_collectors_api"></a>📌 The Collectors API</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>java.util.stream.Collectors</code></a> - implementations of <code>Collector</code> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>toList()</code> - returns a <code>Collector</code> that accumulates the input elements into a new <code>List</code>, in encounter order</p>
+</li>
+<li>
+<p><code>toUnmodifiableList()</code> - returns a <code>Collector</code> that accumulates the input elements into an unmodifiable <code>List</code>, in encounter order</p>
+</li>
+<li>
+<p><code>toSet()</code> - returns a <code>Collector</code> that accumulates the input elements into a new <code>Set</code></p>
+</li>
+<li>
+<p><code>toUnmodifiableSet()</code> - returns a Collector that accumulates the input elements into an unmodifiable <code>Set</code></p>
+</li>
+<li>
+<p><code>toCollection(Supplier&lt;C&gt; collectionFactory)</code> (e.g. <code>toCollection(MyCollection::new)</code>) - returns a <code>Collector</code> that accumulates the input elements into a new <code>Collection</code>, in encounter order</p>
+</li>
+<li>
+<p><code>joining()</code> - returns concatenated String without any separator.Only works with <code>Stream&lt;String&gt;</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>joining(", ")</code> - returns concatenated String separated with given separator</p>
+</li>
+<li>
+<p><code>joining(", ", "[", "]")</code> - returns concatenated String separated with given separator with <code>[</code> as prefix and <code>]</code> as suffix</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier)</code> (e.g. <code>groupingBy(City::getState)</code>) - returns a <code>Collector</code> implementing a "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and returning the results in a Map</p>
+</li>
+<li>
+<p><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code> - returns a <code>Collector</code> implementing a cascaded "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and then performing a reduction operation on the values associated with a given key using the specified downstream <code>Collector</code></p>
+</li>
+<li>
+<p><code>counting()</code> - returns a <code>Collector</code> accepting elements of type <code>T</code> that counts the number of input elements</p>
+</li>
+<li>
+<p><code>summingInt(ToIntFunction&lt;? super T&gt; mapper)</code> (e.g. <code>summingInt(City::getPopulation)</code>) - returns a <code>Collector</code> that produces the sum of an integer-valued function applied to the input elements</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_a_stream_from_data_in_memory"><a class="anchor" href="#_building_a_stream_from_data_in_memory"></a>📌 Building a Stream from Data in Memory</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a Stream from <strong><em>Arrays</em></strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html" target="_blank" rel="noopener"><code>java.util.Arrays</code></a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>stream(T[] array)</code> - returns a sequential <code>Stream&lt;T&gt;</code> with the specified array as its source</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>java.util.stream.Stream&lt;T&gt;</code></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>of(T&#8230;&#8203; values)</code> - returns a sequential ordered <code>Stream&lt;T&gt;</code> whose elements are the specified values</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creating a Stream from <strong><em>a Text File</em></strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html" target="_blank" rel="noopener"><code>java.nio.file.Files</code></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>lines(Path path)</code> - read all lines from a file as a <code>Stream&lt;String&gt;</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Path path = Path.of("src/main/resources/first-names.txt"); // File with 200 lines
+try (Stream&lt;String&gt; lines = Files.lines(path)) {
+long count = lines.count(); // Returns 200
+} catch (IOException e) {
+e.printStackTrace();
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creating a Stream from <strong><em>a RegEx</em></strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>java.util.regex.Pattern</code></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>splitAsStream(CharSequence input)</code> - creates a <code>Stream&lt;String&gt;</code> from the given input sequence around matches of this pattern</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
+
+// Bad Practice: we create an Array and store it in memory
+String[] words = sentence.split(" ");
+long count1 = Arrays.stream(words).count(); // Returns 9
+
+// Best Practice: we do not create an Array when we create a Stream from Pattern
+long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); // Returns 9</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creating an <code>IntStream</code> <strong><em>(Stream of ASCII Codes)</em></strong> from a String:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener"><code>java.lang.String</code></a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chars()</code> - returns an <code>IntStream</code> of int zero-extending the char values from this sequence</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
+sentence.chars()
+    .mapToObj(codePoint -&gt; Character.toString(codePoint)) // Converts IntStream to Stream&lt;String&gt;
+    .filter(letter -&gt; !letter.equals(" "))
+    .distinct().sorted().forEach(System.out::print);</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creating a Stream of Strings:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream&lt;String&gt; streamOfStrings = Stream.&lt;String&gt;of("abcd");</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong><em>Selecting</em></strong> elements of a Stream:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">IntStream.range(0, 30)
+    .skip(10) // Skip first 10 elements
+    .limit(10) // Take next 10 elements after skip
+    .forEach(index -&gt; System.out.print(index + " ")); // Prints "10 11 12 13 14 15 16 17 18 19"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong><em>Closing</em></strong> a Stream with <strong><em>a Predicate</em></strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>takeWhile</code> - consume elements of the Stream until Predicate is <strong><em>true</em></strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
+    .takeWhile(c -&gt; c != null)
+    .forEach(System.out::println);
+// Prints:
+class java.util.ArrayList
+class java.util.AbstractList
+class java.util.AbstractCollection
+class java.lang.Object</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>dropWhile</code> - consume remaining elements of the Stream after Predicate becomes <strong><em>false</em></strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
+    .dropWhile(c -&gt; !c.equals(AbstractCollection.class))
+    .forEach(System.out::println);
+// Prints
+class java.util.AbstractCollection
+class java.lang.Object
+null
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.lang.Class.getSuperclass()" because "c" is null</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_converting_a_for_loop_to_a_stream"><a class="anchor" href="#_converting_a_for_loop_to_a_stream"></a>📌 Converting a For Loop to a Stream</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The following:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">int sum = 0;
+int count = 0;
+for (Person person : people) {
+if (person.getAge() &gt; 20) {
+count++;
+sum += person.getAge();
+}
+}
+double average = 0d;
+if (count &gt; 0) {
+average = sum / count;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>can be converted into:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double average = people.stream()
+.mapToInt(Person::getAge)
+.filter(age -&gt; age &gt; 20)
+.average().orElseThrow();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The Stream API <strong><em>always computes one thing</em></strong>.Never sacrifice the <strong><em>readability</em></strong> of your code to the <strong><em>performance</em></strong>.The performance here is measured in <strong><em>nanoseconds</em></strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double totalAmount = 0;
+int frequentRenterPoints = 0;
+String statement = composeHeader();
+for (Rental rental : rentals) {
+totalAmount += computeRentalAmount(rental);
+frequentRenterPoints += getFrequentRenterPoints(rental);
+statement += computeStatementLine(rental);
+}
+statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>can be converted into:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double totalAmount = rentals.stream()
+.mapToDouble(this::computeRentalAmount)
+.sum();
+int frequentRenterPoints = rentals.stream()
+.mapToInt(this::getFrequentRenterPoints)
+.sum();
+String statement = composeHeader();
+statement += rentals.stream()
+.map(this::computeStatementLine)
+.collect(Collectors.joining());
+statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Forget about <strong><em>processing your data in one pass</em></strong> (unless you are doing <strong><em>an SQL request</em></strong>).Most of the time when you have a for loop or when you have a Stream, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, <strong><em>extremely performant, and extremely efficient</em></strong>.See <a href="https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/" target="_blank" rel="noopener">Fine-grained optimizations provided by JIT Compiler in Java</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reducing_data_to_compute_statistics"><a class="anchor" href="#_reducing_data_to_compute_statistics"></a>📌 Reducing Data to compute Statistics</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The reduction of an empty Stream is <mark><strong><em>the identity element</em></strong></mark> of the reduction operation.</p>
+</li>
+<li>
+<p><code>Stream#reduce</code> method can have <strong>2</strong> parameters: <strong><em>identity element</em></strong> and <strong><em>a Binary Operator</em></strong>.It adds this identity element before the elements of the Stream.If you have an empty Stream, it will <strong><em>return identity element</em></strong>.If you have only one element in the Stream, it will <strong><em>return the reduction of the identity element and this only element</em></strong>:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/the-stream-api/stream-reduce.png" alt="stream reduce" width="500">
+</div>
+</div>
+</li>
+<li>
+<p>Some reduction operations <strong><em>do not have any identity element</em></strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <strong><em>Optionals</em></strong> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong><em>we don&#8217;t have any result</em></strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collecting_data_from_streams_to_create_listssetsmaps"><a class="anchor" href="#_collecting_data_from_streams_to_create_listssetsmaps"></a>📌 Collecting Data from Streams to create Lists/Sets/Maps</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><mark><strong>Collector</strong></mark> is a complex object <strong><em>used to reduce a Stream</em></strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Can be used to gather data in <strong><em>collections</em></strong> and <strong><em>maps</em></strong> - it is called as <strong><em>reduction in a "mutable container"</em></strong> or <strong><em>mutable reduction</em></strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><mark><strong>Downstream Collector</strong></mark> - collector that is passed to <code>Collectors#groupingBy</code> which is applied to the streaming of the list of values</p>
+</li>
+<li>
+<p><mark><strong>The Collector API</strong></mark> uses the <code>Stream#collect(Collector&lt;? super T,A,R&gt; collector)</code> that takes ⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>java.util.stream.Collector&lt;T,A,R&gt;</code></a> (<code>T</code> - the type of input elements to the reduction operation, <code>A</code> - the mutable accumulation type of the reduction operation (often hidden as an implementation detail), <code>R</code> - the result type of the reduction operation) implementation as a parameter</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use 🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>java.util.stream.Collectors</code></a> and their factory methods</p>
+</li>
+<li>
+<p>You can create your own collectors, but it is complex and tricky</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bad Practice:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
+List&lt;Person&gt; peopleFromNewYork = new ArrayList&lt;&gt;(); // Creating a List for results
+people.stream()
+    .filter(p -&gt; p.getCity().equals("New York"))
+    .forEach(p -&gt; peopleFromNewYork.add(p));</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Best Practice:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
+List&lt;Person&gt; peopleFromNewYork = people.stream()
+    .filter(p -&gt; p.getCity().equals("New York"))
+    .collect(Collectors.toList()); // Using Collector</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parallelism_in_the_stream_api"><a class="anchor" href="#_parallelism_in_the_stream_api"></a>📌 Parallelism in the Stream API</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You can make a regular Stream a Parallel Stream in two ways:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>by calling <code>.parallel()</code> method on existing stream</p>
+</li>
+<li>
+<p>by calling <code>.parallelStream()</code> method instead of calling <code>.stream()</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>These intermediate operations are going to set a special bit in the Stream that will trigger the computations in parallel when you call your terminal operation. After terminal operation is called, the Stream implementation will check this special bit: if it is set to 1, then the computation will happen in parallel and will trigger special algorithms for that, otherwise it will be processed sequentially.</p>
+</li>
+<li>
+<p><a href="https://openjdk.org/projects/code-tools/jmh/" target="_blank" rel="noopener"><strong>JMH (Java Microbenchmark Harness)</strong></a> - standard tool to measure the performances of your Java code</p>
+</li>
+<li>
+<p>To proper measure the performance of a Java application you first need to run it a certain number of times (warmup), because within JVM there is a special just-in-time C2 compiler that can optimize your code a lot</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_the_best_performance_gains_from_parallel_streams"><a class="anchor" href="#_getting_the_best_performance_gains_from_parallel_streams"></a>📌 Getting the best performance gains from Parallel Streams</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Beware, because in below example you&#8217;ll have <strong>two unboxing</strong> and <strong>one boxing</strong> (which have an impact on performance!):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Integer j = 3;
+Integer l = 4;
+Integer k = j + l;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Similarly, iterating and doing some operation over array of <code>int</code> will be much faster than over array of <code>Integer</code> (due to unboxing and boxing).</p>
+</li>
+<li>
+<p>Each physical core of the CPU access two levels of cache, which are private: the first level of cache (small, very fast) and second level of cache (bigger, little slower). Third level of cache is shared by all physical cores (bigger, little slower). Main memory lives outside the CPU and is accessed much slower than third level of cache:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/the-stream-api/cpu-caches.png" alt="cpu caches" width="450">
+</div>
+</div>
+</li>
+<li>
+<p>How does a core of CPI access data from the main memory? This data will have to be transferred first to the L3 cache, then to the L2 cache, and then to the L1 cache before being available by this core of CPU.</p>
+</li>
+<li>
+<p>The memory is not read in a random way. If a core of CPU wants to access just an int, it will transfer line of memory, not just an int. The memory is transferred line by line from the main memory to the different levels of cache. Each line is typically 64 bytes (8 longs or 16 ints).</p>
+</li>
+<li>
+<p>When we have an array of references to the instance of the <code>Integer</code> which are going to hold the values: in one read operation we are only going to transfer the references to this object. And then to get all the values it may be several read to maximum 16 reads to get all the values of those integers. This is called <strong>Pointer Chasing</strong> which you need to avoid. To get all the values, we have to follow pointers to other places in the memory which has a cost due to the way that data is transferred from the main memory to the cache of the CPU.</p>
+</li>
+<li>
+<p>Iterating on a <code>LinkedList</code> will imply much more Pointer Chasing than iterating on an <code>ArrayList</code>. <code>LinkedList</code> does not store references to the Integers in an array. It stores them in a linked list of node objects. So first, you need to get the first reference to the first node object, and then you need to follow two pointers: the first one to the next node object and the second one to the Integer itself.</p>
+</li>
+<li>
+<p><strong>Cache Miss</strong> - whenever the core of a CPU needs a value and that value turns out not to be in the cache. During the Cache Miss, if the value is not in the L2 cache or L3 cache, then the CPU may decide to suspend the threat that is executing this computation and replace it by another thread. This is a much bigger performance hit than just Pointer Chasing, but it is still a consequence of Pointer Chasing.</p>
+</li>
+<li>
+<p>This is why LinkedLists are called cache-unfriendly structures, whereas ArrayLists are called cache-friendly structures.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_forkjoin_framework_implementation_of_parallel_streams"><a class="anchor" href="#_forkjoin_framework_implementation_of_parallel_streams"></a>📌 Fork/Join framework implementation of Parallel Streams</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Fork/Join framework has been introduced in Java 7 and slightly modified in Java 8.</p>
+</li>
+<li>
+<p>Going parallel means that this task is going to be split into subtasks and each subtask is going to produce a partial result (fork step). When those partial results have been computed, they are going to be sent back to the main task that has the responsibility of joining them (join step).</p>
+</li>
+<li>
+<p>All those tasks are sent to a special pool of thread called ForkJoinPool and this pool has special capabilities to enable the computations of those subtasks in parallel.</p>
+</li>
+<li>
+<p>Fork/Join Framework decides whether the task is too big and should be split, or small enough and should be computed.</p>
+</li>
+<li>
+<p>Fork/Join pool:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>is a pool of threads, instance of the :green_circle: <code>java.util.concurrent.ForkJoinPool</code></p>
+</li>
+<li>
+<p>created when the JVM is created</p>
+</li>
+<li>
+<p>there is only one common <code>ForkJoinPool</code> in the JVM since Java 8</p>
+</li>
+<li>
+<p>it is used for all the Parallel Streams</p>
+</li>
+<li>
+<p>the size is fixed by the number of virtual cores (not necessarily a good thing) and can be changed with <code>java.util.concurrent.ForkJoinPool.common.parallelism</code> system property</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Suppose we have a common Fork/Join pool with 2 threads in it. Each thread is also associated with a waiting queue that can accept tasks. Suppose we have a task to compute. The first step is to split this task (A) into subtasks (A11, A12). Since parent task (A) is waiting for the partial results computed by its subtasks, it will be put at the end of the waiting queue thus freeing the first thread that is going to be able to handle the task A11. Fork/Join framework implements a trick that is quite classical in concurrent programming that is called work stealing. Since second thread is not working, it is able to steal some tasks from another waiting queue. So second thread will steal a task A12 from first thread, that is busy with A11 task and all threads will be busy. Once all subtasks will finish computation, the results will be passed to A task which will apply the reduce operator.</p>
+</li>
+<li>
+<p>You need to bench you own computation to be able to tell where your sweet spot is going to be in your use case. E.g. computing the sum of 10 integers in array is much faster sequentially than in parallel, however computing the sum of several millions integers in array will be much faster in parallel.</p>
+</li>
+<li>
+<p>You also need to check that on a machine that is as close as possible as your production machine.</p>
+</li>
+<li>
+<p>Synchronization is a feature within the Java language which prevents two thread from executing the same piece of code. In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform hidden synchronization which is a bottleneck, e.g. <code>findFirst()</code> (<code>findAny()</code> will provide you much better performance in parallel) and <code>limit(100)</code> methods.</p>
+</li>
+<li>
+<p>If your binary operator from <code>reduce</code> method is not associative, then you are going to compute wrong results in both: sequential and parallel computing. In parallel, you can also get different results each time. Associative means that first computation gives out the same result as the second computation. Example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Given: [1, 1, 1, 1]
+// the below should return 4.
+// But since it is not associative binary operator,
+// it will compute 2 (1+1), then 5 (4+1), and it will return 26 (25+1)
+stream.reduce(0, (i1, i2) -&gt; i1*i1 + i2*i2);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can display the thread executing your parallel stream with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Set&lt;String&gt; threadNames = ConcurrentHashMap.newKeySet();
+stream.parallel().(...)
+.peek(i -&gt; threadNames.add(Thread.currentThread().getName()))
+.(...);
+threadNames.forEach(System.out::println);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You can execute a parallel stream in a custom ForkJoinPool, display the threads executing your parallel stream and count the number of tasks each thread executed with:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Long&gt; threadMap = new ConcurrentHashMap&lt;&gt;();
+ForkJoinPool forkJoinPool = new ForkJoinPool(4); // with 4 threads
+Callable&lt;Integer&gt; task = () -&gt; {
+int result = stream.parallel().(...)
+.peek(i -&gt; threadMap.merge(Thread.currentThread().getName(), 1L, Long::sum))
+.(...);
+return result;
+};
+ForkJoinTask&lt;Integer&gt; submit = forkJoinPool.submit(task);
+submit.get();
+threadMap.forEach((name, n) -&gt; System.out.println(name + " -&gt; " + n));
+forkJoinPool.shutdown();</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_choosing_the_right_sources_of_data_to_efficiently_go_parallel"><a class="anchor" href="#_choosing_the_right_sources_of_data_to_efficiently_go_parallel"></a>📌 Choosing the right sources of data to efficiently go parallel</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>The Fork step in Fork/Join framework works best based on two assumptions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The number of elements is known before processing them. These sources of data do not meet this condition:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Iterator</p>
+</li>
+<li>
+<p>Pattern</p>
+</li>
+<li>
+<p>Lines of a text file</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reaching the center of the data must be easy, reliable and efficient. This source of data does not meet this condition:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>LinkedList</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Fork/Join framework splits the array in two pieces and doesn&#8217;t know if there is the same amount of data in the first half and in the second half. This information is not available, unless you count all the elements, one by one, in each half. The framework doesn&#8217;t do that, because it would be too costly.</p>
+</li>
+<li>
+<p>Those two halves are going to be split again, and again, and again. Some of the segments of this array are going to be empty. Become higher and higher as the number of splitting increases. This is a problem with Sets-like structures.</p>
+</li>
+<li>
+<p>Sizeable - the number of elements of the source is known. All the collections and the arrays are sizeable, but all the patterns, lines and iterators are not sizeable.</p>
+</li>
+<li>
+<p>Subsizeable - the number of elements of the two split sources is known. Sets are sizeable, but they are not subsizeable.</p>
+</li>
+<li>
+<p>Processing data from a list is much faster than the processing data from a set because iterating over the elements of a list is faster than iterating over the elements of a set.</p>
+</li>
+<li>
+<p>Going parallel as a list will bring you more performance gain than going parallel in a set.</p>
+</li>
+<li>
+<p>You may have data to process that, in fact, is not well spread over all the buckets of the array that is backing your set (e.g. lines of strings that all return 0 hash code will be handled by only one thread).</p>
+</li>
+<li>
+<p>Are you sure that your threads should be used to compute your streams in parallel? In case of web application your threads are used to serve your HTTP clients, so you don&#8217;t want those threads to be used for anything else, including parallel streams. The same goes for threads that are used for SQL transactions. Threads are precious resources.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
