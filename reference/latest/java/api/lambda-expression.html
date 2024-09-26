@@ -318,7 +318,7 @@ Comparator&lt;String&gt; comparator = (s1, s2) -&gt; s1.compareTo(s2);</code></p
 <h2 id="_creating_lambdas_with_specialized_interfaces"><a class="anchor" href="#_creating_lambdas_with_specialized_interfaces"></a>Creating Lambdas with specialized Interfaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Lambda Expressions are <strong>compiled using specific bytecode instruction</strong> called <a href="https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic" target="_blank" rel="noopener"><strong><em>invokedynamic</em></strong></a> introduced in Java 7</p>
+<p>Lambda Expressions are <strong>compiled using specific bytecode instruction</strong> called <a href="https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic" target="_blank" rel="noopener"><strong><em>invokedynamic</em></strong></a> introduced in Java 7.</p>
 </div>
 <div class="paragraph">
 <p><strong>Performance is 60x better in Lambda Expressions than Anonymous Classes</strong>. It can be even faster. Just <strong>avoid autoboxing and unboxing</strong> when writing Lambda Expressions. If you want to improve the performance you need to <strong>use specialized Interfaces for primitive types</strong>:</p>
