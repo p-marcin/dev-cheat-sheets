@@ -136,7 +136,20 @@
 <dl>
 <dt class="hdlist1">Monolithic Architecture</dt>
 <dd>
-<p>Entire application is constructed <strong>as a unified, standalone unit</strong>. It is decomposed internally into layers: Presentation, Business Logic and Data Access.</p>
+<p>Entire application is constructed <strong>as a unified, standalone unit</strong>. It is decomposed internally into layers:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Presentation</p>
+</li>
+<li>
+<p>Business Logic</p>
+</li>
+<li>
+<p>Data Access</p>
+</li>
+</ul>
+</div>
 </dd>
 <dt class="hdlist1">SOA (Service Oriented Architecture) also known as Centralized Architecture</dt>
 <dd>
@@ -153,191 +166,246 @@
 <div class="sect1">
 <h2 id="_microservices"><a class="anchor" href="#_microservices"></a>Microservices</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Microservices are about decomposing the system into more discrete units of work.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Decomposition</dt>
+<dd>
+<p>Breaking software problem into smaller pieces that are easier to understand and solve.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Microservices embrace the concept of <strong><em>Protocol-Aware Heterogeneous Interoperability</em></strong> to handle all communication:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Microservices are about decomposing the system into more discrete units of work. <strong>Decomposition</strong> is breaking software problem into smaller pieces that are easier to understand and solve.</p>
+<p><strong>Protocol-Aware</strong> means that every call within the service boundaries are solved via REST over HTTP</p>
 </li>
 <li>
-<p>Microservices embrace the concept of <strong>Protocol-Aware Heterogeneous Interoperability</strong> to handle all communication:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Protocol-Aware</strong> means that every call within the service boundaries are solved via REST over HTTP.</p>
-</li>
-<li>
-<p><strong>Heterogeneous Interoperability</strong> means that we can integrate with services implemented in different programming languages.</p>
+<p><strong>Heterogeneous Interoperability</strong> means that we can integrate with services implemented in different programming languages</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>In a pure Microservice Architecture each unit of work can be <strong>called</strong> from any other unit of work within the system.</p>
-</li>
-<li>
-<p>While smaller artifacts make development easier, deployments can become a nightmare. <strong>Continuous Delivery</strong> model should be built early in the process.</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In a pure Microservice Architecture each unit of work can be <strong>called</strong> from any other unit of work within the system.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+While smaller artifacts make development easier, deployments can become a nightmare. <strong>Continuous Delivery</strong> model should be built early in the process.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_costs_to_pay_for_moving_to_microservice_architecture"><a class="anchor" href="#_costs_to_pay_for_moving_to_microservice_architecture"></a>Costs to pay for moving to Microservice Architecture</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Complexity</strong> - it will dramatically cost you time and money as you move from a few deployed artifacts to many. In addition to the deployment complexity, determining where all the code lives and operates can increase the complexity and the costs associated with it.</p>
-</li>
-<li>
-<p><strong>Distribution Tax</strong> - there is a dramatic increase in network communications between the individual services as their number grows. This increases the total latency of calls across the network as a whole. The increase in call volume tends to risk congestion, causing catastrophic latency across the whole network. A single slow call in the stack can cause thread blocking that impacts other client calls.</p>
-</li>
-<li>
-<p><strong>Reduction of Reliability</strong> - as you put more moving parts into a system, there is a decrease in the overall reliability of the system as a whole. It becomes critical to evaluate your most core services and determine if they can withstand system unreliability.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Complexity</dt>
+<dd>
+<p>It will dramatically cost you time and money as you move from a few deployed artifacts to many. In addition to the deployment complexity, determining where all the code lives and operates can increase the complexity and the costs associated with it.</p>
+</dd>
+<dt class="hdlist1">Distribution Tax</dt>
+<dd>
+<p>There is a dramatic increase in network communications between the individual services as their number grows. This increases the total latency of calls across the network as a whole. The increase in call volume tends to risk congestion, causing catastrophic latency across the whole network. A single slow call in the stack can cause thread blocking that impacts other client calls.</p>
+</dd>
+<dt class="hdlist1">Reduction of Reliability</dt>
+<dd>
+<p>As you put more moving parts into a system, there is a decrease in the overall reliability of the system as a whole. It becomes critical to evaluate your most core services and determine if they can withstand system unreliability.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_service_design"><a class="anchor" href="#_service_design"></a>Service Design</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p><strong>Service Design Anti-Patterns</strong>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Too fine-grained.</p>
+<p>Too fine-grained</p>
 </li>
 <li>
-<p>Not fine-grained enough.</p>
+<p>Not fine-grained enough</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p>The key to finding the sweet spot on granularity is to leverage <strong>Domain-Driven Design</strong>.</p>
-</li>
-<li>
+</div>
+<div class="paragraph">
 <p>There is no standard way of documenting RESTful services like there was with WSDL in the SOAP world, so developing common means of <strong>service documentation</strong> is critical especially in large organizations.</p>
-</li>
-<li>
+</div>
+<div class="paragraph">
 <p>In a Microservices world size isn’t as critical as <strong>operations</strong>. A Microservice handles one set of related functions with little or no cross-domain operations.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_the_api_layer"><a class="anchor" href="#_the_api_layer"></a>The API layer</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>The API layer is a <strong>pure proxy</strong>.</p>
-</li>
-<li>
-<p>If you find your API layer is doing <strong>transformations</strong> or <strong>executing logic</strong> you’re doing it wrong.</p>
-</li>
-<li>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you find your API layer is doing <strong>transformations</strong> or <strong>executing logic</strong> you’re doing it wrong.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>The API layer is used to <strong>shield the outside world</strong> or your clients from knowing the structure, organization, or even what exact service is exposing a specific operation.</p>
-</li>
-<li>
-<p>A passive API is a passive API - no exceptions. This means we cannot introduce <strong>breaking API changes</strong>. Instead, <strong>versioning</strong> should be leveraged.</p>
-</li>
-</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+A passive API is a passive API - no exceptions. This means we cannot introduce <strong>breaking API changes</strong>. Instead, <strong>versioning</strong> should be leveraged.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_edge_services"><a class="anchor" href="#_edge_services"></a>Edge Services</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Outbound Edge Services</strong> - expose your client&#8217;s specific needs to the outside world. Not every client that consumes your service needs the same data payload (e.g. PC vs Mobile).</p>
-</li>
-<li>
-<p><strong>Inbound/Translation Edge Services</strong> - abstract you from third party dependencies. You can either call the APIs of the third party directly or build an Edge Service that you own to interact with the third party.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Outbound Edge Services</dt>
+<dd>
+<p>Expose your client&#8217;s specific needs to the outside world. Not every client that consumes your service needs the same data payload (e.g. PC vs Mobile).</p>
+</dd>
+<dt class="hdlist1">Inbound/Translation Edge Services</dt>
+<dd>
+<p>Abstract you from third party dependencies. You can either call the APIs of the third party directly or build an Edge Service that you own to interact with the third party.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_cloud_native"><a class="anchor" href="#_cloud_native"></a>Cloud-Native</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Cloud Computing</strong> - pattern of globally distributing systems to provide increased uptime, increased scalability and increased distribution.</p>
-<div class="ulist">
-<ul>
-<li>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cloud Computing</dt>
+<dd>
+<p>Pattern of globally distributing systems to provide increased uptime, increased scalability and increased distribution.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
 <p><strong>Cloud Infrastructure</strong> can be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Public</strong> - delivered via the internet and shared across organizations</p>
 </li>
 <li>
-<p><strong>Public</strong> - delivered via the internet and shared across organizations.</p>
+<p><strong>Private</strong> - dedicated solely to your organization</p>
 </li>
 <li>
-<p><strong>Private</strong> - dedicated solely to your organization.</p>
-</li>
-<li>
-<p><strong>Hybrid</strong> - any environment that uses both public and private clouds.</p>
+<p><strong>Hybrid</strong> - any environment that uses both public and private clouds</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><a href="https://12factor.net/" target="_blank" rel="noopener"><strong>The Twelve-Factor App</strong></a> principles are a collection of best practices for building Microservices-Based Cloud-Native applications.</p>
-</li>
-<li>
-<p>You can build Monolithic Cloud-Native application, and you can build Microservices that are not capable of moving to the cloud at all.</p>
-</li>
-</ul>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<a href="https://12factor.net/" target="_blank" rel="noopener"><strong>The Twelve-Factor App</strong></a> principles are a collection of <strong>best practices</strong> for building Microservices-Based Cloud-Native applications.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+You can build Monolithic Cloud-Native application, and you can build Microservices that are not capable of moving to the cloud at all.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_scalability"><a class="anchor" href="#_scalability"></a>Scalability</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>In a Microservice Architecture, each application is <strong>independent</strong> of every other application in the system. As such, when an individual service comes under load it can be <strong>individually scaled</strong>.</p>
-</li>
-<li>
+</div>
+<div class="paragraph">
 <p>Traditional strategy of Monolith Architecture is to scale for the <strong>busiest day every day</strong>. In a well-defined Microservice Architecture, you can build your system for an <strong>average day</strong> and <strong>allow scalability</strong> to accommodate increases or decreases in traffic.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_gridlock_situations"><a class="anchor" href="#_gridlock_situations"></a>Gridlock situations</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Gridlock can occur:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Gridlock can occur when services are under greater load and <strong>latency increases</strong>. While calls are waiting for responses, delays can become unbearable. When this occurs, there can be a <strong>catastrophic failure of the entire system</strong>.</p>
+<p>when services are under greater load and <strong>latency increases</strong>. While calls are waiting for responses, delays can become unbearable. When this occurs, there can be a <strong>catastrophic failure of the entire system</strong></p>
 </li>
 <li>
-<p>Gridlock can also occur due to <strong>circular calls</strong> (when a calling service is subsequently called by some downstream service).</p>
-</li>
-<li>
-<p>Gridlock can be controlled with:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Circuit Breaker</strong> - a pattern in which a standard flow is built through application, and as latency increases and timeouts begin to occur, the circuit is broken and default behavior is executed. While you may suffer from reduced functionality of your system (e.g. search does not work, but application itself do), it’s often better to do this than to suffer a complete failure.</p>
-</li>
-<li>
-<p><strong>Strong Timeout Logic</strong> throughout the system.</p>
+<p>due to <strong>circular calls</strong> (when a calling service is subsequently called by some downstream service)</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Gridlock can be controlled with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Circuit Breaker</strong> - a pattern in which a standard flow is built through application, and as latency increases and timeouts begin to occur, the circuit is broken and default behavior is executed. While you may suffer from reduced functionality of your system (e.g. search does not work, but application itself do), it’s often better to do this than to suffer a complete failure</p>
+</li>
+<li>
+<p><strong>Strong Timeout Logic</strong> throughout the system</p>
 </li>
 </ul>
 </div>
@@ -346,104 +414,120 @@
 <div class="sect1">
 <h2 id="_communication_models_synchronous_vs_asynchronous"><a class="anchor" href="#_communication_models_synchronous_vs_asynchronous"></a>Communication Models: Synchronous vs Asynchronous</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>One of the best strategies for dealing with reducing latency in Microservices is to <strong>not rely</strong> on a purely <strong>synchronous communication</strong> model.</p>
-</li>
-<li>
+</div>
+<div class="paragraph">
 <p>We are impatient by nature, and we seem to always want systems that have immediate feedback (synchronous operations). But it is not always needed. Many times we can simply <strong>defer the processing</strong> to occur in an <strong>asynchronous</strong> manner. When we do this, we reduce the latency constraints on the functions that actually are required to be executed in real time.</p>
-</li>
-<li>
-<p>When moving to asynchronous operations, you need to take care to <strong>handle error states correctly</strong> and <strong>recover from them</strong>. If messages cannot be processed for any reason, you cannot simply ignore them. Dead letter queues must be monitored and action must be taken to process the messages even if it’s manual processing.</p>
-</li>
-</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+When moving to asynchronous operations, you need to take care to <strong>handle error states correctly</strong> and <strong>recover from them</strong>. If messages cannot be processed for any reason, you cannot simply ignore them. Dead letter queues must be monitored and action must be taken to process the messages even if it’s manual processing.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_database_transaction_models_acid_vs_base"><a class="anchor" href="#_database_transaction_models_acid_vs_base"></a>Database Transaction Models: ACID vs BASE</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Traditional systems aimed for <strong>ACID</strong> model which provides a <strong>consistent system</strong>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Atomic</strong> - either succeeds completely or fails completely.</p>
+<p><strong>Atomic</strong> - either succeeds completely or fails completely</p>
 </li>
 <li>
-<p><strong>Consistent</strong> - constraints of underlying datastore are enforced.</p>
+<p><strong>Consistent</strong> - constraints of underlying datastore are enforced</p>
 </li>
 <li>
-<p><strong>Isolated</strong> - cannot be read by other transactions until in a specific state based on isolation rules.</p>
+<p><strong>Isolated</strong> - cannot be read by other transactions until in a specific state based on isolation rules</p>
 </li>
 <li>
-<p><strong>Durable</strong> - once saved, guaranteed to be in the datastore until modified.</p>
+<p><strong>Durable</strong> - once saved, guaranteed to be in the datastore until modified</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p>In Microservices Architecture, we embrace <strong>BASE</strong> model which provides <strong>high availability</strong>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Basically Available</strong> - availability of data is achieved by spreading and replicating it across the nodes of the database cluster.</p>
+<p><strong>Basically Available</strong> - availability of data is achieved by spreading and replicating it across the nodes of the database cluster</p>
 </li>
 <li>
-<p><strong>Soft State</strong> - developers are responsible for consistency.</p>
+<p><strong>Soft State</strong> - developers are responsible for consistency</p>
 </li>
 <li>
-<p><strong>Eventually Consistent</strong> - at some point it will be achieved. Data reads are still possible (even though they might not reflect the reality).</p>
+<p><strong>Eventually Consistent</strong> - at some point it will be achieved. Data reads are still possible (even though they might not reflect the reality)</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Just as <strong>SQL databases</strong> are almost uniformly <strong>ACID compliant</strong>, some <strong>NoSQL databases</strong> also tend to conform to <strong>BASE principles</strong> like MongoDB, Cassandra and Redis.</p>
-</li>
-<li>
+<div class="paragraph">
 <p>In a Microservices Architecture, you need to <strong>identify where you truly need</strong> ACID transactions and wrap service boundaries around those operations.</p>
-</li>
-</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Just as <strong>SQL databases</strong> are almost uniformly <strong>ACID compliant</strong>, some <strong>NoSQL databases</strong> also tend to conform to <strong>BASE principles</strong> like MongoDB, Cassandra and Redis.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_logging_and_distributed_tracing"><a class="anchor" href="#_logging_and_distributed_tracing"></a>Logging and Distributed Tracing</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>When an issue arises in a Microservice Architecture, it can become <strong>very difficult</strong> to see all the moving parts.</p>
-</li>
-<li>
-<p><strong>Tracing</strong> - concept of creating a <strong>unique token called a trace</strong> and using that trace in all internal logging events for that call stack.</p>
-</li>
-<li>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Tracing</dt>
+<dd>
+<p>Concept of creating a <strong>unique token called a trace</strong> and using that trace in all internal logging events for that call stack.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
 <p><strong>Distributed Tracing</strong> across a Distributed System is achieved when each service uses the trace and then passes it downstream to all the service calls it makes.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_embracing_devops"><a class="anchor" href="#_embracing_devops"></a>Embracing DevOps</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>The single most effective way to be successful in a Microservice Architecture is to build it into your culture. A <strong>DevOps culture</strong> is a perfect fit, because the two compliment each other’s strengths while mitigating the weaknesses.</p>
-</li>
-<li>
+</div>
+<div class="paragraph">
 <p>DevOps aims to bring the <strong>conversation</strong> between development and operations into <strong>the same sphere</strong>.</p>
-</li>
-<li>
-<p>Most of the issues from Microservices can be seen as operational issues (e.g. Distribution Tax which needs to be monitored).</p>
-</li>
-</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Most of the issues from Microservices can be seen as <strong>operational issues</strong> (e.g. Distribution Tax which needs to be monitored).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
