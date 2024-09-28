@@ -239,48 +239,48 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>java.util.stream.Stream&lt;T&gt;</code></a> (<code>T</code> - the type of the Stream elements) - a sequence of elements supporting sequential and parallel aggregate operations</p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;</code></a> - a sequence of elements supporting sequential and parallel aggregate operations</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>map(Function&lt;? super T,? extends R&gt; mapper)</code> - returns a <code>Stream&lt;R&gt;</code> consisting of the results of applying the given function to the elements of this Stream</p>
+<p><code>map(Function&lt;? super T,? extends R&gt; mapper)</code> - returns a <code>⚪ Stream&lt;R&gt;</code> consisting of the results of applying the given function to the elements of this Stream</p>
 </li>
 <li>
-<p><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code> - returns an <code>IntStream</code> consisting of the results of applying the given function to the elements of this Stream</p>
+<p><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code> - returns an <code>⚪ IntStream</code> consisting of the results of applying the given function to the elements of this Stream</p>
 </li>
 <li>
-<p><code>flatMap(Function&lt;? super T,? extends Stream&lt;? extends R&gt;&gt; mapper)</code> - used to deal with one-to-many relationships between entities (e.g. collection in collection). FlatMap operation is defined by a Function that takes an object and returns a <code>Stream&lt;R&gt;</code> of other objects</p>
+<p><code>flatMap(Function&lt;? super T,? extends Stream&lt;? extends R&gt;&gt; mapper)</code> - used to deal with one-to-many relationships between entities (e.g. collection in collection). FlatMap operation is defined by a Function that takes an object and returns a <code>⚪ Stream&lt;R&gt;</code> of other objects</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long count = cities.stream() // 3 cities
-.flatMap(city -&gt; city.getPeople().stream()) // With 3 people each
-.count(); // Returns 9</code></pre>
+    .flatMap(city -&gt; city.getPeople().stream()) // With 3 people each
+    .count(); // Returns 9</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p><code>filter(Predicate&lt;? super T&gt; predicate)</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the elements of this Stream that match the given predicate</p>
+<p><code>filter(Predicate&lt;? super T&gt; predicate)</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the elements of this Stream that match the given predicate</p>
 </li>
 <li>
-<p><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using an associative accumulation function, and returns an <code>Optional&lt;T&gt;</code> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a></p>
+<p><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using an associative accumulation function, and returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Optional.html"><code>🔴 Optional&lt;T&gt;</code></a> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a></p>
 </li>
 <li>
 <p><code>reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using the provided identity value and an associative accumulation function, and returns the reduced value <code>T</code>. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a></p>
 </li>
 <li>
-<p><code>collect(Collector&lt;? super T,A,R&gt; collector)</code> - performs a mutable reduction operation on the elements of this Stream using a ⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>java.util.stream.Collector&lt;T,A,R&gt;</code></a> (<code>T</code> - the type of input elements to the reduction operation, <code>A</code> - the mutable accumulation type of the reduction operation (often hidden as an implementation detail), <code>R</code> - the result type of the reduction operation). See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a></p>
+<p><code>collect(Collector&lt;? super T,A,R&gt; collector)</code> - performs a mutable reduction operation on the elements of this Stream using a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a>. See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a></p>
 </li>
 <li>
-<p><code>distinct()</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the distinct elements (according to <code>Object.equals(Object)</code>) of this Stream</p>
+<p><code>distinct()</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the distinct elements (according to <code>Object#equals(Object)</code>) of this Stream</p>
 </li>
 <li>
-<p><code>sorted()</code> - returns a <code>Stream&lt;T&gt;</code> consisting of the elements of this Stream, sorted according to natural order</p>
+<p><code>sorted()</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the elements of this Stream, sorted according to natural order</p>
 </li>
 <li>
 <p><code>count()</code> - computes the count of elements and returns <code>long</code></p>
 </li>
 <li>
-<p><code>min(Comparator&lt;? super T&gt; comparator)</code> or <code>max(Comparator&lt;? super T&gt; comparator)</code> - returns <code>Optional&lt;T&gt;</code> of the minimum or the maximum element of this Stream according to the provided <code>Comparator</code></p>
+<p><code>min(Comparator&lt;? super T&gt; comparator)</code> or <code>max(Comparator&lt;? super T&gt; comparator)</code> - returns <code>🔴 Optional&lt;T&gt;</code> of the minimum or the maximum element of this Stream according to the provided <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Comparator.html"><code>⚪ Comparator&lt;T&gt;</code></a></p>
 </li>
 <li>
 <p><code>toArray()</code> - returns an array <code>Object[]</code> containing the elements of this Stream</p>
@@ -296,29 +296,29 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </div>
 </li>
 <li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>java.util.stream.IntStream</code></a> - <code>int</code> primitive specialization of Stream</p>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ IntStream</code></a> - <code>int</code> primitive specialization of Stream</p>
 <div class="ulist">
 <ul>
 <li>
 <p><code>sum()</code> - computes the sum and returns <code>int</code></p>
 </li>
 <li>
-<p><code>min()</code> or <code>max()</code> - computes the minimum or the maximum number and returns <code>OptionalInt</code></p>
+<p><code>min()</code> or <code>max()</code> - computes the minimum or the maximum number and returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/OptionalInt.html"><code>🔴 OptionalInt</code></a></p>
 </li>
 <li>
-<p><code>average()</code> - computes the average value of numbers and returns <code>OptionalDouble</code></p>
+<p><code>average()</code> - computes the average value of numbers and returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/OptionalDouble.html"><code>🔴 OptionalDouble</code></a></p>
 </li>
 <li>
-<p><code>summaryStatistics()</code> - returns <code>IntSummaryStatistics</code> object with statistics like count, sum, min, max and average</p>
+<p><code>summaryStatistics()</code> - returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html"><code>🟢 IntSummaryStatistics</code></a> object with statistics like count, sum, min, max and average</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>java.util.stream.LongStream</code></a> - <code>long</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>⚪ LongStream</code></a> - <code>long</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
 </li>
 <li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>java.util.stream.DoubleStream</code></a> - <code>double</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>⚪ DoubleStream</code></a> - <code>double</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
 </li>
 </ul>
 </div>
@@ -330,7 +330,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>java.util.stream.Collectors</code></a> - implementations of <code>Collector</code> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -647,7 +647,7 @@ statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 </div>
 </li>
 <li>
-<p>Some reduction operations <strong>do not have any identity element</strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <strong>Optionals</strong> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong>we don&#8217;t have any result</strong>.</p>
+<p>Some reduction operations <strong>do not have any identity element</strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <code>🔴 Optionals&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong>we don&#8217;t have any result</strong>.</p>
 </li>
 </ul>
 </div>
