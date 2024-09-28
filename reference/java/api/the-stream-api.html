@@ -347,7 +347,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;A&gt; A[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;A&gt; A[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>toArray(IntFunction&lt;A[]&gt; generator)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns an array containing the elements of this stream, using the provided generator function to allocate the returned array, as well as any additional arrays that might be required for a partitioned execution or for resizing. For example <code>toArray(String[]::new)</code> will return <code>String[]</code>.</p>
@@ -373,21 +373,21 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sum()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns the sum of elements in this stream.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OptionalInt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalInt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>min()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the minimum element of this stream, or an empty optional if this stream is empty.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OptionalInt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalInt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the maximum element of this stream, or an empty optional if this stream is empty.</p>
@@ -401,7 +401,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IntSummaryStatistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IntSummaryStatistics</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>summaryStatistics()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html" target="_blank" rel="noopener"><code>🟢 IntSummaryStatistics</code></a> describing various summary data about the elements of this stream.</p>
