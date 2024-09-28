@@ -217,86 +217,204 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;</code></a> - a sequence of elements supporting sequential and parallel aggregate operations</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>map(Function&lt;? super T,? extends R&gt; mapper)</code> - returns a <code>⚪ Stream&lt;R&gt;</code> consisting of the results of applying the given function to the elements of this Stream</p>
-</li>
-<li>
-<p><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code> - returns an <code>⚪ IntStream</code> consisting of the results of applying the given function to the elements of this Stream</p>
-</li>
-<li>
-<p><code>flatMap(Function&lt;? super T,? extends Stream&lt;? extends R&gt;&gt; mapper)</code> - used to deal with one-to-many relationships between entities (e.g. collection in collection). FlatMap operation is defined by a Function that takes an object and returns a <code>⚪ Stream&lt;R&gt;</code> of other objects</p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>⚪ <strong>Stream&lt;T&gt;</strong></code></a> - a sequence of elements supporting sequential and parallel aggregate operations</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modifier and Type</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;R&gt; Stream&lt;R&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>map(Function&lt;? super T,? extends R&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a stream consisting of the results of applying the given function to the elements of this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IntStream</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ IntStream</code></a> consisting of the results of applying the given function to the elements of this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;R&gt; Stream&lt;R&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flatMap(Function&lt;? super T,? extends Stream&lt;? extends R&gt;&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long count = cities.stream() // 3 cities
-    .flatMap(city -&gt; city.getPeople().stream()) // With 3 people each
-    .count(); // Returns 9</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">long count = cities.stream() <i class="conum" data-value="1"></i><b>(1)</b>
+    .flatMap(city -&gt; city.getPeople().stream()) <i class="conum" data-value="2"></i><b>(2)</b>
+    .count(); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>3 cities</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>With 3 people each</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Returns 9</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Stream&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter(Predicate&lt;? super T&gt; predicate)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a stream consisting of the elements of this stream that match the given predicate.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Optional&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Optional.html" target="_blank" rel="noopener"><code>🔴 Optional&lt;T&gt;</code></a> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Performs a reduction on the elements of this stream, using the provided identity value and an associative accumulation function, and returns the reduced value. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;R, A&gt; R</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>collect(Collector&lt;? super T,A,R&gt; collector)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Performs a mutable reduction operation on the elements of this stream using a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a>. See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Stream&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>distinct()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a stream consisting of the distinct elements (according to <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>Object#equals(Object)</code></a>) of this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Stream&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sorted()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a stream consisting of the elements of this stream, sorted according to natural order.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>long</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns the count of elements in this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Optional&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>min(Comparator&lt;? super T&gt; comparator)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns the minimum element of this stream according to the provided <code>⚪ Comparator&lt;T&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Optional&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max(Comparator&lt;? super T&gt; comparator)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns the maximum element of this stream according to the provided <code>⚪ Comparator&lt;T&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toArray()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an array containing the elements of this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;A&gt; A[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toArray(IntFunction&lt;A[]&gt; generator)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an array containing the elements of this stream, using the provided generator function to allocate the returned array, as well as any additional arrays that might be required for a partitioned execution or for resizing. For example <code>toArray(String[]::new)</code> will return <code>String[]</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
-<p><code>filter(Predicate&lt;? super T&gt; predicate)</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the elements of this Stream that match the given predicate</p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ <strong>IntStream</strong></code></a> - <code>int</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code></p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modifier and Type</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sum()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns the sum of elements in this stream.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OptionalInt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>min()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the minimum element of this stream, or an empty optional if this stream is empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OptionalInt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>max()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the maximum element of this stream, or an empty optional if this stream is empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalDouble</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>average()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalDouble.html" target="_blank" rel="noopener"><code>🔴 OptionalDouble</code></a> describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IntSummaryStatistics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>summaryStatistics()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html" target="_blank" rel="noopener"><code>🟢 IntSummaryStatistics</code></a> describing various summary data about the elements of this stream.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
-<p><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using an associative accumulation function, and returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Optional.html"><code>🔴 Optional&lt;T&gt;</code></a> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a></p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>⚪ <strong>LongStream</strong></code></a> - <code>long</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
 </li>
 <li>
-<p><code>reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code> - performs a reduction on the elements of this Stream, using the provided identity value and an associative accumulation function, and returns the reduced value <code>T</code>. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a></p>
-</li>
-<li>
-<p><code>collect(Collector&lt;? super T,A,R&gt; collector)</code> - performs a mutable reduction operation on the elements of this Stream using a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a>. See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a></p>
-</li>
-<li>
-<p><code>distinct()</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the distinct elements (according to <code>Object#equals(Object)</code>) of this Stream</p>
-</li>
-<li>
-<p><code>sorted()</code> - returns a <code>⚪ Stream&lt;T&gt;</code> consisting of the elements of this Stream, sorted according to natural order</p>
-</li>
-<li>
-<p><code>count()</code> - computes the count of elements and returns <code>long</code></p>
-</li>
-<li>
-<p><code>min(Comparator&lt;? super T&gt; comparator)</code> or <code>max(Comparator&lt;? super T&gt; comparator)</code> - returns <code>🔴 Optional&lt;T&gt;</code> of the minimum or the maximum element of this Stream according to the provided <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Comparator.html"><code>⚪ Comparator&lt;T&gt;</code></a></p>
-</li>
-<li>
-<p><code>toArray()</code> - returns an array <code>Object[]</code> containing the elements of this Stream</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>toArray(String[]::new)</code> - returns <code>String[]</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ IntStream</code></a> - <code>int</code> primitive specialization of Stream</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>sum()</code> - computes the sum and returns <code>int</code></p>
-</li>
-<li>
-<p><code>min()</code> or <code>max()</code> - computes the minimum or the maximum number and returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/OptionalInt.html"><code>🔴 OptionalInt</code></a></p>
-</li>
-<li>
-<p><code>average()</code> - computes the average value of numbers and returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/OptionalDouble.html"><code>🔴 OptionalDouble</code></a></p>
-</li>
-<li>
-<p><code>summaryStatistics()</code> - returns <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html"><code>🟢 IntSummaryStatistics</code></a> object with statistics like count, sum, min, max and average</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>⚪ LongStream</code></a> - <code>long</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
-</li>
-<li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>⚪ DoubleStream</code></a> - <code>double</code> primitive specialization of Stream.It has similar methods to <code>IntStream</code></p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>⚪ <strong>DoubleStream</strong></code></a> - <code>double</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
 </li>
 </ul>
 </div>
@@ -308,7 +426,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
 <div class="ulist">
 <ul>
 <li>
