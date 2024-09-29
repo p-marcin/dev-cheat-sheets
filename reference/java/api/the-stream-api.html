@@ -621,11 +621,11 @@ long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); <i class="co
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><strong>Bad Practice:</strong> we create an Array and store it in memory</td>
+<td><strong>Bad Practice:</strong> we create an array and store it in memory</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><strong>Best Practice:</strong> we do not create an Array when we create a Stream from Pattern</td>
+<td><strong>Best Practice:</strong> we do not create an array when we create a <code>⚪ Stream&lt;T&gt;</code> from <code>🔴 Pattern</code></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -820,122 +820,185 @@ Forget about <strong>processing your data in one pass</strong> (unless you are d
 <div class="sect1">
 <h2 id="_reducing_data_to_compute_statistics"><a class="anchor" href="#_reducing_data_to_compute_statistics"></a>Reducing Data to compute Statistics</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></a> adds the Identity Element before the elements of the <code>⚪ Stream&lt;T&gt;</code>.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The reduction of an empty Stream is <mark><strong>the identity element</strong></mark> of the reduction operation.</p>
+<p>If you have an empty <code>⚪ Stream&lt;T&gt;</code>, it will <strong>return Identity Element</strong></p>
 </li>
 <li>
-<p><code>Stream#reduce</code> method can have <strong>2</strong> parameters: <strong>identity element</strong> and <strong>a Binary Operator</strong>.It adds this identity element before the elements of the Stream.If you have an empty Stream, it will <strong>return identity element</strong>.If you have only one element in the Stream, it will <strong>return the reduction of the identity element and this only element</strong>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/the-stream-api/stream-reduce.png" alt="stream reduce" width="500">
+<p>If you have only one element in the <code>⚪ Stream&lt;T&gt;</code>, it will <strong>return the reduction of the Identity Element and this only element</strong>:</p>
+<div class="paragraph">
+<p><span class="image"><img src="../_images/the-stream-api/stream-reduce.png" alt="stream reduce" width="500"></span></p>
 </div>
-</div>
-</li>
-<li>
-<p>Some reduction operations <strong>do not have any identity element</strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <code>🔴 Optional&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong>we don&#8217;t have any result</strong>.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Some reduction operations <strong>do not have any Identity Element</strong> (in case for the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#min()" target="_blank" rel="noopener"><code>⚪ IntStream#min()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#max()" target="_blank" rel="noopener"><code>⚪ IntStream#max()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#average()" target="_blank" rel="noopener"><code>⚪ IntStream#average()</code></a> and <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(BinaryOperator&lt;T&gt; accumulator)</code></a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<code>🔴 Optional&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty <code>⚪ Stream&lt;T&gt;</code> without any Identity Element <strong>we don&#8217;t have any result</strong>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_collecting_data_from_streams_to_create_listssetsmaps"><a class="anchor" href="#_collecting_data_from_streams_to_create_listssetsmaps"></a>Collecting Data from Streams to create Lists/Sets/Maps</h2>
 <div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Collector</dt>
+<dd>
+<p>Complex object <strong>used to reduce a Stream</strong>. Can be used to gather data in <strong>collections</strong> and <strong>maps</strong> - it is called as <strong>reduction in a "mutable container"</strong> or <strong>mutable reduction</strong></p>
+</dd>
+<dt class="hdlist1">Downstream Collector</dt>
+<dd>
+<p>Collector that is passed to <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)" target="_blank" rel="noopener"><code>🔴 Collectors#groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code></a> which is applied to the streaming of the list of values</p>
+</dd>
+<dt class="hdlist1">The Collector API</dt>
+<dd>
+<p>Uses the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)" target="_blank" rel="noopener"><code>Stream#collect(Collector&lt;? super T,A,R&gt; collector)</code></a> that takes <code>⚪ Collector&lt;T,A,R&gt;</code> implementation as a parameter:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><mark><strong>Collector</strong></mark> is a complex object <strong>used to reduce a Stream</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Can be used to gather data in <strong>collections</strong> and <strong>maps</strong> - it is called as <strong>reduction in a "mutable container"</strong> or <strong>mutable reduction</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><mark><strong>Downstream Collector</strong></mark> - collector that is passed to <code>Collectors#groupingBy</code> which is applied to the streaming of the list of values</p>
-</li>
-<li>
-<p><mark><strong>The Collector API</strong></mark> uses the <code>Stream#collect(Collector&lt;? super T,A,R&gt; collector)</code> that takes ⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>java.util.stream.Collector&lt;T,A,R&gt;</code></a> (<code>T</code> - the type of input elements to the reduction operation, <code>A</code> - the mutable accumulation type of the reduction operation (often hidden as an implementation detail), <code>R</code> - the result type of the reduction operation) implementation as a parameter</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Use 🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>java.util.stream.Collectors</code></a> and their factory methods</p>
+<p>Use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> class and its factory methods</p>
 </li>
 <li>
 <p>You can create your own collectors, but it is complex and tricky</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Bad Practice:</p>
+</dd>
+</dl>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
-List&lt;Person&gt; peopleFromNewYork = new ArrayList&lt;&gt;(); // Creating a List for results
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Bad Practice
+List&lt;Person&gt; people = new ArrayList&lt;&gt;();
+List&lt;Person&gt; peopleFromNewYork = new ArrayList&lt;&gt;(); <i class="conum" data-value="1"></i><b>(1)</b>
 people.stream()
     .filter(p -&gt; p.getCity().equals("New York"))
-    .forEach(p -&gt; peopleFromNewYork.add(p));</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Best Practice:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">List&lt;Person&gt; people = new ArrayList&lt;&gt;();
+    .forEach(p -&gt; peopleFromNewYork.add(p));
+
+// Best Practice
+List&lt;Person&gt; people = new ArrayList&lt;&gt;();
 List&lt;Person&gt; peopleFromNewYork = people.stream()
     .filter(p -&gt; p.getCity().equals("New York"))
-    .collect(Collectors.toList()); // Using Collector</code></pre>
+    .collect(Collectors.toList()); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
-</li>
-</ul>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Creating a <code>⚪ List&lt;E&gt;</code> to store the result</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Using <code>⚪ Collector&lt;T,A,R&gt;</code> to store the result in <code>⚪ List&lt;E&gt;</code></td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_parallelism_in_the_stream_api"><a class="anchor" href="#_parallelism_in_the_stream_api"></a>Parallelism in the Stream API</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>You can make a regular <code>⚪ Stream&lt;T&gt;</code> a parallel <code>⚪ Stream&lt;T&gt;</code> <strong>in two ways</strong>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>You can make a regular Stream a Parallel Stream in two ways:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>by calling <code>.parallel()</code> method on existing stream</p>
+<p>by calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/BaseStream.html#parallel()" target="_blank" rel="noopener"><code>⚪ BaseStream&lt;T,S extends BaseStream&lt;T,S&gt;&gt;#parallel()</code></a> method on existing <code>⚪ Stream&lt;T&gt;</code></p>
 </li>
 <li>
-<p>by calling <code>.parallelStream()</code> method instead of calling <code>.stream()</code></p>
+<p>by calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#parallelStream()"><code>⚪ Collection&lt;E&gt;#parallelStream()</code></a> method instead of calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#stream()"><code>⚪ Collection&lt;E&gt;#stream()</code></a></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>These intermediate operations are going to set <strong>a special bit</strong> in the <code>⚪ Stream&lt;T&gt;</code> that will <strong>trigger the computations in parallel when you call your terminal operation</strong>.</p>
+</div>
+<div class="paragraph">
+<p>After terminal operation is called, the <code>⚪ Stream&lt;T&gt;</code> implementation will check this special bit:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>if it is set to 1</strong>, then the computation will happen <strong>in parallel</strong> and will trigger special algorithms for that</p>
 </li>
 <li>
-<p>These intermediate operations are going to set a special bit in the Stream that will trigger the computations in parallel when you call your terminal operation. After terminal operation is called, the Stream implementation will check this special bit: if it is set to 1, then the computation will happen in parallel and will trigger special algorithms for that, otherwise it will be processed sequentially.</p>
-</li>
-<li>
-<p><a href="https://openjdk.org/projects/code-tools/jmh/" target="_blank" rel="noopener"><strong>JMH (Java Microbenchmark Harness)</strong></a> - standard tool to measure the performances of your Java code</p>
-</li>
-<li>
-<p>To proper measure the performance of a Java application you first need to run it a certain number of times (warmup), because within JVM there is a special just-in-time C2 compiler that can optimize your code a lot</p>
+<p><strong>otherwise</strong> it will be processed <strong>sequentially</strong></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://openjdk.org/projects/code-tools/jmh/" target="_blank" rel="noopener"><strong>JMH (Java Microbenchmark Harness)</strong></a></dt>
+<dd>
+<p>Standard tool to measure the performances of your Java code. You can find JMH Template project <a href="https://github.com/p-marcin/jmh-template" target="_blank" rel="noopener">here</a>.</p>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To proper measure the performance of a Java application you first need to run it <strong>a certain number of times (warmup)</strong>, because within JVM there is a special just-in-time C2 compiler that can optimize your code a lot.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_getting_the_best_performance_gains_from_parallel_streams"><a class="anchor" href="#_getting_the_best_performance_gains_from_parallel_streams"></a>Getting the best performance gains from Parallel Streams</h2>
+<h2 id="_getting_the_best_performance_gains_from_parallel_streamt"><a class="anchor" href="#_getting_the_best_performance_gains_from_parallel_streamt"></a>Getting the best performance gains from parallel <code>⚪ Stream&lt;T&gt;</code></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Beware, because in below example you&#8217;ll have <strong>two unboxing</strong> and <strong>one boxing</strong> (which have an impact on performance!):</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Beware, you&#8217;ll have <strong>two unboxing</strong> and <strong>one boxing</strong> here (which have an impact on performance!):</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Integer j = 3;
@@ -943,42 +1006,100 @@ Integer l = 4;
 Integer k = j + l;</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Similarly, iterating and doing some operation over <code>int[]</code> will be <strong>much faster</strong> than over <code>🔴 Integer[]</code> (due to unboxing and boxing).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Each physical core of the CPU access <strong>two levels of cache</strong>, which are <strong>private</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>L1 - the first level of cache (<strong>small, very fast</strong>)</p>
 </li>
 <li>
-<p>Similarly, iterating and doing some operation over array of <code>int</code> will be much faster than over array of <code>Integer</code> (due to unboxing and boxing).</p>
+<p>L2 - the second level of cache (<strong>bigger, little slower</strong>).</p>
 </li>
-<li>
-<p>Each physical core of the CPU access two levels of cache, which are private: the first level of cache (small, very fast) and second level of cache (bigger, little slower). Third level of cache is shared by all physical cores (bigger, little slower). Main memory lives outside the CPU and is accessed much slower than third level of cache:</p>
+</ul>
+</div>
+<div class="paragraph">
+<p>L3 - the third level of cache is <strong>shared by all physical cores</strong> (<strong>bigger, little slower than L2</strong>).</p>
+</div>
+<div class="paragraph">
+<p>Main memory lives <strong>outside the CPU</strong> and is accessed <strong>much slower</strong> than L3:</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="../_images/the-stream-api/cpu-caches.png" alt="cpu caches" width="450">
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">How does a core of CPU access data from the main memory?</dt>
+<dd>
+<p>This data will have to be <strong>transferred</strong> first to the L3 cache, then to the L2 cache, and then to the L1 cache <strong>before being available</strong> by this core of CPU.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The memory is <strong>not read in a random way</strong>. If a core of CPU wants to access just an <code>int</code>, it will transfer <strong>line of memory</strong>, not just an <code>int</code>. The memory is <strong>transferred line by line</strong> from the main memory to the different levels of cache. Each line is typically <strong>64</strong> bytes (<strong>8</strong> <code>long</code> or <strong>16</strong> <code>int</code>).</p>
+</div>
+<div class="paragraph">
+<p>When we have an array of references to the instance of the <code>🔴 Integer</code> which are going to hold the values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In one read operation we are only going to <strong>transfer the references to this object</strong>.</p>
 </li>
 <li>
-<p>How does a core of CPI access data from the main memory? This data will have to be transferred first to the L3 cache, then to the L2 cache, and then to the L1 cache before being available by this core of CPU.</p>
-</li>
-<li>
-<p>The memory is not read in a random way. If a core of CPU wants to access just an int, it will transfer line of memory, not just an int. The memory is transferred line by line from the main memory to the different levels of cache. Each line is typically 64 bytes (8 longs or 16 ints).</p>
-</li>
-<li>
-<p>When we have an array of references to the instance of the <code>Integer</code> which are going to hold the values: in one read operation we are only going to transfer the references to this object. And then to get all the values it may be several read to maximum 16 reads to get all the values of those integers. This is called <strong>Pointer Chasing</strong> which you need to avoid. To get all the values, we have to follow pointers to other places in the memory which has a cost due to the way that data is transferred from the main memory to the cache of the CPU.</p>
-</li>
-<li>
-<p>Iterating on a <code>LinkedList</code> will imply much more Pointer Chasing than iterating on an <code>ArrayList</code>. <code>LinkedList</code> does not store references to the Integers in an array. It stores them in a linked list of node objects. So first, you need to get the first reference to the first node object, and then you need to follow two pointers: the first one to the next node object and the second one to the Integer itself.</p>
-</li>
-<li>
-<p><strong>Cache Miss</strong> - whenever the core of a CPU needs a value and that value turns out not to be in the cache. During the Cache Miss, if the value is not in the L2 cache or L3 cache, then the CPU may decide to suspend the threat that is executing this computation and replace it by another thread. This is a much bigger performance hit than just Pointer Chasing, but it is still a consequence of Pointer Chasing.</p>
-</li>
-<li>
-<p>This is why LinkedLists are called cache-unfriendly structures, whereas ArrayLists are called cache-friendly structures.</p>
+<p>And then to get all the values it may be <strong>several read</strong> to maximum <strong>16</strong> reads.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This is called <strong>Pointer Chasing</strong> which you need to avoid. To get all the values, we have to <strong>follow pointers</strong> to other places in the memory which has a cost due to the way that data is transferred from the main memory to the cache of the CPU.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Iterating on a <code>🟢 LinkedList</code> will imply <strong>much more Pointer Chasing</strong> than iterating on an <code>🟢 ArrayList</code>. <code>🟢 LinkedList</code> does not store references to the <code>🔴 Integer</code> in an array. It stores them in <strong>a linked list of node objects</strong>. So first, you need to get the first reference to the first node object, and then you need to <strong>follow two pointers</strong>: the first one to the next node object and the second one to the <code>🔴 Integer</code> itself.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cache Miss</dt>
+<dd>
+<p>Whenever the core of a CPU needs a value and that value turns out not to be in the cache. During the Cache Miss, if the value is not in the L2 cache or L3 cache, then the CPU may decide to <strong>suspend the thread</strong> that is executing this computation and <strong>replace it by another thread</strong>. This is a <strong>much bigger performance hit</strong> than just Pointer Chasing, but it is still a consequence of Pointer Chasing.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is why <code>🟢 LinkedList</code> is called <strong>cache-unfriendly structure</strong>, whereas <code>🟢 ArrayList</code> is called <strong>cache-friendly structure</strong>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_forkjoin_framework_implementation_of_parallel_streams"><a class="anchor" href="#_forkjoin_framework_implementation_of_parallel_streams"></a>Fork/Join framework implementation of Parallel Streams</h2>
+<h2 id="_forkjoin_framework_implementation_of_parallel_streamt"><a class="anchor" href="#_forkjoin_framework_implementation_of_parallel_streamt"></a>Fork/Join framework implementation of parallel <code>⚪ Stream&lt;T&gt;</code></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
