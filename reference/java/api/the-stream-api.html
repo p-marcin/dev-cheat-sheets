@@ -373,13 +373,6 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sum()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns the sum of elements in this stream.</p>
-</div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalInt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>min()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -398,6 +391,13 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>average()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalDouble.html" target="_blank" rel="noopener"><code>🔴 OptionalDouble</code></a> describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sum()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns the sum of elements in this stream.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -423,57 +423,125 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="sect1">
 <h2 id="_the_collectors_api"><a class="anchor" href="#_the_collectors_api"></a>The Collectors API</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
+</div>
+<div class="paragraph">
+<p>Type parameters of <code>⚪ Collector&lt;T,A,R&gt;</code>:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>toList()</code> - returns a <code>Collector</code> that accumulates the input elements into a new <code>List</code>, in encounter order</p>
+<p><code>T</code> - the type of input elements to the reduction operation</p>
 </li>
 <li>
-<p><code>toUnmodifiableList()</code> - returns a <code>Collector</code> that accumulates the input elements into an unmodifiable <code>List</code>, in encounter order</p>
+<p><code>A</code> - the mutable accumulation type of the reduction operation (often hidden as an implementation detail)</p>
 </li>
 <li>
-<p><code>toSet()</code> - returns a <code>Collector</code> that accumulates the input elements into a new <code>Set</code></p>
-</li>
-<li>
-<p><code>toUnmodifiableSet()</code> - returns a Collector that accumulates the input elements into an unmodifiable <code>Set</code></p>
-</li>
-<li>
-<p><code>toCollection(Supplier&lt;C&gt; collectionFactory)</code> (e.g. <code>toCollection(MyCollection::new)</code>) - returns a <code>Collector</code> that accumulates the input elements into a new <code>Collection</code>, in encounter order</p>
-</li>
-<li>
-<p><code>joining()</code> - returns concatenated String without any separator.Only works with <code>Stream&lt;String&gt;</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>joining(", ")</code> - returns concatenated String separated with given separator</p>
-</li>
-<li>
-<p><code>joining(", ", "[", "]")</code> - returns concatenated String separated with given separator with <code>[</code> as prefix and <code>]</code> as suffix</p>
+<p><code>R</code> - the result type of the reduction operation</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier)</code> (e.g. <code>groupingBy(City::getState)</code>) - returns a <code>Collector</code> implementing a "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and returning the results in a Map</p>
-</li>
-<li>
-<p><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code> - returns a <code>Collector</code> implementing a cascaded "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and then performing a reduction operation on the values associated with a given key using the specified downstream <code>Collector</code></p>
-</li>
-<li>
-<p><code>counting()</code> - returns a <code>Collector</code> accepting elements of type <code>T</code> that counts the number of input elements</p>
-</li>
-<li>
-<p><code>summingInt(ToIntFunction&lt;? super T&gt; mapper)</code> (e.g. <code>summingInt(City::getPopulation)</code>) - returns a <code>Collector</code> that produces the sum of an integer-valued function applied to the input elements</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modifier and Type</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,List&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toList()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into a new <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" target="_blank" rel="noopener"><code>⚪ List&lt;T&gt;</code></a>, in encounter order.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,List&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toUnmodifiableList()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into an unmodifiable <code>⚪ List&lt;T&gt;</code>, in encounter order.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,Set&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toSet()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into a new <code>⚪ Set&lt;T&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,Set&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toUnmodifiableSet()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into an unmodifiable <code>⚪ Set&lt;T&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T, C extends Collection&lt;T&gt;&gt; Collector&lt;T,?,C&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toCollection(Supplier&lt;C&gt; collectionFactory)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into a new <code>⚪ Collection&lt;T&gt;</code>, in encounter order. For example <code>toCollection(MyCollection::new)</code> will return <code>🟢 MyCollection</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static Collector&lt;CharSequence,?,String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joining()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that concatenates the input elements into a <code>🔴 String</code>, in encounter order. The string won&#8217;t be delimited.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static Collector&lt;CharSequence,?,String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joining(CharSequence delimiter)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that concatenates the input elements, separated by the specified delimiter, in encounter order.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static Collector&lt;CharSequence,?,String&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joining(CharSequence delimiter, CharSequence prefix, CharSequence suffix)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that concatenates the input elements, separated by the specified delimiter, with the specified prefix and suffix, in encounter order.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T, K&gt; Collector&lt;T,?,Map&lt;K,List&lt;T&gt;&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> implementing a "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and returning the results in a <code>⚪ Map</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T, K, A, D&gt; Collector&lt;T,?,Map&lt;K,D&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> implementing a cascaded "group by" operation on input elements of type <code>T</code>, grouping elements according to a classification function, and then performing a reduction operation on the values associated with a given key using the specified downstream <code>⚪ Collector&lt;T,A,R&gt;</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,Long&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>counting()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> accepting elements of type <code>T</code> that counts the number of input elements.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>summingInt(ToIntFunction&lt;? super T&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that produces the sum of an integer-valued function applied to the input elements. For example <code>summingInt(City::getPopulation)</code> will return population of all cities.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -486,23 +554,14 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html" target="_blank" rel="noopener"><code>java.util.Arrays</code></a>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>stream(T[] array)</code> - returns a sequential <code>Stream&lt;T&gt;</code> with the specified array as its source</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html#stream(T%5B%5D)" target="_blank" rel="noopener"><code>Arrays#stream(T[] array)</code></a> - returns a sequential <code>Stream&lt;T&gt;</code> with the specified array as its source</p>
 </li>
-</ul>
+<li>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)" target="_blank" rel="noopener"><code>Stream&lt;T&gt;#of(T&#8230;&#8203; values)</code></a> - returns a sequential ordered stream whose elements are the specified values</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream&lt;String&gt; streamOfStrings = Stream.&lt;String&gt;of("abcd", "efgh");</code></pre>
 </div>
-</li>
-<li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>java.util.stream.Stream&lt;T&gt;</code></a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>of(T&#8230;&#8203; values)</code> - returns a sequential ordered <code>Stream&lt;T&gt;</code> whose elements are the specified values</p>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -513,23 +572,28 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html" target="_blank" rel="noopener"><code>java.nio.file.Files</code></a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>lines(Path path)</code> - read all lines from a file as a <code>Stream&lt;String&gt;</code></p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)" target="_blank" rel="noopener"><code>Files#lines(Path path)</code></a> - read all lines from a file as a <code>Stream&lt;String&gt;</code></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Path path = Path.of("src/main/resources/first-names.txt"); // File with 200 lines
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Path path = Path.of("src/main/resources/first-names.txt"); <i class="conum" data-value="1"></i><b>(1)</b>
 try (Stream&lt;String&gt; lines = Files.lines(path)) {
-long count = lines.count(); // Returns 200
+    long count = lines.count(); <i class="conum" data-value="2"></i><b>(2)</b>
 } catch (IOException e) {
-e.printStackTrace();
+    e.printStackTrace();
 }</code></pre>
 </div>
 </div>
-</li>
-</ul>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>File with 200 lines</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Returns 200</td>
+</tr>
+</table>
 </div>
 </li>
 </ul>
@@ -540,62 +604,64 @@ e.printStackTrace();
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>java.util.regex.Pattern</code></a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>splitAsStream(CharSequence input)</code> - creates a <code>Stream&lt;String&gt;</code> from the given input sequence around matches of this pattern</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>Pattern#splitAsStream(CharSequence input)</code></a> - creates a <code>Stream&lt;String&gt;</code> from the given input sequence around matches of this pattern.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
 
-// Bad Practice: we create an Array and store it in memory
+<i class="conum" data-value="1"></i><b>(1)</b>
 String[] words = sentence.split(" ");
-long count1 = Arrays.stream(words).count(); // Returns 9
+long count1 = Arrays.stream(words).count(); <i class="conum" data-value="3"></i><b>(3)</b>
 
-// Best Practice: we do not create an Array when we create a Stream from Pattern
-long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); // Returns 9</code></pre>
+<i class="conum" data-value="2"></i><b>(2)</b>
+long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>Bad Practice:</strong> we create an Array and store it in memory</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>Best Practice:</strong> we do not create an Array when we create a Stream from Pattern</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Returns 9</td>
+</tr>
+</table>
 </div>
 </li>
 </ul>
 </div>
 </li>
-</ul>
-</div>
-</li>
 <li>
-<p>Creating an <code>IntStream</code> <strong>(Stream of ASCII Codes)</strong> from a String:</p>
+<p>Creating an <code>⚪ IntStream</code> <strong>(Stream of ASCII Codes)</strong> from a String:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener"><code>java.lang.String</code></a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>chars()</code> - returns an <code>IntStream</code> of int zero-extending the char values from this sequence</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener"><code>String#chars()</code></a> - Returns an <code>⚪ IntStream</code> of int zero-extending the char values from this sequence.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
 sentence.chars()
-    .mapToObj(codePoint -&gt; Character.toString(codePoint)) // Converts IntStream to Stream&lt;String&gt;
+    .mapToObj(codePoint -&gt; Character.toString(codePoint)) <i class="conum" data-value="1"></i><b>(1)</b>
     .filter(letter -&gt; !letter.equals(" "))
     .distinct().sorted().forEach(System.out::print);</code></pre>
 </div>
 </div>
-</li>
-</ul>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Converts <code>⚪ IntStream</code> to <code>⚪ Stream&lt;String&gt;</code></td>
+</tr>
+</table>
 </div>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p>Creating a Stream of Strings:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream&lt;String&gt; streamOfStrings = Stream.&lt;String&gt;of("abcd");</code></pre>
-</div>
 </div>
 </li>
 <li>
@@ -603,18 +669,34 @@ sentence.chars()
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">IntStream.range(0, 30)
-    .skip(10) // Skip first 10 elements
-    .limit(10) // Take next 10 elements after skip
-    .forEach(index -&gt; System.out.print(index + " ")); // Prints "10 11 12 13 14 15 16 17 18 19"</code></pre>
+    .skip(10) <i class="conum" data-value="1"></i><b>(1)</b>
+    .limit(10) <i class="conum" data-value="2"></i><b>(2)</b>
+    .forEach(index -&gt; System.out.print(index + " ")); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Skip first 10 elements</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Take next 10 elements after skip</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Prints "10 11 12 13 14 15 16 17 18 19"</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p><strong>Closing</strong> a Stream with <strong>a Predicate</strong>:</p>
+<p><strong>Closing</strong> a <code>⚪ Stream&lt;T&gt;</code> with a <code>⚪ Predicate&lt;? super T&gt;</code>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>takeWhile</code> - consume elements of the Stream until Predicate is <strong>true</strong></p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>takeWhile</code></a> - consume elements of the <code>⚪ Stream&lt;T&gt;</code> until <code>⚪ Predicate&lt;? super T&gt;</code> is <strong>true</strong></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
@@ -629,7 +711,7 @@ class java.lang.Object</code></pre>
 </div>
 </li>
 <li>
-<p><code>dropWhile</code> - consume remaining elements of the Stream after Predicate becomes <strong>false</strong></p>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>dropWhile</code></a> - consume remaining elements of the <code>⚪ Stream&lt;T&gt;</code> after <code>⚪ Predicate&lt;? super T&gt;</code> becomes <strong>false</strong></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
@@ -662,14 +744,14 @@ Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.l
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">int sum = 0;
 int count = 0;
 for (Person person : people) {
-if (person.getAge() &gt; 20) {
-count++;
-sum += person.getAge();
-}
+    if (person.getAge() &gt; 20) {
+        count++;
+        sum += person.getAge();
+    }
 }
 double average = 0d;
 if (count &gt; 0) {
-average = sum / count;
+    average = sum / count;
 }</code></pre>
 </div>
 </div>
@@ -679,23 +761,23 @@ average = sum / count;
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double average = people.stream()
-.mapToInt(Person::getAge)
-.filter(age -&gt; age &gt; 20)
-.average().orElseThrow();</code></pre>
+    .mapToInt(Person::getAge)
+    .filter(age -&gt; age &gt; 20)
+    .average().orElseThrow();</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>The Stream API <strong>always computes one thing</strong>.Never sacrifice the <strong>readability</strong> of your code to the <strong>performance</strong>.The performance here is measured in <strong>nanoseconds</strong>:</p>
+<p>The Stream API <strong>always computes one thing</strong>. Never sacrifice the <strong>readability</strong> of your code to the <strong>performance</strong>. The performance here is measured in <strong>nanoseconds</strong>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double totalAmount = 0;
 int frequentRenterPoints = 0;
 String statement = composeHeader();
 for (Rental rental : rentals) {
-totalAmount += computeRentalAmount(rental);
-frequentRenterPoints += getFrequentRenterPoints(rental);
-statement += computeStatementLine(rental);
+    totalAmount += computeRentalAmount(rental);
+    frequentRenterPoints += getFrequentRenterPoints(rental);
+    statement += computeStatementLine(rental);
 }
 statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 </div>
@@ -706,23 +788,32 @@ statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">double totalAmount = rentals.stream()
-.mapToDouble(this::computeRentalAmount)
-.sum();
+    .mapToDouble(this::computeRentalAmount)
+    .sum();
 int frequentRenterPoints = rentals.stream()
-.mapToInt(this::getFrequentRenterPoints)
-.sum();
+    .mapToInt(this::getFrequentRenterPoints)
+    .sum();
 String statement = composeHeader();
 statement += rentals.stream()
-.map(this::computeStatementLine)
-.collect(Collectors.joining());
+    .map(this::computeStatementLine)
+    .collect(Collectors.joining());
 statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 </div>
 </div>
 </li>
-<li>
-<p>Forget about <strong>processing your data in one pass</strong> (unless you are doing <strong>an SQL request</strong>).Most of the time when you have a for loop or when you have a Stream, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, <strong>extremely performant, and extremely efficient</strong>.See <a href="https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/" target="_blank" rel="noopener">Fine-grained optimizations provided by JIT Compiler in Java</a></p>
-</li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Forget about <strong>processing your data in one pass</strong> (unless you are doing <strong>an SQL request</strong>). Most of the time when you have a for loop or when you have a <code>⚪ Stream&lt;T&gt;</code>, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, <strong>extremely performant, and extremely efficient</strong>. See <a href="https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/" target="_blank" rel="noopener">Fine-grained optimizations provided by JIT Compiler in Java</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -743,7 +834,7 @@ statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 </div>
 </li>
 <li>
-<p>Some reduction operations <strong>do not have any identity element</strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <code>🔴 Optionals&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong>we don&#8217;t have any result</strong>.</p>
+<p>Some reduction operations <strong>do not have any identity element</strong> (in case for the <code>IntStream#min</code>, the <code>IntStream#max</code>, the <code>IntStream#average</code> and <code>Stream#reduce</code> with only <strong>1</strong> parameter: a Binary Operator). <code>🔴 Optional&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty Stream without identity element <strong>we don&#8217;t have any result</strong>.</p>
 </li>
 </ul>
 </div>
