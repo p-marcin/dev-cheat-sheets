@@ -1,0 +1,275 @@
+= ☘️ Spring Framework
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://spring.io/projects/spring-framework#learn",window=_blank]
+
+== 📌 Overview
+**Spring Framework** is the most popular Java framework for building **highly scalable** and **reliable** Enterprise Applications.
+It is well suited for **Monolithic** and **Microservice Architecture**.
+
+Spring Framework was introduced by **Rod Johnson** in **2003** as a **simpler alternative to J2EE.** In **March 2004** version **1.0** has been released.
+
+== 📌 Spring Framework vs Spring Boot
+Spring Framework is a **collection of framework libraries**.
+
+**Spring Boot** is **automated tooling** for Spring Framework applications. Think of it as a **wrapper** around Spring.
+One of the best feature of Spring Boot is **auto-configuration** of application based on the jar dependencies.
+
+== 📌 Spring Initializr
+Quickly **generate** Spring Boot project: **[start.spring.io](https://start.spring.io)**
+
+== 📌 Cheat Sheets
+
+* [Annotations](annotations.md)
+* [API](api.md)
+* [Properties](properties.md)
+* [Project Lombok](project-lombok.md)
+* [MapStruct](mapstruct.md)
+* [Thymeleaf](thymeleaf.md)
+* [Mockito](mock-mvc.md)
+* [JsonPath](json-path.md)
+
+== 📌 SOLID principles of Object-Oriented Programming
+
+* **Single Responsibility** - every class should have a single responsibility. Classes should be small
+* **Open Closed** - classes should be open for extension, but closed for modification
+* **Liskov Substitution** - objects in a program would be replaceable with instances of their subtypes without altering the correctness of the program. A square **is** a rectangle, a rectangle **is not** a square.
+* **Interface Segregation** - make fine-grained interfaces that are client specific. Notice relationship to the Single Responsibility principle
+* **Dependency Inversion** - abstractions should not depend upon details and details shold depend upon abstractions. Important that higher level and lower level objects depend on the same abstract interaction
+
+:exclamation: A key theme is **avoiding tight coupling** in your code. At the same time **be pragmatic** when following SOLID: every request path **does not need its own Controller class**.
+
+== 📌 Dependency Injection
+
+**Dependency Injection** is where a **needed dependency is injected by another object**.
+
+Types of Dependency Injection:
+* **By class fields (using `@Autowired` on a field)** - least preferred
+  * Can be `public` or `private` properties. Using `private` properties is evil as spring can use reflection to set them. It "works", but is slow and makes testing difficult.
+* **By setters (using `@Autowired` on a setter)** - for **optional** dependencies
+* **By constructor** - for **mandatory** dependencies, **most preferred**
+
+Dependency Injection can be done with **concrete Classes** **(should be avoided)** or with **Interfaces** **(preferred)**.
+
+:exclamation: **Best Practice:** declare property `private final` and initialize in the constructor.
+
+== 📌 Inversion of Control (IoC)
+
+**Inversion of Control** is a technique to allow dependencies to be injected at runtime. Control of the dependencies **is being inverted over to managing framework**.
+
+== 📌 Spring Bean Lifecycle
+
+Start:
+1. Instantiation of Bean
+2. Population of properties/dependencies
+3. Call `setBeanName` of `org.springframework.beans.factory.BeanNameAware`
+4. Call `setBeanFactory` of `org.springframework.beans.factory.BeanFactoryAware`
+5. Call `setApplicationContext` of `org.springframework.context.ApplicationContextAware`
+6. Pre Initialization (call `postProcessBeforeInitialization` of `org.springframework.beans.factory.config.BeanPostProcessor`)
+7. Call `@PostConstruct` annotated method
+8. Call `afterPropertiesSet` of `org.springframework.beans.factory.InitializingBean`
+9. Call custom `init` method (can be set with `initMethod` of `org.springframework.context.annotation.Bean`)
+10. Post Initialization (call `postProcessAfterInitialization` of `org.springframework.beans.factory.config.BeanPostProcessor`)
+11. Bean ready to use
+
+Termination:
+1. Container shutdown
+2. Call `@PreDestroy` annotated method
+3. Call `destroy` of `org.springframework.beans.factory.DisposableBean`
+4. Call custom `destroy` method (can be set with `destroyMethod` of `org.springframework.context.annotation.Bean`)
+5. Bean terminated
+
+:exclamation: There are over **14** `Aware` interfaces which are used to **access the Spring Framework infrastructure**.
+
+== 📌 HTTP (Hypertext Transfer Protocol)
+
+=== Versions
+
+* **HTTP/1.1** - added more **caching strategies** and **request methods** (`PUT`, `PATCH`, `DELETE`, `CONNECT`, `TRACE` and `OPTIONS`). Since this version **HTTP connection can be reused (Keep-Alive)**.
+* **HTTP/2** - improves **the average speed of communications** by **lowering latency** and **higher throughput**. No significant changes for Developers
+* **HTTP/3** - most important change is use of the **QUIC + UDP** transport protocols instead of TCP. This slightly improves **the average speed of communications**. No significant changes for Developers
+
+=== Request Methods
+
+* :green_square: :blue_square: :orange_square: `GET` - requests for a resource (e.g. HTML file)
+* :green_square: :blue_square: :orange_square: `HEAD` - is like GET, but only requests for meta information without the body
+* :orange_square: `POST` - requests to post data to the server (e.g. form data). It is **create** request
+* :blue_square: `PUT` - requests to create a new resource or replace a representation of the target resource with the state defined by the representation enclosed in the request. It is **create or replace** request
+* :orange_square: `PATCH` - requests to apply a modification to a target resource according to the partial update defined in the representation enclosed in the request. It is **update** request
+* :blue_square: `DELETE` - requests to delete the specified resource
+* `CONNECT` - requests to establish a TCP/IP tunnel to the origin server identified by the request target. It is used to secure two-way communication through one or more HTTP proxies with SSL/TLS
+* :green_square: :blue_square: `OPTIONS` - returns the HTTP methods supported by the server for the specified URL
+* :green_square: :blue_square: `TRACE` - echo the received request. Can be used to see if request was altered by intermediate servers
+
+Legend:
+* :green_square: - Safe Methods: do not cause any changes on the server
+* :blue_square: - Idempotent Methods: multiple identical requests will have the same effect on the server
+* :orange_square: - Cacheable Methods: response is allowed to be stored for future use (cached)
+
+=== Response Status Codes
+
+Full list: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+* **1xx** - informational
+* **2xx** - successful
+* **3xx** - redirection
+* **4xx** - client error
+* **5xx** - server side error
+
+== 📌 REST (Representational State Transfer)
+
+**Representation** - typically **JSON** or **XML**
+
+**State Transfer** - typically via **HTTP**
+
+== 📌 Marshalling vs Unmarshalling
+
+**Marshalling** - process of converting Java Objects to JSON or XML
+
+**Unmarshalling** - process of converting JSON or XML to Java Objects
+
+== 📌 RMM (Richardson Maturity Model)
+
+RMM is used to describe the quality of the RESTful service:
+* **Level 0: Swamp of POX (Plain Old XML)** - uses **one URI** and **one kind of HTTP Verb** (Request Method)
+  * Example: RPC, SOAP, XML-RPC
+* **Level 1: Resources** - uses **multiple URIs** to identify specific resources and **one kind of HTTP Verb**. It breaks large service into **distinct URIs**.
+  * Example: You can GET `/product/1234` and `/product/5678`
+* **Level 2: HTTP Verbs** - uses **multiple URIs** and **multiple kind of HTTP Verb** for desired actions. It introduces HTTP Verbs to implement actions.
+  * Example: You can GET and DELETE `/product/1234` and `/product/5678`
+* **Level 3: Hypermedia** - representation **contains URIs** which may be useful to consumers. It helps developers **explore the resource**. It provides **discoverability**, making the API more **self documenting**
+  * Spring Framework provides an implementation of **HATEOAS (Hypermedia as the Engine of Application State)** - in response objects you get links and information about the actions
+
+== 📌 RESTful Best Practices
+
+* After **201** (Created) status response return `Location` HTTP Header with URI to the new resource
+* Do not return stack trace to client - be careful to not "leak" information to Internet
+
+== 📌 Spring Boot DEV Tools
+
+Spring Boot DEV Tools are **additional set of tools** that can make the application development experience **a little more pleasant**:
+* application **automatically restart** whenever files on the classpath change (in IntelliJ IDEA you can just `Recompile java file` or `Build Project` in `Build` top menu)
+* starts embedded **LiveReload** server that can be used to **trigger a browser refresh** when a resource is changed
+* **disable caching options** by default, so changes can be seen immediately
+* you can configure **global DEV Tools settings** by adding a file named `.spring-boot-devtools.properties` to your `+${HOME}+` folder. Any properties added to this file will apply to **all** Spring Boot applications on your machine that use DEV Tools
+
+== 📌 Spring MVC
+
+Spring MVC is **blocking** (because uses Java Servlet API) and **non-reactive**.
+
+**MVC** stands for **Model View Controller** and it is a common design pattern for **GUI** and **Web Applications**.
+
+Controller **handles requests**. It is responsible for **invoking business logic** and **populating Model**.
+
+Model is a **POJO** **(Plain Old Java Object)** class which means that it **is not tied to any Java framework**.
+
+View **handles rendering of the response** which contains Model **to HTML page**.
+
+In Spring MVC there is **Dispatcher Servlet** which:
+* receives request from Client
+* passes the request to Controller and receives Model from Controller
+* passes the Model to View and receives rendered HTML page
+* passes rendered HTML page to Client
+
+=== Spring RestTemplate
+
+RestTemplate is in **maintenance mode** (no new features are planned). It is recommended to **use Spring WebClient for new development**.
+
+== 📌 Spring WebFlux
+
+Spring WebFlux is **non-blocking** (because does not use Java Servlet API) and **reactive**.
+
+WebFlux uses project **Reactor** to provide reactive web services. It follows very closely to the configuration model of Spring MVC.
+
+=== Spring WebFlux.fn
+
+Spring WebFlux.fn is a functional programming model used to define endpoints. It is alternative to annotation based configuration.
+
+=== Spring WebClient
+
+Spring WebClient is **reactive** web client. By default, uses **Reactor Netty** - a **non-blocking** HTTP Client library.
+
+== 📌 Spring Data REST
+
+Spring Data REST makes it easy to build hypermedia-driven REST web services on top of Spring Data repositories.
+
+Spring Data REST builds on top of Spring Data repositories, analyzes your application’s domain model and exposes hypermedia-driven HTTP resources for aggregates contained in the model.
+
+The `@Version` property is returned as `ETag` (Entity Tag) header in response. It is used to determine a change in content at a given URL.
+
+When you make a GET request to:
+* `/resources` - you'll get list of resources
+* `/profile/resources` - you'll get information about resources REST API
+* `/resources/search/findByProperty?property=test` - you'll get the result of Repository `findByProperty` method invocation
+
+== 📌 Spring Data JPA
+
+Spring Data JPA provides repository support for the Jakarta Persistence API (JPA). It eases development of applications with a consistent programming model that need to access JPA data sources:
+* [Defining Query Methods](https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html)
+
+Spring Data JPA does not have a default limit on records returned and does not set a default sort. The only limit is memory of the JVM:
+* [Paging, Iterating Large Results, Sorting & Limiting](https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html#repositories.special-parameters)
+
+JPA specific cascade types:
+* `ALL` - propagates all operations
+* `PERSIST` - also saves child objects (transient instances)
+* `MERGE` - copies the state of a given object to the persistent object. MERGE includes child entities
+* `REMOVE` - cascades delete operations to child objects
+* `REFRESH` - cascades refresh operations to child objects
+* `DETACH` - detaches child objects from persistence context
+
+Hibernate specific cascade types:
+* `DELETE` - same as JPA `REMOVE`
+* `SAVE_UPDATE` - cascades Hibernate save and update operations to child objects
+* `REPLICATE` - replicates child objects to second data source
+* `LOCK` - reattaches entity and children to persistence context - without refresh
+
+Spring Data JPA by default supports implicit transactions: repository methods will create transaction by default, if there is no active transaction:
+* they aren't used in the test context where Spring Boot will create a transaction for the tests and roll it back
+* implicit transactions are only used outside a transactional context:
+  * if you have a method under test with one or more repository method call, you may see different results when run outside the test context
+
+== 📌 Database
+
+Creating a connection to the database is a fairly heavy operation. [HikariCP](https://github.com/brettwooldridge/HikariCP) creates a pool of connections to the database, establishes that network connection to the database, so you have multiple connections established which take resources (memory). Connection pool helps significantly when you have a load on the system.
+
+== 📌 Flyway ([Documentation](https://docs.spring.io/spring-boot/how-to/data-initialization.html#howto.data-initialization.migration-tool.flyway))
+
+* Migrations are the process of moving programming code from one system to another. Database Migrations typically need to occur prior to, or in conjunction with application code.
+* Database migrations are a very important part of the process of moving you application code to production.
+* Database Migration tools can:
+  * Create a new database
+  * Hold history of migrations
+  * Have a reproducible state of the database
+  * Help manage changes being applied to numerous database instances
+
+== 📌 OpenCSV ([Documentation](https://opencsv.sourceforge.net/))
+
+* OpenCSV is a handy tool for parsing CSV files.
+* `com.opencsv.bean.@CsvBindByName` - specifies a binding between a column name of the CSV input and a field in a bean
+* `org.springframework.util.ResourceUtils.getFile("classpath:csvdata/data.csv")` - resolves the given resource location to a `java.io.File`
+
+== 📌 Jakarta Bean Validation
+
+* Jakarta Bean Validation - a Java API standard which provides a standard way of performing validation and handling errors. The primary implementation of this API is Hibernate implementation called Hibernate Validator
+* Validation support can be used in Controllers, Services and other Spring managed Components
+* Spring MVC will return a 400 Bad Request Error for validation failures
+* Spring Data JPA will throw an exception for JPA constraint violations
+* Best practice is to add validation constraints that match your database constraints.
+* In Spring Boot if API is only on classpath (with no implementation), you can use the annotations, but validation will not occur. After Spring 2.3, you must include `org.springframework.boot:spring-boot-starter-validation`
+
+== 📌 Testing
+
+* Unit Tests - designed to test specific sections of code. Ideal coverage is **70-80%**.
+* Integration Tests - designed to test behaviors between objects and parts of the overall system. They can include the Spring Context, database and message brokers.
+* Functional Tests - testing the running application.
+
+Spring MVC Controllers are tricky to test property. They have a high degree of integration with Spring MVC framework. JUnit tests are not sufficient to test the framework interaction.
+
+Spring Mock MVC is a testing environment for the testing of Spring MVC Controllers:
+* Provides mocks of the Servlet runtime environment (simulates the execution of controller as if it was running under Spring with Tomcat)
+* Can be run with (Integration Test) or without (true Unit Test) Spring Context
+
+Spring Boot supports a concept of **Test Splices** which bring up a targeted segment of the auto-configured Spring Boot environment:
+* e.g. just the Database components or just the Web components
+* user defined Spring beans typically are not initialized
+
+**@WebMvcTest** is a Spring Boot test splice which creates a MockMVC enrionment for the controller under a test. Dependencies of it are not included and need to be added to the Spring Context in the test environment.

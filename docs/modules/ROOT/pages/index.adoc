@@ -11,6 +11,7 @@ include::ROOT:partial$java-type-legend.adoc[]
 == Resources
 
 include::java:partial$nav.adoc[]
+include::spring-framework:partial$nav.adoc[]
 
 == External Resources
 

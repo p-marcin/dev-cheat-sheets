@@ -1,0 +1,45 @@
+= Spring Resource Server
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+</dependency>
+----
+
+== Getting Started
+
+=== Example
+
+To set up OAuth 2.0 Resource Server, you need to create `🟢 SecurityConfig`:
+
+[,java]
+----
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()) // <1>
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())); // <2>
+        return httpSecurity.build();
+    }
+
+}
+----
+<1> Require any request to be authenticated
+<2> Setup OAuth 2.0 Resource Server with JWT support with the defaults
+
+=== Customizing Authorization Server url
+
+You can customize Authorization Server url with this property
+
+[,properties]
+----
+spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:9000
+----

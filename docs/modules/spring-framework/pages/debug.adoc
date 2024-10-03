@@ -1,0 +1,10 @@
+= Debugging techniques
+
+== Changing logging level
+
+You can change logging level of the package with the following property:
+
+[,properties]
+----
+logging.level.org.springframework.security=trace
+----
