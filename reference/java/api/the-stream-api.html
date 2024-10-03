@@ -1262,6 +1262,7 @@ Callable&lt;Integer&gt; task = () -&gt; {
     return result;
 };
 
+ForkJoinPool forkJoinPool = new ForkJoinPool(4); <i class="conum" data-value="1"></i><b>(1)</b>
 ForkJoinTask&lt;Integer&gt; submit = forkJoinPool.submit(task);
 submit.get();
 threadMap.forEach((name, n) -&gt; System.out.println(name + " -&gt; " + n));
