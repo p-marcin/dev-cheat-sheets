@@ -1,0 +1,30 @@
+= Spring Reactive Web
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/web/webflux.html",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+----
+
+== Introduction
+
+The Spring Framework is kind of *split in half*:
+
+* *Spring Web MVC* traditionally incorporates the *Servlet API* and also *operates within Servlet Container*. It uses *blocking components*. Also, JDBC *by its nature* is also going to be blocking.
+* *Spring WebFlux* can use `@Controller` / `@RequestMapping` annotations, but it also has *Router Functions* which use *functional programming paradigm*. It *does not operate* within Servlet Container.
+
+CAUTION: Spring WebFlux is *not compatible* with Spring Web MVC.
+
+Spring Framework 5 introduced two reactive types:
+
+* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html[`*🟠 Mono*`^] - is a https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html[`⚪ Publisher<T>`^] with *zero* or *one* element in the data stream.
+* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html[`*🟠 Flux*`^] - is a `⚪ Publisher<T>` with *zero* or *many* elements in the data stream.
+
+== `🟠 Mono`/`🟠 Flux` operations
+

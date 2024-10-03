@@ -4,3 +4,4 @@
 *** xref:java:api/the-stream-api.adoc[]
 ** Concepts
 *** xref:java:concepts/microservices.adoc[]
+*** xref:java:concepts/reactive-programming.adoc[]

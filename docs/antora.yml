@@ -1,5 +1,6 @@
 name: reference
 title: DEV Cheat Sheets
-version: ~
+version: feature-spring
 nav:
   - modules/java/nav.adoc
+  - modules/spring-framework/nav.adoc
