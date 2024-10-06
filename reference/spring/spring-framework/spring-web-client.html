@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring WebClient :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring/spring-framework/spring-web-client.html">
+    <meta name="generator" content="Antora 3.1.9">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/doc-extension.css">
+<link rel="stylesheet" href="../../../_/css/header-extension.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://p-marcin.github.io/dev-cheat-sheets">DEV Cheat Sheets</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets" target="_blank">Repository</a>
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets/issues" target="_blank">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/p-marcin/java-dev-vm" target="_blank">Java DEV VM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="reference" data-version="spring">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">DEV Cheat Sheets</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">☕ Java</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/api/lambda-expression.html">Lambda Expression</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/api/the-stream-api.html">The Stream API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/concepts/microservices.html">Microservices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">☘️ Spring Framework</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spring-security.html">Spring Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="debug.html">Debugging techniques</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">DEV Cheat Sheets</a></li>
+    <li><a href="index.html">☘️ Spring Framework</a></li>
+    <li><a href="spring-web-client.html">Spring WebClient</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">spring</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../../index.html">default</a>
+    <a class="version is-current" href="spring-web-client.html">spring</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/feature/spring/docs/modules/spring-framework/pages/spring-web-client.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Spring WebClient</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-resttemplate" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resttemplate"><a class="anchor" href="#_resttemplate"></a><code>🟢 RestTemplate</code></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html" target="_blank" rel="noopener"><code>🟢 RestTemplate</code></a></dt>
+<dd>
+<p>Synchronous client to <strong>perform HTTP requests</strong>, exposing a simple, template method API <strong>over underlying HTTP client libraries</strong> such as the JDK <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/net/HttpURLConnection.html" target="_blank" rel="noopener"><code>🟠 HttpURLConnection</code></a>, <a href="https://hc.apache.org/" target="_blank" rel="noopener">Apache HttpComponents</a>, and others. RestTemplate offers templates for <strong>common scenarios</strong> by HTTP method, in addition to the generalized <code>exchange</code> and <code>execute</code> methods that support less frequent cases.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>You can create <code>🟢 RestTemplate</code> from <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/client/RestTemplateBuilder.html" target="_blank" rel="noopener"><code>🟢 RestTemplateBuilder</code></a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private final RestTemplateBuilder restTemplateBuilder;
+
+public Page&lt;ResourceDTO&gt; listResources() {
+    RestTemplate restTemplate = restTemplateBuilder.build();
+    ...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_get_response_as_json_string"><a class="anchor" href="#_http_get_response_as_json_string"></a>HTTP GET response as JSON string</h3>
+<div class="paragraph">
+<p>Next, you can <strong>retrieve an entity</strong> by doing a <strong>GET</strong> on the specified URL. The response is <strong>converted and stored</strong> in a <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html" target="_blank" rel="noopener"><code>🟢 ResponseEntity&lt;T&gt;</code></a>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Print JSON response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;String&gt; stringResponse =
+    restTemplate.getForEntity("http://localhost:8080/api/v1/resource", String.class);
+System.out.println(stringResponse.getBody());</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_get_response_as_mapkv"><a class="anchor" href="#_http_get_response_as_mapkv"></a>HTTP GET response as <code>⚪ Map&lt;K,V&gt;</code></h3>
+<div class="paragraph">
+<p><code>⚪ Map&lt;K,V&gt;</code> is a very handy way to <strong>get information</strong> about what actually <strong>comes back in the response</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;Map&gt; mapResponse =
+    restTemplate.getForEntity("http://localhost:8080/api/v1/resource", Map.class);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Under the hood, Spring invokes <a href="https://github.com/FasterXML/jackson" target="_blank" rel="noopener"><strong>Jackson</strong></a> to parse the returned JSON into <code>⚪ Map&lt;K,V&gt;</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_get_response_as_jsonnode"><a class="anchor" href="#_http_get_response_as_jsonnode"></a>HTTP GET response as <code>🟠 JsonNode</code></h3>
+<div class="paragraph">
+<p>To get better capabilities than just a <code>⚪ Map&lt;K,V&gt;</code>, you can get the response as <a href="https://www.javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest/com/fasterxml/jackson/databind/JsonNode.html" target="_blank" rel="noopener"><code>🟠 JsonNode</code></a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;JsonNode&gt; jsonResponse =
+    restTemplate.getForEntity("http://localhost:8080/api/v1/resource", JsonNode.class);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this, you can for example print <code>name</code> of all <code>resources</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">jsonResponse.getBody()
+    .findPath("content")
+    .elements()
+    .forEachRemaining(node -&gt; {
+        System.out.println(node.get("name").asText());
+    });</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Jackson gives you <strong>a lot of flexibility</strong> when you&#8217;re working with JSON string mapped to Java objects.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_get_pageable_response_with_custom_java_object"><a class="anchor" href="#_http_get_pageable_response_with_custom_java_object"></a>HTTP GET pageable response with custom Java Object</h3>
+<div class="paragraph">
+<p>First, implement <code>🟢 ResourceDTOPageImpl&lt;T&gt;</code> extending <a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/PageImpl.html" target="_blank" rel="noopener"><code>🟢 PageImpl&lt;T&gt;</code></a> and annotate it with Jackson annotations:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A page is a <strong>sublist of a list</strong> of objects. It allows gain information about <strong>the position of it</strong> in the containing entire list.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@JsonIgnoreProperties(ignoreUnknown = true, value = "pageable") <i class="conum" data-value="1"></i><b>(1)</b>
+public class ResourceDTOPageImpl extends PageImpl&lt;ResourceDTO&gt; {
+
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES) <i class="conum" data-value="2"></i><b>(2)</b>
+    public ResourceDTOPageImpl(@JsonProperty("content") List&lt;ResourceDTO&gt; content, <i class="conum" data-value="3"></i><b>(3)</b>
+            @JsonProperty("number") int page, <i class="conum" data-value="3"></i><b>(3)</b>
+            @JsonProperty("size") int size, <i class="conum" data-value="3"></i><b>(3)</b>
+            @JsonProperty("totalElements") long total) { <i class="conum" data-value="3"></i><b>(3)</b>
+        super(content, PageRequest.of(page, size), total);
+    }
+
+    public ResourceDTOPageImpl(List&lt;ResourceDTO&gt; content, Pageable pageable, long total) {
+        super(content, pageable, total);
+    }
+
+    public ResourceDTOPageImpl(List&lt;ResourceDTO&gt; content) {
+        super(content);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Ignore <code>pageable</code> property</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Tell Jackson to use this constructor where we bind properties to parameters</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The actual bindings</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, you can use it like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;ResourceDTOPageImpl&gt; pageableResponse =
+    restTemplate.getForEntity("http://localhost:8080/api/v1/resource", ResourceDTOPageImpl.class);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_externalize_base_uri"><a class="anchor" href="#_externalize_base_uri"></a>Externalize Base URI</h3>
+<div class="paragraph">
+<p>You can externalize <code>baseUri</code> (e.g. <code>http://localhost:8080</code>) by implementing <code>🟢 RestTemplateBuilderConfig</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration <i class="conum" data-value="1"></i><b>(1)</b>
+public class RestTemplateBuilderConfig {
+
+    @Value("${rest.template.baseUri}") <i class="conum" data-value="2"></i><b>(2)</b>
+    String baseUri;
+
+    @Bean
+    RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer) {
+        assert StringUtils.hasText(baseUri); <i class="conum" data-value="3"></i><b>(3)</b>
+
+        return configurer.configure(new RestTemplateBuilder()); <i class="conum" data-value="4"></i><b>(4)</b>
+                .uriTemplateHandler(new DefaultUriBuilderFactory(baseUri)); <i class="conum" data-value="5"></i><b>(5)</b>
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html" target="_blank" rel="noopener"><code>@Configuration</code></a> indicates that a class declares one or more <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html" target="_blank" rel="noopener"><code>@Bean</code></a> methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Value.html" target="_blank" rel="noopener"><code>@Value</code></a> indicates a default value expression for the annotated element</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Once <code>baseUri</code> is not set, the bean will fail to instantiate</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Configures new <code>🟢 RestTemplateBuilder</code> instance with Spring Boot defaults using <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/web/client/RestTemplateBuilderConfigurer.html" target="_blank" rel="noopener"><code>🔴 RestTemplateBuilderConfigurer</code></a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Configures <code>baseUri</code> in <code>🟢 RestTemplateBuilder</code> using <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/DefaultUriBuilderFactory.html" target="_blank" rel="noopener"><code>🟢 DefaultUriBuilderFactory</code></a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This way, you can set the property in <code>application.properties</code> and maintain it externally:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">rest.template.baseUri=http://localhost:8080</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and use it like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;ResourceDTOPageImpl&gt; response =
+    restTemplate.getForEntity("/api/v1/resource", ResourceDTOPageImpl.class);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_query_parameters"><a class="anchor" href="#_query_parameters"></a>Query Parameters</h3>
+<div class="paragraph">
+<p>You can add query parameters to the request by using <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/UriComponentsBuilder.html" target="_blank" rel="noopener"><code>🟢 UriComponentsBuilder</code></a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromPath("/api/v1/resource");
+uriComponentsBuilder.queryParam("name", name);
+ResponseEntity&lt;ResourceDTOPageImpl&gt; response =
+    restTemplate.getForEntity(uriComponentsBuilder.toUriString(), ResourceDTOPageImpl.class);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uri_parameters"><a class="anchor" href="#_uri_parameters"></a>URI Parameters</h3>
+<div class="paragraph">
+<p>You can pass URI parameters like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResourceDTO resourceDTO =
+    restTemplate.getForObject("/api/v1/resource/{resourceId}", ResourceDTO.class, id);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_post"><a class="anchor" href="#_http_post"></a>HTTP POST</h3>
+<div class="paragraph">
+<p>You can make an HTTP POST request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">URI uri = restTemplate.postForLocation("/api/v1/resource", newResourceDTO); <i class="conum" data-value="1"></i><b>(1)</b>
+ResourceDTO resourceDTO =
+    restTemplate.getForObject(uri.getPath(), ResourceDTO.class); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>New resource is created and uri to it is returned</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Another request returns the created resource</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The below will return <code>🟢 ResponseEntity&lt;T&gt;</code> with <code>body</code> = <code>null</code> (so with <code>null</code> <code>🟢 ResourceDTO</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ResponseEntity&lt;ResourceDTO&gt; response =
+    restTemplate.postForEntity("/api/v1/resource", newResourceDTO, ResourceDTO.class);</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_put"><a class="anchor" href="#_http_put"></a>HTTP PUT</h3>
+<div class="paragraph">
+<p>You can make an HTTP PUT request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">restTemplate.put("/api/v1/resource/{resourceId}", resourceDTO, resourceDTO.getId());
+ResourceDTO updatedResourceDTO =
+    restTemplate.getForObject("/api/v1/resource/{resourceId}", ResourceDTO.class, resourceDTO.getId());</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#put(java.lang.String,java.lang.Object,java.lang.Object&#8230;&#8203;)" target="_blank" rel="noopener"><code>🟢 RestTemplate#put(String url, Object request, Object&#8230;&#8203; uriVariables)</code></a> method does not return anything. If you want to get the created/updated resource, you need to make HTTP GET request.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_delete"><a class="anchor" href="#_http_delete"></a>HTTP DELETE</h3>
+<div class="paragraph">
+<p>You can make an HTTP DELETE request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">restTemplate.delete("/api/v1/resource/{resourceId}", id);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_resttemplate"><a class="anchor" href="#_testing_resttemplate"></a>Testing <code>🟢 RestTemplate</code></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_http_get"><a class="anchor" href="#_http_get"></a>HTTP GET</h3>
+<div class="paragraph">
+<p>Example Test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RestClientTest <i class="conum" data-value="1"></i><b>(1)</b>
+@Import(RestTemplateBuilderConfig.class) <i class="conum" data-value="2"></i><b>(2)</b>
+public class ResourceClientMockTest {
+
+    @Autowired
+    ObjectMapper objectMapper; <i class="conum" data-value="3"></i><b>(3)</b>
+
+    @Autowired
+    RestTemplateBuilder restTemplateBuilder; <i class="conum" data-value="4"></i><b>(4)</b>
+
+    MockRestServiceServer mockServer;
+
+    @Mock
+    RestTemplateBuilder mockRestTemplateBuilder = new RestTemplateBuilder(new MockServerRestTemplateCustomizer()); <i class="conum" data-value="5"></i><b>(5)</b>
+
+    ResourceClient resourceClient;
+
+    @BeforeEach
+    void setUp() {
+        RestTemplate restTemplate = restTemplateBuilder.build(); <i class="conum" data-value="6"></i><b>(6)</b>
+        mockServer = MockRestServiceServer.bindTo(restTemplate).build(); <i class="conum" data-value="7"></i><b>(7)</b>
+        when(mockRestTemplateBuilder.build()).thenReturn(restTemplate); <i class="conum" data-value="8"></i><b>(8)</b>
+        resourceClient = new ResourceClientImpl(mockRestTemplateBuilder); <i class="conum" data-value="9"></i><b>(9)</b>
+    }
+
+    @Test
+    void testListResources() throws JsonProcessingException {
+        String payload = objectMapper.writeValueAsString(getPage());
+        mockServer.expect(method(HttpMethod.GET)) <i class="conum" data-value="10"></i><b>(10)</b>
+                .andExpect(requestTo("http://localhost:8080/api/v1/resource"))
+                .andRespond(withSuccess(payload, MediaType.APPLICATION_JSON));
+
+        Page&lt;ResourceDTO&gt; resourceDTOs = resourceClient.listResources(); <i class="conum" data-value="11"></i><b>(11)</b>
+        assertThat(resourceDTOs.getContent().size()).isGreaterThan(0);
+    }
+
+    ...
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/client/RestClientTest.html" target="_blank" rel="noopener"><code>@RestClientTest</code></a> annotates test that focuses only on beans that use <code>🟢 RestTemplateBuilder</code> or <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestClient.Builder.html" target="_blank" rel="noopener"><code>⚪ RestClient.Builder</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Import.html" target="_blank" rel="noopener"><code>@Import</code></a> indicates one or more component classes to import - typically <code>@Configuration</code> classes. <code>🟢 RestTemplateBuilderConfig</code> is imported, so <code>🟢 RestTemplate</code> can use <a href="#_externalize_base_uri">externalized Base URI</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><a href="https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest/com/fasterxml/jackson/databind/ObjectMapper.html" target="_blank" rel="noopener"><code>🟢 ObjectMapper</code></a> provides functionality for reading and writing JSON, either to and from basic POJOs (Plain Old Java Objects), or to and from a general-purpose JSON Tree Model (<code>🟠 JsonNode</code>), as well as related functionality for performing conversions.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>🟢 RestTemplateBuilder</code> is injected by Spring.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>🟢 RestTemplateBuilder</code> is also mocked with <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/client/MockRestServiceServer.html" target="_blank" rel="noopener"><code>🔴 MockRestServiceServer</code></a> support thanks to <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/web/client/MockServerRestTemplateCustomizer.html" target="_blank" rel="noopener"><code>🟢 MockServerRestTemplateCustomizer</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Before each test we create <code>🟢 RestTemplate</code> using <code>🟢 RestTemplateBuilder</code> injected by Spring.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Next, we create <code>🔴 MockRestServiceServer</code> with <code>🟢 RestTemplate</code> binding. We need this binding, so the request sent by <code>🟢 RestTemplate</code> can be handled by <code>🔴 MockRestServiceServer</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Then, we stub mocked <code>🟢 RestTemplateBuilder#build()</code> method to return <code>🟢 RestTemplate</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>At the end of the test configuration we pass mocked <code>🟢 RestTemplateBuilder</code> to the <code>🟢 ResourceClientImpl</code> constructor, which finishes setup of the mock.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>During the test, we can set up <code>🔴 MockRestServiceServer</code> behavior.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Request sent by <code>🟢 ResourceClientImpl</code> via <code>🟢 RestTemplate</code> returned by mocked <code>🟢 RestTemplateBuilder</code> will return response from <code>🔴 MockRestServiceServer</code> successfully.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_query_parameters_2"><a class="anchor" href="#_query_parameters_2"></a>Query Parameters</h3>
+<div class="paragraph">
+<p>You can set up <code>🔴 MockRestServiceServer</code> to respond on the request to url with query parameters in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/api/v1/resource").queryParam("name", "Some Name").build().toUri();
+mockServer.expect(method(HttpMethod.GET))
+    .andExpect(requestTo(uri))
+    .andExpect(queryParam("name", "Some Name"))
+    .andRespond(withSuccess(response, MediaType.APPLICATION_JSON));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uri_parameters_2"><a class="anchor" href="#_uri_parameters_2"></a>URI Parameters</h3>
+<div class="paragraph">
+<p>You can set up <code>🔴 MockRestServiceServer</code> to respond on the request to url with URI parameters in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockServer.expect(method(HttpMethod.GET))
+    .andExpect(requestToUriTemplate("http://localhost:8080/api/v1/resource/{resourceId}", resourceDTO.getId()))
+    .andRespond(withSuccess(payload, MediaType.APPLICATION_JSON));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_post_2"><a class="anchor" href="#_http_post_2"></a>HTTP POST</h3>
+<div class="paragraph">
+<p>You can set up <code>🔴 MockRestServiceServer</code> to respond on the HTTP POST request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">URI uri = UriComponentsBuilder.fromPath("/api/v1/resource/{resourceId}").build(resourceDTO.getId());
+mockServer.expect(method(HttpMethod.POST))
+    .andExpect(requestTo("http://localhost:8080/api/v1/resource"))
+    .andRespond(withAccepted().location(uri));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_put_2"><a class="anchor" href="#_http_put_2"></a>HTTP PUT</h3>
+<div class="paragraph">
+<p>You can set up <code>🔴 MockRestServiceServer</code> to respond on the HTTP PUT request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockServer.expect(method(HttpMethod.PUT))
+    .andExpect(requestToUriTemplate("http://localhost:8080/api/v1/resource/{resourceId}", resourceDTO.getId()))
+    .andRespond(withNoContent());</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_http_delete_2"><a class="anchor" href="#_http_delete_2"></a>HTTP DELETE</h3>
+<div class="paragraph">
+<p>You can set up <code>🔴 MockRestServiceServer</code> to respond on the HTTP DELETE request like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockServer.expect(method(HttpMethod.DELETE))
+    .andExpect(requestToUriTemplate("http://localhost:8080/api/v1/resource/{resourceId}", resourceDTO.getId()))
+    .andRespond(withNoContent());</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The HTTP DELETE does not return any entity. To make sure that <code>🔴 MockRestServiceServer</code> handled the expected request, you can call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/client/MockRestServiceServer.html#verify()"><code>🔴 MockRestServiceServer#verify()</code></a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_response_status_code_404_not_found"><a class="anchor" href="#_response_status_code_404_not_found"></a>Response Status Code: 404 Not Found</h3>
+<div class="paragraph">
+<p>Example test how to verify 404 Response Status Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Test
+void testDeleteNotFound() {
+    mockServer.expect(method(HttpMethod.DELETE))
+        .andExpect(requestToUriTemplate("http://localhost:8080/api/v1/resource/{resourceId}", resourceDTO.getId()))
+        .andRespond(withResourceNotFound());
+
+    assertThrows(HttpClientErrorException.class, () -&gt; {
+        resourceClient.deleteResource(resourceDTO.getId());
+    });
+
+    mockServer.verify();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

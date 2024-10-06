@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring Security :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring/spring-framework/spring-security.html">
+    <meta name="generator" content="Antora 3.1.9">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/doc-extension.css">
+<link rel="stylesheet" href="../../../_/css/header-extension.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://p-marcin.github.io/dev-cheat-sheets">DEV Cheat Sheets</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets" target="_blank">Repository</a>
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets/issues" target="_blank">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/p-marcin/java-dev-vm" target="_blank">Java DEV VM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="reference" data-version="spring">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">DEV Cheat Sheets</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">☕ Java</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/api/lambda-expression.html">Lambda Expression</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/api/the-stream-api.html">The Stream API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../java/concepts/microservices.html">Microservices</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">☘️ Spring Framework</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spring-security.html">Spring Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="debug.html">Debugging techniques</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">DEV Cheat Sheets</a></li>
+    <li><a href="index.html">☘️ Spring Framework</a></li>
+    <li><a href="spring-security.html">Spring Security</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">spring</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../../index.html">default</a>
+    <a class="version is-current" href="spring-security.html">spring</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/feature/spring/docs/modules/spring-framework/pages/spring-security.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Spring Security</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-security/reference/index.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_maven_dependencies"><a class="anchor" href="#_maven_dependencies"></a>Maven Dependencies</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Just by adding the dependency, Spring Boot will provide us <strong>sensible defaults</strong>. For example, it will <strong>autoconfigure Basic HTTP Authentication</strong> and secure all REST API endpoints.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Basic HTTP Auth should be used with HTTPS, because username and password are sent over the internet as <strong>base64</strong> encoded and <strong>without HTTPS they can be easily decoded</strong>. It is discouraged to use Basic HTTP Auth in an Enterprise project.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_http_auth"><a class="anchor" href="#_basic_http_auth"></a>Basic HTTP Auth</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_calling_rest_api_endpoint_with_basic_http_auth"><a class="anchor" href="#_calling_rest_api_endpoint_with_basic_http_auth"></a>Calling REST API endpoint with Basic HTTP Auth</h3>
+<div class="paragraph">
+<p>If you&#8217;ll just send a GET request to <code>http://localhost:8080/api/v1/resource</code>, you&#8217;ll get Response Status Code: <strong>401 Unauthorized</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Basic HTTP Auth requires a header in the request called <code>Authorization</code> with value: <code>Basic dXNlcjphM2JhNmYyOS0xMGU0LTQ5OTctOTg4Mi0yMjM0ODg4M2Q5NTQ=</code> where after <code>Basic</code> there is <strong>base64 encoded username and password</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Decoding base64 string</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo "dXNlcjphM2JhNmYyOS0xMGU0LTQ5OTctOTg4Mi0yMjM0ODg4M2Q5NTQ=" | base64 --decode
+user:a3ba6f29-10e4-4997-9882-22348883d954</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Encoding base64 string</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo -n "user:a3ba6f29-10e4-4997-9882-22348883d954" | base64
+dXNlcjphM2JhNmYyOS0xMGU0LTQ5OTctOTg4Mi0yMjM0ODg4M2Q5NTQ=</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customizing_username_and_password"><a class="anchor" href="#_customizing_username_and_password"></a>Customizing username and password</h3>
+<div class="paragraph">
+<p>By default, Spring will create a new password <strong>on each deployment</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You can customize Spring Security username and password with these properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">spring.security.user.name=my-user
+spring.security.user.password=my-password</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_resttemplate_with_basic_http_auth"><a class="anchor" href="#_using_resttemplate_with_basic_http_auth"></a>Using <code>🟢 RestTemplate</code> with Basic HTTP Auth</h3>
+<div class="paragraph">
+<p>You&#8217;ll have to invoke <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/client/RestTemplateBuilder.html#basicAuthentication(java.lang.String,java.lang.String)" target="_blank" rel="noopener"><code>🟢 RestTemplateBuilder#basicAuthentication(String username,
+String password)</code></a> when configuring Bean <a href="spring-web-client.html#_externalize_base_uri" class="xref page">here</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_http_get_with_basic_http_auth"><a class="anchor" href="#_testing_http_get_with_basic_http_auth"></a>Testing HTTP GET with Basic HTTP Auth</h3>
+<div class="paragraph">
+<p>An example how Basic HTTP Auth can be added to the test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(get("/api/v1/resource")
+            .with(httpBasic("my-user", "my-password")) <i class="conum" data-value="1"></i><b>(1)</b>
+            .accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+    .andExpect(jsonPath("$.content.length()", is(3)));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This way we can add <code>Authorization</code> header to the request</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_http_post_with_basic_http_auth"><a class="anchor" href="#_testing_http_post_with_basic_http_auth"></a>Testing HTTP POST with Basic HTTP Auth</h3>
+<div class="paragraph">
+<p>For HTTP POST simply adding to the test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">.with(httpBasic("my-user", "my-password"))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is not enough. You&#8217;ll get Response Status Code: <strong>403 Forbidden</strong> due to: <code>Invalid CSRF token found for http://localhost/api/v1/resource</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can ignore CSRF token only for REST API by creating a <code>🟢 SpringSecurityConfig</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
+public class SpringSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeHttpRequests(authorize -&gt; authorize.anyRequest().authenticated()) <i class="conum" data-value="1"></i><b>(1)</b>
+                .httpBasic(Customizer.withDefaults()) <i class="conum" data-value="2"></i><b>(2)</b>
+                .csrf(csrf -&gt; csrf.ignoringRequestMatchers("/api/**")); <i class="conum" data-value="3"></i><b>(3)</b>
+        return httpSecurity.build();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Require any request to be authenticated</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Setup HTTP Basic Auth with the defaults</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Do not require CSRF Token on <code>/api/**</code> urls</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootTest.html" target="_blank" rel="noopener"><code>@SpringBootTest</code></a>, then you need to create <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html" target="_blank" rel="noopener"><code>🔴 MockMvc</code></a> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+    .apply(springSecurity()) <i class="conum" data-value="1"></i><b>(1)</b>
+    .build();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure <code>🔴 MockMvc</code> to use Spring Security</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener"><code>@WebMvcTest</code></a>, then you need to import <code>🟢 SpringSecurityConfig</code> by annotating the test class with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Import(SpringSecurityConfig.class)</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oauth2_and_jwt"><a class="anchor" href="#_oauth2_and_jwt"></a>OAuth2 and JWT</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">OAuth2</dt>
+<dd>
+<p><strong>Authorization Framework</strong> used to grant <strong>limited access</strong> to resources without full access to the account. It allows you <strong>to grant access to a third party application</strong> to <strong>act on your behalf</strong>.</p>
+</dd>
+<dt class="hdlist1">OAuth Roles</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Client</strong> - the application requesting access</p>
+</li>
+<li>
+<p><strong>Resource Owner</strong> - the user who wishes to grant an application (Client) access</p>
+</li>
+<li>
+<p><strong>Authorization Server</strong> - verifies the identity of the user then issues access tokens to the application</p>
+</li>
+<li>
+<p><strong>Resource Server</strong> - the resource to access</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Client Credentials Flow</dt>
+<dd>
+<p>Most common OAuth <a href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use">Authorization Flow</a> for RESTful APIs. It is used by services, where the user is a service role.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/oauth2-client-credentials-flow-with-jwt.png" alt="oauth2 client credentials flow with jwt" width="600">
+</div>
+<div class="title">Figure 1. Client Credentials Flow with JWT</div>
+</div>
+</dd>
+<dt class="hdlist1">JWT</dt>
+<dd>
+<p><strong>JSON Web Token</strong>. It contains <strong>user information</strong> and <strong>authorized roles</strong> (scopes). It has three parts: <strong>Header</strong>, <strong>Payload</strong> (data) and <strong>Signature</strong>. All 3 parts are tokenized using <strong>base64 encoding</strong>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+HTTP / REST are <strong>stateless</strong> - each request is <strong>self-contained</strong>. Unlike Web Applications which often use <strong>session id&#8217;s stored in cookies</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>JWT is <strong>signed</strong> which <strong>prevents clients from altering the contents</strong> of the JWT. It can be signed using a number of techniques:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Symmetric encryption</strong> - uses single key to sign, requires key to be shared</p>
+</li>
+<li>
+<p><strong>Asymmetric encryption</strong> - uses Public and Private Keys (known as <strong>Key Pair</strong>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Private Key</strong> is used to generate signature and is not shared</p>
+</li>
+<li>
+<p><strong>Public Key</strong> is shared and is used to verify signature</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">JWT Verification</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The Authorization Server <strong>signs JWT</strong> using the <strong>Private Key</strong></p>
+</li>
+<li>
+<p>The Resource Server <strong>requests the Public Key</strong> from the Authorization Server</p>
+</li>
+<li>
+<p>Using the <strong>Public Key</strong> the Resource Server <strong>verifies the signature of the JWT</strong></p>
+</li>
+<li>
+<p>The Resource Server can <strong>cache the Public Key</strong> for verification of future requests</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Once the Resource Server has the Public Key, JWT can be validated <strong>without additional requests</strong> from the Authorization Server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_oauth_vs_basic_http_auth"><a class="anchor" href="#_oauth_vs_basic_http_auth"></a>OAuth vs Basic HTTP Auth</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Basic HTTP Auth requires user credentials to be <strong>shared with every resource</strong></p>
+</li>
+<li>
+<p>Basic HTTP Auth sends user credentials <strong>unencrypted</strong> in HTTP header and can be <strong>compromised</strong></p>
+</li>
+<li>
+<p>With OAuth user credentials are <strong>only shared with Authentication Server</strong></p>
+</li>
+<li>
+<p>User credentials <strong>cannot be obtained</strong> from Authorization Token</p>
+</li>
+<li>
+<p>Basic HTTP Auth has <strong>no concept of security roles</strong></p>
+</li>
+<li>
+<p>With OAuth2 security roles are <strong>defined in scopes</strong> and <strong>passed in Authorization Token</strong></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When we&#8217;re dealing with security roles, we can <strong>grant access</strong> to resources as needed or <strong>deny access</strong> when appropriate.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>
