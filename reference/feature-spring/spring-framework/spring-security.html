@@ -91,7 +91,13 @@
     <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="spring-security.html">Spring Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spring-authorization-server.html">Spring Authorization Server</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="debug.html">Debugging techniques</a>
@@ -267,12 +273,12 @@ String password)</code></a> when configuring Bean <a href="spring-web-client.htm
 <p>is not enough. You&#8217;ll get Response Status Code: <strong>403 Forbidden</strong> due to: <code>Invalid CSRF token found for http://localhost/api/v1/resource</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can ignore CSRF token only for REST API by creating a <code>🟢 SpringSecurityConfig</code>:</p>
+<p>You can ignore CSRF token only for REST API by creating a <code>🟢 SecurityConfig</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
-public class SpringSecurityConfig {
+public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -327,11 +333,11 @@ public class SpringSecurityConfig {
 </table>
 </div>
 <div class="paragraph">
-<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener"><code>@WebMvcTest</code></a>, then you need to import <code>🟢 SpringSecurityConfig</code> by annotating the test class with:</p>
+<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener"><code>@WebMvcTest</code></a>, then you need to import <code>🟢 SecurityConfig</code> by annotating the test class with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Import(SpringSecurityConfig.class)</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Import(SecurityConfig.class)</code></pre>
 </div>
 </div>
 </td>
