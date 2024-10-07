@@ -285,6 +285,72 @@ public RegisteredClientRepository registeredClientRepository() {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_testing"><a class="anchor" href="#_testing"></a>Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An example how OAuth 2.0 with JWT support can be added to the test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(get("/api/v1/resource")
+            with(jwt().jwt(jwt -&gt; jwt.claims(claims -&gt; {
+                    claims.put("scope", "message-read");
+                    claims.put("scope", "message-write");
+                }).subject("oidc-client").notBefore(Instant.now().minusSeconds(5L)))) <i class="conum" data-value="1"></i><b>(1)</b>
+            .accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+    .andExpect(jsonPath("$.content.length()", is(3)));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This way we can add <code>Authorization</code> header to the request</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootTest.html" target="_blank" rel="noopener"><code>@SpringBootTest</code></a>, then you need to create <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html" target="_blank" rel="noopener"><code>🔴 MockMvc</code></a> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+    .apply(springSecurity()) <i class="conum" data-value="1"></i><b>(1)</b>
+    .build();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure <code>🔴 MockMvc</code> to use Spring Security</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If your test is annotated with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener"><code>@WebMvcTest</code></a>, then you need to import <code>🟢 SecurityConfig</code> by annotating the test class with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Import(SecurityConfig.class)</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
