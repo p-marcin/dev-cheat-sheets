@@ -775,11 +775,6 @@ public static class TestConfig {
     }
 
     @Bean <i class="conum" data-value="2"></i><b>(2)</b>
-    OAuth2AuthorizedClientService authorizedClientService(ClientRegistrationRepository clientRegistrationRepository) {
-        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository);
-    }
-
-    @Bean <i class="conum" data-value="3"></i><b>(3)</b>
     OAuthClientInterceptor clientInterceptor(OAuth2AuthorizedClientManager authorizedClientManager,
             ClientRegistrationRepository clientRegistrationRepository) {
         return new OAuthClientInterceptor(authorizedClientManager, clientRegistrationRepository);
@@ -796,11 +791,7 @@ public static class TestConfig {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Overrides default <code>⚪ OAuth2AuthorizedClientService</code> to use customized <code>⚪ ClientRegistrationRepository</code> (which then will be passed to <code>⚪ OAuth2AuthorizedClientManager</code>)</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Overrides default <code>🟢 OAuthClientInterceptor</code> to use customized <code>⚪ ClientRegistrationRepository</code></td>
+<td>Overrides default <code>🟢 OAuthClientInterceptor</code> to use mocked <code>⚪ OAuth2AuthorizedClientManager</code> and customized <code>⚪ ClientRegistrationRepository</code></td>
 </tr>
 </table>
 </div>
