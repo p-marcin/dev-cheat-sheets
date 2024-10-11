@@ -372,10 +372,10 @@ public class SecurityConfig {
 <p><strong>Resource Owner</strong> - the user who wishes to grant an application (Client) access</p>
 </li>
 <li>
-<p><strong>Authorization Server</strong> - verifies the identity of the user then issues access tokens to the application</p>
+<p><a href="spring-authorization-server.html" class="xref page"><strong>Authorization Server</strong></a> - verifies the identity of the user then issues access tokens to the application</p>
 </li>
 <li>
-<p><strong>Resource Server</strong> - the resource to access</p>
+<p><a href="spring-resource-server.html" class="xref page"><strong>Resource Server</strong></a> - the resource to access</p>
 </li>
 </ul>
 </div>
@@ -482,7 +482,7 @@ Once the Resource Server has the Public Key, JWT can be validated <strong>withou
 <p>Basic HTTP Auth sends user credentials <strong>unencrypted</strong> in HTTP header and can be <strong>compromised</strong></p>
 </li>
 <li>
-<p>With OAuth user credentials are <strong>only shared with Authentication Server</strong></p>
+<p>With OAuth user credentials are <strong>only shared with Authorization Server</strong></p>
 </li>
 <li>
 <p>User credentials <strong>cannot be obtained</strong> from Authorization Token</p>
@@ -504,6 +504,237 @@ Once the Resource Server has the Public Key, JWT can be validated <strong>withou
 <td class="content">
 When we&#8217;re dealing with security roles, we can <strong>grant access</strong> to resources as needed or <strong>deny access</strong> when appropriate.
 </td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_calling_rest_api_endpoint_with_oauth_2_0"><a class="anchor" href="#_calling_rest_api_endpoint_with_oauth_2_0"></a>Calling REST API endpoint with OAuth 2.0</h3>
+<div class="paragraph">
+<p>You&#8217;ll need Maven Dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-oauth2-client&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and these properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:9000
+spring.security.oauth2.client.registration.springauth.client-id=oidc-client
+spring.security.oauth2.client.registration.springauth.client-secret=secret
+spring.security.oauth2.client.registration.springauth.scope[0]=message.read
+spring.security.oauth2.client.registration.springauth.scope[1]=message.write
+spring.security.oauth2.client.registration.springauth.authorization-grant-type=client_credentials
+spring.security.oauth2.client.registration.springauth.provider=springauth
+spring.security.oauth2.client.provider.springauth.authorization-uri=http://localhost:9000/oauth2/authorize
+spring.security.oauth2.client.provider.springauth.token-uri=http://localhost:9000/oauth2/token</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, you need to add <code>@Bean</code> for <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html" target="_blank" rel="noopener"><code>⚪ OAuth2AuthorizedClientManager</code></a> which will be <strong>responsible for the overall management</strong> of <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClient.html" target="_blank" rel="noopener"><code>🟢 OAuth2AuthorizedClient</code></a>. The primary responsibilities include:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Authorizing (or re-authorizing) an OAuth 2.0 Client</strong> by leveraging an <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientProvider.html" target="_blank" rel="noopener"><code>⚪ OAuth2AuthorizedClientProvider</code></a></p>
+</li>
+<li>
+<p><strong>Delegating the persistence</strong> of an <code>🟢 OAuth2AuthorizedClient</code>, typically using an <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientService.html" target="_blank" rel="noopener"><code>⚪ OAuth2AuthorizedClientService</code></a> or <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/web/OAuth2AuthorizedClientRepository.html" target="_blank" rel="noopener"><code>⚪ OAuth2AuthorizedClientRepository</code></a></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
+public class RestTemplateBuilderConfig {
+
+    ...
+
+    @Bean
+    OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientService authorizedClientService) {
+        OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder.builder()
+                .clientCredentials()
+                .build(); <i class="conum" data-value="1"></i><b>(1)</b>
+
+        AuthorizedClientServiceOAuth2AuthorizedClientManager authorizedClientServiceAuthorizedClientManager =
+                new AuthorizedClientServiceOAuth2AuthorizedClientManager(
+                clientRegistrationRepository, authorizedClientService); <i class="conum" data-value="2"></i><b>(2)</b>
+        authorizedClientServiceAuthorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
+        return authorizedClientServiceAuthorizedClientManager;
+    }
+
+    ...
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>⚪ OAuth2AuthorizedClientProvider</code> is <strong>a strategy</strong> for authorizing (or re-authorizing) an OAuth 2.0 Client. Implementations will typically implement a specific <strong>authorization grant type</strong>. Here we build <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/ClientCredentialsOAuth2AuthorizedClientProvider.html" target="_blank" rel="noopener"><code>🟢 ClientCredentialsOAuth2AuthorizedClientProvider</code></a> which is an implementation for <code>client_credentials</code> grant.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/AuthorizedClientServiceOAuth2AuthorizedClientManager.html" target="_blank" rel="noopener"><code>🔴 AuthorizedClientServiceOAuth2AuthorizedClientManager</code></a> is an implementation of <code>⚪ OAuth2AuthorizedClientManager</code> which persist <code>🟢 OAuth2AuthorizedClient</code>:
+<div class="ulist">
+<ul>
+<li>
+<p>By default, when an authorization attempt <strong>succeeds</strong>, the <code>🟢 OAuth2AuthorizedClient</code> will be <strong>saved</strong> in the <code>⚪ OAuth2AuthorizedClientService</code>.</p>
+</li>
+<li>
+<p>By default, when an authorization attempt <strong>fails</strong> due to an <code>invalid_grant</code> error, the previously saved <code>🟢 OAuth2AuthorizedClient</code> will be <strong>removed</strong> from the <code>⚪ OAuth2AuthorizedClientService</code>.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll also need to implement <code>@Component</code> for <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestInterceptor.html" target="_blank" rel="noopener"><code>⚪ ClientHttpRequestInterceptor</code></a> which allows to <strong>modify the outgoing request and/or the incoming response</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component
+public class OAuthClientInterceptor implements ClientHttpRequestInterceptor {
+
+    private final OAuth2AuthorizedClientManager authorizedClientManager;
+
+    private final ClientRegistration clientRegistration;
+
+    private final Authentication principal;
+
+    public OAuthClientInterceptor(OAuth2AuthorizedClientManager authorizedClientManager,
+            ClientRegistrationRepository clientRegistrationRepository) {
+        this.authorizedClientManager = authorizedClientManager; <i class="conum" data-value="1"></i><b>(1)</b>
+        this.clientRegistration = clientRegistrationRepository.findByRegistrationId("springauth"); <i class="conum" data-value="2"></i><b>(2)</b>
+        principal = createPrincipal();
+    }
+
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+            ClientHttpRequestExecution execution) throws IOException {
+        OAuth2AuthorizeRequest authorizeRequest = OAuth2AuthorizeRequest.withClientRegistrationId(
+                clientRegistration.getRegistrationId()).principal(principal).build(); <i class="conum" data-value="3"></i><b>(3)</b>
+
+        OAuth2AuthorizedClient authorizedClient = authorizedClientManager.authorize(authorizeRequest); <i class="conum" data-value="4"></i><b>(4)</b>
+
+        if (isNull(authorizedClient)) {
+            throw new IllegalStateException("Missing credentials");
+        }
+
+        request.getHeaders().add(HttpHeaders.AUTHORIZATION, "Bearer " + authorizedClient.getAccessToken().getTokenValue()); <i class="conum" data-value="5"></i><b>(5)</b>
+        return execution.execute(request, body); <i class="conum" data-value="6"></i><b>(6)</b>
+    }
+
+    private Authentication createPrincipal() {
+        return new Authentication() {
+            @Override
+            public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
+                return List.of();
+            }
+
+            @Override
+            public Object getCredentials() {
+                return null;
+            }
+
+            @Override
+            public Object getDetails() {
+                return null;
+            }
+
+            @Override
+            public Object getPrincipal() {
+                return this;
+            }
+
+            @Override
+            public boolean isAuthenticated() {
+                return true;
+            }
+
+            @Override
+            public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
+
+            }
+
+            @Override
+            public String getName() {
+                return clientRegistration.getClientId();
+            }
+        };
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>⚪ OAuth2AuthorizedClientManager</code> from previous step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistrationRepository.html" target="_blank" rel="noopener"><code>⚪ ClientRegistrationRepository</code></a> returns <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistration.html" target="_blank" rel="noopener"><code>🔴 ClientRegistration</code></a> <strong>enriched</strong> with our <code>springauth</code> registration properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizeRequest.html" target="_blank" rel="noopener"><code>🔴 OAuth2AuthorizeRequest</code></a> represents <strong>a request</strong> the <code>⚪ OAuth2AuthorizedClientManager</code> <strong>uses to authorize (or re-authorize) the client</strong> identified by the provided client <code>registrationId</code> (<code>springauth</code>) and principal (<code>oidc-client</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>⚪ OAuth2AuthorizedClientManager</code> returns <code>🟢 OAuth2AuthorizedClient</code> after <strong>successful authorization</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>🟢 OAuth2AuthorizedClient</code> <strong>contains JWT</strong> which we can include in the <code>Authorization</code> <strong>header</strong> of the original request.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Original request is executed.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>🟢 OAuthClientInterceptor</code> can be added to <code>🟢 RestTemplateBuilder</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
+public class RestTemplateBuilderConfig {
+
+    @Value("${rest.template.baseUri}")
+    String baseUri;
+
+    ...
+
+    @Bean
+    RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer, OAuthClientInterceptor clientInterceptor) {
+        assert StringUtils.hasText(baseUri);
+
+        return configurer.configure(new RestTemplateBuilder())
+                .additionalInterceptors(clientInterceptor) <i class="conum" data-value="1"></i><b>(1)</b>
+                .uriTemplateHandler(new DefaultUriBuilderFactory(baseUri));
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>🟢 OAuthClientInterceptor</code> handles <strong>client authorization</strong> in Authorization Server and <strong>enrichment</strong> of <code>Authorization</code> header for each request</td>
 </tr>
 </table>
 </div>

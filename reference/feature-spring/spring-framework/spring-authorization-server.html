@@ -206,7 +206,7 @@ public RegisteredClientRepository registeredClientRepository() {
 <p><code>Grant Type</code>: Client Credentials</p>
 </li>
 <li>
-<p><code>Access Token URL</code>: <a href="http://localhost:9090/oauth2/token" class="bare">http://localhost:9090/oauth2/token</a></p>
+<p><code>Access Token URL</code>: <a href="http://localhost:9000/oauth2/token" class="bare">http://localhost:9000/oauth2/token</a></p>
 </li>
 <li>
 <p><code>Client ID</code>: oidc-client</p>
@@ -260,7 +260,7 @@ public RegisteredClientRepository registeredClientRepository() {
       "message.read",
       "message.write"
     ],
-    "iss":"http://localhost:9090",
+    "iss":"http://localhost:9000",
     "exp":1728332666,
     "iat":1728332366,
     "jti":"87f1fefc-e810-480b-b520-7faf52507bfb"
@@ -279,8 +279,14 @@ public RegisteredClientRepository registeredClientRepository() {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">server.port=9090</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">server.port=9000</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customizing_authorization_server_endpoints"><a class="anchor" href="#_customizing_authorization_server_endpoints"></a>Customizing Authorization Server endpoints</h3>
+<div class="paragraph">
+<p>You can find Authorization Server endpoints in <a href="https://docs.spring.io/spring-authorization-server/docs/current/api/org/springframework/security/oauth2/server/authorization/settings/AuthorizationServerSettings.html#builder()" target="_blank" rel="noopener"><code>🔴 AuthorizationServerSettings.html#builder()</code></a>. If you want to customize them, check <a href="https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#configuring-authorization-server-settings">official documentation</a>.</p>
 </div>
 </div>
 </div>
