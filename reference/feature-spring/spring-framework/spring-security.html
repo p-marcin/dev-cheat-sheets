@@ -351,13 +351,13 @@ public class SecurityConfig {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_oauth2_and_jwt"><a class="anchor" href="#_oauth2_and_jwt"></a>OAuth2 and JWT</h2>
+<h2 id="_oauth_2_0_and_jwt"><a class="anchor" href="#_oauth_2_0_and_jwt"></a>OAuth 2.0 and JWT</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h3>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">OAuth2</dt>
+<dt class="hdlist1">OAuth 2.0</dt>
 <dd>
 <p><strong>Authorization Framework</strong> used to grant <strong>limited access</strong> to resources without full access to the account. It allows you <strong>to grant access to a third party application</strong> to <strong>act on your behalf</strong>.</p>
 </dd>
@@ -491,7 +491,7 @@ Once the Resource Server has the Public Key, JWT can be validated <strong>withou
 <p>Basic HTTP Auth has <strong>no concept of security roles</strong></p>
 </li>
 <li>
-<p>With OAuth2 security roles are <strong>defined in scopes</strong> and <strong>passed in Authorization Token</strong></p>
+<p>With OAuth 2.0 security roles are <strong>defined in scopes</strong> and <strong>passed in Authorization Token</strong></p>
 </li>
 </ul>
 </div>
@@ -739,6 +739,90 @@ public class RestTemplateBuilderConfig {
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td><code>🟢 OAuthClientInterceptor</code> handles <strong>client authorization</strong> in Authorization Server and <strong>enrichment</strong> of <code>Authorization</code> header for each request</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_request_with_oauth_2_0"><a class="anchor" href="#_testing_request_with_oauth_2_0"></a>Testing request with OAuth 2.0</h3>
+<div class="paragraph">
+<p>If your test is annotated with <code>@SpringBootTest</code>, then you don&#8217;t need additional configuration.</p>
+</div>
+<div class="paragraph">
+<p>If your test is annotated with <code>@RestClientTest</code>, then you need to <strong>mock</strong> <code>⚪ OAuth2AuthorizedClientManager</code> with <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/mock/mockito/MockBean.html" target="_blank" rel="noopener"><code>@MockBean</code></a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@MockBean
+OAuth2AuthorizedClientManager authorizedClientManager;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and add a <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/TestConfiguration.html" target="_blank" rel="noopener"><code>@TestConfiguration</code></a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@TestConfiguration
+public static class TestConfig {
+
+    @Bean <i class="conum" data-value="1"></i><b>(1)</b>
+    ClientRegistrationRepository clientRegistrationRepository() {
+        return new InMemoryClientRegistrationRepository(ClientRegistration.withRegistrationId("springauth")
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .clientId("test")
+                .tokenUri("test")
+                .build());
+    }
+
+    @Bean <i class="conum" data-value="2"></i><b>(2)</b>
+    OAuth2AuthorizedClientService authorizedClientService(ClientRegistrationRepository clientRegistrationRepository) {
+        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository);
+    }
+
+    @Bean <i class="conum" data-value="3"></i><b>(3)</b>
+    OAuthClientInterceptor clientInterceptor(OAuth2AuthorizedClientManager authorizedClientManager,
+            ClientRegistrationRepository clientRegistrationRepository) {
+        return new OAuthClientInterceptor(authorizedClientManager, clientRegistrationRepository);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Overrides default <code>⚪ ClientRegistrationRepository</code> and creates the one for the test.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Overrides default <code>⚪ OAuth2AuthorizedClientService</code> to use customized <code>⚪ ClientRegistrationRepository</code> (which then will be passed to <code>⚪ OAuth2AuthorizedClientManager</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Overrides default <code>🟢 OAuthClientInterceptor</code> to use customized <code>⚪ ClientRegistrationRepository</code></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, in <code>@BeforeEach</code> you can mock <code>⚪ OAuth2AuthorizedClientManager</code> behavior in following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@BeforeEach
+void setUp() throws JsonProcessingException {
+    ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("springauth");
+    OAuth2AccessToken token = new OAuth2AccessToken(OAuth2AccessToken.TokenType.BEARER, "test", Instant.MIN, Instant.MAX); <i class="conum" data-value="1"></i><b>(1)</b>
+    when(authorizedClientManager.authorize(any())).thenReturn(new OAuth2AuthorizedClient(clientRegistration, "test", token));
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/core/OAuth2AccessToken.html" target="_blank" rel="noopener"><code>🟢 OAuth2AccessToken</code></a> will be returned together with <code>🟢 OAuth2AuthorizedClient</code> after invoking <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html#authorize(org.springframework.security.oauth2.client.OAuth2AuthorizeRequest)" target="_blank" rel="noopener"><code>OAuth2AuthorizedClientManager#authorize(OAuth2AuthorizeRequest authorizeRequest)</code></a></td>
 </tr>
 </table>
 </div>
