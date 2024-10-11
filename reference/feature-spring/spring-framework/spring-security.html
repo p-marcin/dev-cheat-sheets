@@ -558,15 +558,15 @@ public class RestTemplateBuilderConfig {
     ...
 
     @Bean
-    OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
+    OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository, <i class="conum" data-value="1"></i><b>(1)</b>
             OAuth2AuthorizedClientService authorizedClientService) {
         OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder.builder()
                 .clientCredentials()
-                .build(); <i class="conum" data-value="1"></i><b>(1)</b>
+                .build(); <i class="conum" data-value="2"></i><b>(2)</b>
 
         AuthorizedClientServiceOAuth2AuthorizedClientManager authorizedClientServiceAuthorizedClientManager =
                 new AuthorizedClientServiceOAuth2AuthorizedClientManager(
-                clientRegistrationRepository, authorizedClientService); <i class="conum" data-value="2"></i><b>(2)</b>
+                clientRegistrationRepository, authorizedClientService); <i class="conum" data-value="3"></i><b>(3)</b>
         authorizedClientServiceAuthorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
         return authorizedClientServiceAuthorizedClientManager;
     }
@@ -580,10 +580,14 @@ public class RestTemplateBuilderConfig {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>⚪ OAuth2AuthorizedClientProvider</code> is <strong>a strategy</strong> for authorizing (or re-authorizing) an OAuth 2.0 Client. Implementations will typically implement a specific <strong>authorization grant type</strong>. Here we build <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/ClientCredentialsOAuth2AuthorizedClientProvider.html" target="_blank" rel="noopener"><code>🟢 ClientCredentialsOAuth2AuthorizedClientProvider</code></a> which is an implementation for <code>client_credentials</code> grant.</td>
+<td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistrationRepository.html" target="_blank" rel="noopener"><code>⚪ ClientRegistrationRepository</code></a> checks if client <code>registrationId</code> provided in authorization request is present in registration repository (enriched from registration properties)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>⚪ OAuth2AuthorizedClientProvider</code> is <strong>a strategy</strong> for authorizing (or re-authorizing) an OAuth 2.0 Client. Implementations will typically implement a specific <strong>authorization grant type</strong>. Here we build <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/ClientCredentialsOAuth2AuthorizedClientProvider.html" target="_blank" rel="noopener"><code>🟢 ClientCredentialsOAuth2AuthorizedClientProvider</code></a> which is an implementation for <code>client_credentials</code> grant.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/AuthorizedClientServiceOAuth2AuthorizedClientManager.html" target="_blank" rel="noopener"><code>🔴 AuthorizedClientServiceOAuth2AuthorizedClientManager</code></a> is an implementation of <code>⚪ OAuth2AuthorizedClientManager</code> which persist <code>🟢 OAuth2AuthorizedClient</code>:
 <div class="ulist">
 <ul>
@@ -685,7 +689,7 @@ public class OAuthClientInterceptor implements ClientHttpRequestInterceptor {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistrationRepository.html" target="_blank" rel="noopener"><code>⚪ ClientRegistrationRepository</code></a> returns <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistration.html" target="_blank" rel="noopener"><code>🔴 ClientRegistration</code></a> <strong>enriched</strong> with our <code>springauth</code> registration properties.</td>
+<td><code>⚪ ClientRegistrationRepository</code> returns <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistration.html" target="_blank" rel="noopener"><code>🔴 ClientRegistration</code></a> <strong>enriched</strong> with our <code>springauth</code> registration properties.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
