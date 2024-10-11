@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Reactive Programming :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/feature-spring/java/concepts/reactive-programming.html">
+    <meta name="generator" content="Antora 3.1.9">
+<link rel="stylesheet" href="../../../../_/css/site.css">
+<link rel="stylesheet" href="../../../../_/css/doc-extension.css">
+<link rel="stylesheet" href="../../../../_/css/header-extension.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://p-marcin.github.io/dev-cheat-sheets">DEV Cheat Sheets</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search">
+        </div>
+      </div>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets" target="_blank">Repository</a>
+            <a class="navbar-item" href="https://github.com/p-marcin/dev-cheat-sheets/issues" target="_blank">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://github.com/p-marcin/java-dev-vm" target="_blank">Java DEV VM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="reference" data-version="feature-spring">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../../index.html">DEV Cheat Sheets</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">☕ Java</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">API</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/lambda-expression.html">Lambda Expression</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/the-stream-api.html">The Stream API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Concepts</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="microservices.html">Microservices</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="reactive-programming.html">Reactive Programming</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../spring-framework/index.html">☘️ Spring Framework</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../spring-framework/spring-web-client.html">Spring WebClient</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../spring-framework/spring-security.html">Spring Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../spring-framework/spring-resource-server.html">Spring Resource Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../spring-framework/debug.html">Debugging techniques</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">DEV Cheat Sheets</a></li>
+    <li>☕ Java</li>
+    <li>Concepts</li>
+    <li><a href="reactive-programming.html">Reactive Programming</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">feature-spring</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../../../index.html">default</a>
+    <a class="version is-current" href="reactive-programming.html">feature-spring</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/feature/spring/docs/modules/java/pages/concepts/reactive-programming.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Reactive Programming</h1>
+<div class="sect1">
+<h2 id="_reactive_manifesto"><a class="anchor" href="#_reactive_manifesto"></a>Reactive Manifesto</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Originally published in <strong>2013</strong>. It is available at <a href="https://reactivemanifesto.org" target="_blank" rel="noopener">reactivemanifesto.org</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Reactive Manifesto talks about the system being</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Responsive</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>The system responds in <strong>a timely manner</strong>.</p>
+</li>
+<li>
+<p>Responsiveness is the cornerstone of <strong>usability</strong> and <strong>utility</strong>.</p>
+</li>
+<li>
+<p>Responsiveness also means problems may be detected <strong>quickly</strong> and <strong>dealt with effectively</strong>.</p>
+</li>
+<li>
+<p>Responsive systems provide <strong>rapid</strong> and <strong>consistent response times</strong>.</p>
+</li>
+<li>
+<p>Consistent behavior simplifies <strong>error handling</strong>, builds <strong>end user confidence</strong>, and encourages <strong>further action</strong>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Resilient</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>System stays responsive <strong>in the face of failure</strong>.</p>
+</li>
+<li>
+<p>Resilience is achieved by <strong>replication</strong>, <strong>containment</strong>, <strong>isolation</strong>, and <strong>delegation</strong>.</p>
+</li>
+<li>
+<p>Failures are contained within <strong>each component</strong>.</p>
+</li>
+<li>
+<p>Parts of the system <strong>can fail</strong>, without compromising <strong>the system as a whole</strong>.</p>
+</li>
+<li>
+<p>Recovery of each component is <strong>delegated to another</strong>.</p>
+</li>
+<li>
+<p><strong>High-availability</strong> is ensured by replication where necessary.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Elastic</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>The system stays responsive <strong>under varying workload</strong>.</p>
+</li>
+<li>
+<p>Reactive Systems can react to changes in the input rate by <strong>increasing</strong> or <strong>decreasing resources</strong> allocated to service inputs.</p>
+</li>
+<li>
+<p>Reactive Systems achieve elasticity in a <strong>cost-effective way</strong> on commodity hardware and software platforms.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Message Driven</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Reactive Systems rely on <strong>asynchronous message</strong> passing to establish a <strong>boundary between components</strong>.</p>
+</li>
+<li>
+<p>This ensures <strong>loose coupling</strong>, <strong>isolation</strong> and <strong>location transparency</strong>.</p>
+</li>
+<li>
+<p>Message passing enables <strong>load management</strong>, <strong>elasticity</strong>, and <strong>flow control</strong>.</p>
+</li>
+<li>
+<p>Location transparent messaging makes <strong>management of failures possible</strong>.</p>
+</li>
+<li>
+<p>Non-blocking communication allows recipients to only <strong>consume resources while active</strong>, leading to <strong>less system overhead</strong>.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reactive_programming"><a class="anchor" href="#_reactive_programming"></a>Reactive Programming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Reactive Programming</strong> is a useful implementation technique which focuses on <strong>non-blocking</strong>, <strong>asynchronous execution</strong> - a key characteristic of Reactive Systems.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Reactive does <strong>NOT</strong> equal fast! A typical CRUD type application will not see much, if any performance improvement. Reactive can improve computing efficiency, so it is <strong>best used for streaming type applications</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>immutable nature</strong> of Reactive Applications can help with Application <strong>quality</strong>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
+<script src="../../../../_/js/vendor/lunr.js"></script>
+<script src="../../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../../.." data-snippet-length="100" data-stylesheet="../../../../_/css/search.css"></script>
+<script async src="../../../../search-index.js"></script>
+  </body>
+</html>
