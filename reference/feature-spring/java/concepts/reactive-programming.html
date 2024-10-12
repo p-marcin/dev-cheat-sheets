@@ -253,7 +253,7 @@
 <h2 id="_reactive_programming"><a class="anchor" href="#_reactive_programming"></a>Reactive Programming</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Reactive Programming</strong> is a useful implementation technique which focuses on <strong>non-blocking</strong>, <strong>asynchronous execution</strong> - a key characteristic of Reactive Systems.</p>
+<p><strong>Reactive Programming</strong> is a useful programming paradigm focused on <strong>non-blocking</strong>, <strong>asynchronous execution</strong> - a key characteristic of Reactive Systems.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -278,6 +278,200 @@ The <strong>immutable nature</strong> of Reactive Applications can help with App
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Interactive programs work <strong>at their own pace</strong> and mostly deal with <strong>communication</strong>, while reactive programs only work <strong>in response to external demands</strong> and mostly deal with <strong>accurate interrupt handling</strong>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Features of Reactive Programming</dt>
+<dd>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Asynchronous</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Events are <strong>captured asynchronously</strong>.</p>
+</li>
+<li>
+<p>A function is defined to execute <strong>when an event is emitted</strong>.</p>
+</li>
+<li>
+<p>Another function is defined <strong>if an error is emitted</strong>.</p>
+</li>
+<li>
+<p>Another function is defined <strong>when complete is emitted</strong>.</p>
+</li>
+<li>
+<p>This can be a <strong>difficult paradigm</strong> to adjust to when first getting started!</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Non-Blocking</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>In Blocking, the code will <strong>stop and wait</strong> for more data (e.g. reading from disk, network, etc.)</p>
+</li>
+<li>
+<p>Non-Blocking will process available data, <strong>ask to be notified</strong> when more is available, then <strong>continue</strong>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Back Pressure</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>The ability of the <strong>Subscriber</strong> to <strong>throttle data</strong>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Failures as Messages</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Exceptions are not thrown in <strong>a traditional sense</strong>.</p>
+</li>
+<li>
+<p>Would <strong>break</strong> processing of stream.</p>
+</li>
+<li>
+<p>Exceptions are processed by <strong>a handler function</strong>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Data Streams</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Reactive Programming focuses on processing streams of data.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reactive_streams_api"><a class="anchor" href="#_reactive_streams_api"></a>Reactive Streams API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Reactive Streams API is adopted by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Akka Streams</p>
+</li>
+<li>
+<p>MongoDB</p>
+</li>
+<li>
+<p>Ratpack</p>
+</li>
+<li>
+<p>Reactive Rabbit</p>
+</li>
+<li>
+<p>Project Reactor (Spring 5)</p>
+</li>
+<li>
+<p>RxJava</p>
+</li>
+<li>
+<p>Slick 3.0</p>
+</li>
+<li>
+<p>Vert.x 3.0</p>
+</li>
+<li>
+<p>Cassandra</p>
+</li>
+<li>
+<p>ElasticSearch</p>
+</li>
+<li>
+<p>Kafka</p>
+</li>
+<li>
+<p>Play</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Reactive Streams API is part of the <strong>Java 9</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Reactive Streams API is a set of <strong>4</strong> Interfaces which define the API:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html" target="_blank" rel="noopener"><code><strong>⚪ Publisher&lt;T&gt;</strong></code></a> - a <strong>producer of items</strong> (and related control messages) received by <code>⚪ Subscriber&lt;T&gt;</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each current <code>⚪ Subscriber&lt;T&gt;</code> receives <strong>the same items</strong> (via method <code>onNext</code>) in <strong>the same order</strong>, unless drops or errors are encountered.</p>
+</li>
+<li>
+<p>If a <code>⚪ Publisher&lt;T&gt;</code> encounters <strong>an error</strong> that does not allow items to be issued to a <code>⚪ Subscriber&lt;T&gt;</code>, that <code>⚪ Subscriber&lt;T&gt;</code> receives <code>onError</code>, and then receives <strong>no further messages</strong>.</p>
+</li>
+<li>
+<p>Otherwise, when it is known that no further messages will be issued to it, a <code>⚪ Subscriber&lt;T&gt;</code> receives <code>onComplete</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html" target="_blank" rel="noopener"><code><strong>⚪ Subscriber&lt;T&gt;</strong></code></a> - a <strong>receiver of messages</strong>.</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Subscription.html" target="_blank" rel="noopener"><code><strong>⚪ Subscription</strong></code></a> - message control <strong>linking</strong> a <code>⚪ Publisher&lt;T&gt;</code> and <code>⚪ Subscriber&lt;T&gt;</code>. <code>⚪ Subscriber&lt;T&gt;</code> receive items only <strong>when requested</strong>, and <strong>may cancel at any time</strong>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The methods in this interface are intended to be invoked only by their <code>⚪ Subscriber&lt;T&gt;</code>. Usages in other contexts have undefined effects.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Processor.html" target="_blank" rel="noopener"><code><strong>⚪ Processor&lt;T,R&gt;</strong></code></a> - a component that <strong>acts as both</strong> a <code>⚪ Subscriber&lt;T&gt;</code> and <code>⚪ Publisher&lt;T&gt;</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/reactive-programming/reactive-streams-with-back-pressure.png" alt="reactive streams with back pressure" width="600">
+</div>
 </div>
 </div>
 </div>
