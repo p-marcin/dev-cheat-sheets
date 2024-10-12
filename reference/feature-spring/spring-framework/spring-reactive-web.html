@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Debugging techniques :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/feature-spring/spring-framework/debug.html">
+    <title>Spring Reactive Web :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/feature-spring/spring-framework/spring-reactive-web.html">
     <meta name="generator" content="Antora 3.1.9">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/doc-extension.css">
@@ -105,10 +105,10 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="spring-reactive-web.html">Spring Reactive Web</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="debug.html">Debugging techniques</a>
   </li>
 </ul>
@@ -129,34 +129,84 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="debug.html">Debugging techniques</a></li>
+    <li><a href="spring-reactive-web.html">Spring Reactive Web</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">feature-spring</button>
   <div class="version-menu">
     <a class="version is-missing" href="../../index.html">default</a>
-    <a class="version is-current" href="debug.html">feature-spring</a>
+    <a class="version is-current" href="spring-reactive-web.html">feature-spring</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/feature/spring/docs/modules/spring-framework/pages/debug.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/feature/spring/docs/modules/spring-framework/pages/spring-reactive-web.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Debugging techniques</h1>
-<div class="sect1">
-<h2 id="_changing_logging_level"><a class="anchor" href="#_changing_logging_level"></a>Changing logging level</h2>
+<h1 class="page">Spring Reactive Web</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can change logging level of the package with the following property:</p>
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-framework/reference/web/webflux.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_maven_dependency"><a class="anchor" href="#_maven_dependency"></a>Maven Dependency</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">logging.level.org.springframework.security=trace</code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-webflux&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Spring Framework is kind of <strong>split in half</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Spring Web MVC</strong> traditionally incorporates the <strong>Servlet API</strong> and also <strong>operates within Servlet Container</strong>. It uses <strong>blocking components</strong>. Also, JDBC <strong>by its nature</strong> is also going to be blocking.</p>
+</li>
+<li>
+<p><strong>Spring WebFlux</strong> can use <code>@Controller</code> / <code>@RequestMapping</code> annotations, but it also has <strong>Router Functions</strong> which use <strong>functional programming paradigm</strong>. It <strong>does not operate</strong> within Servlet Container.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Spring WebFlux is <strong>not compatible</strong> with Spring Web MVC.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Spring Framework 5 introduced two reactive types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Mono</strong> - is a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html" target="_blank" rel="noopener"><code>⚪ Publisher&lt;T&gt;</code></a> with <strong>zero</strong> or <strong>one</strong> elements in data stream.</p>
+</li>
+<li>
+<p><strong>Flux</strong> - is a <code>⚪ Publisher&lt;T&gt;</code> with <strong>zero</strong> or <strong>many</strong> elements in the data stream.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
