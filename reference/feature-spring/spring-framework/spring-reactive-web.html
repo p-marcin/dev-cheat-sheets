@@ -150,7 +150,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://docs.spring.io/spring-framework/reference/web/webflux.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-framework/reference/web/webflux.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/WebFlux%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="WebFlux%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span> <span class="image"><a class="image" href="https://projectreactor.io/docs/core/release/reference" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Reactor%20Core%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Reactor%20Core%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
 </div>
 </div>
@@ -201,19 +201,292 @@ Spring WebFlux is <strong>not compatible</strong> with Spring Web MVC.
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html" target="_blank" rel="noopener"><code><strong>🟠 Mono</strong></code></a> - is a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html" target="_blank" rel="noopener"><code>⚪ Publisher&lt;T&gt;</code></a> with <strong>zero</strong> or <strong>one</strong> element in the data stream.</p>
+<p><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html" target="_blank" rel="noopener"><code><strong>🟠 Mono&lt;T&gt;</strong></code></a> - is a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html" target="_blank" rel="noopener"><code>⚪ Publisher&lt;T&gt;</code></a> with <strong>zero</strong> or <strong>one</strong> element in the data stream.</p>
 </li>
 <li>
-<p><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html" target="_blank" rel="noopener"><code><strong>🟠 Flux</strong></code></a> - is a <code>⚪ Publisher&lt;T&gt;</code> with <strong>zero</strong> or <strong>many</strong> elements in the data stream.</p>
+<p><a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html" target="_blank" rel="noopener"><code><strong>🟠 Flux&lt;T&gt;</strong></code></a> - is a <code>⚪ Publisher&lt;T&gt;</code> with <strong>zero</strong> or <strong>many</strong> elements in the data stream.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mono_flux_operations"><a class="anchor" href="#_mono_flux_operations"></a><code>🟠 Mono</code>/<code>🟠 Flux</code> operations</h2>
+<h2 id="_monot_fluxt_operations"><a class="anchor" href="#_monot_fluxt_operations"></a><code>🟠 Mono&lt;T&gt;</code>/<code>🟠 Flux&lt;T&gt;</code> operations</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p><code>🟠 Mono&lt;T&gt;</code> operations:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modifier and Type</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>block()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subscribe to this <code>🟠 Mono&lt;T&gt;</code> and <strong>block indefinitely</strong> until a next signal is received. Returns that value, or <code>null</code> if the <code>🟠 Mono&lt;T&gt;</code> completes empty.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Mono&lt;Person&gt; personMono = personRepository.getById(1);
+Person person = personMono.block();
+System.out.println(person);</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Not recommended to use as it <strong>blocks indefinitely</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Disposable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subscribe(Consumer&lt;? super T&gt; consumer)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subscribe a <code>⚪ Consumer&lt;T&gt;</code> to this <code>🟠 Mono&lt;T&gt;</code> that will consume all the sequence</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personMono.subscribe(System.out::println);</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This is recommended to use</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;R&gt; Mono&lt;R&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>map(Function&lt;? super T,? extends R&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Transform the item emitted by this <code>🟠 Mono&lt;T&gt;</code> by applying a synchronous function to it</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personMono.map(Person::getFirstName).subscribe(System.out::println);</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><code>🟠 Flux&lt;T&gt;</code> operations:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modifier and Type</th>
+<th class="tableblock halign-left valign-top">Method</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>T</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blockFirst()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subscribe to this <code>🟠 Flux&lt;T&gt;</code> and <strong>block indefinitely</strong> until the upstream signals its first value or completes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Flux&lt;Person&gt; personFlux = personRepository.findAll();
+Person person = personFlux.blockFirst();
+System.out.println(person);</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Not recommended to use as it <strong>blocks indefinitely</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Disposable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subscribe(Consumer&lt;? super T&gt; consumer)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Subscribe a <code>⚪ Consumer&lt;T&gt;</code> to this <code>🟠 Flux&lt;T&gt;</code> that will consume all the elements in the sequence.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personFlux.subscribe(System.out::println);</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This is recommended to use</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;V&gt; Flux&lt;V&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>map(Function&lt;? super T,? extends V&gt; mapper)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Transform the items emitted by this <code>🟠 Flux&lt;T&gt;</code> by applying a synchronous function to each item.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personFlux.map(Person::getFirstName).subscribe(System.out::println);</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Flux&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filter(Predicate&lt;? super T&gt; p)</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Evaluate each source value against the given <code>⚪ Predicate&lt;T&gt;</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personFlux.filter(person -&gt; person.getFirstName().equals("Diana"))
+    .map(Person::getFirstName)
+    .subscribe(System.out::println);</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Mono&lt;List&lt;T&gt;&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>collectList()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Collect all elements emitted by this <code>🟠 Flux&lt;T&gt;</code> into a <code>⚪ List</code> that is emitted by the resulting <code>🟠 Mono&lt;T&gt;</code> when this sequence completes, emitting the empty <code>⚪ List</code> if the sequence was empty.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Mono&lt;List&lt;Person&gt;&gt; listMono = personFlux.collectList();
+listMono.subscribe(list -&gt; list.forEach(System.out::println));</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Mono&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>next()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Emit only the first item emitted by this <code>🟠 Flux&lt;T&gt;</code>, into a new <code>🟠 Mono&lt;T&gt;</code>. If called on an empty <code>🟠 Flux&lt;T&gt;</code>, emits an empty <code>🟠 Mono&lt;T&gt;</code> (<strong>it does not signal exception!</strong>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Mono&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>single()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Expect and emit a single item from this <code>🟠 Flux&lt;T&gt;</code> source or <strong>signal <code>🟢 NoSuchElementException</code> for an empty source</strong>, or <strong><code>🟢 IndexOutOfBoundsException</code> for a source with more than one element</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">personFlux.filter(person -&gt; person.getId() == id).single().doOnError(throwable -&gt; {
+    System.err.println("Error occurred in the Mono&lt;Person&gt; during single");
+    System.err.println(throwable.toString());
+}).subscribe(System.out::println, throwable -&gt; {
+    System.err.println("Error occurred in the Mono&lt;Person&gt; during subscribe");
+    System.err.println(throwable.toString());
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>can output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-txt hljs" data-lang="txt">Error occurred in the Mono&lt;Person&gt; during filter
+java.util.NoSuchElementException: Source was empty
+Error occurred in the Mono&lt;Person&gt; during subscribe
+java.util.NoSuchElementException: Source was empty</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing"><a class="anchor" href="#_testing"></a>Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://projectreactor.io/docs/core/release/reference/docs/index.html#testing" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Reactor%20Test%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Reactor%20Test%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Instead of:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Test
+void testGetByIdNotFound() {
+    Mono&lt;Person&gt; personMono = personRepository.getById(8);
+    assertFalse(personMono.hasElement().block());
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectreactor.io/docs/test/release/api/reactor/test/StepVerifier.html" target="_blank" rel="noopener"><code>⚪ StepVerifier</code></a></dt>
+<dd>
+<p>Provides a declarative way of creating a verifiable script for an async <code>⚪ Publisher&lt;T&gt;</code> sequence, by expressing expectations about the events that will happen upon subscription. The verification <strong>must be triggered after the terminal expectations</strong> (completion, error, cancellation) have been declared, by calling one of the <code>verify()</code> methods.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Test
+void testGetByIdNotFoundStepVerifier() {
+    Mono&lt;Person&gt; personMono = personRepository.getById(8);
+    StepVerifier.create(personMono).expectNextCount(0).verifyComplete();
+    personMono.map(Person::getFirstName).subscribe(System.out::println);
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </article>
