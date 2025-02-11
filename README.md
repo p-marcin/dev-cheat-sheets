@@ -34,6 +34,6 @@ Thank you for being amazing!
 
 ## 📌 Copyright & License
 
-Copyright © 2024 Marcin P.
+Copyright © 2024-2025 Marcin P.
 
 Released under the [MIT license](LICENSE).
