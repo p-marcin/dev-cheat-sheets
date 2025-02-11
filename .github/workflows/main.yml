@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20.17.0
+          node-version: 20
       - name: Install Antora
         run: ./install.sh
       - name: Generate Site
@@ -25,8 +25,7 @@ jobs:
       - name: Disable Jekyll
         run: touch build/site/.nojekyll
       - name: Deploy Site
-        # @Patch https://github.com/JamesIves/github-pages-deploy-action/issues/1697
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/site
           branch: gh-pages
