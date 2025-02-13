@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spring Resource Server :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-resource-server.html">
+    <title>🅰️ AsciiDoc :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/asciidoc/index.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="stylesheet" href="../../_/css/doc-extension.css">
@@ -88,31 +88,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">☘️ Spring Framework</a>
+    <a class="nav-link" href="../spring-framework/index.html">☘️ Spring Framework</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
+    <a class="nav-link" href="../spring-framework/spring-web-client.html">Spring WebClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spring-security.html">Spring Security</a>
+    <a class="nav-link" href="../spring-framework/spring-security.html">Spring Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spring-authorization-server.html">Spring Authorization Server</a>
+    <a class="nav-link" href="../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="spring-resource-server.html">Spring Resource Server</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../spring-framework/spring-resource-server.html">Spring Resource Server</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-reactive-web.html">Spring Reactive Web</a>
+    <a class="nav-link" href="../spring-framework/spring-reactive-web.html">Spring Reactive Web</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-data-r2dbc.html">Spring Data R2DBC</a>
+    <a class="nav-link" href="../spring-framework/spring-data-r2dbc.html">Spring Data R2DBC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="debug.html">Debugging techniques</a>
+    <a class="nav-link" href="../spring-framework/debug.html">Debugging techniques</a>
   </li>
 </ul>
   </li>
@@ -120,8 +120,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../asciidoc/index.html">🅰️ AsciiDoc</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">🅰️ AsciiDoc</a>
   </li>
 </ul>
   </li>
@@ -138,85 +138,202 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="spring-security.html">Spring Security</a></li>
-    <li><a href="spring-resource-server.html">Spring Resource Server</a></li>
+    <li><a href="index.html">🅰️ AsciiDoc</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-resource-server.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/asciidoc/pages/index.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Spring Resource Server</h1>
+<h1 class="page">🅰️ AsciiDoc</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_dependency"><a class="anchor" href="#_maven_dependency"></a>Maven Dependency</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-oauth2-resource-server&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a>Getting Started</h2>
+<h2 id="_cheat_sheets"><a class="anchor" href="#_cheat_sheets"></a>📌 Cheat Sheets</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_example"><a class="anchor" href="#_example"></a>Example</h3>
-<div class="paragraph">
-<p>To set up OAuth 2.0 Resource Server, you need to create <code>🟢 SecurityConfig</code>:</p>
+<h3 id="_code"><a class="anchor" href="#_code"></a>Code</h3>
+<div class="listingblock">
+<div class="title">Inline Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">This is `+inline code+`</code></pre>
 </div>
+</div>
+<details>
+  <summary>View result</summary>
+<div class="paragraph">
+<p>This is <code>inline code</code></p>
+</div>
+</details>
+<div class="literalblock">
+<div class="title">Code with syntax highlighting</div>
+<div class="content">
+<pre>[,java]
+----
+public class Main {
+    public static void main(String[] args){
+        System.out.println("Hello World!");
+    }
+}
+----</pre>
+</div>
+</div>
+<details>
+  <summary>View result</summary>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
-public class SecurityConfig {
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(authorize -&gt; authorize.anyRequest().authenticated()) <i class="conum" data-value="1"></i><b>(1)</b>
-                .oauth2ResourceServer(oauth2 -&gt; oauth2.jwt(Customizer.withDefaults())); <i class="conum" data-value="2"></i><b>(2)</b>
-        return httpSecurity.build();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main {
+    public static void main(String[] args){
+        System.out.println("Hello World!");
     }
-
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
+</details>
+<div class="admonitionblock tip">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Require any request to be authenticated</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Setup OAuth 2.0 Resource Server with JWT support with the defaults</td>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Language aliases for syntax highlighting &#8594; <a href="https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md" target="_blank" rel="noopener">CLICK HERE</a>
+</td>
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Delimiter alternative to four dashes (<code>----</code>) are four dots (<code>....</code>)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md" class="bare">https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md</a></p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_customizing_authorization_server_url"><a class="anchor" href="#_customizing_authorization_server_url"></a>Customizing Authorization Server url</h3>
-<div class="paragraph">
-<p>You can customize Authorization Server url with this property</p>
-</div>
+<h3 id="_admonitions"><a class="anchor" href="#_admonitions"></a>Admonitions</h3>
 <div class="listingblock">
+<div class="title">Simple Admonitions</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:9000</code></pre>
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">NOTE: This is note
+
+TIP: This is a tip
+
+WARNING: This is a warning
+
+IMPORTANT: This is something important</code></pre>
 </div>
 </div>
+<details>
+  <summary>View result</summary>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is note
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This is a tip
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is a warning
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This is something important
+</td>
+</tr>
+</table>
+</div>
+</details>
+<div class="listingblock">
+<div class="title">Complex Admonition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[NOTE]
+====
+This is admonition with complex content and a list:
+
+- one
+- two
+- three
+====</code></pre>
+</div>
+</div>
+<details>
+  <summary>View result</summary>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This is admonition with complex content and a list:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>one</p>
+</li>
+<li>
+<p>two</p>
+</li>
+<li>
+<p>three</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</details>
 </div>
 </div>
 </div>
