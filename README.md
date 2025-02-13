@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="docs/modules/ROOT/images/.logo.png" alt="Ubuntu DEV VM"/>
+    <img src="docs/modules/ROOT/images/logo.png" alt="Ubuntu DEV VM"/>
 </p>
 
 <p align="center">
