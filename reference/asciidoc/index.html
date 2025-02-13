@@ -157,47 +157,109 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cheat_sheets"><a class="anchor" href="#_cheat_sheets"></a>📌 Cheat Sheets</h2>
+<h2 id="_cheat_sheets"><a class="anchor" href="#_cheat_sheets"></a>Cheat Sheets</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_code"><a class="anchor" href="#_code"></a>Code</h3>
+<h3 id="_links"><a class="anchor" href="#_links"></a>Links</h3>
+<details>
+  <summary>Internal Link</summary>
+<div class="paragraph">
+<p><a href="https://p-marcin.github.io/dev-cheat-sheets">This is Internal Link</a></p>
+</div>
+</details>
 <div class="listingblock">
-<div class="title">Inline Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">https://p-marcin.github.io/dev-cheat-sheets[This is Internal Link]</code></pre>
+</div>
+</div>
+<details>
+  <summary>External Link</summary>
+<div class="paragraph">
+<p><a href="https://p-marcin.github.io/dev-cheat-sheets" target="_blank" rel="noopener">This is External Link</a></p>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">https://p-marcin.github.io/dev-cheat-sheets[This is External Link^]</code></pre>
+</div>
+</div>
+<details>
+  <summary>External Shield Link</summary>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://p-marcin.github.io/dev-cheat-sheets" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Some%20Documentation-2088E9?logo=quickLook" alt="Some%20Documentation 2088E9?logo=quickLook"></a></span></p>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">image:https://img.shields.io/badge/Some%20Documentation-2088E9?logo=quickLook[link="https://p-marcin.github.io/dev-cheat-sheets",window=_blank]</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Shield parameters &#8594; <a href="https://shields.io/badges/static-badge" target="_blank" rel="noopener">CLICK HERE</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code"><a class="anchor" href="#_code"></a>Code</h3>
+<details>
+  <summary>Inline Code</summary>
+<div class="paragraph">
+<p>This is <code>inline code</code></p>
+</div>
+</details>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">This is `+inline code+`</code></pre>
 </div>
 </div>
 <details>
-  <summary>View result</summary>
-<div class="paragraph">
-<p>This is <code>inline code</code></p>
-</div>
-</details>
-<div class="literalblock">
-<div class="title">Code with syntax highlighting</div>
-<div class="content">
-<pre>[,java]
-----
-public class Main {
-    public static void main(String[] args){
-        System.out.println("Hello World!");
-    }
-}
-----</pre>
-</div>
-</div>
-<details>
-  <summary>View result</summary>
+  <summary>Code with Syntax Highlighting and Callouts</summary>
 <div class="listingblock">
+<div class="title">Title</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main {
-    public static void main(String[] args){
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main { <i class="conum" data-value="1"></i><b>(1)</b>
+    public static void main(String[] args){ <i class="conum" data-value="2"></i><b>(2)</b>
         System.out.println("Hello World!");
     }
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Class</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Method</td>
+</tr>
+</table>
+</div>
 </details>
+<div class="literalblock">
+<div class="content">
+<pre>.Title
+[,java]
+----
+public class Main { // &lt;1&gt;
+    public static void main(String[] args){ // &lt;2&gt;
+        System.out.println("Hello World!");
+    }
+}
+----
+&lt;1&gt; Class
+&lt;2&gt; Method</pre>
+</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -222,26 +284,41 @@ Delimiter alternative to four dashes (<code>----</code>) are four dots (<code>..
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><a href="https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md" class="bare">https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md</a></p>
+<p>Callouts can be in different formats which depends on language:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>// &lt;1&gt;</code></p>
+</li>
+<li>
+<p><code># &lt;1&gt;</code></p>
+</li>
+<li>
+<p><code>;; &lt;1&gt;</code></p>
+</li>
+<li>
+<p><code>&lt;!--&lt;1&gt;--&gt;</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_admonitions"><a class="anchor" href="#_admonitions"></a>Admonitions</h3>
-<div class="listingblock">
-<div class="title">Simple Admonitions</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">NOTE: This is note
-
-TIP: This is a tip
-
-WARNING: This is a warning
-
-IMPORTANT: This is something important</code></pre>
-</div>
-</div>
 <details>
-  <summary>View result</summary>
+  <summary>Simple Admonitions</summary>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -249,7 +326,7 @@ IMPORTANT: This is something important</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is note
+This is a note
 </td>
 </tr>
 </table>
@@ -292,20 +369,18 @@ This is something important
 </div>
 </details>
 <div class="listingblock">
-<div class="title">Complex Admonition</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[NOTE]
-====
-This is admonition with complex content and a list:
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">NOTE: This is a note
 
-- one
-- two
-- three
-====</code></pre>
+TIP: This is a tip
+
+WARNING: This is a warning
+
+IMPORTANT: This is something important</code></pre>
 </div>
 </div>
 <details>
-  <summary>View result</summary>
+  <summary>Complex Admonition</summary>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -334,6 +409,18 @@ This is admonition with complex content and a list:
 </table>
 </div>
 </details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[NOTE]
+====
+This is admonition with complex content and a list:
+
+- one
+- two
+- three
+====</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
