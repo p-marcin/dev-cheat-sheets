@@ -18,9 +18,9 @@ jobs:
         with:
           node-version: 20
       - name: Install Antora
-        run: ./install.sh
+        run: ./scripts/install.sh
       - name: Generate Site
-        run: ./generate.sh
+        run: ./scripts/generate.sh
         # https://docs.antora.org/antora/latest/publish-to-github-pages/
       - name: Disable Jekyll
         run: touch build/site/.nojekyll

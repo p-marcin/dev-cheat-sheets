@@ -19,7 +19,7 @@ validate() {
   if [[ -z "${newModule}" ]]; then
     echo -e "ERR: Provide module name as a parameter, e.g.\n\t${0} \"java-example\""; exit 1
   fi
-  newModulePath="docs/modules/${newModule}"
+  newModulePath="../docs/modules/${newModule}"
   if [[ -d "${newModulePath}" ]]; then
     echo -e "ERR: The \"${newModule}\" module already exists. Pick different name"; exit 1
   fi
@@ -54,11 +54,11 @@ EOF
 }
 
 addModuleToNavs() {
-  local rootIndex="docs/modules/ROOT/pages/index.adoc"
+  local rootIndex="../docs/modules/ROOT/pages/index.adoc"
   local lineOfLastModule="$(grep -n 'include::' "${rootIndex}" | tail -n1 | cut -d: -f1)"
   sed -i "${lineOfLastModule}a include::${newModule}:partial\$nav.adoc[]" "${rootIndex}"
 
-  local antoraYml="docs/antora.yml"
+  local antoraYml="../docs/antora.yml"
   local lineOfLastModule="$(grep -n 'modules' "${antoraYml}" | tail -n1 | cut -d: -f1)"
   sed -i "${lineOfLastModule}a \ \ - modules/${newModule}/nav.adoc" "${antoraYml}"
 }
