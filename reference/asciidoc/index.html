@@ -824,6 +824,11 @@ This is a collapsible block in another collapsible block
 <ul>
 <li>
 <p>Another nested list item</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls -la "/home"</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -832,13 +837,18 @@ This is a collapsible block in another collapsible block
 </div>
 </div>
 </details>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">* List item
+<pre>* List item
 ** Nested list item
 *** Deeper nested list item
 * Another list item
-** Another nested list item</code></pre>
+** Another nested list item
++
+[,bash]
+----
+ls -la "/home"
+----</pre>
 </div>
 </div>
 <details>
@@ -884,6 +894,88 @@ This is a collapsible block in another collapsible block
 ... Deeper nested list item
 . Another list item
 .. Another nested list item</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Checklist</summary>
+<div class="content">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Checked</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Also checked</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Not checked</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">* [x] Checked
+* [*] Also checked
+* [ ] Not checked</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Description List</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">First term</dt>
+<dd>
+<p>The description can be placed on the same line
+as the term.</p>
+</dd>
+<dt class="hdlist1">Second term</dt>
+<dd>
+<p>Description of the second term.
+The description can also start on its own line.</p>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">First term:: The description can be placed on the same line
+as the term.
+Second term::
+Description of the second term.
+The description can also start on its own line.</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Question and Answer List</summary>
+<div class="content">
+<div class="qlist qanda">
+<ol>
+<li>
+<p><em>What is the answer?</em></p>
+<p>This is the answer.</p>
+</li>
+<li>
+<p><em>Are cameras allowed?</em></p>
+<p><em>Are backpacks allowed?</em></p>
+<p>No.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[qanda]
+What is the answer?::
+This is the answer.
+
+Are cameras allowed?::
+Are backpacks allowed?::
+No.</code></pre>
 </div>
 </div>
 </div>
