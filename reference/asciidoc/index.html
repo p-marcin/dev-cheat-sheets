@@ -227,6 +227,69 @@ Shield parameters &#8594; <a href="https://shields.io/badges/static-badge" targe
 </div>
 </div>
 <div class="sect2">
+<h3 id="_anchors_and_cross_references"><a class="anchor" href="#_anchors_and_cross_references"></a>Anchors and Cross-References</h3>
+<details>
+<summary class="title">Anchors</summary>
+<div class="content">
+<div class="paragraph">
+<p><a id="inline-anchor"></a>Inline Anchor</p>
+</div>
+<div id="block-anchor" class="paragraph">
+<p>Block Anchor</p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[[inline-anchor]]Inline Anchor
+
+[#block-anchor]
+Block Anchor</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Cross-Reference</summary>
+<div class="content">
+<div class="paragraph">
+<p>This is Cross-Reference to <a href="#inline-anchor">[inline-anchor]</a></p>
+</div>
+<div class="paragraph">
+<p>This is Cross-Reference to <a href="#block-anchor">[block-anchor]</a></p>
+</div>
+<div class="paragraph">
+<p>This is Cross-Reference to <a href="#_images">Images Section</a></p>
+</div>
+<div class="paragraph">
+<p>This is Cross-Reference to <a href="#_images">Images</a></p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">This is Cross-Reference to &lt;&lt;inline-anchor&gt;&gt;
+
+This is Cross-Reference to &lt;&lt;block-anchor&gt;&gt;
+
+This is Cross-Reference to &lt;&lt;_images,Images Section&gt;&gt;
+
+This is Cross-Reference to &lt;&lt;_images&gt;&gt;</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Inter-Document Cross-Reference</summary>
+<div class="content">
+<div class="paragraph">
+<p>This is Inter-Document Cross-Reference to <a href="../index.html#_resources" class="xref page">Resources</a></p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">This is Inter-Document Cross-Reference to xref:ROOT:index.adoc#_resources[Resources]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_images"><a class="anchor" href="#_images"></a>Images</h3>
 <details>
 <summary class="title">Inline Image</summary>
