@@ -220,6 +220,85 @@ This is a collapsible block in another collapsible block
 </div>
 </div>
 <div class="sect2">
+<h3 id="_images"><a class="anchor" href="#_images"></a>Images</h3>
+<details>
+<summary class="title">Inline Image</summary>
+<div class="content">
+<div class="paragraph">
+<p><span class="image"><img src="../_images/logo.png" alt="logo"></span>
+with paragraph</p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">image::ROOT:logo.png[]
+with paragraph</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Block Image</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/logo.png" alt="logo">
+</div>
+<div class="title">Figure 1. Title</div>
+</div>
+<div class="paragraph">
+<p>with paragraph</p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Title
+image::ROOT:logo.png[]
+with paragraph</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Resize Image</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/logo.png" alt="logo" width="400">
+</div>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">image::ROOT:logo.png[,400]</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can set the following attributes in the image: <code>[Title,Width,Height]</code>
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">Inline Image on the right</summary>
+<div class="content">
+<div class="paragraph">
+<p>Paragraph on the left and <span class="image right"><img src="../_images/logo.png" alt="logo" width="400"></span></p>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">Paragraph on the left and image:ROOT:logo.png[,400,,role=right]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_links"><a class="anchor" href="#_links"></a>Links</h3>
 <details>
 <summary class="title">Internal Link</summary>
