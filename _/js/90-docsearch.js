@@ -6,7 +6,7 @@ const search = docsearch({
     autocompleteOptions: {
         hint: false
     },
-    algoliaOptions: { hitsPerPage: 10 }
+    algoliaOptions: { hitsPerPage: 8 }
 });
 search.autocomplete.on('autocomplete:closed', function () {
     search.autocomplete.setVal()
