@@ -1,0 +1,14 @@
+.algolia-autocomplete .ds-dropdown-menu {
+    min-width: 200px !important;
+    width: 500px;
+}
+
+@media (max-width: 1023px) {
+    .algolia-autocomplete .ds-dropdown-menu {
+        position: fixed !important;
+        top: 45px !important;
+        width: 100vw;
+        max-height: 88vh;
+        overflow-y: auto;
+    }
+}
