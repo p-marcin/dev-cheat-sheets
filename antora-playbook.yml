@@ -16,6 +16,3 @@ ui:
 asciidoc:
   attributes:
     icons: font
-antora:
-  extensions:
-    - '@antora/lunr-extension'

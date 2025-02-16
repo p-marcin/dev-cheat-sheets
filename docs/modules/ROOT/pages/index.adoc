@@ -1,4 +1,4 @@
-image::logo.png[,500,align=left]
+= DEV Cheat Sheets
 
 include::ROOT:example$README.md[tag=intro]
 
