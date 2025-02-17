@@ -1,7 +1,10 @@
 * xref:java:index.adoc[]
 ** API
 *** xref:java:api/lambda-expression.adoc[]
-*** xref:java:api/the-stream-api.adoc[]
+*** xref:java:api/the-stream-api/the-stream-api.adoc[]
+// tag::the-stream-api[]
+**** xref:java:api/the-stream-api/parallelism.adoc[]
+// end::the-stream-api[]
 ** Concepts
 *** xref:java:concepts/microservices.adoc[]
 *** xref:java:concepts/reactive-programming.adoc[]
