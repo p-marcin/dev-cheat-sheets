@@ -40,7 +40,7 @@ CAUTION: You are *not allowed* to process *the same Stream twice*. This is why i
 
 The Stream API gives you **4** interfaces:
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html[`⚪ *Stream<T>*`^] - a sequence of elements supporting sequential and parallel aggregate operations
+* {java-api-spec-url}/java.base/java/util/stream/Stream.html[`⚪ *Stream<T>*`^] - a sequence of elements supporting sequential and parallel aggregate operations
 +
 [cols="1,3,4a"]
 |===
@@ -52,7 +52,7 @@ The Stream API gives you **4** interfaces:
 
 | `IntStream`
 | `mapToInt(ToIntFunction<? super T> mapper)`
-| Returns an https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html[`⚪ IntStream`^] consisting of the results of applying the given function to the elements of this stream.
+| Returns an {java-api-spec-url}/java.base/java/util/stream/IntStream.html[`⚪ IntStream`^] consisting of the results of applying the given function to the elements of this stream.
 
 | `<R> Stream<R>`
 | `flatMap(Function<? super T,? extends Stream<? extends R>> mapper)`
@@ -74,7 +74,7 @@ long count = cities.stream() // <1>
 
 | `Optional<T>`
 | `reduce(BinaryOperator<T> accumulator)`
-| Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Optional.html[`🔴 Optional<T>`^] describing the reduced value, if any. See <<_reducing_data_to_compute_statistics>>.
+| Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an {java-api-spec-url}/java.base/java/util/Optional.html[`🔴 Optional<T>`^] describing the reduced value, if any. See <<_reducing_data_to_compute_statistics>>.
 
 | `T`
 | `reduce(T identity, BinaryOperator<T> accumulator)`
@@ -82,11 +82,11 @@ long count = cities.stream() // <1>
 
 | `<R, A> R`
 | `collect(Collector<? super T,A,R> collector)`
-| Performs a mutable reduction operation on the elements of this stream using a https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html[`⚪ Collector<T,A,R>`^]. See <<_the_collectors_api>> and <<_collecting_data_from_streams_to_create_listssetsmaps>>.
+| Performs a mutable reduction operation on the elements of this stream using a {java-api-spec-url}/java.base/java/util/stream/Collector.html[`⚪ Collector<T,A,R>`^]. See <<_the_collectors_api>> and <<_collecting_data_from_streams_to_create_listssetsmaps>>.
 
 | `Stream<T>`
 | `distinct()`
-| Returns a stream consisting of the distinct elements (according to https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)[`Object#equals(Object)`^]) of this stream.
+| Returns a stream consisting of the distinct elements (according to {java-api-spec-url}/java.base/java/lang/Object.html#equals(java.lang.Object)[`Object#equals(Object)`^]) of this stream.
 
 | `Stream<T>`
 | `sorted()`
@@ -114,7 +114,7 @@ long count = cities.stream() // <1>
 
 |===
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html[`⚪ *IntStream*`^] - `int` primitive specialization of `⚪ Stream<T>`
+* {java-api-spec-url}/java.base/java/util/stream/IntStream.html[`⚪ *IntStream*`^] - `int` primitive specialization of `⚪ Stream<T>`
 +
 [cols="1,3,4a"]
 |===
@@ -122,15 +122,15 @@ long count = cities.stream() // <1>
 
 | `OptionalInt`
 | `min()`
-| Returns an https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the minimum element of this stream, or an empty optional if this stream is empty.
+| Returns an {java-api-spec-url}/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the minimum element of this stream, or an empty optional if this stream is empty.
 
 | `OptionalInt`
 | `max()`
-| Returns an https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the maximum element of this stream, or an empty optional if this stream is empty.
+| Returns an {java-api-spec-url}/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the maximum element of this stream, or an empty optional if this stream is empty.
 
 | `OptionalDouble`
 | `average()`
-| Returns an https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalDouble.html[`🔴 OptionalDouble`^] describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.
+| Returns an {java-api-spec-url}/java.base/java/util/OptionalDouble.html[`🔴 OptionalDouble`^] describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.
 
 | `int`
 | `sum()`
@@ -138,17 +138,17 @@ long count = cities.stream() // <1>
 
 | `IntSummaryStatistics`
 | `summaryStatistics()`
-| Returns an https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html[`🟢 IntSummaryStatistics`^] describing various summary data about the elements of this stream.
+| Returns an {java-api-spec-url}/java.base/java/util/IntSummaryStatistics.html[`🟢 IntSummaryStatistics`^] describing various summary data about the elements of this stream.
 
 |===
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html[`⚪ *LongStream*`^] - `long` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html[`⚪ *DoubleStream*`^] - `double` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
+* {java-api-spec-url}/java.base/java/util/stream/LongStream.html[`⚪ *LongStream*`^] - `long` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
+* {java-api-spec-url}/java.base/java/util/stream/DoubleStream.html[`⚪ *DoubleStream*`^] - `double` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
 
 [#_the_collectors_api]
 == The Collectors API
 
-https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] - implementations of https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html[`⚪ Collector<T,A,R>`^] that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.
+{java-api-spec-url}/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] - implementations of {java-api-spec-url}/java.base/java/util/stream/Collector.html[`⚪ Collector<T,A,R>`^] that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.
 
 Type parameters of `⚪ Collector<T,A,R>`:
 
@@ -162,7 +162,7 @@ Type parameters of `⚪ Collector<T,A,R>`:
 
 | `static <T> Collector<T,?,List<T>>`
 | `toList()`
-| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into a new https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html[`⚪ List<T>`^], in encounter order.
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into a new {java-api-spec-url}/java.base/java/util/List.html[`⚪ List<T>`^], in encounter order.
 
 | `static <T> Collector<T,?,List<T>>`
 | `toUnmodifiableList()`
@@ -213,15 +213,15 @@ Type parameters of `⚪ Collector<T,A,R>`:
 == Building a Stream from Data in Memory
 
 * Creating a Stream from *Arrays*:
-** 🔴 https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html#stream(T%5B%5D)[`Arrays#stream(T[+]+ array)`^] - returns a sequential `Stream<T>` with the specified array as its source
-** ⚪ https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)[`Stream<T>#of(T... values)`^] - returns a sequential ordered stream whose elements are the specified values
+** 🔴 {java-api-spec-url}/java.base/java/util/Arrays.html#stream(T%5B%5D)[`Arrays#stream(T[+]+ array)`^] - returns a sequential `Stream<T>` with the specified array as its source
+** ⚪ {java-api-spec-url}/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)[`Stream<T>#of(T... values)`^] - returns a sequential ordered stream whose elements are the specified values
 +
 [,java]
 ----
 Stream<String> streamOfStrings = Stream.<String>of("abcd", "efgh");
 ----
 * Creating a Stream from *a Text File*:
-** 🔴 https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)[`Files#lines(Path path)`^] - read all lines from a file as a `Stream<String>`
+** 🔴 {java-api-spec-url}/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)[`Files#lines(Path path)`^] - read all lines from a file as a `Stream<String>`
 +
 [,java]
 ----
@@ -235,7 +235,7 @@ try (Stream<String> lines = Files.lines(path)) {
 <1> File with 200 lines
 <2> Returns 200
 * Creating a Stream from *a RegEx*:
-** 🔴 https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html[`Pattern#splitAsStream(CharSequence input)`^] - creates a `Stream<String>` from the given input sequence around matches of this pattern.
+** 🔴 {java-api-spec-url}/java.base/java/util/regex/Pattern.html[`Pattern#splitAsStream(CharSequence input)`^] - creates a `Stream<String>` from the given input sequence around matches of this pattern.
 +
 [,java]
 ----
@@ -252,7 +252,7 @@ long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); // <3>
 <2> *Best Practice:* we do not create an array when we create a `⚪ Stream<T>` from `🔴 Pattern`
 <3> Returns 9
 * Creating an `⚪ IntStream` *(Stream of ASCII Codes)* from a String:
-** 🔴 https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html[`String#chars()`^] - Returns an `⚪ IntStream` of int zero-extending the char values from this sequence.
+** 🔴 {java-api-spec-url}/java.base/java/lang/String.html[`String#chars()`^] - Returns an `⚪ IntStream` of int zero-extending the char values from this sequence.
 +
 [,java]
 ----
@@ -276,7 +276,7 @@ IntStream.range(0, 30)
 <2> Take next 10 elements after skip
 <3> Prints "10 11 12 13 14 15 16 17 18 19"
 * *Closing* a `⚪ Stream<T>` with a `⚪ Predicate<? super T>`:
-** https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)[`takeWhile`^] - consume elements of the `⚪ Stream<T>` until `⚪ Predicate<? super T>` is *true*
+** {java-api-spec-url}/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)[`takeWhile`^] - consume elements of the `⚪ Stream<T>` until `⚪ Predicate<? super T>` is *true*
 +
 [,java]
 ----
@@ -289,7 +289,7 @@ class java.util.AbstractList
 class java.util.AbstractCollection
 class java.lang.Object
 ----
-** https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)[`dropWhile`^] - consume remaining elements of the `⚪ Stream<T>` after `⚪ Predicate<? super T>` becomes *false*
+** {java-api-spec-url}/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)[`dropWhile`^] - consume remaining elements of the `⚪ Stream<T>` after `⚪ Predicate<? super T>` becomes *false*
 +
 [,java]
 ----
@@ -367,14 +367,14 @@ TIP: Forget about *processing your data in one pass* (unless you are doing *an S
 [#_reducing_data_to_compute_statistics]
 == Reducing Data to compute Statistics
 
-https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(T identity, BinaryOperator<T> accumulator)`^] adds the Identity Element before the elements of the `⚪ Stream<T>`.
+{java-api-spec-url}/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(T identity, BinaryOperator<T> accumulator)`^] adds the Identity Element before the elements of the `⚪ Stream<T>`.
 
 * If you have an empty `⚪ Stream<T>`, it will *return Identity Element*
 * If you have only one element in the `⚪ Stream<T>`, it will *return the reduction of the Identity Element and this only element*:
 +
 image:java:the-stream-api/stream-reduce.png[,500]
 
-CAUTION: Some reduction operations *do not have any Identity Element* (in case for the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#min()[`⚪ IntStream#min()`^], the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#max()[`⚪ IntStream#max()`^], the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#average()[`⚪ IntStream#average()`^] and https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(BinaryOperator<T> accumulator)`^].
+CAUTION: Some reduction operations *do not have any Identity Element* (in case for the {java-api-spec-url}/java.base/java/util/stream/IntStream.html#min()[`⚪ IntStream#min()`^], the {java-api-spec-url}/java.base/java/util/stream/IntStream.html#max()[`⚪ IntStream#max()`^], the {java-api-spec-url}/java.base/java/util/stream/IntStream.html#average()[`⚪ IntStream#average()`^] and {java-api-spec-url}/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(BinaryOperator<T> accumulator)`^].
 
 CAUTION: `🔴 Optional<T>` are used by the Stream API, because in cases where we have an empty `⚪ Stream<T>` without any Identity Element *we don't have any result*.
 
@@ -385,12 +385,12 @@ Collector::
 Complex object *used to reduce a Stream*. Can be used to gather data in *collections* and *maps* - it is called as *reduction in a "mutable container"* or *mutable reduction*
 
 Downstream Collector::
-Collector that is passed to https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)[`🔴 Collectors#groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)`^] which is applied to the streaming of the list of values
+Collector that is passed to {java-api-spec-url}/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)[`🔴 Collectors#groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)`^] which is applied to the streaming of the list of values
 
 The Collector API::
-Uses the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)[`Stream#collect(Collector<? super T,A,R> collector)`^] that takes `⚪ Collector<T,A,R>` implementation as a parameter:
+Uses the {java-api-spec-url}/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)[`Stream#collect(Collector<? super T,A,R> collector)`^] that takes `⚪ Collector<T,A,R>` implementation as a parameter:
 +
-* Use https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] class and its factory methods
+* Use {java-api-spec-url}/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] class and its factory methods
 * You can create your own collectors, but it is complex and tricky
 
 [,java]
@@ -415,8 +415,8 @@ List<Person> peopleFromNewYork = people.stream()
 
 You can make a regular `⚪ Stream<T>` a parallel `⚪ Stream<T>` *in two ways*:
 
-* by calling https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/BaseStream.html#parallel()[`⚪ BaseStream<T,S extends BaseStream<T,S>>#parallel()`^] method on existing `⚪ Stream<T>`
-* by calling https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#parallelStream()[`⚪ Collection<E>#parallelStream()`] method instead of calling https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#stream()[`⚪ Collection<E>#stream()`]
+* by calling {java-api-spec-url}/java.base/java/util/stream/BaseStream.html#parallel()[`⚪ BaseStream<T,S extends BaseStream<T,S>>#parallel()`^] method on existing `⚪ Stream<T>`
+* by calling {java-api-spec-url}/java.base/java/util/Collection.html#parallelStream()[`⚪ Collection<E>#parallelStream()`] method instead of calling {java-api-spec-url}/java.base/java/util/Collection.html#stream()[`⚪ Collection<E>#stream()`]
 
 These intermediate operations are going to set *a special bit* in the `⚪ Stream<T>` that will *trigger the computations in parallel when you call your terminal operation*.
 
@@ -490,7 +490,7 @@ All those tasks are *sent to a special pool of thread* called *Fork/Join Pool* a
 Fork/Join Framework decides whether the task is *too big and should be split*, or *small enough and should be computed*.
 
 Fork/Join Pool::
-Is a pool of threads, instance of the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinPool.html[`🟢 ForkJoinPool`^]
+Is a pool of threads, instance of the {java-api-spec-url}/java.base/java/util/concurrent/ForkJoinPool.html[`🟢 ForkJoinPool`^]
 * created when *the JVM is created*
 * there is *only one common* `🟢 ForkJoinPool` in the JVM since Java 8
 * it is used for *all* the parallel streams
@@ -512,9 +512,9 @@ CAUTION: You also need to check that on a machine that is *as close as possible*
 Synchronization::
 A feature within the Java language which *prevents two threads from executing the same piece of code*.
 
-In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform *hidden synchronization* which is a *bottleneck*, e.g. https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#findFirst()[`⚪ Stream<T>#findFirst()`^] (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#findAny()[`⚪ Stream<T>#findAny()`^] will provide you much better performance in parallel) and https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#limit(long)[`⚪ Stream<T>#limit(long maxSize)`] methods.
+In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform *hidden synchronization* which is a *bottleneck*, e.g. {java-api-spec-url}/java.base/java/util/stream/Stream.html#findFirst()[`⚪ Stream<T>#findFirst()`^] ({java-api-spec-url}/java.base/java/util/stream/Stream.html#findAny()[`⚪ Stream<T>#findAny()`^] will provide you much better performance in parallel) and {java-api-spec-url}/java.base/java/util/stream/Stream.html#limit(long)[`⚪ Stream<T>#limit(long maxSize)`] methods.
 
-If your https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BinaryOperator.html[`⚪ BinaryOperator<T>`] from https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce`^] method is *not associative*, then you are going to *compute wrong results* in both: sequential and parallel computing. In parallel, you can also get *different results* each time.
+If your {java-api-spec-url}/java.base/java/util/function/BinaryOperator.html[`⚪ BinaryOperator<T>`] from {java-api-spec-url}/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce`^] method is *not associative*, then you are going to *compute wrong results* in both: sequential and parallel computing. In parallel, you can also get *different results* each time.
 
 Associative::
 Means that first computation gives out the same result as the second computation. Example:
@@ -565,8 +565,8 @@ forkJoinPool.shutdown();
 The Fork step in Fork/Join Framework works best based on two assumptions:
 
 * The number of elements is *known before processing them*. These sources of data do not meet this condition:
-** https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html[`⚪ Iterator<E>`]
-** https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html[`🔴 Pattern`^]
+** {java-api-spec-url}/java.base/java/util/Iterator.html[`⚪ Iterator<E>`]
+** {java-api-spec-url}/java.base/java/util/regex/Pattern.html[`🔴 Pattern`^]
 ** Lines of a text file
 * Reaching the *center of the data* must be *easy, reliable and efficient*. This source of data does not meet this condition:
 ** `🟢 LinkedList`

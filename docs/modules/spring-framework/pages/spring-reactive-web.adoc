@@ -23,7 +23,7 @@ CAUTION: Spring WebFlux is *not compatible* with Spring Web MVC.
 
 Spring Framework 5 introduced two reactive types:
 
-* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html[`*🟠 Mono<T>*`^] - is a https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html[`⚪ Publisher<T>`^] with *zero* or *one* element in the data stream.
+* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html[`*🟠 Mono<T>*`^] - is a {java-api-spec-url}/java.base/java/util/concurrent/Flow.Publisher.html[`⚪ Publisher<T>`^] with *zero* or *one* element in the data stream.
 * https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html[`*🟠 Flux<T>*`^] - is a `⚪ Publisher<T>` with *zero* or *many* elements in the data stream.
 
 == `🟠 Mono<T>`/`🟠 Flux<T>` operations

@@ -6,9 +6,9 @@ Functional Interface::
 Interface that has only *one abstract method*. These do not count:
 * Default methods
 * Static methods
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html[`🟢 Object`^] methods
+* {java-api-spec-url}/java.base/java/lang/Object.html[`🟢 Object`^] methods
 
-NOTE: In https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)[`⚪ Collection<E>`^] you may find `🟢 Object` methods which are changing the documentation of those methods. However, `⚪ Collection<E>` itself is not a Functional Interface as it has many abstract methods.
+NOTE: In {java-api-spec-url}/java.base/java/util/Collection.html#equals(java.lang.Object)[`⚪ Collection<E>`^] you may find `🟢 Object` methods which are changing the documentation of those methods. However, `⚪ Collection<E>` itself is not a Functional Interface as it has many abstract methods.
 
 Lambda Expression::
 Implementation of *a Functional Interface*.
@@ -19,7 +19,7 @@ NOTE: Sometimes people say that a Lambda Expression is *an anonymous method*.
 
 Java is object-oriented programming language and thanks to introduction of Lambda Expression *some patterns from functional programming* have been added to it.
 
-Functional Interface *may be annotated* with the special annotation called https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/FunctionalInterface.html[`@FunctionalInterface`^], but it's *not mandatory*. This is for backward compatibility (e.g. since `@FunctionalInterface` is optional, https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html[`⚪ Runnable`^] can be a Functional Interface).
+Functional Interface *may be annotated* with the special annotation called {java-api-spec-url}/java.base/java/lang/FunctionalInterface.html[`@FunctionalInterface`^], but it's *not mandatory*. This is for backward compatibility (e.g. since `@FunctionalInterface` is optional, {java-api-spec-url}/java.base/java/lang/Runnable.html[`⚪ Runnable`^] can be a Functional Interface).
 
 [TIP]
 ====
@@ -32,9 +32,9 @@ How to implement a Functional Interface *in 3 easy steps*:
 
 == Creating Lambdas with the JDK
 
-The https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html[`java.util.function`^] package is organized in *4* categories:
+The {java-api-spec-url}/java.base/java/util/function/package-summary.html[`java.util.function`^] package is organized in *4* categories:
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Supplier.html[⚪ *Suppliers<T>*^] - do not take any argument and return an object of `T` type. Supplier is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)[`generate`^] operation of the Stream API
+* {java-api-spec-url}/java.base/java/util/function/Supplier.html[⚪ *Suppliers<T>*^] - do not take any argument and return an object of `T` type. Supplier is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)[`generate`^] operation of the Stream API
 +
 [,java]
 ----
@@ -44,7 +44,7 @@ public interface Supplier<T> {
 ...
 Supplier<String> supplier = () -> "Hello!";
 ----
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html[⚪ *Consumers<T>*^] - consume an object of `T` type and do not return anything. Consumer is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)[`forEach`^] operation of the Stream API
+* {java-api-spec-url}/java.base/java/util/function/Consumer.html[⚪ *Consumers<T>*^] - consume an object of `T` type and do not return anything. Consumer is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)[`forEach`^] operation of the Stream API
 +
 [,java]
 ----
@@ -54,7 +54,7 @@ public interface Consumer<T> {
 ...
 Consumer<String> consumer = s -> System.out.println(s);
 ----
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html[⚪ *Predicates<T>*^] - take an object of `T` type, test it and return `boolean`. Predicate is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)[`filter`^] operation of the Stream API
+* {java-api-spec-url}/java.base/java/util/function/Predicate.html[⚪ *Predicates<T>*^] - take an object of `T` type, test it and return `boolean`. Predicate is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)[`filter`^] operation of the Stream API
 +
 [,java]
 ----
@@ -64,7 +64,7 @@ public interface Predicate<T> {
 ...
 Predicate<String> predicate = s -> s.isEmpty();
 ----
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html[⚪ *Functions<T, R>*^] - take an object of `T` type and return an object of `R` type. Function is used in the https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#map(java.util.function.Function)[`map`^] operation of the Stream API
+* {java-api-spec-url}/java.base/java/util/function/Function.html[⚪ *Functions<T, R>*^] - take an object of `T` type and return an object of `R` type. Function is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#map(java.util.function.Function)[`map`^] operation of the Stream API
 +
 [,java]
 ----
@@ -77,7 +77,7 @@ Function<LocalDate, Month> function = date -> date.getMonth();
 
 Functional Interfaces which are not part of `java.util.function` package:
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html[`⚪ Runnable`^] - does not take any argument and does not return anything. Defined to model task in Java concurrent programming
+* {java-api-spec-url}/java.base/java/lang/Runnable.html[`⚪ Runnable`^] - does not take any argument and does not return anything. Defined to model task in Java concurrent programming
 +
 [,java]
 ----
@@ -87,7 +87,7 @@ public interface Runnable {
 ...
 Runnable alert = () -> System.out.println("I am Groot");
 ----
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] - takes two objects of `T` type, compares them and returns `int`. A comparison function, which imposes a total ordering on some collection of objects
+* {java-api-spec-url}/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] - takes two objects of `T` type, compares them and returns `int`. A comparison function, which imposes a total ordering on some collection of objects
 +
 [,java]
 ----
@@ -118,7 +118,7 @@ IntBinaryOperator function2 = (i1, i2) -> Math.max(i1, i2);
 int max2 = function2.applyAsInt(10, 20);
 ----
 
-Another example would be the creation of https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] for the following list:
+Another example would be the creation of {java-api-spec-url}/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] for the following list:
 
 [,java]
 ----
