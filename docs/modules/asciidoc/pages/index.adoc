@@ -632,6 +632,8 @@ Check out {url-home}[DEV Cheat Sheets]!
 Check out {url-home}[DEV Cheat Sheets]!
 ----
 
+TIP: Global Attributes -> https://docs.antora.org/antora/latest/playbook/asciidoc-attributes/[CLICK HERE^]
+
 === Macros
 
 [TIP]
