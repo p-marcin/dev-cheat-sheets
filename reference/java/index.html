@@ -198,11 +198,11 @@
 <p><code>🔴 java.nio.file.Files</code> is part of the newer, more efficient NIO.2 API introduced in Java 7, which is designed for better performance and scalability.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/Files.html#exists(java.nio.file.Path,java.nio.file.LinkOption...)" target="_blank" rel="noopener"><code>Files.exists(Path path, LinkOption&#8230;&#8203; options)</code></a>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/Files.html#exists(java.nio.file.Path,java.nio.file.LinkOption...)" target="_blank" rel="noopener"><code>Files#exists(Path path, LinkOption&#8230;&#8203; options)</code></a>
 is optimized for different file systems, because it uses the
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/spi/FileSystemProvider.html#checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)" target="_blank" rel="noopener"><code>🟠 java.nio.file.spi.FileSystemProvider#checkAccess(Path path, AccessMode&#8230;&#8203; modes)</code></a>
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/spi/FileSystemProvider.html#checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)" target="_blank" rel="noopener"><code>🟠 FileSystemProvider#checkAccess(Path path, AccessMode&#8230;&#8203; modes)</code></a>
 under the hood, allowing different implementations to optimize the file existence check based on the underlying file system. This makes it more efficient compared to
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/File.html#exists()" target="_blank" rel="noopener"><code>file.exists()</code></a>
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/File.html#exists()" target="_blank" rel="noopener"><code>file#exists()</code></a>
 , which relies on the older I/O mechanisms.</p>
 </div>
 <div class="listingblock">
