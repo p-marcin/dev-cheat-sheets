@@ -5,3 +5,6 @@ nav:
   - modules/java/nav.adoc
   - modules/spring-framework/nav.adoc
   - modules/asciidoc/nav.adoc
+asciidoc:
+  attributes:
+    java-api-spec-url: https://docs.oracle.com/en/java/javase/23/docs/api
