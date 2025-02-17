@@ -263,7 +263,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>⚪ <strong>Stream&lt;T&gt;</strong></code></a> - a sequence of elements supporting sequential and parallel aggregate operations</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener"><code>⚪ <strong>Stream&lt;T&gt;</strong></code></a> - a sequence of elements supporting sequential and parallel aggregate operations</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
@@ -289,7 +289,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>IntStream</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mapToInt(ToIntFunction&lt;? super T&gt; mapper)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ IntStream</code></a> consisting of the results of applying the given function to the elements of this stream.</p>
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ IntStream</code></a> consisting of the results of applying the given function to the elements of this stream.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -333,7 +333,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Optional&lt;T&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>reduce(BinaryOperator&lt;T&gt; accumulator)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/Optional.html" target="_blank" rel="noopener"><code>🔴 Optional&lt;T&gt;</code></a> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a>.</p>
+<p>Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Optional.html" target="_blank" rel="noopener"><code>🔴 Optional&lt;T&gt;</code></a> describing the reduced value, if any. See <a href="#_reducing_data_to_compute_statistics">Reducing Data to compute Statistics</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -347,14 +347,14 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;R, A&gt; R</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>collect(Collector&lt;? super T,A,R&gt; collector)</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Performs a mutable reduction operation on the elements of this stream using a <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a>. See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a>.</p>
+<p>Performs a mutable reduction operation on the elements of this stream using a <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a>. See <a href="#_the_collectors_api">The Collectors API</a> and <a href="#_collecting_data_from_streams_to_create_listssetsmaps">Collecting Data from Streams to create Lists/Sets/Maps</a>.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Stream&lt;T&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>distinct()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns a stream consisting of the distinct elements (according to <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>Object#equals(Object)</code></a>) of this stream.</p>
+<p>Returns a stream consisting of the distinct elements (according to <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>Object#equals(Object)</code></a>) of this stream.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -403,7 +403,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 </table>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ <strong>IntStream</strong></code></a> - <code>int</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html" target="_blank" rel="noopener"><code>⚪ <strong>IntStream</strong></code></a> - <code>int</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code></p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
@@ -422,21 +422,21 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalInt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>min()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the minimum element of this stream, or an empty optional if this stream is empty.</p>
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the minimum element of this stream, or an empty optional if this stream is empty.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalInt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>max()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the maximum element of this stream, or an empty optional if this stream is empty.</p>
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/OptionalInt.html" target="_blank" rel="noopener"><code>🔴 OptionalInt</code></a> describing the maximum element of this stream, or an empty optional if this stream is empty.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OptionalDouble</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>average()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/OptionalDouble.html" target="_blank" rel="noopener"><code>🔴 OptionalDouble</code></a> describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.</p>
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/OptionalDouble.html" target="_blank" rel="noopener"><code>🔴 OptionalDouble</code></a> describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -450,17 +450,17 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>IntSummaryStatistics</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>summaryStatistics()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns an <a href="https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/util/IntSummaryStatistics.html" target="_blank" rel="noopener"><code>🟢 IntSummaryStatistics</code></a> describing various summary data about the elements of this stream.</p>
+<p>Returns an <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/IntSummaryStatistics.html" target="_blank" rel="noopener"><code>🟢 IntSummaryStatistics</code></a> describing various summary data about the elements of this stream.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>⚪ <strong>LongStream</strong></code></a> - <code>long</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/LongStream.html" target="_blank" rel="noopener"><code>⚪ <strong>LongStream</strong></code></a> - <code>long</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>⚪ <strong>DoubleStream</strong></code></a> - <code>double</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/DoubleStream.html" target="_blank" rel="noopener"><code>⚪ <strong>DoubleStream</strong></code></a> - <code>double</code> primitive specialization of <code>⚪ Stream&lt;T&gt;</code>. It has similar methods to <code>⚪ IntStream</code></p>
 </li>
 </ul>
 </div>
@@ -470,7 +470,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <h2 id="_the_collectors_api"><a class="anchor" href="#_the_collectors_api"></a>The Collectors API</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> - implementations of <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Collector.html" target="_blank" rel="noopener"><code>⚪ Collector&lt;T,A,R&gt;</code></a> that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.</p>
 </div>
 <div class="paragraph">
 <p>Type parameters of <code>⚪ Collector&lt;T,A,R&gt;</code>:</p>
@@ -506,7 +506,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>static &lt;T&gt; Collector&lt;T,?,List&lt;T&gt;&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>toList()</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into a new <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" target="_blank" rel="noopener"><code>⚪ List&lt;T&gt;</code></a>, in encounter order.</p>
+<p>Returns a <code>⚪ Collector&lt;T,A,R&gt;</code> that accumulates the input elements into a new <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/List.html" target="_blank" rel="noopener"><code>⚪ List&lt;T&gt;</code></a>, in encounter order.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -600,10 +600,10 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html#stream(T%5B%5D)" target="_blank" rel="noopener"><code>Arrays#stream(T[] array)</code></a> - returns a sequential <code>Stream&lt;T&gt;</code> with the specified array as its source</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html#stream(T%5B%5D)" target="_blank" rel="noopener"><code>Arrays#stream(T[] array)</code></a> - returns a sequential <code>Stream&lt;T&gt;</code> with the specified array as its source</p>
 </li>
 <li>
-<p>⚪ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)" target="_blank" rel="noopener"><code>Stream&lt;T&gt;#of(T&#8230;&#8203; values)</code></a> - returns a sequential ordered stream whose elements are the specified values</p>
+<p>⚪ <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)" target="_blank" rel="noopener"><code>Stream&lt;T&gt;#of(T&#8230;&#8203; values)</code></a> - returns a sequential ordered stream whose elements are the specified values</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream&lt;String&gt; streamOfStrings = Stream.&lt;String&gt;of("abcd", "efgh");</code></pre>
@@ -618,7 +618,7 @@ You are <strong>not allowed</strong> to process <strong>the same Stream twice</s
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)" target="_blank" rel="noopener"><code>Files#lines(Path path)</code></a> - read all lines from a file as a <code>Stream&lt;String&gt;</code></p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)" target="_blank" rel="noopener"><code>Files#lines(Path path)</code></a> - read all lines from a file as a <code>Stream&lt;String&gt;</code></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Path path = Path.of("src/main/resources/first-names.txt"); <i class="conum" data-value="1"></i><b>(1)</b>
@@ -650,7 +650,7 @@ try (Stream&lt;String&gt; lines = Files.lines(path)) {
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>Pattern#splitAsStream(CharSequence input)</code></a> - creates a <code>Stream&lt;String&gt;</code> from the given input sequence around matches of this pattern.</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>Pattern#splitAsStream(CharSequence input)</code></a> - creates a <code>Stream&lt;String&gt;</code> from the given input sequence around matches of this pattern.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
@@ -688,7 +688,7 @@ long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); <i class="co
 <div class="ulist">
 <ul>
 <li>
-<p>🔴 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener"><code>String#chars()</code></a> - Returns an <code>⚪ IntStream</code> of int zero-extending the char values from this sequence.</p>
+<p>🔴 <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener"><code>String#chars()</code></a> - Returns an <code>⚪ IntStream</code> of int zero-extending the char values from this sequence.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String sentence = "the quick brown fox jumps over the lazy dog";
@@ -742,7 +742,7 @@ sentence.chars()
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>takeWhile</code></a> - consume elements of the <code>⚪ Stream&lt;T&gt;</code> until <code>⚪ Predicate&lt;? super T&gt;</code> is <strong>true</strong></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>takeWhile</code></a> - consume elements of the <code>⚪ Stream&lt;T&gt;</code> until <code>⚪ Predicate&lt;? super T&gt;</code> is <strong>true</strong></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
@@ -757,7 +757,7 @@ class java.lang.Object</code></pre>
 </div>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>dropWhile</code></a> - consume remaining elements of the <code>⚪ Stream&lt;T&gt;</code> after <code>⚪ Predicate&lt;? super T&gt;</code> becomes <strong>false</strong></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)" target="_blank" rel="noopener"><code>dropWhile</code></a> - consume remaining elements of the <code>⚪ Stream&lt;T&gt;</code> after <code>⚪ Predicate&lt;? super T&gt;</code> becomes <strong>false</strong></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Stream.&lt;Class&lt;?&gt;&gt;iterate(ArrayList.class, c -&gt; c.getSuperclass())
@@ -867,7 +867,7 @@ Forget about <strong>processing your data in one pass</strong> (unless you are d
 <h2 id="_reducing_data_to_compute_statistics"><a class="anchor" href="#_reducing_data_to_compute_statistics"></a>Reducing Data to compute Statistics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></a> adds the Identity Element before the elements of the <code>⚪ Stream&lt;T&gt;</code>.</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(T identity, BinaryOperator&lt;T&gt; accumulator)</code></a> adds the Identity Element before the elements of the <code>⚪ Stream&lt;T&gt;</code>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -889,7 +889,7 @@ Forget about <strong>processing your data in one pass</strong> (unless you are d
 <i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
-Some reduction operations <strong>do not have any Identity Element</strong> (in case for the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#min()" target="_blank" rel="noopener"><code>⚪ IntStream#min()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#max()" target="_blank" rel="noopener"><code>⚪ IntStream#max()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/IntStream.html#average()" target="_blank" rel="noopener"><code>⚪ IntStream#average()</code></a> and <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(BinaryOperator&lt;T&gt; accumulator)</code></a>.
+Some reduction operations <strong>do not have any Identity Element</strong> (in case for the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#min()" target="_blank" rel="noopener"><code>⚪ IntStream#min()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#max()" target="_blank" rel="noopener"><code>⚪ IntStream#max()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#average()" target="_blank" rel="noopener"><code>⚪ IntStream#average()</code></a> and <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(BinaryOperator&lt;T&gt; accumulator)</code></a>.
 </td>
 </tr>
 </table>
@@ -919,15 +919,15 @@ Some reduction operations <strong>do not have any Identity Element</strong> (in 
 </dd>
 <dt class="hdlist1">Downstream Collector</dt>
 <dd>
-<p>Collector that is passed to <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)" target="_blank" rel="noopener"><code>🔴 Collectors#groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code></a> which is applied to the streaming of the list of values</p>
+<p>Collector that is passed to <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)" target="_blank" rel="noopener"><code>🔴 Collectors#groupingBy(Function&lt;? super T,? extends K&gt; classifier, Collector&lt;? super T,A,D&gt; downstream)</code></a> which is applied to the streaming of the list of values</p>
 </dd>
 <dt class="hdlist1">The Collector API</dt>
 <dd>
-<p>Uses the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)" target="_blank" rel="noopener"><code>Stream#collect(Collector&lt;? super T,A,R&gt; collector)</code></a> that takes <code>⚪ Collector&lt;T,A,R&gt;</code> implementation as a parameter:</p>
+<p>Uses the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)" target="_blank" rel="noopener"><code>Stream#collect(Collector&lt;? super T,A,R&gt; collector)</code></a> that takes <code>⚪ Collector&lt;T,A,R&gt;</code> implementation as a parameter:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> class and its factory methods</p>
+<p>Use <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Collectors.html" target="_blank" rel="noopener"><code>🔴 Collectors</code></a> class and its factory methods</p>
 </li>
 <li>
 <p>You can create your own collectors, but it is complex and tricky</p>
@@ -976,10 +976,10 @@ List&lt;Person&gt; peopleFromNewYork = people.stream()
 <div class="ulist">
 <ul>
 <li>
-<p>by calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/BaseStream.html#parallel()" target="_blank" rel="noopener"><code>⚪ BaseStream&lt;T,S extends BaseStream&lt;T,S&gt;&gt;#parallel()</code></a> method on existing <code>⚪ Stream&lt;T&gt;</code></p>
+<p>by calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/BaseStream.html#parallel()" target="_blank" rel="noopener"><code>⚪ BaseStream&lt;T,S extends BaseStream&lt;T,S&gt;&gt;#parallel()</code></a> method on existing <code>⚪ Stream&lt;T&gt;</code></p>
 </li>
 <li>
-<p>by calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#parallelStream()"><code>⚪ Collection&lt;E&gt;#parallelStream()</code></a> method instead of calling <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#stream()"><code>⚪ Collection&lt;E&gt;#stream()</code></a></p>
+<p>by calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#parallelStream()"><code>⚪ Collection&lt;E&gt;#parallelStream()</code></a> method instead of calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#stream()"><code>⚪ Collection&lt;E&gt;#stream()</code></a></p>
 </li>
 </ul>
 </div>
@@ -1172,7 +1172,7 @@ Fork/Join Framework has been <strong>introduced in Java 7</strong> and <strong>s
 <dl>
 <dt class="hdlist1">Fork/Join Pool</dt>
 <dd>
-<p>Is a pool of threads, instance of the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ForkJoinPool.html" target="_blank" rel="noopener"><code>🟢 ForkJoinPool</code></a></p>
+<p>Is a pool of threads, instance of the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/concurrent/ForkJoinPool.html" target="_blank" rel="noopener"><code>🟢 ForkJoinPool</code></a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1247,10 +1247,10 @@ You also need to check that on a machine that is <strong>as close as possible</s
 </dl>
 </div>
 <div class="paragraph">
-<p>In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform <strong>hidden synchronization</strong> which is a <strong>bottleneck</strong>, e.g. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#findFirst()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findFirst()</code></a> (<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#findAny()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findAny()</code></a> will provide you much better performance in parallel) and <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#limit(long)"><code>⚪ Stream&lt;T&gt;#limit(long maxSize)</code></a> methods.</p>
+<p>In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform <strong>hidden synchronization</strong> which is a <strong>bottleneck</strong>, e.g. <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#findFirst()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findFirst()</code></a> (<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#findAny()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findAny()</code></a> will provide you much better performance in parallel) and <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#limit(long)"><code>⚪ Stream&lt;T&gt;#limit(long maxSize)</code></a> methods.</p>
 </div>
 <div class="paragraph">
-<p>If your <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BinaryOperator.html"><code>⚪ BinaryOperator&lt;T&gt;</code></a> from <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce</code></a> method is <strong>not associative</strong>, then you are going to <strong>compute wrong results</strong> in both: sequential and parallel computing. In parallel, you can also get <strong>different results</strong> each time.</p>
+<p>If your <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/BinaryOperator.html"><code>⚪ BinaryOperator&lt;T&gt;</code></a> from <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce</code></a> method is <strong>not associative</strong>, then you are going to <strong>compute wrong results</strong> in both: sequential and parallel computing. In parallel, you can also get <strong>different results</strong> each time.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1338,10 +1338,10 @@ forkJoinPool.shutdown();</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html"><code>⚪ Iterator&lt;E&gt;</code></a></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Iterator.html"><code>⚪ Iterator&lt;E&gt;</code></a></p>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>🔴 Pattern</code></a></p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>🔴 Pattern</code></a></p>
 </li>
 <li>
 <p>Lines of a text file</p>

@@ -170,7 +170,7 @@
 <p>Static methods</p>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" target="_blank" rel="noopener"><code>🟢 Object</code></a> methods</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Object.html" target="_blank" rel="noopener"><code>🟢 Object</code></a> methods</p>
 </li>
 </ul>
 </div>
@@ -184,7 +184,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Collection&lt;E&gt;</code></a> you may find <code>🟢 Object</code> methods which are changing the documentation of those methods. However, <code>⚪ Collection&lt;E&gt;</code> itself is not a Functional Interface as it has many abstract methods.
+In <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Collection&lt;E&gt;</code></a> you may find <code>🟢 Object</code> methods which are changing the documentation of those methods. However, <code>⚪ Collection&lt;E&gt;</code> itself is not a Functional Interface as it has many abstract methods.
 </td>
 </tr>
 </table>
@@ -216,7 +216,7 @@ Sometimes people say that a Lambda Expression is <strong>an anonymous method</st
 <p>Java is object-oriented programming language and thanks to introduction of Lambda Expression <strong>some patterns from functional programming</strong> have been added to it.</p>
 </div>
 <div class="paragraph">
-<p>Functional Interface <strong>may be annotated</strong> with the special annotation called <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/FunctionalInterface.html" target="_blank" rel="noopener"><code>@FunctionalInterface</code></a>, but it&#8217;s <strong>not mandatory</strong>. This is for backward compatibility (e.g. since <code>@FunctionalInterface</code> is optional, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a> can be a Functional Interface).</p>
+<p>Functional Interface <strong>may be annotated</strong> with the special annotation called <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/FunctionalInterface.html" target="_blank" rel="noopener"><code>@FunctionalInterface</code></a>, but it&#8217;s <strong>not mandatory</strong>. This is for backward compatibility (e.g. since <code>@FunctionalInterface</code> is optional, <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a> can be a Functional Interface).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -251,12 +251,12 @@ Sometimes people say that a Lambda Expression is <strong>an anonymous method</st
 <h2 id="_creating_lambdas_with_the_jdk"><a class="anchor" href="#_creating_lambdas_with_the_jdk"></a>Creating Lambdas with the JDK</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener"><code>java.util.function</code></a> package is organized in <strong>4</strong> categories:</p>
+<p>The <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener"><code>java.util.function</code></a> package is organized in <strong>4</strong> categories:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Supplier.html" target="_blank" rel="noopener">⚪ <strong>Suppliers&lt;T&gt;</strong></a> - do not take any argument and return an object of <code>T</code> type. Supplier is used in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)" target="_blank" rel="noopener"><code>generate</code></a> operation of the Stream API</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/Supplier.html" target="_blank" rel="noopener">⚪ <strong>Suppliers&lt;T&gt;</strong></a> - do not take any argument and return an object of <code>T</code> type. Supplier is used in the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)" target="_blank" rel="noopener"><code>generate</code></a> operation of the Stream API</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Supplier&lt;T&gt; {
@@ -268,7 +268,7 @@ Supplier&lt;String&gt; supplier = () -&gt; "Hello!";</code></pre>
 </div>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" target="_blank" rel="noopener">⚪ <strong>Consumers&lt;T&gt;</strong></a> - consume an object of <code>T</code> type and do not return anything. Consumer is used in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)" target="_blank" rel="noopener"><code>forEach</code></a> operation of the Stream API</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/Consumer.html" target="_blank" rel="noopener">⚪ <strong>Consumers&lt;T&gt;</strong></a> - consume an object of <code>T</code> type and do not return anything. Consumer is used in the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)" target="_blank" rel="noopener"><code>forEach</code></a> operation of the Stream API</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Consumer&lt;T&gt; {
@@ -280,7 +280,7 @@ Consumer&lt;String&gt; consumer = s -&gt; System.out.println(s);</code></pre>
 </div>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html" target="_blank" rel="noopener">⚪ <strong>Predicates&lt;T&gt;</strong></a> - take an object of <code>T</code> type, test it and return <code>boolean</code>. Predicate is used in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)" target="_blank" rel="noopener"><code>filter</code></a> operation of the Stream API</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/Predicate.html" target="_blank" rel="noopener">⚪ <strong>Predicates&lt;T&gt;</strong></a> - take an object of <code>T</code> type, test it and return <code>boolean</code>. Predicate is used in the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)" target="_blank" rel="noopener"><code>filter</code></a> operation of the Stream API</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Predicate&lt;T&gt; {
@@ -292,7 +292,7 @@ Predicate&lt;String&gt; predicate = s -&gt; s.isEmpty();</code></pre>
 </div>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" target="_blank" rel="noopener">⚪ <strong>Functions&lt;T, R&gt;</strong></a> - take an object of <code>T</code> type and return an object of <code>R</code> type. Function is used in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#map(java.util.function.Function)" target="_blank" rel="noopener"><code>map</code></a> operation of the Stream API</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/Function.html" target="_blank" rel="noopener">⚪ <strong>Functions&lt;T, R&gt;</strong></a> - take an object of <code>T</code> type and return an object of <code>R</code> type. Function is used in the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#map(java.util.function.Function)" target="_blank" rel="noopener"><code>map</code></a> operation of the Stream API</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Function&lt;T, R&gt; {
@@ -311,7 +311,7 @@ Function&lt;LocalDate, Month&gt; function = date -&gt; date.getMonth();</code></
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a> - does not take any argument and does not return anything. Defined to model task in Java concurrent programming</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a> - does not take any argument and does not return anything. Defined to model task in Java concurrent programming</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Runnable {
@@ -323,7 +323,7 @@ Runnable alert = () -&gt; System.out.println("I am Groot");</code></pre>
 </div>
 </li>
 <li>
-<p><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a> - takes two objects of <code>T</code> type, compares them and returns <code>int</code>. A comparison function, which imposes a total ordering on some collection of objects</p>
+<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a> - takes two objects of <code>T</code> type, compares them and returns <code>int</code>. A comparison function, which imposes a total ordering on some collection of objects</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Comparator&lt;T&gt; {
@@ -362,7 +362,7 @@ int max2 = function2.applyAsInt(10, 20);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Another example would be the creation of <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a> for the following list:</p>
+<p>Another example would be the creation of <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a> for the following list:</p>
 </div>
 <div class="listingblock">
 <div class="content">
