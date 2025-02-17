@@ -7,7 +7,7 @@ image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor
 === Introduction
 
 https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html[`🟢 RestTemplate`^]::
-Synchronous client to *perform HTTP requests*, exposing a simple, template method API *over underlying HTTP client libraries* such as the JDK https://docs.oracle.com/en/java/javase/21/docs//api/java.base/java/net/HttpURLConnection.html[`🟠 HttpURLConnection`^], https://hc.apache.org/[Apache HttpComponents^], and others. RestTemplate offers templates for *common scenarios* by HTTP method, in addition to the generalized `exchange` and `execute` methods that support less frequent cases.
+Synchronous client to *perform HTTP requests*, exposing a simple, template method API *over underlying HTTP client libraries* such as the JDK {java-api-spec-url}/java.base/java/net/HttpURLConnection.html[`🟠 HttpURLConnection`^], https://hc.apache.org/[Apache HttpComponents^], and others. RestTemplate offers templates for *common scenarios* by HTTP method, in addition to the generalized `exchange` and `execute` methods that support less frequent cases.
 
 You can create `🟢 RestTemplate` from https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/client/RestTemplateBuilder.html[`🟢 RestTemplateBuilder`^]:
 
