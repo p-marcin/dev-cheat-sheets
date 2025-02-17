@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>The Stream API :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/java/api/the-stream-api.html">
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/java/api/the-stream-api/the-stream-api.html">
     <meta name="generator" content="Antora 3.1.10">
-<link rel="stylesheet" href="../../../_/css/site.css"/>
+<link rel="stylesheet" href="../../../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
-<link rel="stylesheet" href="../../../_/css/doc-extension.css"/>
-<link rel="stylesheet" href="../../../_/css/header-extension.css"/>
-<link rel="stylesheet" href="../../../_/css/docsearch-extension.css"/>
+<link rel="stylesheet" href="../../../../_/css/doc-extension.css"/>
+<link rel="stylesheet" href="../../../../_/css/header-extension.css"/>
+<link rel="stylesheet" href="../../../../_/css/docsearch-extension.css"/>
   </head>
   <body class="article">
 <header class="header">
@@ -50,23 +50,29 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="../../index.html">DEV Cheat Sheets</a></h3>
+    <h3 class="title"><a href="../../../index.html">DEV Cheat Sheets</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">☕ Java</a>
+    <a class="nav-link" href="../../index.html">☕ Java</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">API</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="lambda-expression.html">Lambda Expression</a>
+    <a class="nav-link" href="../lambda-expression.html">Lambda Expression</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="the-stream-api.html">The Stream API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="parallelism.html">Parallelism</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -75,10 +81,10 @@
     <span class="nav-text">Concepts</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../concepts/microservices.html">Microservices</a>
+    <a class="nav-link" href="../../concepts/microservices.html">Microservices</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../concepts/reactive-programming.html">Reactive Programming</a>
+    <a class="nav-link" href="../../concepts/reactive-programming.html">Reactive Programming</a>
   </li>
 </ul>
   </li>
@@ -90,31 +96,31 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../spring-framework/index.html">☘️ Spring Framework</a>
+    <a class="nav-link" href="../../../spring-framework/index.html">☘️ Spring Framework</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../spring-framework/spring-web-client.html">Spring WebClient</a>
+    <a class="nav-link" href="../../../spring-framework/spring-web-client.html">Spring WebClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../spring-framework/spring-security.html">Spring Security</a>
+    <a class="nav-link" href="../../../spring-framework/spring-security.html">Spring Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
+    <a class="nav-link" href="../../../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../spring-framework/spring-resource-server.html">Spring Resource Server</a>
+    <a class="nav-link" href="../../../spring-framework/spring-resource-server.html">Spring Resource Server</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../spring-framework/spring-reactive-web.html">Spring Reactive Web</a>
+    <a class="nav-link" href="../../../spring-framework/spring-reactive-web.html">Spring Reactive Web</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../spring-framework/spring-data-r2dbc.html">Spring Data R2DBC</a>
+    <a class="nav-link" href="../../../spring-framework/spring-data-r2dbc.html">Spring Data R2DBC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../spring-framework/debug.html">Debugging techniques</a>
+    <a class="nav-link" href="../../../spring-framework/debug.html">Debugging techniques</a>
   </li>
 </ul>
   </li>
@@ -123,7 +129,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../asciidoc/index.html">🅰️ AsciiDoc</a>
+    <a class="nav-link" href="../../../asciidoc/index.html">🅰️ AsciiDoc</a>
   </li>
 </ul>
   </li>
@@ -136,16 +142,16 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../index.html" class="home-link"></a>
+  <a href="../../../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="../index.html">☕ Java</a></li>
+    <li><a href="../../../index.html">DEV Cheat Sheets</a></li>
+    <li><a href="../../index.html">☕ Java</a></li>
     <li>API</li>
     <li><a href="the-stream-api.html">The Stream API</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/java/pages/api/the-stream-api.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/java/pages/api/the-stream-api/the-stream-api.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -153,6 +159,17 @@
 </aside>
 <article class="doc">
 <h1 class="page">The Stream API</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="parallelism.html" class="xref page">Parallelism</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_mapfilterreduce_algorithm_implementation_in_jdk"><a class="anchor" href="#_mapfilterreduce_algorithm_implementation_in_jdk"></a>Map/Filter/Reduce algorithm implementation in JDK</h2>
 <div class="sectionbody">
@@ -856,7 +873,8 @@ statement += composeFooter(totalAmount, frequentRenterPoints);</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Forget about <strong>processing your data in one pass</strong> (unless you are doing <strong>an SQL request</strong>). Most of the time when you have a for loop or when you have a <code>⚪ Stream&lt;T&gt;</code>, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, <strong>extremely performant, and extremely efficient</strong>. See <a href="https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/" target="_blank" rel="noopener">Fine-grained optimizations provided by JIT Compiler in Java</a>
+Forget about <strong>processing your data in one pass</strong> (unless you are doing <strong>an SQL request</strong>). Most of the time when you have a for loop or when you have a <code>⚪ Stream&lt;T&gt;</code>, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, <strong>extremely performant, and extremely efficient</strong>. See
+<a href="https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/" target="_blank" rel="noopener">Fine-grained optimizations provided by JIT Compiler in Java</a>
 </td>
 </tr>
 </table>
@@ -877,7 +895,7 @@ Forget about <strong>processing your data in one pass</strong> (unless you are d
 <li>
 <p>If you have only one element in the <code>⚪ Stream&lt;T&gt;</code>, it will <strong>return the reduction of the Identity Element and this only element</strong>:</p>
 <div class="paragraph">
-<p><span class="image"><img src="../_images/the-stream-api/stream-reduce.png" alt="stream reduce" width="500"></span></p>
+<p><span class="image"><img src="../../_images/the-stream-api/stream-reduce.png" alt="stream reduce" width="500"></span></p>
 </div>
 </li>
 </ul>
@@ -967,457 +985,6 @@ List&lt;Person&gt; peopleFromNewYork = people.stream()
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_parallelism_in_the_stream_api"><a class="anchor" href="#_parallelism_in_the_stream_api"></a>Parallelism in the Stream API</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can make a regular <code>⚪ Stream&lt;T&gt;</code> a parallel <code>⚪ Stream&lt;T&gt;</code> <strong>in two ways</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>by calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/BaseStream.html#parallel()" target="_blank" rel="noopener"><code>⚪ BaseStream&lt;T,S extends BaseStream&lt;T,S&gt;&gt;#parallel()</code></a> method on existing <code>⚪ Stream&lt;T&gt;</code></p>
-</li>
-<li>
-<p>by calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#parallelStream()"><code>⚪ Collection&lt;E&gt;#parallelStream()</code></a> method instead of calling <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#stream()"><code>⚪ Collection&lt;E&gt;#stream()</code></a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These intermediate operations are going to set <strong>a special bit</strong> in the <code>⚪ Stream&lt;T&gt;</code> that will <strong>trigger the computations in parallel when you call your terminal operation</strong>.</p>
-</div>
-<div class="paragraph">
-<p>After terminal operation is called, the <code>⚪ Stream&lt;T&gt;</code> implementation will check this special bit:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>if it is set to 1</strong>, then the computation will happen <strong>in parallel</strong> and will trigger special algorithms for that</p>
-</li>
-<li>
-<p><strong>otherwise</strong> it will be processed <strong>sequentially</strong></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a href="https://openjdk.org/projects/code-tools/jmh/" target="_blank" rel="noopener"><strong>JMH (Java Microbenchmark Harness)</strong></a></dt>
-<dd>
-<p>Standard tool to measure the performances of your Java code. You can find JMH Template project <a href="https://github.com/p-marcin/jmh-template" target="_blank" rel="noopener">here</a>.</p>
-</dd>
-</dl>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To proper measure the performance of a Java application you first need to run it <strong>a certain number of times (warmup)</strong>, because within JVM there is a special just-in-time C2 compiler that can optimize your code a lot.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_getting_the_best_performance_gains_from_parallel_streamt"><a class="anchor" href="#_getting_the_best_performance_gains_from_parallel_streamt"></a>Getting the best performance gains from parallel <code>⚪ Stream&lt;T&gt;</code></h2>
-<div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Beware, you&#8217;ll have <strong>two unboxing</strong> and <strong>one boxing</strong> here (which have an impact on performance!):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Integer j = 3;
-Integer l = 4;
-Integer k = j + l;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Similarly, iterating and doing some operation over <code>int[]</code> will be <strong>much faster</strong> than over <code>🔴 Integer[]</code> (due to unboxing and boxing).</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Each physical core of the CPU access <strong>two levels of cache</strong>, which are <strong>private</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>L1 - the first level of cache (<strong>small, very fast</strong>)</p>
-</li>
-<li>
-<p>L2 - the second level of cache (<strong>bigger, little slower</strong>).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>L3 - the third level of cache is <strong>shared by all physical cores</strong> (<strong>bigger, little slower than L2</strong>).</p>
-</div>
-<div class="paragraph">
-<p>Main memory lives <strong>outside the CPU</strong> and is accessed <strong>much slower</strong> than L3:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/the-stream-api/cpu-caches.png" alt="cpu caches" width="450">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">How does a core of CPU access data from the main memory?</dt>
-<dd>
-<p>This data will have to be <strong>transferred</strong> first to the L3 cache, then to the L2 cache, and then to the L1 cache <strong>before being available</strong> by this core of CPU.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The memory is <strong>not read in a random way</strong>. If a core of CPU wants to access just an <code>int</code>, it will transfer <strong>line of memory</strong>, not just an <code>int</code>. The memory is <strong>transferred line by line</strong> from the main memory to the different levels of cache. Each line is typically <strong>64</strong> bytes (<strong>8</strong> <code>long</code> or <strong>16</strong> <code>int</code>).</p>
-</div>
-<div class="paragraph">
-<p>When we have an array of references to the instance of the <code>🔴 Integer</code> which are going to hold the values:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In one read operation we are only going to <strong>transfer the references to this object</strong>.</p>
-</li>
-<li>
-<p>And then to get all the values it may be <strong>several read</strong> to maximum <strong>16</strong> reads.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This is called <strong>Pointer Chasing</strong> which you need to avoid. To get all the values, we have to <strong>follow pointers</strong> to other places in the memory which has a cost due to the way that data is transferred from the main memory to the cache of the CPU.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Iterating on a <code>🟢 LinkedList</code> will imply <strong>much more Pointer Chasing</strong> than iterating on an <code>🟢 ArrayList</code>. <code>🟢 LinkedList</code> does not store references to the <code>🔴 Integer</code> in an array. It stores them in <strong>a linked list of node objects</strong>. So first, you need to get the first reference to the first node object, and then you need to <strong>follow two pointers</strong>: the first one to the next node object and the second one to the <code>🔴 Integer</code> itself.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Cache Miss</dt>
-<dd>
-<p>Whenever the core of a CPU needs a value and that value turns out not to be in the cache. During the Cache Miss, if the value is not in the L2 cache or L3 cache, then the CPU may decide to <strong>suspend the thread</strong> that is executing this computation and <strong>replace it by another thread</strong>. This is a <strong>much bigger performance hit</strong> than just Pointer Chasing, but it is still a consequence of Pointer Chasing.</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This is why <code>🟢 LinkedList</code> is called <strong>cache-unfriendly structure</strong>, whereas <code>🟢 ArrayList</code> is called <strong>cache-friendly structure</strong>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_forkjoin_framework_implementation_of_parallel_streamt"><a class="anchor" href="#_forkjoin_framework_implementation_of_parallel_streamt"></a>Fork/Join Framework implementation of parallel <code>⚪ Stream&lt;T&gt;</code></h2>
-<div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Fork/Join Framework has been <strong>introduced in Java 7</strong> and <strong>slightly modified in Java 8</strong>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Going parallel means that this task is going to be <strong>split into subtasks</strong> and each subtask is going to <strong>produce a partial result</strong> (fork step). When those partial results have been computed, they are going to be <strong>sent back to the main task</strong> that has the responsibility of <strong>joining them</strong> (join step).</p>
-</div>
-<div class="paragraph">
-<p>All those tasks are <strong>sent to a special pool of thread</strong> called <strong>Fork/Join Pool</strong> and this pool has special capabilities to enable the computations of those <strong>subtasks in parallel</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Fork/Join Framework decides whether the task is <strong>too big and should be split</strong>, or <strong>small enough and should be computed</strong>.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Fork/Join Pool</dt>
-<dd>
-<p>Is a pool of threads, instance of the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/concurrent/ForkJoinPool.html" target="_blank" rel="noopener"><code>🟢 ForkJoinPool</code></a></p>
-<div class="ulist">
-<ul>
-<li>
-<p>created when <strong>the JVM is created</strong></p>
-</li>
-<li>
-<p>there is <strong>only one common</strong> <code>🟢 ForkJoinPool</code> in the JVM since Java 8</p>
-</li>
-<li>
-<p>it is used for <strong>all</strong> the parallel streams</p>
-</li>
-<li>
-<p>the size is <strong>fixed by the number of virtual cores</strong> (not necessarily a good thing) and can be changed with <code>java.util.concurrent.ForkJoinPool.common.parallelism</code> system property</p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>Suppose we have a common Fork/Join Pool with <strong>2</strong> threads in it. Each thread is also associated with a waiting queue that can accept tasks. Suppose we have a task to compute:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The first step is to split this task (<em>A</em>) into subtasks (<em>A11</em>, <em>A12</em>).</p>
-</li>
-<li>
-<p>Since parent task (<em>A</em>) is waiting for the partial results computed by its subtasks, it will be <strong>put at the end of the waiting queue</strong> thus freeing the first thread 1️⃣ that is going to be able to handle the task <em>A11</em>.</p>
-</li>
-<li>
-<p>Since second thread 2️⃣ is not working, it is able to <strong>steal some tasks from another waiting queue</strong>. So second thread 2️⃣ will steal a task <em>A12</em> from first thread 1️⃣, that is busy with <em>A11</em> task. <strong>All threads will be busy</strong>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Fork/Join Framework implements a trick that is quite classical in concurrent programming that is called <strong>work stealing</strong>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Once all subtasks will finish computation, the results will be passed to <em>A</em> task which will <strong>apply the reduce operator</strong>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>You need to bench your own computation to be able to tell where your <strong>sweet spot</strong> is going to be in your use case. E.g. computing the sum of 10 integers in array is <strong>much faster sequentially than in parallel</strong>, however computing the sum of several millions integers in array will be <strong>much faster in parallel</strong>.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-You also need to check that on a machine that is <strong>as close as possible</strong> to your production machine.
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Synchronization</dt>
-<dd>
-<p>A feature within the Java language which <strong>prevents two threads from executing the same piece of code</strong>.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>In the Stream API there are operations (intermediate and terminal) that need to exchange data or exchange information with the other threads and perform <strong>hidden synchronization</strong> which is a <strong>bottleneck</strong>, e.g. <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#findFirst()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findFirst()</code></a> (<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#findAny()" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#findAny()</code></a> will provide you much better performance in parallel) and <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#limit(long)"><code>⚪ Stream&lt;T&gt;#limit(long maxSize)</code></a> methods.</p>
-</div>
-<div class="paragraph">
-<p>If your <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/BinaryOperator.html"><code>⚪ BinaryOperator&lt;T&gt;</code></a> from <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce</code></a> method is <strong>not associative</strong>, then you are going to <strong>compute wrong results</strong> in both: sequential and parallel computing. In parallel, you can also get <strong>different results</strong> each time.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Associative</dt>
-<dd>
-<p>Means that first computation gives out the same result as the second computation. Example:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">stream.reduce(0, (i1, i2) -&gt; i1*i1 + i2*i2); <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Given: <code>[1, 1, 1, 1]</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>It should return <code>4</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Since it is not associative <code>⚪ BinaryOperator&lt;T&gt;</code>, it will compute <code>2</code> (<code>1</code>+<code>1</code>), then <code>5</code> (<code>4</code>+<code>1</code>), and it will return <code>26</code> (<code>25</code>+<code>1</code>)</td>
-</tr>
-</table>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>You can display the thread executing your parallel stream with:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Set&lt;String&gt; threadNames = ConcurrentHashMap.newKeySet();
-stream.parallel()
-    .(...)
-    .peek(i -&gt; threadNames.add(Thread.currentThread().getName()))
-    .(...);
-threadNames.forEach(System.out::println);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can execute a parallel stream in a custom <code>🟢 ForkJoinPool</code>, display the threads executing your parallel stream and count the number of tasks each thread executed with:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Long&gt; threadMap = new ConcurrentHashMap&lt;&gt;();
-Callable&lt;Integer&gt; task = () -&gt; {
-    int result = stream.parallel()
-        .(...)
-        .peek(i -&gt; threadMap.merge(Thread.currentThread().getName(), 1L, Long::sum))
-        .(...);
-    return result;
-};
-
-ForkJoinPool forkJoinPool = new ForkJoinPool(4); <i class="conum" data-value="1"></i><b>(1)</b>
-ForkJoinTask&lt;Integer&gt; submit = forkJoinPool.submit(task);
-submit.get();
-threadMap.forEach((name, n) -&gt; System.out.println(name + " -&gt; " + n));
-forkJoinPool.shutdown();</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Custom <code>🟢 ForkJoinPool</code> with 4 threads</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_choosing_the_right_sources_of_data_to_efficiently_go_parallel"><a class="anchor" href="#_choosing_the_right_sources_of_data_to_efficiently_go_parallel"></a>Choosing the right sources of data to efficiently go parallel</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Fork step in Fork/Join Framework works best based on two assumptions:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The number of elements is <strong>known before processing them</strong>. These sources of data do not meet this condition:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Iterator.html"><code>⚪ Iterator&lt;E&gt;</code></a></p>
-</li>
-<li>
-<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/regex/Pattern.html" target="_blank" rel="noopener"><code>🔴 Pattern</code></a></p>
-</li>
-<li>
-<p>Lines of a text file</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Reaching the <strong>center of the data</strong> must be <strong>easy, reliable and efficient</strong>. This source of data does not meet this condition:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>🟢 LinkedList</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Fork/Join Framework splits the array in two pieces and <strong>doesn&#8217;t know</strong> if there is <strong>the same amount of data</strong> in the first half and in the second half. This information is not available, <strong>unless you count all the elements</strong>, one by one, in each half. <strong>The Framework doesn&#8217;t do that</strong>, because it would be too costly.</p>
-</div>
-<div class="paragraph">
-<p>Those two halves are going to be split again, and again, and again. Some of the segments of this array are going to be empty. Become higher and higher as the number of splitting increases. <strong>This is a problem with <code>⚪ Set&lt;E&gt;</code>-like structures</strong>.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Sizeable</dt>
-<dd>
-<p>The number of elements of the source is known. All the collections and the arrays are sizeable, but all the patterns, lines and iterators are not sizeable.</p>
-</dd>
-<dt class="hdlist1">Subsizeable</dt>
-<dd>
-<p>The number of elements in both parts of a split source is known. Sets are sizeable, but they are not subsizeable.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>Processing data from a <code>⚪ List&lt;E&gt;</code> is <strong>much faster</strong> than the processing data from a <code>⚪ Set&lt;E&gt;</code> because iterating over the elements of a <code>⚪ List&lt;E&gt;</code> is faster than iterating over the elements of a <code>⚪ Set&lt;E&gt;</code>.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Going parallel as a <code>⚪ List&lt;E&gt;</code> will bring you <strong>more performance gain</strong> than going parallel in a <code>⚪ Set&lt;E&gt;</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You may have data to process that, in fact, is <strong>not well spread</strong> over all the <strong>buckets of the array</strong> that is backing your <code>⚪ Set&lt;E&gt;</code> (e.g. lines of strings that all return 0 hash code will be handled by <strong>only one thread</strong>).</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Are you sure that your threads should be used to compute your streams in parallel?</dt>
-<dd>
-<p>In case of a web application your threads are used to serve your HTTP clients, so <strong>you don&#8217;t want those threads to be used for anything else</strong>, including parallel streams. The same goes for threads that are used for SQL transactions. <strong>Threads are precious resources</strong>.</p>
-</dd>
-</dl>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 </article>
   </div>
 </main>
@@ -1426,9 +993,9 @@ Going parallel as a <code>⚪ List&lt;E&gt;</code> will bring you <strong>more p
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
-<script async src="../../../_/js/vendor/highlight.js"></script>
+<script id="site-script" src="../../../../_/js/site.js" data-ui-root-path="../../../../_"></script>
+<script async src="../../../../_/js/vendor/highlight.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-<script src="../../../_/js/docsearch.js"></script>
+<script src="../../../../_/js/docsearch.js"></script>
   </body>
 </html>
