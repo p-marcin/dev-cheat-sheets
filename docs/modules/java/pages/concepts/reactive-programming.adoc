@@ -87,14 +87,14 @@ NOTE: Reactive Streams API is part of the *Java 9*.
 
 Reactive Streams API is a set of *4* Interfaces which define the API:
 
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Publisher.html[`*⚪ Publisher<T>*`^] - a *producer of items* (and related control messages) received by `⚪ Subscriber<T>`.
+* {java-api-spec-url}/java.base/java/util/concurrent/Flow.Publisher.html[`*⚪ Publisher<T>*`^] - a *producer of items* (and related control messages) received by `⚪ Subscriber<T>`.
 ** Each current `⚪ Subscriber<T>` receives *the same items* (via method `onNext`) in *the same order*, unless drops or errors are encountered.
 ** If a `⚪ Publisher<T>` encounters *an error* that does not allow items to be issued to a `⚪ Subscriber<T>`, that `⚪ Subscriber<T>` receives `onError`, and then receives *no further messages*.
 ** Otherwise, when it is known that no further messages will be issued to it, a `⚪ Subscriber<T>` receives `onComplete`.
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html[`*⚪ Subscriber<T>*`^] - a *receiver of messages*.
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Subscription.html[`*⚪ Subscription*`^] - message control *linking* a `⚪ Publisher<T>` and `⚪ Subscriber<T>`. `⚪ Subscriber<T>` receive items only *when requested*, and *may cancel at any time*.
+* {java-api-spec-url}/java.base/java/util/concurrent/Flow.Subscriber.html[`*⚪ Subscriber<T>*`^] - a *receiver of messages*.
+* {java-api-spec-url}/java.base/java/util/concurrent/Flow.Subscription.html[`*⚪ Subscription*`^] - message control *linking* a `⚪ Publisher<T>` and `⚪ Subscriber<T>`. `⚪ Subscriber<T>` receive items only *when requested*, and *may cancel at any time*.
 +
 IMPORTANT: The methods in this interface are intended to be invoked only by their `⚪ Subscriber<T>`. Usages in other contexts have undefined effects.
-* https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/Flow.Processor.html[`*⚪ Processor<T,R>*`^] - a component that *acts as both* a `⚪ Subscriber<T>` and `⚪ Publisher<T>`
+* {java-api-spec-url}/java.base/java/util/concurrent/Flow.Processor.html[`*⚪ Processor<T,R>*`^] - a component that *acts as both* a `⚪ Subscriber<T>` and `⚪ Publisher<T>`
 
 image::reactive-programming/reactive-streams-with-back-pressure.png[,600]
