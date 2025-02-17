@@ -8,7 +8,9 @@ Interface that has only *one abstract method*. These do not count:
 * Static methods
 * {java-api-spec-url}/java.base/java/lang/Object.html[`🟢 Object`^] methods
 
-NOTE: In {java-api-spec-url}/java.base/java/util/Collection.html#equals(java.lang.Object)[`⚪ Collection<E>`^] you may find `🟢 Object` methods which are changing the documentation of those methods. However, `⚪ Collection<E>` itself is not a Functional Interface as it has many abstract methods.
+NOTE: In
+{java-api-spec-url}/java.base/java/util/Collection.html#equals(java.lang.Object)[`⚪ Collection<E>`^]
+you may find `🟢 Object` methods which are changing the documentation of those methods. However, `⚪ Collection<E>` itself is not a Functional Interface as it has many abstract methods.
 
 Lambda Expression::
 Implementation of *a Functional Interface*.
@@ -19,7 +21,9 @@ NOTE: Sometimes people say that a Lambda Expression is *an anonymous method*.
 
 Java is object-oriented programming language and thanks to introduction of Lambda Expression *some patterns from functional programming* have been added to it.
 
-Functional Interface *may be annotated* with the special annotation called {java-api-spec-url}/java.base/java/lang/FunctionalInterface.html[`@FunctionalInterface`^], but it's *not mandatory*. This is for backward compatibility (e.g. since `@FunctionalInterface` is optional, {java-api-spec-url}/java.base/java/lang/Runnable.html[`⚪ Runnable`^] can be a Functional Interface).
+Functional Interface *may be annotated* with the special annotation called
+{java-api-spec-url}/java.base/java/lang/FunctionalInterface.html[`@FunctionalInterface`^]
+, but it's *not mandatory*. This is for backward compatibility (e.g. since `@FunctionalInterface` is optional, `⚪ Runnable` can be a Functional Interface).
 
 [TIP]
 ====
@@ -32,7 +36,9 @@ How to implement a Functional Interface *in 3 easy steps*:
 
 == Creating Lambdas with the JDK
 
-The {java-api-spec-url}/java.base/java/util/function/package-summary.html[`java.util.function`^] package is organized in *4* categories:
+The
+{java-api-spec-url}/java.base/java/util/function/package-summary.html[`java.util.function`^]
+package is organized in *4* categories:
 
 * {java-api-spec-url}/java.base/java/util/function/Supplier.html[⚪ *Suppliers<T>*^] - do not take any argument and return an object of `T` type. Supplier is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#generate(java.util.function.Supplier)[`generate`^] operation of the Stream API
 +
@@ -41,7 +47,7 @@ The {java-api-spec-url}/java.base/java/util/function/package-summary.html[`java.
 public interface Supplier<T> {
     T get();
 }
-...
+// ...
 Supplier<String> supplier = () -> "Hello!";
 ----
 * {java-api-spec-url}/java.base/java/util/function/Consumer.html[⚪ *Consumers<T>*^] - consume an object of `T` type and do not return anything. Consumer is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#forEach(java.util.function.Consumer)[`forEach`^] operation of the Stream API
@@ -51,7 +57,7 @@ Supplier<String> supplier = () -> "Hello!";
 public interface Consumer<T> {
     void accept(T t);
 }
-...
+// ...
 Consumer<String> consumer = s -> System.out.println(s);
 ----
 * {java-api-spec-url}/java.base/java/util/function/Predicate.html[⚪ *Predicates<T>*^] - take an object of `T` type, test it and return `boolean`. Predicate is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#filter(java.util.function.Predicate)[`filter`^] operation of the Stream API
@@ -61,7 +67,7 @@ Consumer<String> consumer = s -> System.out.println(s);
 public interface Predicate<T> {
     boolean test(T t);
 }
-...
+// ...
 Predicate<String> predicate = s -> s.isEmpty();
 ----
 * {java-api-spec-url}/java.base/java/util/function/Function.html[⚪ *Functions<T, R>*^] - take an object of `T` type and return an object of `R` type. Function is used in the {java-api-spec-url}/java.base/java/util/stream/Stream.html#map(java.util.function.Function)[`map`^] operation of the Stream API
@@ -71,7 +77,7 @@ Predicate<String> predicate = s -> s.isEmpty();
 public interface Function<T, R> {
     R apply(T t);
 }
-...
+// ...
 Function<LocalDate, Month> function = date -> date.getMonth();
 ----
 
@@ -84,7 +90,7 @@ Functional Interfaces which are not part of `java.util.function` package:
 public interface Runnable {
     void run();
 }
-...
+// ...
 Runnable alert = () -> System.out.println("I am Groot");
 ----
 * {java-api-spec-url}/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] - takes two objects of `T` type, compares them and returns `int`. A comparison function, which imposes a total ordering on some collection of objects
@@ -94,13 +100,15 @@ Runnable alert = () -> System.out.println("I am Groot");
 public interface Comparator<T> {
     int compare(T o1, T o2);
 }
-...
+// ...
 Comparator<String> comparator = (s1, s2) -> s1.compareTo(s2);
 ----
 
 == Creating Lambdas with specialized Interfaces
 
-Lambda Expressions are *compiled using specific bytecode instruction* called https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic[*_invokedynamic_*^] introduced in Java 7.
+Lambda Expressions are *compiled using specific bytecode instruction* called
+https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic[*_invokedynamic_*^]
+introduced in Java 7.
 
 *Performance is 60x better in Lambda Expressions than Anonymous Classes*. It can be even faster. Just *avoid autoboxing and unboxing* when writing Lambda Expressions. If you want to improve the performance you need to *use specialized Interfaces for primitive types*:
 
@@ -118,7 +126,7 @@ IntBinaryOperator function2 = (i1, i2) -> Math.max(i1, i2);
 int max2 = function2.applyAsInt(10, 20);
 ----
 
-Another example would be the creation of {java-api-spec-url}/java.base/java/util/Comparator.html[`⚪ Comparator<T>`^] for the following list:
+Another example would be the creation of `⚪ Comparator<T>` for the following list:
 
 [,java]
 ----
@@ -144,7 +152,7 @@ strings.sort(cmp2);
 
 Lambda Expressions can be chained by using *default methods* of the Interface.
 
-.Creating a Consumer by chaining two Consumers
+.Creating a `⚪ Consumer<T>` by chaining two ⚪ Consumers<T>
 [,java]
 ----
 Consumer<String> c1 = s -> System.out.println("c1 consumes " + s);
@@ -157,7 +165,7 @@ c1 consumes Hello
 c2 consumes Hello
 ----
 
-.Creating a Predicate by chaining two Predicates
+.Creating a `⚪ Predicate<T>` by chaining two ⚪ Predicates<T>
 [,java]
 ----
 Predicate<String> isNull = s -> s == null;
@@ -173,7 +181,7 @@ For empty = false
 For Hello = true
 ----
 
-.Creating a Comparator<T> by chaining two Comparators<T> (sort by `name` descending, then by `age` descending):
+.Creating a `⚪ Comparator<T>` by chaining two ⚪ Comparators<T> (sort by `name` descending, then by `age` descending):
 [,java]
 ----
 User sarah = new User("Sarah", 28);
