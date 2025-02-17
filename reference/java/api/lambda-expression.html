@@ -184,7 +184,9 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Collection&lt;E&gt;</code></a> you may find <code>🟢 Object</code> methods which are changing the documentation of those methods. However, <code>⚪ Collection&lt;E&gt;</code> itself is not a Functional Interface as it has many abstract methods.
+In
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Collection.html#equals(java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Collection&lt;E&gt;</code></a>
+you may find <code>🟢 Object</code> methods which are changing the documentation of those methods. However, <code>⚪ Collection&lt;E&gt;</code> itself is not a Functional Interface as it has many abstract methods.
 </td>
 </tr>
 </table>
@@ -216,7 +218,11 @@ Sometimes people say that a Lambda Expression is <strong>an anonymous method</st
 <p>Java is object-oriented programming language and thanks to introduction of Lambda Expression <strong>some patterns from functional programming</strong> have been added to it.</p>
 </div>
 <div class="paragraph">
-<p>Functional Interface <strong>may be annotated</strong> with the special annotation called <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/FunctionalInterface.html" target="_blank" rel="noopener"><code>@FunctionalInterface</code></a>, but it&#8217;s <strong>not mandatory</strong>. This is for backward compatibility (e.g. since <code>@FunctionalInterface</code> is optional, <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a> can be a Functional Interface).</p>
+<p>Functional Interface <strong>may be annotated</strong> with the special annotation called
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/FunctionalInterface.html" target="_blank" rel="noopener"><code>@FunctionalInterface</code></a>
+, but it&#8217;s <strong>not mandatory</strong>. This is for backward compatibility (e.g. since <code>@FunctionalInterface</code> is optional,
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Runnable.html" target="_blank" rel="noopener"><code>⚪ Runnable</code></a>
+can be a Functional Interface).</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -251,7 +257,9 @@ Sometimes people say that a Lambda Expression is <strong>an anonymous method</st
 <h2 id="_creating_lambdas_with_the_jdk"><a class="anchor" href="#_creating_lambdas_with_the_jdk"></a>Creating Lambdas with the JDK</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener"><code>java.util.function</code></a> package is organized in <strong>4</strong> categories:</p>
+<p>The
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/function/package-summary.html" target="_blank" rel="noopener"><code>java.util.function</code></a>
+package is organized in <strong>4</strong> categories:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -342,7 +350,9 @@ Comparator&lt;String&gt; comparator = (s1, s2) -&gt; s1.compareTo(s2);</code></p
 <h2 id="_creating_lambdas_with_specialized_interfaces"><a class="anchor" href="#_creating_lambdas_with_specialized_interfaces"></a>Creating Lambdas with specialized Interfaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Lambda Expressions are <strong>compiled using specific bytecode instruction</strong> called <a href="https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic" target="_blank" rel="noopener"><strong><em>invokedynamic</em></strong></a> introduced in Java 7.</p>
+<p>Lambda Expressions are <strong>compiled using specific bytecode instruction</strong> called
+<a href="https://blogs.oracle.com/javamagazine/post/understanding-java-method-invocation-with-invokedynamic" target="_blank" rel="noopener"><strong><em>invokedynamic</em></strong></a>
+introduced in Java 7.</p>
 </div>
 <div class="paragraph">
 <p><strong>Performance is 60x better in Lambda Expressions than Anonymous Classes</strong>. It can be even faster. Just <strong>avoid autoboxing and unboxing</strong> when writing Lambda Expressions. If you want to improve the performance you need to <strong>use specialized Interfaces for primitive types</strong>:</p>
@@ -362,7 +372,9 @@ int max2 = function2.applyAsInt(10, 20);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Another example would be the creation of <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a> for the following list:</p>
+<p>Another example would be the creation of
+<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener"><code>⚪ Comparator&lt;T&gt;</code></a>
+for the following list:</p>
 </div>
 <div class="listingblock">
 <div class="content">
