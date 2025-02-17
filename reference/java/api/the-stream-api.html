@@ -240,11 +240,11 @@ If you have a pattern using a Stream that <strong>does not end up with a Termina
 </tr>
 </table>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 You are <strong>not allowed</strong> to process <strong>the same Stream twice</strong>. This is why it is completely useless to create intermittent variables to store the Streams. <strong>You should inline it</strong>
@@ -882,11 +882,11 @@ Forget about <strong>processing your data in one pass</strong> (unless you are d
 </li>
 </ul>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 Some reduction operations <strong>do not have any Identity Element</strong> (in case for the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#min()" target="_blank" rel="noopener"><code>⚪ IntStream#min()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#max()" target="_blank" rel="noopener"><code>⚪ IntStream#max()</code></a>, the <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/IntStream.html#average()" target="_blank" rel="noopener"><code>⚪ IntStream#average()</code></a> and <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)" target="_blank" rel="noopener"><code>⚪ Stream&lt;T&gt;#reduce(BinaryOperator&lt;T&gt; accumulator)</code></a>.
@@ -894,11 +894,11 @@ Some reduction operations <strong>do not have any Identity Element</strong> (in 
 </tr>
 </table>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 <code>🔴 Optional&lt;T&gt;</code> are used by the Stream API, because in cases where we have an empty <code>⚪ Stream&lt;T&gt;</code> without any Identity Element <strong>we don&#8217;t have any result</strong>.
@@ -1226,11 +1226,11 @@ Fork/Join Framework implements a trick that is quite classical in concurrent pro
 <div class="paragraph">
 <p>You need to bench your own computation to be able to tell where your <strong>sweet spot</strong> is going to be in your use case. E.g. computing the sum of 10 integers in array is <strong>much faster sequentially than in parallel</strong>, however computing the sum of several millions integers in array will be <strong>much faster in parallel</strong>.</p>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 You also need to check that on a machine that is <strong>as close as possible</strong> to your production machine.
