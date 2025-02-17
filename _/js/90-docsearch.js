@@ -8,7 +8,7 @@ docsearch({
         minLength: 5
     },
     algoliaOptions: {
-        hitsPerPage: 8,
-        advancedSyntax: true
+        advancedSyntax: true,
+        hitsPerPage: 8
     }
 });
