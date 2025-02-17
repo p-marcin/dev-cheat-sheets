@@ -314,7 +314,7 @@ This is called <strong>Pointer Chasing</strong> which you need to avoid. To get 
 </table>
 </div>
 <div class="paragraph">
-<p>Iterating on a <code>🟢 LinkedList&lt;E&gt;' will imply <strong>much more Pointer Chasing</strong> than iterating on an `🟢 ArrayList&lt;E&gt;'. `🟢 LinkedList&lt;E&gt;' does not store references to the `🔴 Integer</code> in an array. It stores them in <strong>a linked list of node objects</strong>. So first, you need to get the first reference to the first node object, and then you need to <strong>follow two pointers</strong>: the first one to the next node object and the second one to the <code>🔴 Integer</code> itself.</p>
+<p>Iterating on a <code>🟢 LinkedList&lt;E&gt;</code> will imply <strong>much more Pointer Chasing</strong> than iterating on an <code>🟢 ArrayList&lt;E&gt;</code>. <code>🟢 LinkedList&lt;E&gt;</code> does not store references to the <code>🔴 Integer</code> in an array. It stores them in <strong>a linked list of node objects</strong>. So first, you need to get the first reference to the first node object, and then you need to <strong>follow two pointers</strong>: the first one to the next node object and the second one to the <code>🔴 Integer</code> itself.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -331,7 +331,7 @@ This is called <strong>Pointer Chasing</strong> which you need to avoid. To get 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is why `🟢 LinkedList&lt;E&gt;' is called <strong>cache-unfriendly structure</strong>, whereas `🟢 ArrayList&lt;E&gt;' is called <strong>cache-friendly structure</strong>.
+This is why <code>🟢 LinkedList&lt;E&gt;</code> is called <strong>cache-unfriendly structure</strong>, whereas <code>🟢 ArrayList&lt;E&gt;</code> is called <strong>cache-friendly structure</strong>.
 </td>
 </tr>
 </table>
@@ -548,7 +548,7 @@ forkJoinPool.shutdown();</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>`🟢 LinkedList&lt;E&gt;'</p>
+<p><code>🟢 LinkedList&lt;E&gt;</code></p>
 </li>
 </ul>
 </div>
