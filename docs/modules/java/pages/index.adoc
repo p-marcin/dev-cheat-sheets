@@ -3,7 +3,7 @@
 image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://dev.java/learn/",window=_blank]
 image:https://img.shields.io/badge/API%20Specification-2088E9?logo=quickLook&logoColor[link="{java-api-spec-url}/index.html",window=_blank]
 
-include::partial$nav.adoc[lines=2..-1]
+include::java:partial$nav.adoc[lines=2..-1]
 
 == Cheat Sheet
 
