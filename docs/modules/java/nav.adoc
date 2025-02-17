@@ -1,4 +1,4 @@
-* ☕ Java
+* xref:java:index.adoc[]
 ** API
 *** xref:java:api/lambda-expression.adoc[]
 *** xref:java:api/the-stream-api.adoc[]
