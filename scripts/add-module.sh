@@ -43,7 +43,7 @@ createModuleIndex() {
 
 image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://example.com",window=_blank]
 
-include::partial\$nav.adoc[lines=2..-1]
+include::${newModule}:partial\$nav.adoc[lines=2..-1]
 
 == Overview
 

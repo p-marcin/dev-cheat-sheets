@@ -4,7 +4,6 @@
 
 Monolithic Architecture::
 Entire application is constructed *as a unified, standalone unit*. It is decomposed internally into layers:
-+
 * Presentation
 * Business Logic
 * Data Access
@@ -86,7 +85,7 @@ Pattern of globally distributing systems to provide increased uptime, increased 
 
 TIP: https://12factor.net/[*The Twelve-Factor App*^] principles are a collection of *best practices* for building Microservices-Based Cloud-Native applications.
 
-CAUTION: You can build Monolithic Cloud-Native application, and you can build Microservices that are not capable of moving to the cloud at all.
+WARNING: You can build Monolithic Cloud-Native application, and you can build Microservices that are not capable of moving to the cloud at all.
 
 == Scalability
 
@@ -112,7 +111,7 @@ One of the best strategies for dealing with reducing latency in Microservices is
 
 We are impatient by nature, and we seem to always want systems that have immediate feedback (synchronous operations). But it is not always needed. Many times we can simply *defer the processing* to occur in an *asynchronous* manner. When we do this, we reduce the latency constraints on the functions that actually are required to be executed in real time.
 
-CAUTION: When moving to asynchronous operations, you need to take care to *handle error states correctly* and *recover from them*. If messages cannot be processed for any reason, you cannot simply ignore them. Dead letter queues must be monitored and action must be taken to process the messages even if it’s manual processing.
+WARNING: When moving to asynchronous operations, you need to take care to *handle error states correctly* and *recover from them*. If messages cannot be processed for any reason, you cannot simply ignore them. Dead letter queues must be monitored and action must be taken to process the messages even if it’s manual processing.
 
 == Database Transaction Models: ACID vs BASE
 
