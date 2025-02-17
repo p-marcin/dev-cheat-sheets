@@ -1,13 +1,13 @@
-const search = docsearch({
+docsearch({
     appId: 'XDWJOL3OGD',
     apiKey: '8bd63b957b8bbb05e02a8744c4bb280c',
     indexName: 'crawler_DEV_CHEAT_SHEETS',
     inputSelector: '#search-input',
     autocompleteOptions: {
-        hint: false
+        hint: false,
+        minLength: 5
     },
-    algoliaOptions: { hitsPerPage: 8 }
+    algoliaOptions: {
+        hitsPerPage: 8
+    }
 });
-search.autocomplete.on('autocomplete:closed', function () {
-    search.autocomplete.setVal()
-})
