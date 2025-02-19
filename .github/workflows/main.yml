@@ -21,9 +21,6 @@ jobs:
         run: ./scripts/install.sh
       - name: Generate Site
         run: ./scripts/generate.sh
-        # https://docs.antora.org/antora/latest/publish-to-github-pages/
-      - name: Disable Jekyll
-        run: touch build/site/.nojekyll
       - name: Deploy Site
         uses: JamesIves/github-pages-deploy-action@v4
         with:
