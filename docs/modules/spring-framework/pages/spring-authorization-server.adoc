@@ -18,7 +18,7 @@ In the official documentation you can find example implementation of https://doc
 
 === Example
 
-With the following https://docs.spring.io/spring-authorization-server/docs/current/api/org/springframework/security/oauth2/server/authorization/client/InMemoryRegisteredClientRepository.html[`🔴 InMemoryRegisteredClientRepository`^]:
+With the following {spring-auth-server-api-spec-url}/org/springframework/security/oauth2/server/authorization/client/InMemoryRegisteredClientRepository.html[`🔴 InMemoryRegisteredClientRepository`^]:
 
 [,java]
 ----
@@ -100,7 +100,7 @@ server.port=9000
 
 === Customizing Authorization Server endpoints
 
-You can find Authorization Server endpoints in https://docs.spring.io/spring-authorization-server/docs/current/api/org/springframework/security/oauth2/server/authorization/settings/AuthorizationServerSettings.html#builder()[`🔴 AuthorizationServerSettings.html#builder()`^]. If you want to customize them, check https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#configuring-authorization-server-settings[official documentation].
+You can find Authorization Server endpoints in {spring-auth-server-api-spec-url}/org/springframework/security/oauth2/server/authorization/settings/AuthorizationServerSettings.html#builder()[`🔴 AuthorizationServerSettings.html#builder()`^]. If you want to customize them, check https://docs.spring.io/spring-authorization-server/reference/configuration-model.html#configuring-authorization-server-settings[official documentation].
 
 == Testing
 
@@ -120,9 +120,9 @@ mockMvc.perform(get("/api/v1/resource")
 ----
 <1> This way we can add `Authorization` header to the request
 
-[CAUTION]
+[WARNING]
 ====
-If your test is annotated with https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^], then you need to create https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^] like this:
+If your test is annotated with {spring-boot-api-spec-url}/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^], then you need to create {spring-api-spec-url}/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^] like this:
 
 [,java]
 ----
@@ -132,7 +132,7 @@ MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac)
 ----
 <1> Configure `🔴 MockMvc` to use Spring Security
 
-If your test is annotated with https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^], then you need to import `🟢 SecurityConfig` by annotating the test class with:
+If your test is annotated with {spring-boot-api-spec-url}/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^], then you need to import `🟢 SecurityConfig` by annotating the test class with:
 
 [,java]
 ----

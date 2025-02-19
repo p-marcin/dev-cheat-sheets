@@ -4,7 +4,7 @@ image:https://img.shields.io/badge/WebFlux%20Documentation-2088E9?logo=quickLook
 
 Spring Data R2DBC provides repository support for the *Reactive Relational Database Connectivity* (R2DBC) API.
 
-CAUTION: JPA works with JDBC. JDBC is *fully blocking API*.
+WARNING: JPA works with JDBC. JDBC is *fully blocking API*.
 
 == Maven Dependencies
 
@@ -41,6 +41,6 @@ public class DatabaseConfig {
 }
 ----
 <1> Database SQL script which will be used to create schema. The `schema.sql` is located under `src/main/resources`
-<2> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/r2dbc/connection/init/ConnectionFactoryInitializer.html[`🟢 ConnectionFactoryInitializer`^] is used to *set up* a database during *initialization* and *clean up* a database during *destruction*.
+<2> {spring-api-spec-url}/org/springframework/r2dbc/connection/init/ConnectionFactoryInitializer.html[`🟢 ConnectionFactoryInitializer`^] is used to *set up* a database during *initialization* and *clean up* a database during *destruction*.
 <3> https://r2dbc.io/spec/1.0.0.RELEASE/api/io/r2dbc/spi/ConnectionFactory.html[`⚪ ConnectionFactory`^] is *an R2DBC factory for creating connections* and *entry point for a driver*.
-<4> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/r2dbc/connection/init/ResourceDatabasePopulator.html[`🟢 ResourceDatabasePopulator`^] populates, initializes, or cleans up a database using SQL scripts defined in external https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/Resource.html[`⚪ Resource`^].
+<4> {spring-api-spec-url}/org/springframework/r2dbc/connection/init/ResourceDatabasePopulator.html[`🟢 ResourceDatabasePopulator`^] populates, initializes, or cleans up a database using SQL scripts defined in external {spring-api-spec-url}/org/springframework/core/io/Resource.html[`⚪ Resource`^].

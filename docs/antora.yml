@@ -8,3 +8,10 @@ nav:
 asciidoc:
   attributes:
     java-api-spec-url: https://docs.oracle.com/en/java/javase/23/docs/api
+    reactor-api-spec-url: https://projectreactor.io/docs/core/release/api
+    reactor-test-api-spec-url: https://projectreactor.io/docs/test/release/api
+    spring-api-spec-url: https://docs.spring.io/spring-framework/docs/current/javadoc-api
+    spring-boot-api-spec-url: https://docs.spring.io/spring-boot/api/java
+    spring-data-api-spec-url: https://docs.spring.io/spring-data/commons/docs/current/api
+    spring-security-api-spec-url: https://docs.spring.io/spring-security/site/docs/current/api
+    spring-auth-server-api-spec-url: https://docs.spring.io/spring-authorization-server/docs/current/api
