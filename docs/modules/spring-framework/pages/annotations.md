@@ -34,10 +34,6 @@
 
 ## :pushpin: Spring Data JPA
 
-* `jakarta.persistence.Entity` - indicates that the class is an entity which will be persisted to the database
-* `jakarta.persistence.Id` - indicates the primary key of an entity
-* `jakarta.persistence.GeneratedValue` - indicates the generation strategy for primary key. See `jakarta.persistence.GenerationType` enum for generation strategies
-  * `@GeneratedValue(strategy = GenerationType.AUTO)` - indicates that primary key generation will be handled by database
 * `org.hibernate.annotations.UuidGenerator` - specifies that an entity identifier is generated as a UUID
 * `jakarta.persistence.Version` - indicates the version field of an entity that serves as its optimistic lock value
 * `jakarta.persistence.Column` - specifies the mapped column for a persistent property or field. If no `@Column` annotation is specified, the default values apply

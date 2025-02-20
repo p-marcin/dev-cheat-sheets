@@ -1,6 +1,7 @@
-= Spring Reactive Web
+= Spring WebFlux
 
-image:https://img.shields.io/badge/WebFlux%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/web/webflux.html",window=_blank] image:https://img.shields.io/badge/Reactor%20Core%20Documentation-2088E9?logo=quickLook&logoColor[link="https://projectreactor.io/docs/core/release/reference/",window=_blank]
+image:https://img.shields.io/badge/WebFlux%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/web/webflux.html",window=_blank]
+image:https://img.shields.io/badge/Reactor%20Core%20Documentation-2088E9?logo=quickLook&logoColor[link="https://projectreactor.io/docs/core/release/reference/",window=_blank]
 
 == Maven Dependency
 
@@ -19,12 +20,12 @@ The Spring Framework is kind of *split in half*:
 * *Spring Web MVC* traditionally incorporates the *Servlet API* and also *operates within Servlet Container*. It uses *blocking components*. Also, JDBC *by its nature* is also going to be blocking.
 * *Spring WebFlux* can use `@Controller` / `@RequestMapping` annotations, but it also has *Router Functions* which use *functional programming paradigm*. It *does not operate* within Servlet Container.
 
-CAUTION: Spring WebFlux is *not compatible* with Spring Web MVC.
+WARNING: Spring WebFlux is *not compatible* with Spring Web MVC.
 
 Spring Framework 5 introduced two reactive types:
 
-* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html[`*🟠 Mono<T>*`^] - is a {java-api-spec-url}/java.base/java/util/concurrent/Flow.Publisher.html[`⚪ Publisher<T>`^] with *zero* or *one* element in the data stream.
-* https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html[`*🟠 Flux<T>*`^] - is a `⚪ Publisher<T>` with *zero* or *many* elements in the data stream.
+* {reactor-api-spec-url}/reactor/core/publisher/Mono.html[`*🟠 Mono<T>*`^] - is a {java-api-spec-url}/java.base/java/util/concurrent/Flow.Publisher.html[`⚪ Publisher<T>`^] with *zero* or *one* element in the data stream.
+* {reactor-api-spec-url}/reactor/core/publisher/Flux.html[`*🟠 Flux<T>*`^] - is a `⚪ Publisher<T>` with *zero* or *many* elements in the data stream.
 
 == `🟠 Mono<T>`/`🟠 Flux<T>` operations
 
@@ -174,7 +175,7 @@ void testGetByIdNotFound() {
 
 You can use
 
-https://projectreactor.io/docs/test/release/api/reactor/test/StepVerifier.html[`⚪ StepVerifier`^]::
+{reactor-test-api-spec-url}/reactor/test/StepVerifier.html[`⚪ StepVerifier`^]::
 Provides a declarative way of creating a verifiable script for an async `⚪ Publisher<T>` sequence, by expressing expectations about the events that will happen upon subscription. The verification *must be triggered after the terminal expectations* (completion, error, cancellation) have been declared, by calling one of the `verify()` methods.
 
 [,java]

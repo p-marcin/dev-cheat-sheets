@@ -6,10 +6,10 @@ image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor
 
 === Introduction
 
-https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html[`🟢 RestTemplate`^]::
+{spring-api-spec-url}/org/springframework/web/client/RestTemplate.html[`🟢 RestTemplate`^]::
 Synchronous client to *perform HTTP requests*, exposing a simple, template method API *over underlying HTTP client libraries* such as the JDK {java-api-spec-url}/java.base/java/net/HttpURLConnection.html[`🟠 HttpURLConnection`^], https://hc.apache.org/[Apache HttpComponents^], and others. RestTemplate offers templates for *common scenarios* by HTTP method, in addition to the generalized `exchange` and `execute` methods that support less frequent cases.
 
-You can create `🟢 RestTemplate` from https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/client/RestTemplateBuilder.html[`🟢 RestTemplateBuilder`^]:
+You can create `🟢 RestTemplate` from {spring-boot-api-spec-url}/org/springframework/boot/web/client/RestTemplateBuilder.html[`🟢 RestTemplateBuilder`^]:
 
 [,java]
 ----
@@ -23,7 +23,7 @@ public Page<ResourceDTO> listResources() {
 
 === HTTP GET response as JSON string
 
-Next, you can *retrieve an entity* by doing a *GET* on the specified URL. The response is *converted and stored* in a https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html[`🟢 ResponseEntity<T>`^]:
+Next, you can *retrieve an entity* by doing a *GET* on the specified URL. The response is *converted and stored* in a {spring-api-spec-url}/org/springframework/http/ResponseEntity.html[`🟢 ResponseEntity<T>`^]:
 
 .Print JSON response
 [,java]
@@ -71,7 +71,7 @@ TIP: Jackson gives you *a lot of flexibility* when you're working with JSON stri
 
 === HTTP GET pageable response with custom Java Object
 
-First, implement `🟢 ResourceDTOPageImpl<T>` extending https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/PageImpl.html[`🟢 PageImpl<T>`^] and annotate it with Jackson annotations:
+First, implement `🟢 ResourceDTOPageImpl<T>` extending {spring-data-api-spec-url}/org/springframework/data/domain/PageImpl.html[`🟢 PageImpl<T>`^] and annotate it with Jackson annotations:
 
 NOTE: A page is a *sublist of a list* of objects. It allows gain information about *the position of it* in the containing entire list.
 
@@ -132,11 +132,11 @@ public class RestTemplateBuilderConfig {
 
 }
 ----
-<1> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html[`@Configuration`^] indicates that a class declares one or more https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html[`@Bean`^] methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime
-<2> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Value.html[`@Value`^] indicates a default value expression for the annotated element
+<1> {spring-api-spec-url}/org/springframework/context/annotation/Configuration.html[`@Configuration`^] indicates that a class declares one or more {spring-api-spec-url}/org/springframework/context/annotation/Bean.html[`@Bean`^] methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime
+<2> {spring-api-spec-url}/org/springframework/beans/factory/annotation/Value.html[`@Value`^] indicates a default value expression for the annotated element
 <3> Once `baseUri` is not set, the bean will fail to instantiate
-<4> Configures new `🟢 RestTemplateBuilder` instance with Spring Boot defaults using https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/web/client/RestTemplateBuilderConfigurer.html[`🔴 RestTemplateBuilderConfigurer`^]
-<5> Configures `baseUri` in `🟢 RestTemplateBuilder` using https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/DefaultUriBuilderFactory.html[`🟢 DefaultUriBuilderFactory`^]
+<4> Configures new `🟢 RestTemplateBuilder` instance with Spring Boot defaults using {spring-boot-api-spec-url}/org/springframework/boot/autoconfigure/web/client/RestTemplateBuilderConfigurer.html[`🔴 RestTemplateBuilderConfigurer`^]
+<5> Configures `baseUri` in `🟢 RestTemplateBuilder` using {spring-api-spec-url}/org/springframework/web/util/DefaultUriBuilderFactory.html[`🟢 DefaultUriBuilderFactory`^]
 
 This way, you can set the property in `application.properties` and maintain it externally:
 
@@ -155,7 +155,7 @@ ResponseEntity<ResourceDTOPageImpl> response =
 
 === Query Parameters
 
-You can add query parameters to the request by using https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/UriComponentsBuilder.html[`🟢 UriComponentsBuilder`^]:
+You can add query parameters to the request by using {spring-api-spec-url}/org/springframework/web/util/UriComponentsBuilder.html[`🟢 UriComponentsBuilder`^]:
 
 [,java]
 ----
@@ -188,7 +188,7 @@ ResourceDTO resourceDTO =
 <1> New resource is created and uri to it is returned
 <2> Another request returns the created resource
 
-[CAUTION]
+[WARNING]
 ====
 The below will return `🟢 ResponseEntity<T>` with `body` = `null` (so with `null` `🟢 ResourceDTO`):
 
@@ -210,7 +210,7 @@ ResourceDTO updatedResourceDTO =
     restTemplate.getForObject("/api/v1/resource/{resourceId}", ResourceDTO.class, resourceDTO.getId());
 ----
 
-CAUTION: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html#put(java.lang.String,java.lang.Object,java.lang.Object...)[`🟢 RestTemplate#put(String url, Object request, Object... uriVariables)`^] method does not return anything. If you want to get the created/updated resource, you need to make HTTP GET request.
+WARNING: {spring-api-spec-url}/org/springframework/web/client/RestTemplate.html#put(java.lang.String,java.lang.Object,java.lang.Object...)[`🟢 RestTemplate#put(String url, Object request, Object... uriVariables)`^] method does not return anything. If you want to get the created/updated resource, you need to make HTTP GET request.
 
 === HTTP DELETE
 
@@ -269,11 +269,11 @@ public class ResourceClientMockTest {
 
 }
 ----
-<1> https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/client/RestClientTest.html[`@RestClientTest`^] annotates test that focuses only on beans that use `🟢 RestTemplateBuilder` or https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestClient.Builder.html[`⚪ RestClient.Builder`^].
-<2> https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Import.html[`@Import`^] indicates one or more component classes to import - typically `@Configuration` classes. `🟢 RestTemplateBuilderConfig` is imported, so `🟢 RestTemplate` can use <<_externalize_base_uri, externalized Base URI>>
+<1> {spring-boot-api-spec-url}/org/springframework/boot/test/autoconfigure/web/client/RestClientTest.html[`@RestClientTest`^] annotates test that focuses only on beans that use `🟢 RestTemplateBuilder` or {spring-api-spec-url}/org/springframework/web/client/RestClient.Builder.html[`⚪ RestClient.Builder`^].
+<2> {spring-api-spec-url}/org/springframework/context/annotation/Import.html[`@Import`^] indicates one or more component classes to import - typically `@Configuration` classes. `🟢 RestTemplateBuilderConfig` is imported, so `🟢 RestTemplate` can use <<_externalize_base_uri, externalized Base URI>>
 <3> https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest/com/fasterxml/jackson/databind/ObjectMapper.html[`🟢 ObjectMapper`^] provides functionality for reading and writing JSON, either to and from basic POJOs (Plain Old Java Objects), or to and from a general-purpose JSON Tree Model (`🟠 JsonNode`), as well as related functionality for performing conversions.
 <4> `🟢 RestTemplateBuilder` is injected by Spring.
-<5> `🟢 RestTemplateBuilder` is also mocked with https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/client/MockRestServiceServer.html[`🔴 MockRestServiceServer`^] support thanks to https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/web/client/MockServerRestTemplateCustomizer.html[`🟢 MockServerRestTemplateCustomizer`^].
+<5> `🟢 RestTemplateBuilder` is also mocked with {spring-api-spec-url}/org/springframework/test/web/client/MockRestServiceServer.html[`🔴 MockRestServiceServer`^] support thanks to {spring-boot-api-spec-url}/org/springframework/boot/test/web/client/MockServerRestTemplateCustomizer.html[`🟢 MockServerRestTemplateCustomizer`^].
 <6> Before each test we create `🟢 RestTemplate` using `🟢 RestTemplateBuilder` injected by Spring.
 <7> Next, we create `🔴 MockRestServiceServer` with `🟢 RestTemplate` binding. We need this binding, so the request sent by `🟢 RestTemplate` can be handled by `🔴 MockRestServiceServer`.
 <8> Then, we stub mocked `🟢 RestTemplateBuilder#build()` method to return `🟢 RestTemplate`
@@ -339,7 +339,7 @@ mockServer.expect(method(HttpMethod.DELETE))
     .andRespond(withNoContent());
 ----
 
-TIP: The HTTP DELETE does not return any entity. To make sure that `🔴 MockRestServiceServer` handled the expected request, you can call https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/client/MockRestServiceServer.html#verify()[`🔴 MockRestServiceServer#verify()`].
+TIP: The HTTP DELETE does not return any entity. To make sure that `🔴 MockRestServiceServer` handled the expected request, you can call {spring-api-spec-url}/org/springframework/test/web/client/MockRestServiceServer.html#verify()[`🔴 MockRestServiceServer#verify()`].
 
 === Response Status Code: 404 Not Found
 

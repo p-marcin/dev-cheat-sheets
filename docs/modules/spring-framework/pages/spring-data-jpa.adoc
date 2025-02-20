@@ -1,0 +1,39 @@
+= Spring Data JPA
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-data/jpa/reference/jpa.html",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+----
+
+== Database Entity
+
+In `domain` package you can define a Database Entity:
+
+[,java]
+----
+@Entity // <1>
+public class Author {
+
+    @Id // <2>
+    @GeneratedValue(strategy = GenerationType.AUTO) // <3>
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    // Getters and Setters
+    ...
+
+}
+----
+<1> {jakarta-ee-api-spec-url}/jakarta/persistence/entity[`@Entity`^] specifies that the class is a Database Entity
+<2> {jakarta-ee-api-spec-url}/jakarta/persistence/id[`@Id`^] specifies the primary key of an Entity
+<3> {jakarta-ee-api-spec-url}/jakarta/persistence/generatedvalue[`@GeneratedValue`^] specifies the generation strategy for the value of primary key. `AUTO` indicates that the persistence provider should pick an appropriate strategy for the particular database. See {jakarta-ee-api-spec-url}/jakarta/persistence/generationtype[`🟣 GenerationType`^] for other generation strategies.
