@@ -204,7 +204,7 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Specific to WebSphere-based servers, including Open Liberty. Enables the internal debugging mode, which modifies how the JVM and Liberty handle debugging-related optimizations.</td>
+<td>Specific to WebSphere-based servers, including Open Liberty. Enables the internal debugging mode, which modifies how the JVM and Open Liberty handle debugging-related optimizations.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -222,6 +222,19 @@ enables <strong>immediate inflation</strong> on all method invocations. In gener
 <a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/Session.html#flush()" target="_blank" rel="noopener"><code>⚪ Session#flush()</code></a> in Hibernate. You might forget to set this JVM property when starting Open Liberty with <code>ws-server.jar</code>. However, if you use the
 <a href="https://github.com/OpenLiberty/open-liberty/blob/800aede6f9f563e4eb05c2f090b3a1e54d07e2cf/dev/com.ibm.ws.kernel.boot.ws-server/publish/bin/server#L1762C9-L1762C19" target="_blank" rel="noopener"><code>server</code></a>
 script, it is automatically included.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>sun.reflect.noInflation=true</code> JVM property was added to <code>server</code> script as a fix for
+<a href="https://github.com/OpenLiberty/open-liberty/pull/1093" target="_blank" rel="noopener">Issue #1091 - Fix for Hot code replace in JAX-RS applications</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
