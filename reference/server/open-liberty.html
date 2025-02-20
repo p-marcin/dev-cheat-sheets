@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spring Data R2DBC :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-data-r2dbc.html">
+    <title>Open Liberty :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/server/open-liberty.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -96,34 +96,34 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">☘️ Spring Framework</a>
+    <a class="nav-link" href="../spring-framework/index.html">☘️ Spring Framework</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="concepts.html">Concepts</a>
+    <a class="nav-link" href="../spring-framework/concepts.html">Concepts</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
+    <a class="nav-link" href="../spring-framework/spring-web-client.html">Spring WebClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spring-security.html">Spring Security</a>
+    <a class="nav-link" href="../spring-framework/spring-security.html">Spring Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spring-authorization-server.html">Spring Authorization Server</a>
+    <a class="nav-link" href="../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spring-resource-server.html">Spring Resource Server</a>
+    <a class="nav-link" href="../spring-framework/spring-resource-server.html">Spring Resource Server</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-reactive-web.html">Spring Reactive Web</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="spring-data-r2dbc.html">Spring Data R2DBC</a>
+    <a class="nav-link" href="../spring-framework/spring-reactive-web.html">Spring Reactive Web</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="debug.html">Debugging techniques</a>
+    <a class="nav-link" href="../spring-framework/spring-data-r2dbc.html">Spring Data R2DBC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../spring-framework/debug.html">Debugging techniques</a>
   </li>
 </ul>
   </li>
@@ -133,10 +133,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../server/index.html">⚙️ Server</a>
+    <a class="nav-link" href="index.html">⚙️ Server</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../server/open-liberty.html">Open Liberty</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="open-liberty.html">Open Liberty</a>
   </li>
 </ul>
   </li>
@@ -162,100 +162,66 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="spring-data-r2dbc.html">Spring Data R2DBC</a></li>
+    <li><a href="index.html">⚙️ Server</a></li>
+    <li><a href="open-liberty.html">Open Liberty</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-data-r2dbc.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/server/pages/open-liberty.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Spring Data R2DBC</h1>
+<h1 class="page">Open Liberty</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://docs.spring.io/spring-data/relational/reference/r2dbc.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/WebFlux%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="WebFlux%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Spring Data R2DBC provides repository support for the <strong>Reactive Relational Database Connectivity</strong> (R2DBC) API.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-JPA works with JDBC. JDBC is <strong>fully blocking API</strong>.
-</td>
-</tr>
-</table>
+<p><span class="image"><a class="image" href="https://openliberty.io/docs/latest" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_dependencies"><a class="anchor" href="#_maven_dependencies"></a>Maven Dependencies</h2>
+<h2 id="_segmentation_fault_in_debug_mode"><a class="anchor" href="#_segmentation_fault_in_debug_mode"></a>Segmentation Fault in Debug Mode</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-r2dbc&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In terms of databases, Spring Data R2DBC requires <strong>a driver</strong> to abstract common SQL functionality over vendor-specific flavours. Support for the databases can be checked <a href="https://docs.spring.io/spring-data/relational/reference/r2dbc/getting-started.html#requirements" target="_blank" rel="noopener">here</a> (you need to add chosen driver as Maven Dependency).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_initializing_database"><a class="anchor" href="#_initializing_database"></a>Initializing Database</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can initialize Database with <code>🟢 DatabaseConfig</code>:</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Segmentation Fault</dt>
+<dd>
+<p>An event resulting in <strong>exit code 139</strong>. It occurs when a process receives a <strong>SIGSEGV</strong> signal, which is generated when the operating system detects that the process is trying to access memory that either does not exist or that it lacks permission to access.</p>
+</dd>
+</dl>
 </div>
 <div class="listingblock">
+<div class="title">Start Open Liberty in Debug Mode</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
-public class DatabaseConfig {
-
-    @Value("classpath:/schema.sql")
-    Resource resource; <i class="conum" data-value="1"></i><b>(1)</b>
-
-    @Bean
-    ConnectionFactoryInitializer connectionFactoryInitializer(ConnectionFactory connectionFactory) {
-        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer(); <i class="conum" data-value="2"></i><b>(2)</b>
-        initializer.setConnectionFactory(connectionFactory); <i class="conum" data-value="3"></i><b>(3)</b>
-        initializer.setDatabasePopulator(new ResourceDatabasePopulator(resource)); <i class="conum" data-value="4"></i><b>(4)</b>
-        return initializer;
-    }
-
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">-Dwas.debug.mode=true <i class="conum" data-value="1"></i><b>(1)</b>
+-Dsun.reflect.noInflation=true <i class="conum" data-value="2"></i><b>(2)</b>
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777 <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Database SQL script which will be used to create schema. The <code>schema.sql</code> is located under <code>src/main/resources</code></td>
+<td>Specific to WebSphere-based servers, including Open Liberty. Enables the internal debugging mode, which modifies how the JVM and Liberty handle debugging-related optimizations.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/r2dbc/connection/init/ConnectionFactoryInitializer.html" target="_blank" rel="noopener"><code>🟢 ConnectionFactoryInitializer</code></a> is used to <strong>set up</strong> a database during <strong>initialization</strong> and <strong>clean up</strong> a database during <strong>destruction</strong>.</td>
+<td><a href="https://publib.boulder.ibm.com/httpserv/cookbook/Java.html#Java-Reflection_Inflation" target="_blank" rel="noopener"><code>sun.reflect.noInflation=true</code></a>
+enables <strong>immediate inflation</strong> on all method invocations. In general, inflated Java bytecode accessors are <strong>faster</strong> than native JNI accessors, at the cost of additional native and Java memory usage.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><a href="https://r2dbc.io/spec/1.0.0.RELEASE/api/io/r2dbc/spi/ConnectionFactory.html" target="_blank" rel="noopener"><code>⚪ ConnectionFactory</code></a> is <strong>an R2DBC factory for creating connections</strong> and <strong>entry point for a driver</strong>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/r2dbc/connection/init/ResourceDatabasePopulator.html" target="_blank" rel="noopener"><code>🟢 ResourceDatabasePopulator</code></a> populates, initializes, or cleans up a database using SQL scripts defined in external <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/Resource.html" target="_blank" rel="noopener"><code>⚪ Resource</code></a>.</td>
+<td>Enables <strong>Java Debug Wire Protocol (JDWP)</strong> for remote debugging</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Forgetting to set <code>sun.reflect.noInflation</code> JVM property in Debug Mode can cause Segmentation Fault, for example, during the invocation of
+<a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/Session.html#flush()" target="_blank" rel="noopener"><code>⚪ Session#flush()</code></a> in Hibernate. You might forget to set this JVM property when starting Open Liberty with <code>ws-server.jar</code>. However, if you use the
+<a href="https://github.com/OpenLiberty/open-liberty/blob/800aede6f9f563e4eb05c2f090b3a1e54d07e2cf/dev/com.ibm.ws.kernel.boot.ws-server/publish/bin/server#L1762C9-L1762C19" target="_blank" rel="noopener"><code>server</code></a>
+script, it is automatically included.</p>
 </div>
 </div>
 </div>
