@@ -1,0 +1,3 @@
+= ⚙️ Server
+
+include::server:partial$nav.adoc[lines=2..-1]
