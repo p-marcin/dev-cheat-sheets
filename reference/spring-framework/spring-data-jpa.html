@@ -260,7 +260,9 @@ public class Book {
     ...
 
     @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id")) <i class="conum" data-value="1"></i><b>(1)</b>
+    @JoinTable(name = "author_book", <i class="conum" data-value="1"></i><b>(1)</b>
+        joinColumns = @JoinColumn(name = "book_id"), <i class="conum" data-value="2"></i><b>(2)</b>
+        inverseJoinColumns = @JoinColumn(name = "author_id")) <i class="conum" data-value="3"></i><b>(3)</b>
     private Set&lt;Author&gt; authors;
 
     ...
@@ -272,7 +274,15 @@ public class Book {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/jointable" target="_blank" rel="noopener"><code>@JoinTable</code></a> specifies the mapping of associations. It is applied to the <strong>owning side of an association</strong>. The <code>joinColumns</code> is a <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/joincolumn" target="_blank" rel="noopener"><code>@JoinColumn</code></a> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity <strong>owning the association</strong>. The <code>inverseJoinColumns</code> is a <code>@JoinColumn</code> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity that <strong>does not own the association</strong>.</td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/jointable" target="_blank" rel="noopener"><code>@JoinTable</code></a> specifies the mapping of associations. It is applied to the <strong>owning side of an association</strong>. The <code>name</code> is a name of the join table</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>joinColumns</code> is a <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/joincolumn" target="_blank" rel="noopener"><code>@JoinColumn</code></a> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity <strong>owning the association</strong></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>inverseJoinColumns</code> is a <code>@JoinColumn</code> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity that <strong>does not own the association</strong>.</td>
 </tr>
 </table>
 </div>
