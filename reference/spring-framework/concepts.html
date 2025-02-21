@@ -291,26 +291,66 @@ Best Practice is to declare property <code>private final</code> and initialize i
 <h2 id="_spring_bean_lifecycle"><a class="anchor" href="#_spring_bean_lifecycle"></a>Spring Bean Lifecycle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Start:
-1. Instantiation of Bean
-2. Population of properties/dependencies
-3. Call <code>setBeanName</code> of <code>org.springframework.beans.factory.BeanNameAware</code>
-4. Call <code>setBeanFactory</code> of <code>org.springframework.beans.factory.BeanFactoryAware</code>
-5. Call <code>setApplicationContext</code> of <code>org.springframework.context.ApplicationContextAware</code>
-6. Pre Initialization (call <code>postProcessBeforeInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)
-7. Call <code>@PostConstruct</code> annotated method
-8. Call <code>afterPropertiesSet</code> of <code>org.springframework.beans.factory.InitializingBean</code>
-9. Call custom <code>init</code> method (can be set with <code>initMethod</code> of <code>org.springframework.context.annotation.Bean</code>)
-10. Post Initialization (call <code>postProcessAfterInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)
-11. Bean ready to use</p>
+<p>Start:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Instantiation of Bean</p>
+</li>
+<li>
+<p>Population of properties/dependencies</p>
+</li>
+<li>
+<p>Call <code>setBeanName</code> of <code>org.springframework.beans.factory.BeanNameAware</code></p>
+</li>
+<li>
+<p>Call <code>setBeanFactory</code> of <code>org.springframework.beans.factory.BeanFactoryAware</code></p>
+</li>
+<li>
+<p>Call <code>setApplicationContext</code> of <code>org.springframework.context.ApplicationContextAware</code></p>
+</li>
+<li>
+<p>Pre Initialization (call <code>postProcessBeforeInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)</p>
+</li>
+<li>
+<p>Call <code>@PostConstruct</code> annotated method</p>
+</li>
+<li>
+<p>Call <code>afterPropertiesSet</code> of <code>org.springframework.beans.factory.InitializingBean</code></p>
+</li>
+<li>
+<p>Call custom <code>init</code> method (can be set with <code>initMethod</code> of <code>org.springframework.context.annotation.Bean</code>)</p>
+</li>
+<li>
+<p>Post Initialization (call <code>postProcessAfterInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)</p>
+</li>
+<li>
+<p>Bean ready to use</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Termination:
-1. Container shutdown
-2. Call <code>@PreDestroy</code> annotated method
-3. Call <code>destroy</code> of <code>org.springframework.beans.factory.DisposableBean</code>
-4. Call custom <code>destroy</code> method (can be set with <code>destroyMethod</code> of <code>org.springframework.context.annotation.Bean</code>)
-5. Bean terminated</p>
+<p>Termination:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Container shutdown</p>
+</li>
+<li>
+<p>Call <code>@PreDestroy</code> annotated method</p>
+</li>
+<li>
+<p>Call <code>destroy</code> of <code>org.springframework.beans.factory.DisposableBean</code></p>
+</li>
+<li>
+<p>Call custom <code>destroy</code> method (can be set with <code>destroyMethod</code> of <code>org.springframework.context.annotation.Bean</code>)</p>
+</li>
+<li>
+<p>Bean terminated</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
