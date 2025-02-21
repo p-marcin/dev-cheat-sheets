@@ -513,33 +513,6 @@ There are over <strong>14</strong> <code>Aware</code> interfaces which are used 
 * <strong>disable caching options</strong> by default, so changes can be seen immediately
 * you can configure <strong>global DEV Tools settings</strong> by adding a file named <code>.spring-boot-devtools.properties</code> to your <code>${HOME}</code> folder. Any properties added to this file will apply to <strong>all</strong> Spring Boot applications on your machine that use DEV Tools</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_spring_mvc"><a class="anchor" href="#_spring_mvc"></a>Spring MVC</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Spring MVC is <strong>blocking</strong> (because uses Java Servlet API) and <strong>non-reactive</strong>.</p>
-</div>
-<div class="paragraph">
-<p><strong>MVC</strong> stands for <strong>Model View Controller</strong> and it is a common design pattern for <strong>GUI</strong> and <strong>Web Applications</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Controller <strong>handles requests</strong>. It is responsible for <strong>invoking business logic</strong> and <strong>populating Model</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Model is a <strong>POJO</strong> <strong>(Plain Old Java Object)</strong> class which means that it <strong>is not tied to any Java framework</strong>.</p>
-</div>
-<div class="paragraph">
-<p>View <strong>handles rendering of the response</strong> which contains Model <strong>to HTML page</strong>.</p>
-</div>
-<div class="paragraph">
-<p>In Spring MVC there is <strong>Dispatcher Servlet</strong> which:
-* receives request from Client
-* passes the request to Controller and receives Model from Controller
-* passes the Model to View and receives rendered HTML page
-* passes rendered HTML page to Client</p>
-</div>
 <div class="sect2">
 <h3 id="_spring_resttemplate"><a class="anchor" href="#_spring_resttemplate"></a>Spring RestTemplate</h3>
 <div class="paragraph">
