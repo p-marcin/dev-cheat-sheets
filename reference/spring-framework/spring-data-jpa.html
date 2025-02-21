@@ -290,11 +290,12 @@ public class Book {
 <div class="sect1">
 <h2 id="_repository"><a class="anchor" href="#_repository"></a>Repository</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>When we run the application, Spring Data JPA is going to <strong>provide</strong> us a Repository <strong>implementation</strong>. It means that we only have to define a Repository interface.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface AuthorRepository extends CrudRepository&lt;Author, Long&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
-
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface AuthorRepository extends CrudRepository&lt;Author, Long&gt; {} <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
