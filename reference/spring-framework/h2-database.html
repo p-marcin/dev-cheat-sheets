@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spring Data JPA :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-data-jpa.html">
+    <title>H2 Database :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/h2-database.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -107,10 +107,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-webmvc.html">Spring WebMVC</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-data-jpa.html">Spring Data JPA</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="h2-database.html">H2 Database</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -175,21 +175,29 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="spring-data-jpa.html">Spring Data JPA</a></li>
+    <li><a href="h2-database.html">H2 Database</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-data-jpa.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/h2-database.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Spring Data JPA</h1>
+<h1 class="page">H2 Database</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://docs.spring.io/spring-data/jpa/reference/jpa.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://www.h2database.com/html/quickstart.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>H2 Database is <strong>in-memory</strong> database, so it&#8217;s only running in the context of the Spring application.</p>
 </div>
 </div>
 </div>
@@ -199,126 +207,31 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+    &lt;artifactId&gt;h2&lt;/artifactId&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_database_entity"><a class="anchor" href="#_database_entity"></a>Database Entity</h2>
+<h2 id="_h2s_web_console"><a class="anchor" href="#_h2s_web_console"></a>H2&#8217;s Web Console</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In <code>domain</code> package you can define a Database Entity:</p>
+<p>You can enable H2&#8217;s Web Console in <code>src/main/resources/application.properties</code> by adding <code>spring.h2.console.enabled=true</code> property.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity <i class="conum" data-value="1"></i><b>(1)</b>
-public class Author {
-
-    @Id <i class="conum" data-value="2"></i><b>(2)</b>
-    @GeneratedValue(strategy = GenerationType.AUTO) <i class="conum" data-value="3"></i><b>(3)</b>
-    private Long id;
-
-    private String firstName;
-
-    private String lastName;
-
-    @ManyToMany(mappedBy = "authors") <i class="conum" data-value="4"></i><b>(4)</b>
-    private Set&lt;Book&gt; books; <i class="conum" data-value="5"></i><b>(5)</b>
-
-    ... // Getters and Setters, toString(), equals(Object) and hashCode()
-
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/entity" target="_blank" rel="noopener"><code>@Entity</code></a> specifies that the class is a Database Entity</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/id" target="_blank" rel="noopener"><code>@Id</code></a> specifies the primary key of an Entity</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generatedvalue" target="_blank" rel="noopener"><code>@GeneratedValue</code></a> specifies the generation strategy for the value of primary key. <code>AUTO</code> indicates that the persistence provider should pick an appropriate strategy for the particular database. See <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generationtype" target="_blank" rel="noopener"><code>🟣 GenerationType</code></a> for other generation strategies.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/manytomany" target="_blank" rel="noopener"><code>@ManyToMany</code></a> specifies a many-valued association with many-to-many multiplicity. The <code>mappedBy</code> is a field that owns the relationship.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>⚪ Set&lt;E&gt;</code> is preferred here as each element will be unique</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
-public class Book {
-
-    ...
-
-    @ManyToMany
-    @JoinTable(name = "author_book", <i class="conum" data-value="1"></i><b>(1)</b>
-        joinColumns = @JoinColumn(name = "book_id"), <i class="conum" data-value="2"></i><b>(2)</b>
-        inverseJoinColumns = @JoinColumn(name = "author_id")) <i class="conum" data-value="3"></i><b>(3)</b>
-    private Set&lt;Author&gt; authors;
-
-    ...
-
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/jointable" target="_blank" rel="noopener"><code>@JoinTable</code></a> specifies the mapping of associations. It is applied to the <strong>owning side of an association</strong>. The <code>name</code> is a name of the join table</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>joinColumns</code> is a <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/joincolumn" target="_blank" rel="noopener"><code>@JoinColumn</code></a> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity <strong>owning the association</strong></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>inverseJoinColumns</code> is a <code>@JoinColumn</code> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity that <strong>does not own the association</strong>.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_repository"><a class="anchor" href="#_repository"></a>Repository</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>When we run the application, Spring Data JPA is going to <strong>provide</strong> us a Repository <strong>implementation</strong>. It means that we only have to define a Repository interface.</p>
+<p>The url is <code>http://localhost:8080/h2-console</code> and connection details can be found in Spring App logs (look for <code>H2ConsoleAutoConfiguration</code> line).</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface AuthorRepository extends CrudRepository&lt;Author, Long&gt; {} <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
+<div class="admonitionblock warning">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html" target="_blank" rel="noopener"><code>⚪ CrudRepository&lt;I,ID&gt;</code></a> is for generic CRUD operations on a Repository for a specific type
-<div class="ulist">
-<ul>
-<li>
-<p><code>T</code> is the domain type the Repository manages.</p>
-</li>
-<li>
-<p><code>ID</code> is the type of the id of the Entity the Repository manages</p>
-</li>
-</ul>
-</div></td>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The H2 console is only intended for use <strong>during development</strong>, so you should take care to ensure that <code>spring.h2.console.enabled</code> is not set to <code>true</code> in production.
+</td>
 </tr>
 </table>
 </div>
