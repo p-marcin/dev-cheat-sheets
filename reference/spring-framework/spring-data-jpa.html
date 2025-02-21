@@ -219,6 +219,8 @@ public class Author {
 
     private String lastName;
 
+    private Set&lt;Book&gt; books; <i class="conum" data-value="4"></i><b>(4)</b>
+
     // Getters and Setters
     ...
 
@@ -238,6 +240,10 @@ public class Author {
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generatedvalue" target="_blank" rel="noopener"><code>@GeneratedValue</code></a> specifies the generation strategy for the value of primary key. <code>AUTO</code> indicates that the persistence provider should pick an appropriate strategy for the particular database. See <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generationtype" target="_blank" rel="noopener"><code>🟣 GenerationType</code></a> for other generation strategies.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>⚪ Set&lt;E&gt;</code> is preferred here as each element will be unique</td>
 </tr>
 </table>
 </div>
