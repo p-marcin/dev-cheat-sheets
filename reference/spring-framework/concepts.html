@@ -235,6 +235,18 @@ One of the best feature of Spring Boot is <strong>auto-configuration</strong> of
 </dd>
 </dl>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A key theme is <strong>avoiding tight coupling</strong> in your code. At the same time <strong>be pragmatic</strong> when following SOLID: every request path <strong>does not need its own Controller class</strong>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -252,6 +264,18 @@ One of the best feature of Spring Boot is <strong>auto-configuration</strong> of
 </div>
 <div class="paragraph">
 <p>Dependency Injection can be done with <strong>concrete Classes</strong> <strong>(should be avoided)</strong> or with <strong>Interfaces</strong> <strong>(preferred)</strong>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Best Practice is to declare property <code>private final</code> and initialize it in the constructor.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -287,6 +311,18 @@ One of the best feature of Spring Boot is <strong>auto-configuration</strong> of
 3. Call <code>destroy</code> of <code>org.springframework.beans.factory.DisposableBean</code>
 4. Call custom <code>destroy</code> method (can be set with <code>destroyMethod</code> of <code>org.springframework.context.annotation.Bean</code>)
 5. Bean terminated</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There are over <strong>14</strong> <code>Aware</code> interfaces which are used to <strong>access the Spring Framework infrastructure</strong>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
