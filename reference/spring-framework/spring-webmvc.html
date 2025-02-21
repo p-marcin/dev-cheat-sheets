@@ -210,26 +210,56 @@
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spring MVC is <strong>blocking</strong> (because uses Java Servlet API) and <strong>non-reactive</strong>.</p>
+<p>Spring MVC is <strong>blocking</strong> (because uses <strong>Java Servlet API</strong>) and <strong>non-reactive</strong>.</p>
 </div>
 <div class="paragraph">
-<p><strong>MVC</strong> stands for <strong>Model View Controller</strong> and it is a common design pattern for <strong>GUI</strong> and <strong>Web Applications</strong>.</p>
+<p><strong>MVC</strong> stands for <strong>Model View Controller</strong> and it is a common design pattern for <strong>GUI</strong> and <strong>Web Applications</strong>:</p>
 </div>
-<div class="paragraph">
-<p>Controller <strong>handles requests</strong>. It is responsible for <strong>invoking business logic</strong> and <strong>populating Model</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Model is a <strong>POJO</strong> <strong>(Plain Old Java Object)</strong> class which means that it <strong>is not tied to any Java framework</strong></p>
+</li>
+<li>
+<p>View <strong>handles rendering of the response</strong> which contains Model <strong>to HTML page</strong></p>
+</li>
+<li>
+<p>Controller <strong>handles requests</strong>. It is responsible for <strong>invoking business logic</strong> and <strong>populating Model</strong></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Model is a <strong>POJO</strong> <strong>(Plain Old Java Object)</strong> class which means that it <strong>is not tied to any Java framework</strong>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Dispatcher Servlet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>receives request from Client</p>
+</li>
+<li>
+<p>passes the request to Controller and receives Model from Controller</p>
+</li>
+<li>
+<p>passes the Model to View and receives rendered HTML page</p>
+</li>
+<li>
+<p>passes rendered HTML page to Client</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>View <strong>handles rendering of the response</strong> which contains Model <strong>to HTML page</strong>.</p>
+</dd>
+</dl>
 </div>
-<div class="paragraph">
-<p>In Spring MVC there is <strong>Dispatcher Servlet</strong> which:
-* receives request from Client
-* passes the request to Controller and receives Model from Controller
-* passes the Model to View and receives rendered HTML page
-* passes rendered HTML page to Client</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spring_boot_mvc_architecture_with_h2_database_and_hibernate"><a class="anchor" href="#_spring_boot_mvc_architecture_with_h2_database_and_hibernate"></a>Spring Boot MVC Architecture with H2 Database and Hibernate</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/spring-boot-mvc-architecture-with-h2-database-and-hibernate.png" alt="spring boot mvc architecture with h2 database and hibernate">
+</div>
 </div>
 </div>
 </div>
