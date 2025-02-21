@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>⚙️ Server :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/server/index.html">
+    <title>Spring Boot :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-boot.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -96,43 +96,43 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spring-framework/index.html">☘️ Spring Framework</a>
+    <a class="nav-link" href="index.html">☘️ Spring Framework</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/concepts.html">Concepts</a>
+    <a class="nav-link" href="concepts.html">Concepts</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="spring-boot.html">Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-boot.html">Spring Boot</a>
+    <a class="nav-link" href="spring-webmvc.html">Spring WebMVC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-webmvc.html">Spring WebMVC</a>
+    <a class="nav-link" href="spring-data-jpa.html">Spring Data JPA</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-data-jpa.html">Spring Data JPA</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-web-client.html">Spring WebClient</a>
+    <a class="nav-link" href="spring-web-client.html">Spring WebClient</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../spring-framework/spring-security.html">Spring Security</a>
+    <a class="nav-link" href="spring-security.html">Spring Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spring-framework/spring-authorization-server.html">Spring Authorization Server</a>
+    <a class="nav-link" href="spring-authorization-server.html">Spring Authorization Server</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../spring-framework/spring-resource-server.html">Spring Resource Server</a>
+    <a class="nav-link" href="spring-resource-server.html">Spring Resource Server</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-webflux.html">Spring WebFlux</a>
+    <a class="nav-link" href="spring-webflux.html">Spring WebFlux</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/spring-data-r2dbc.html">Spring Data R2DBC</a>
+    <a class="nav-link" href="spring-data-r2dbc.html">Spring Data R2DBC</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spring-framework/debug.html">Debugging techniques</a>
+    <a class="nav-link" href="debug.html">Debugging techniques</a>
   </li>
 </ul>
   </li>
@@ -140,12 +140,12 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">⚙️ Server</a>
+    <a class="nav-link" href="../server/index.html">⚙️ Server</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="open-liberty.html">Open Liberty</a>
+    <a class="nav-link" href="../server/open-liberty.html">Open Liberty</a>
   </li>
 </ul>
   </li>
@@ -171,23 +171,81 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="index.html">⚙️ Server</a></li>
+    <li><a href="index.html">☘️ Spring Framework</a></li>
+    <li><a href="spring-boot.html">Spring Boot</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/server/pages/index.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-boot.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">⚙️ Server</h1>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="open-liberty.html" class="xref page">Open Liberty</a></p>
-</li>
-</ul>
+<h1 class="page">Spring Boot</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-boot" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_maven_dependency"><a class="anchor" href="#_maven_dependency"></a>Maven Dependency</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stereotypes"><a class="anchor" href="#_stereotypes"></a>Stereotypes</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html" target="_blank" rel="noopener"><code>@Component</code></a></dt>
+<dd>
+<p>Indicates that the annotated class is a component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commandlinerunner"><a class="anchor" href="#_commandlinerunner"></a>CommandLineRunner</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/CommandLineRunner.html" target="_blank" rel="noopener"><code>⚪ CommandLineRunner</code></a> is used to indicate that a bean should run when it is contained within a SpringApplication.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example: use <code>⚪ CommandLineRunner</code> to populate data for H2 Database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component
+public class BootstrapData implements CommandLineRunner {
+
+    @Transactional <i class="conum" data-value="1"></i><b>(1)</b>
+    @Override
+    public void run(String... args) throws Exception {
+        // Populate data for H2 Database using Repositories
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html" target="_blank" rel="noopener"><code>@Transactional</code></a> exposes a transaction to all data access operations within the current execution thread.</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </article>
   </div>
