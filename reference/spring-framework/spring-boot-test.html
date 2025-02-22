@@ -221,7 +221,29 @@
 <dl>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootTest.html" target="_blank" rel="noopener"><code>@SpringBootTest</code></a></dt>
 <dd>
-<p>Annotation that can be specified on a test class that runs Spring Boot based tests.</p>
+<p>Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Uses <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootContextLoader.html" target="_blank" rel="noopener"><code>🟢 SpringBootContextLoader</code></a> as the default <code>⚪ ContextLoader</code> when no specific <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/ContextConfiguration.html" target="_blank" rel="noopener"><code>@ContextConfiguration(loader=&#8230;&#8203;)</code></a> is defined.</p>
+</li>
+<li>
+<p>Automatically searches for a <code>@SpringBootConfiguration</code> when nested <code>@Configuration</code> is not used, and no explicit classes are specified.</p>
+</li>
+<li>
+<p>Allows custom Environment properties to be defined using the <code>properties</code> attribute.</p>
+</li>
+<li>
+<p>Allows application arguments to be defined using the <code>args</code> attribute.</p>
+</li>
+<li>
+<p>Provides support for different <code>webEnvironment</code> modes, including the ability to start a fully running web server listening on a defined or random port</p>
+</li>
+<li>
+<p>Registers a <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/web/client/TestRestTemplate.html" target="_blank" rel="noopener"><code>🟢 TestRestTemplate</code></a> and/or <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html" target="_blank" rel="noopener"><code>⚪ WebTestClient</code></a> bean for use in web tests that are using a fully running web server</p>
+</li>
+</ul>
+</div>
 </dd>
 </dl>
 </div>
