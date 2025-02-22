@@ -210,23 +210,23 @@
 <dl>
 <dt class="hdlist1">Single Responsibility</dt>
 <dd>
-<p>Every class should have a single responsibility. Classes should be small</p>
+<p>Every class should have a <strong>single responsibility</strong>. Classes should be small</p>
 </dd>
 <dt class="hdlist1">Open Closed</dt>
 <dd>
-<p>Classes should be open for extension, but closed for modification</p>
+<p>Classes should be <strong>open for extension</strong>, but <strong>closed for modification</strong>. You should be able to extend the behavior of a class without modifying it</p>
 </dd>
 <dt class="hdlist1">Liskov Substitution</dt>
 <dd>
-<p>Objects in a program would be replaceable with instances of their subtypes without altering the correctness of the program. A square <strong>is</strong> a rectangle, a rectangle <strong>is not</strong> a square.</p>
+<p>Objects in a program would be <strong>replaceable</strong> with instances of <strong>their subtypes</strong> without altering the correctness of the program. A square <strong>is</strong> a rectangle, a rectangle <strong>is not</strong> a square</p>
 </dd>
 <dt class="hdlist1">Interface Segregation</dt>
 <dd>
-<p>Make fine-grained interfaces that are client specific. Notice relationship to the Single Responsibility principle</p>
+<p>Make <strong>fine-grained</strong> interfaces that are client specific. Many client specific interfaces are better than one "general purpose" interface. Notice relationship to the Single Responsibility principle</p>
 </dd>
 <dt class="hdlist1">Dependency Inversion</dt>
 <dd>
-<p>Abstractions should not depend upon details and details shold depend upon abstractions. Important that higher level and lower level objects depend on the same abstract interaction</p>
+<p>Abstractions (like interfaces or abstract classes) should <strong>not rely on the details of their implementations</strong> and that concrete implementations should <strong>depend on these abstractions</strong>. This ensures that both high-level and low-level modules interact through <strong>the same abstract contract</strong>, making the system <strong>more modular</strong> and <strong>flexible</strong>.</p>
 </dd>
 </dl>
 </div>
