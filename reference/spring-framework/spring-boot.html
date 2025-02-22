@@ -210,6 +210,61 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_spring_boot_application"><a class="anchor" href="#_spring_boot_application"></a>Spring Boot Application</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/SpringBootApplication.html" target="_blank" rel="noopener"><code>@SpringBootApplication</code></a></dt>
+<dd>
+<p>Indicates a configuration class that declares one or more
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html" target="_blank" rel="noopener"><code>@Bean</code></a>
+methods and also triggers <strong>auto-configuration</strong> and <strong>component scanning</strong>. This is a convenience annotation that is equivalent to declaring:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/SpringBootConfiguration.html" target="_blank" rel="noopener"><code>@SpringBootConfiguration</code></a>,</p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html" target="_blank" rel="noopener"><code>@EnableAutoConfiguration</code></a></p>
+</li>
+<li>
+<p>and <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.html" target="_blank" rel="noopener"><code>@ComponentScan</code></a>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContext.html" target="_blank" rel="noopener"><code>⚪ ApplicationContext</code></a></dt>
+<dd>
+<p>Central interface to provide <strong>configuration</strong> for an application. This is <strong>read-only</strong> while the application is running, but may be <strong>reloaded</strong> if the implementation supports this. It provides:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bean factory methods for <strong>accessing application components</strong>. Inherited from <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/ListableBeanFactory.html" target="_blank" rel="noopener"><code>⚪ ListableBeanFactory</code></a></p>
+</li>
+<li>
+<p>The ability to <strong>load file resources</strong> in a generic fashion. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/ResourceLoader.html" target="_blank" rel="noopener"><code>⚪ ResourceLoader</code></a></p>
+</li>
+<li>
+<p>The ability to <strong>publish events to registered listeners</strong>. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationEventPublisher.html" target="_blank" rel="noopener"><code>⚪ ApplicationEventPublisher</code></a>.</p>
+</li>
+<li>
+<p>The ability to <strong>resolve messages</strong>, supporting <strong>internationalization</strong>. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/MessageSource.html" target="_blank" rel="noopener"><code>⚪ MessageSource</code></a>.</p>
+</li>
+<li>
+<p><strong>Inheritance</strong> from a <strong>parent context</strong>. Definitions in a descendant context will always take priority. This means, for example, that a single parent context can be used by an entire web application, while each servlet has its own child context that is <strong>independent</strong> of that of any other servlet</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Autowired.html" target="_blank" rel="noopener"><code>@Autowired</code></a></dt>
+<dd>
+<p>Marks a constructor, setter method, field, or method parameter as to be autowired by Spring container - typically the <code>⚪ ApplicationContext</code>. See <a href="concepts.html#_dependency_injection" class="xref page">Dependency Injection</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_stereotypes"><a class="anchor" href="#_stereotypes"></a>Stereotypes</h2>
 <div class="sectionbody">
 <div class="dlist">

@@ -210,7 +210,7 @@
 <dl>
 <dt class="hdlist1">Single Responsibility</dt>
 <dd>
-<p>Every class should have a <strong>single responsibility</strong>. Classes should be small</p>
+<p>Every class should have a <strong>single responsibility</strong>. Classes should be small - avoid "god" classes</p>
 </dd>
 <dt class="hdlist1">Open Closed</dt>
 <dd>
@@ -222,7 +222,19 @@
 </dd>
 <dt class="hdlist1">Interface Segregation</dt>
 <dd>
-<p>Make <strong>fine-grained</strong> interfaces that are client specific. Many client specific interfaces are better than one "general purpose" interface. Notice relationship to the Single Responsibility principle</p>
+<p>Make <strong>fine-grained</strong> interfaces that are client specific. Many client specific interfaces are better than one "general purpose" interface - avoid "god" interfaces</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notice relationship to the Single Responsibility principle
+</td>
+</tr>
+</table>
+</div>
 </dd>
 <dt class="hdlist1">Dependency Inversion</dt>
 <dd>
