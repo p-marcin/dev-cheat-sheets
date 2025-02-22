@@ -261,9 +261,9 @@ public BookController(BookService bookService) {
 <p><strong>By setters (using <code>@Autowired</code> on a setter)</strong> - for <strong>optional</strong> dependencies</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Autowired
-private BookService bookService;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private BookService bookService;
 
+@Autowired
 public void setBookService(BookService bookService) {
     this.bookService = bookService;
 }</code></pre>
@@ -271,7 +271,7 @@ public void setBookService(BookService bookService) {
 </div>
 </li>
 <li>
-<p><strong>By class fields (using <code>@Autowired</code> on a field)</strong> - least preferred except test class where you can use it on <code>package-private</code> fields. Using it on a <code>private</code> fields is evil as Spring can use reflection to set them. It "works", but is slow and makes testing difficult</p>
+<p><strong>By class fields (using <code>@Autowired</code> on a field)</strong> - <strong>least preferred</strong> except test class where you can use it on <code>package-private</code> fields. Using it on a <code>private</code> fields is evil as Spring can use reflection to set them. It "works", but is slow and makes testing difficult</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Autowired
