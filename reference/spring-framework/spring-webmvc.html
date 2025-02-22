@@ -266,7 +266,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Controller
 public class BookController {
-    // Methods calling Service
+    // Logic calling Service
 }</code></pre>
 </div>
 </div>
@@ -286,6 +286,43 @@ public class BookServiceImpl implements BookService {
     // Query methods
 }</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_controller"><a class="anchor" href="#_controller"></a>Controller</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Controller
+public class BookController {
+
+    ...
+
+    @RequestMapping("/books") <i class="conum" data-value="1"></i><b>(1)</b>
+    public String getBooks(Model model) {
+        model.addAttribute("books", bookService.findAll()); <i class="conum" data-value="2"></i><b>(2)</b>
+        return "books"; <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html" target="_blank" rel="noopener"><code>@RequestMapping</code></a> maps web requests onto methods in request-handling classes with flexible method signatures. As a value you can provide the path mapping URIs</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/ui/Model.html#addAttribute(java.lang.String,java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Model#addAttribute(String attributeName, Object attributeValue)</code></a> adds the supplied attribute under the supplied name in the model</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Returns view name</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
