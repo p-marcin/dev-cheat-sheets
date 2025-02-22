@@ -241,6 +241,11 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Title&lt;/th&gt;
+        &lt;th&gt;Publisher&lt;/th&gt;
+    &lt;/tr&gt;
     &lt;tr th:each="book : ${books}"&gt;
         &lt;td th:text="${book.id}"&gt;&lt;/td&gt;
         &lt;td th:text="${book.title}"&gt;&lt;/td&gt;
