@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spring WebMVC :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-webmvc.html">
+    <title>Project Lombok :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/project-lombok.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -104,7 +104,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-boot.html">Spring Boot</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-webmvc.html">Spring WebMVC</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -140,7 +140,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-boot-test.html">Spring Boot Test</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="project-lombok.html">Project Lombok</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -191,22 +191,35 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="spring-webmvc.html">Spring WebMVC</a></li>
+    <li><a href="project-lombok.html">Project Lombok</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-webmvc.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/project-lombok.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Spring WebMVC</h1>
+<h1 class="page">Project Lombok</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://docs.spring.io/spring-framework/reference/web/webmvc.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Spring%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span>
-<span class="image"><a class="image" href="https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.spring-mvc" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Spring%20Boot%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://projectlombok.org/features/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Spring%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Project Lombok <strong>saves your time</strong> and gives you <strong>cleaner code</strong>. It provides <strong>annotations</strong> which help to eliminate writing :star: <strong>ceremonial code</strong> :star: e.g. getters and setters.</p>
+</div>
+<div class="paragraph">
+<p>Why "Lombok"? "Java" is also an island in Indonesia. "Lombok" is the <strong>second island</strong> east of the island "Java". "Lombok" is also Indonesian for <strong>chilli</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Lombok <strong>hooks in</strong> via the <strong>annotation processor API</strong>. The <strong>raw source code</strong> is passed to Lombok for <strong>code generation</strong> before Java compilation continues. Code is <strong>generated</strong> and <strong>compiled</strong>, there is <strong>no runtime performance penalty</strong>.</p>
 </div>
 </div>
 </div>
@@ -215,137 +228,135 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-&lt;/dependency&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;excludes&gt;
+          &lt;exclude&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+          &lt;/exclude&gt;
+        &lt;/excludes&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Spring MVC is <strong>blocking</strong> (because uses <strong>Java Servlet API</strong>) and <strong>non-reactive</strong>.</p>
-</div>
-<div class="paragraph">
-<p><strong>MVC</strong> stands for <strong>Model View Controller</strong> and it is a common design pattern for <strong>GUI</strong> and <strong>Web Applications</strong>:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Model is a <strong>POJO</strong> <strong>(Plain Old Java Object)</strong> class which means that it <strong>is not tied to any Java framework</strong></p>
+<p><a href="https://plugins.jetbrains.com/plugin/6317-lombok" target="_blank" rel="noopener">Lombok IDE plugin</a></p>
 </li>
 <li>
-<p>View <strong>handles rendering of the response</strong> which contains Model <strong>to HTML page</strong></p>
-</li>
-<li>
-<p>Controller <strong>handles requests</strong>. It is responsible for <strong>invoking business logic</strong> and <strong>populating Model</strong></p>
+<p>Enable annotation processing (in IntelliJ IDEA go to <span class="menuseq"><b class="menu">Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Build, Execution, Deployment</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Compiler</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Annotation Processors</b></span>)</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spring_boot_mvc_architecture"><a class="anchor" href="#_spring_boot_mvc_architecture"></a>Spring Boot MVC Architecture</h2>
+<h2 id="_delombok"><a class="anchor" href="#_delombok"></a>Delombok</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/spring-boot-mvc-architecture.png" alt="spring boot mvc architecture" width="800">
-</div>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Dispatcher Servlet</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>receives request from Client</p>
-</li>
-<li>
-<p>passes the request to Controller and receives Model from Controller</p>
-</li>
-<li>
-<p>passes the Model to View and receives rendered HTML page</p>
-</li>
-<li>
-<p>passes rendered HTML page to Client</p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
+<div class="paragraph">
+<p>Delombok converts <strong>Lombok annotations</strong> to <strong>code</strong> in <strong>source class</strong>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>application.properties</code> file should be placed under <code>src/main/resources</code>.</p>
-</div>
-<div class="paragraph">
-<p>Views should be placed under <code>src/main/resources/templates</code>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Controller should be a class and annotated with <code>@Controller</code> annotation</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Controller
-public class BookController {
-    // Logic calling Service
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Service should be a class implementing an interface and annotated with <code>@Service</code> annotation</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Service
-public class BookServiceImpl implements BookService {
-    // Your Business Logic calling Repository
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Repository should be an interface which does not have to be annotated with <code>@Repository</code> annotation</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface BookRepository extends JpaRepository&lt;Book, Long&gt; {
-    // Query methods
-}</code></pre>
-</div>
+<p>In IntelliJ IDEA delombok is available in top menu under: <span class="menuseq"><b class="menu">Refactor</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Delombok</b></span>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_controller"><a class="anchor" href="#_controller"></a>Controller</h2>
+<h2 id="_annotations"><a class="anchor" href="#_annotations"></a>Annotations</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Controller
-public class BookController {
-
-    // ...
-
-    @RequestMapping("/books") <i class="conum" data-value="1"></i><b>(1)</b>
-    public String getBooks(Model model) {
-        model.addAttribute("books", bookService.findAll()); <i class="conum" data-value="2"></i><b>(2)</b>
-        return "books"; <i class="conum" data-value="3"></i><b>(3)</b>
-    }
-
-}</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p><code>lombok.Data</code> - equivalent to <code>@Getter</code>, <code>@Setter</code>, <code>@RequiredArgsConstructor</code>, <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
+</li>
+<li>
+<p><code>lombok.Value</code> - immutable variant of <code>@Data</code>. Equivalent to <code>@Getter</code> <code>@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)</code> <code>@AllArgsConstructor</code> <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
+</li>
+<li>
+<p><code>lombok.Builder</code> - generates Builder design pattern for object creation</p>
+</li>
+<li>
+<p><code>lombok.experimental.FieldDefaults</code> - adds modifiers to each field in the type with this annotation</p>
+</li>
+<li>
+<p><code>lombok.Getter</code> - generates getter</p>
+</li>
+<li>
+<p><code>lombok.Setter</code> - generates setter</p>
+</li>
+<li>
+<p><code>lombok.NoArgsConstructor</code> - generates a constructor without arguments</p>
+</li>
+<li>
+<p><code>lombok.RequiredArgsConstructor</code> - generates a constructor with required arguments (the ones marked with <code>final</code> or <code>@NonNull</code>)</p>
+</li>
+<li>
+<p><code>lombok.AllArgsConstructor</code> - generates a constructor will all arguments</p>
+</li>
+<li>
+<p><code>lombok.ToString</code> - generates an implementation for the <code>java.lang.Object#toString</code> method inherited by all objects, consisting of printing the values of relevant fields</p>
+</li>
+<li>
+<p><code>lombok.EqualsAndHashCode</code> - generates implementations for the <code>java.lang.Object#equals</code> and <code>java.lang.Object#hashCode</code> methods inherited by all objects, based on relevant fields.</p>
+</li>
+<li>
+<p><code>lombok.NonNull</code> - generates a null-check, which can throw <code>java.lang.NullPointerException</code></p>
+</li>
+<li>
+<p><code>lombok.SneakyThrows</code> - throws checked exceptions without actually declaring this in your method&#8217;s <code>throws</code> clause. It simply fakes out the compiler: Useful for:</p>
+</li>
+<li>
+<p>An "impossible" exception - the one which will never occur</p>
+</li>
+<li>
+<p>A needlessly strict interface</p>
+</li>
+<li>
+<p><code>lombok.Synchronized</code> - a safer variant of <code>synchronized</code> method modifier. It will synchronize on a private internal Object named <code>$lock</code> instead of <code>this</code>. Locking on <code>this</code> or your own class object can have unfortunate side-effects, as other code not under your control can lock on these objects as well, which can cause race conditions and other nasty threading-related bugs.</p>
+</li>
+<li>
+<p><code>lombok.Locked</code> - like <code>@Synchronized</code>, but using <code>java.util.concurrent.locks.ReentrantLock</code>. It is recommended for Virtual Threads (introduced in Java 20)</p>
+</li>
+<li>
+<p><code>lombok.extern.java.Log</code> - generates a <code>log</code> field of type <code>java.util.logging.Logger</code> which is awful</p>
+</li>
+<li>
+<p><code>lombok.extern.slf4j.Slf4j</code> - generates a <code>log</code> field of type [org.slf4j.Logger](<a href="https://www.slf4j.org/manual.html" class="bare">https://www.slf4j.org/manual.html</a>)</p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>Local variables:</p>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html" target="_blank" rel="noopener"><code>@RequestMapping</code></a> maps web requests onto methods in request-handling classes with flexible method signatures. As a value you can provide the path mapping URIs</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/ui/Model.html#addAttribute(java.lang.String,java.lang.Object)" target="_blank" rel="noopener"><code>⚪ Model#addAttribute(String attributeName, Object attributeValue)</code></a> adds the supplied attribute under the supplied name in the model</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Returns view name where we can <a href="thymeleaf.html#_iteration" class="xref page">iterate on <code>books</code> model attribute</a></td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><code>lombok.val</code> - declares <strong>final</strong> local variable</p>
+</li>
+<li>
+<p><code>lombok.var</code> - declares <strong>mutable</strong> (not final) local variable</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
