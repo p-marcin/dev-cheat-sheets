@@ -308,7 +308,7 @@ package is organized in <strong>4</strong> categories:</p>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Supplier&lt;T&gt; {
     T get();
 }
-...
+// ...
 Supplier&lt;String&gt; supplier = () -&gt; "Hello!";</code></pre>
 </div>
 </div>
@@ -320,7 +320,7 @@ Supplier&lt;String&gt; supplier = () -&gt; "Hello!";</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Consumer&lt;T&gt; {
     void accept(T t);
 }
-...
+// ...
 Consumer&lt;String&gt; consumer = s -&gt; System.out.println(s);</code></pre>
 </div>
 </div>
@@ -332,7 +332,7 @@ Consumer&lt;String&gt; consumer = s -&gt; System.out.println(s);</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Predicate&lt;T&gt; {
     boolean test(T t);
 }
-...
+// ...
 Predicate&lt;String&gt; predicate = s -&gt; s.isEmpty();</code></pre>
 </div>
 </div>
@@ -344,7 +344,7 @@ Predicate&lt;String&gt; predicate = s -&gt; s.isEmpty();</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Function&lt;T, R&gt; {
     R apply(T t);
 }
-...
+// ...
 Function&lt;LocalDate, Month&gt; function = date -&gt; date.getMonth();</code></pre>
 </div>
 </div>
@@ -363,7 +363,7 @@ Function&lt;LocalDate, Month&gt; function = date -&gt; date.getMonth();</code></
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Runnable {
     void run();
 }
-...
+// ...
 Runnable alert = () -&gt; System.out.println("I am Groot");</code></pre>
 </div>
 </div>
@@ -375,7 +375,7 @@ Runnable alert = () -&gt; System.out.println("I am Groot");</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface Comparator&lt;T&gt; {
     int compare(T o1, T o2);
 }
-...
+// ...
 Comparator&lt;String&gt; comparator = (s1, s2) -&gt; s1.compareTo(s2);</code></pre>
 </div>
 </div>
