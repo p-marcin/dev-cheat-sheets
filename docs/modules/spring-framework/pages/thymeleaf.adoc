@@ -1,0 +1,44 @@
+= Thymeleaf
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://www.thymeleaf.org/documentation.html",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+----
+
+== Namespace
+
+[,html]
+----
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+----
+
+== Iteration
+
+You can iterate on *any arrays* and *any objects implementing*:
+
+* {java-api-spec-url}/java.base/java/lang/Iterable.html[`⚪ Iterable<T>`^] - e.g. `⚪ List<E>`
+* `⚪ Map<K,V>` - in this case iteration variables will be of class `⚪ Map.Entry<K,V>`
+* and so on
+
+[,html]
+----
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.publisher.name}"></td>
+    </tr>
+</table>
+----

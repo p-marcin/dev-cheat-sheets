@@ -1,3 +1,4 @@
+* 🟣 enum
 * 🔴 final class
 * 🟢 class
 * 🟠 abstract class

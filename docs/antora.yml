@@ -4,10 +4,24 @@ version: ~
 nav:
   - modules/java/nav.adoc
   - modules/spring-framework/nav.adoc
+  - modules/web/nav.adoc
   - modules/database/nav.adoc
   - modules/server/nav.adoc
   - modules/asciidoc/nav.adoc
 asciidoc:
   attributes:
     java-api-spec-url: https://docs.oracle.com/en/java/javase/23/docs/api
+    jakarta-ee-api-spec-url: https://jakarta.ee/specifications/platform/10/apidocs
     hibernate-api-spec-url: https://docs.jboss.org/hibernate/orm/current/javadocs
+    reactor-api-spec-url: https://projectreactor.io/docs/core/release/api
+    reactor-test-api-spec-url: https://projectreactor.io/docs/test/release/api
+    spring-api-spec-url: https://docs.spring.io/spring-framework/docs/current/javadoc-api
+    spring-boot-api-spec-url: https://docs.spring.io/spring-boot/api/java
+    spring-data-api-spec-url: https://docs.spring.io/spring-data/commons/docs/current/api
+    spring-security-api-spec-url: https://docs.spring.io/spring-security/site/docs/current/api
+    spring-auth-server-api-spec-url: https://docs.spring.io/spring-authorization-server/docs/current/api
+    lombok-api-spec-url: https://projectlombok.org/api
+    mapstruct-api-spec-url: https://mapstruct.org/documentation/stable/api
+    hamcrest-api-spec-url: https://hamcrest.org/JavaHamcrest/javadoc/3.0/
+    jackson-databind-api-spec-url: https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest
+    mockito-api-spec-url: https://javadoc.io/doc/org.mockito/mockito-core/latest

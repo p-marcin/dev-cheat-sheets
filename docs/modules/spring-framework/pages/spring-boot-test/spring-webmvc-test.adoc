@@ -1,0 +1,107 @@
+= Spring WebMVC Test
+
+image:https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/testing/mockmvc.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.spring-mvc-tests",window=_blank]
+
+== Overview
+
+Spring MVC Controllers are tricky to test properly. They have a high degree of integration with Spring MVC framework. JUnit tests are not sufficient to test the framework interaction.
+
+Spring Boot supports a concept of *Test Splices* which bring up a targeted segment of the autoconfigured Spring Boot environment:
+
+* e.g. just the Database components or just the Web components,
+* user defined Spring beans typically are not initialized.
+
+== WebMvcTest
+
+{spring-boot-api-spec-url}/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^]::
+A Spring Boot test splice which creates a MockMVC environment for the Controller under a test. Dependencies of it are not included and need to be added to the Spring Context in the test environment.
++
+TIP: `@WebMvcTest` will autoconfigure *all the Controllers*. If you want to autoconfigure only specific Controllers, use it like: `@WebMvcTest(BookController.class)`
+
+{spring-api-spec-url}/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^]::
+Main entry point for server-side Spring MVC test support.
++
+.In `@WebMvcTest` you can autowire `🔴 MockMvc`
+[,java]
+----
+@Autowired
+MockMvc mockMvc;
+----
+
+== Testing Controller requests
+
+{spring-api-spec-url}/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html[`🟠 MockMvcRequestBuilders`^]::
+Static factory methods for building {spring-api-spec-url}/org/springframework/mock/web/MockHttpServletRequest.html[`🟢 MockHttpServletRequest`^] which is mock implementation of the {jakarta-ee-api-spec-url}/jakarta/servlet/http/httpservletrequest[`⚪ HttpServletRequest`^].
+
+{spring-api-spec-url}/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html[`🟠 MockMvcResultMatchers`^]::
+Static factory methods for building {spring-api-spec-url}/org/springframework/test/web/servlet/ResultMatcher.html[`⚪ ResultMatcher`^]-based result actions. A `⚪ ResultMatcher` matches the result of an executed request against some expectation.
++
+.Testing Controller GET request
+[,java]
+----
+mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/" + UUID.randomUUID())
+        .accept(MediaType.APPLICATION_JSON))
+    .andExpect(MockMvcResultMatchers.status().isOk())
+    .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+----
++
+.Testing Controller POST request
+[,java]
+----
+mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/book")
+        .accept(MediaType.APPLICATION_JSON)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(testBook)))
+    .andExpect(MockMvcResultMatchers.status().isCreated())
+    .andExpect(MockMvcResultMatchers.header().exists(HttpHeaders.LOCATION));
+----
+
+{spring-api-spec-url}/org/springframework/test/context/bean/override/mockito/MockitoBean.html[`@MockitoBean`^]::
+Can be used in test classes to override a bean in the test's `⚪ ApplicationContext` with a Mockito mock. For example a Service which is called by Controller.
++
+[,java]
+----
+@MockitoBean
+BookService bookService;
+
+@Test
+void testGetBookById() throws Exception {
+    Book testBook = // ...
+    BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class)))
+        .willReturn(testBook);
+    // ...
+}
+----
++
+{mockito-api-spec-url}/org/mockito/BDDMockito.html[`🟢 BDDMockito`^]:::
+Behavior Driven Development style of writing tests uses `//given` `//when` `//then` comments as fundamental parts of your test methods.
+{mockito-api-spec-url}/org/mockito/ArgumentMatchers.html[`🟢 ArgumentMatchers`^]:::
+Allows flexible verification or stubbing. For example `any()` matches anything, including nulls, while `any(Class<T> type)` matches any object of given type, excluding nulls.
+
+=== Jayway JsonPath
+
+image:https://img.shields.io/badge/Jayway%20JsonPath%20Documentation-2088E9?logo=quickLook&logoColor[link="https://github.com/json-path/JsonPath?tab=readme-ov-file#jayway-jsonpath",window=_blank]
+
+A Java DSL (Domain Specific Language) for *reading JSON documents*. It is *included* in Spring Boot Test dependency. Useful for *performing assertions against the JSON object* that is coming back from `🔴 MockMvc`.
+
+.JsonPath expressions can use the dot-notation:
+[,json]
+----
+$.store.book[0].title
+----
+
+.or the bracket-notation:
+[,json]
+----
+$['store']['book'][0]['title']
+----
+
+.Example of `🔴 MockMvc` json path validation
+[,java]
+----
+.andExpect(MockMvcResultMatchers.jsonPath("$.content[1].id", Is.is("some-id-123"))) // <1>
+.andExpect(MockMvcResultMatchers.jsonPath("$.content.length()", Is.is(3))); // <2>
+----
+<1> {hamcrest-api-spec-url}/org/hamcrest/core/Is.html#is(T)[`🟢 Is#is(T value)`^] - matcher from JavaHamcrest which is a shortcut to the frequently used `is({hamcrest-api-spec-url}/org/hamcrest/core/IsEqual.html#equalTo(T)[equalTo(x)^])` (where {hamcrest-api-spec-url}/org/hamcrest/core/Is.html#is(org.hamcrest.Matcher)[`is(Matcher<T> matcher)`^] only decorates another matcher).
+<2> Asserts that we have 3 objects in `content` array.
