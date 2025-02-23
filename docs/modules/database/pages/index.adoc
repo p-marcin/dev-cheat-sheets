@@ -1,0 +1,3 @@
+= 🧮 Database
+
+include::database:partial$nav.adoc[lines=2..-1]
