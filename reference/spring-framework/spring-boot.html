@@ -357,14 +357,10 @@ public class FooService {
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/ActiveProfiles.html" target="_blank" rel="noopener"><code>@ActiveProfiles</code></a> applied to a test class when loading an <code>⚪ ApplicationContext</code> for integration tests.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>If no profile is active using one of those options, a default profile is enabled as a fallback. The name of the default profile is <code>default</code>: <code>@Profile({"EN", "default"})</code>. You can change default profile name with:</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/AbstractEnvironment.html#DEFAULT_PROFILES_PROPERTY_NAME" target="_blank" rel="noopener"><code>spring.profiles.default</code></a> property. The value may be comma delimited.</p>
 </li>
@@ -373,6 +369,9 @@ public class FooService {
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setDefaultProfiles(java.lang.String...)" target="_blank" rel="noopener"><code>⚪ ConfigurableEnvironment#setDefaultProfiles(String&#8230;&#8203; profiles)</code></a></p>
+</li>
+</ul>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -384,9 +383,6 @@ A profile string may contain a simple profile name (for example <code>p1</code>)
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </dd>
 </dl>
