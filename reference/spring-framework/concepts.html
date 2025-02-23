@@ -313,28 +313,28 @@ Best Practice is to declare <code>private final</code> field and initialize it i
 <p>Population of properties/dependencies</p>
 </li>
 <li>
-<p>Call <code>setBeanName</code> of <code>org.springframework.beans.factory.BeanNameAware</code></p>
+<p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanNameAware.html#setBeanName(java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanNameAware#setBeanName(String name)</code></a></p>
 </li>
 <li>
-<p>Call <code>setBeanFactory</code> of <code>org.springframework.beans.factory.BeanFactoryAware</code></p>
+<p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactoryAware.html#setBeanFactory(org.springframework.beans.factory.BeanFactory)" target="_blank" rel="noopener"><code>⚪ BeanFactoryAware#setBeanFactory(BeanFactory beanFactory)</code></a></p>
 </li>
 <li>
-<p>Call <code>setApplicationContext</code> of <code>org.springframework.context.ApplicationContextAware</code></p>
+<p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContextAware.html#setApplicationContext(org.springframework.context.ApplicationContext)" target="_blank" rel="noopener"><code>⚪ ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext)</code></a></p>
 </li>
 <li>
-<p>Pre Initialization (call <code>postProcessBeforeInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)</p>
+<p>Pre Initialization (call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessBeforeInitialization(java.lang.Object,java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)</code></a>)</p>
 </li>
 <li>
-<p>Call <code>@PostConstruct</code> annotated method</p>
+<p>Call <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/annotation/postconstruct" target="_blank" rel="noopener"><code>@PostConstruct</code></a> annotated method</p>
 </li>
 <li>
-<p>Call <code>afterPropertiesSet</code> of <code>org.springframework.beans.factory.InitializingBean</code></p>
+<p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/InitializingBean.html#afterPropertiesSet()" target="_blank" rel="noopener"><code>⚪ InitializingBean#afterPropertiesSet()</code></a></p>
 </li>
 <li>
-<p>Call custom <code>init</code> method (can be set with <code>initMethod</code> of <code>org.springframework.context.annotation.Bean</code>)</p>
+<p>Call custom <code>init</code> method (can be set with <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html#initMethod()" target="_blank" rel="noopener"><code>@Bean#initMethod</code></a>)</p>
 </li>
 <li>
-<p>Post Initialization (call <code>postProcessAfterInitialization</code> of <code>org.springframework.beans.factory.config.BeanPostProcessor</code>)</p>
+<p>Post Initialization (call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessAfterInitialization(java.lang.Object,java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanPostProcessor#postProcessAfterInitialization(Object bean, String beanName)</code></a>)</p>
 </li>
 <li>
 <p>Bean ready to use</p>
@@ -350,13 +350,13 @@ Best Practice is to declare <code>private final</code> field and initialize it i
 <p>Container shutdown</p>
 </li>
 <li>
-<p>Call <code>@PreDestroy</code> annotated method</p>
+<p>Call <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/annotation/predestroy" target="_blank" rel="noopener"><code>@PreDestroy</code></a> annotated method</p>
 </li>
 <li>
-<p>Call <code>destroy</code> of <code>org.springframework.beans.factory.DisposableBean</code></p>
+<p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/DisposableBean.html#destroy()" target="_blank" rel="noopener"><code>⚪ DisposableBean#destroy()</code></a></p>
 </li>
 <li>
-<p>Call custom <code>destroy</code> method (can be set with <code>destroyMethod</code> of <code>org.springframework.context.annotation.Bean</code>)</p>
+<p>Call custom <code>destroy</code> method (can be set with <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html#destroyMethod()" target="_blank" rel="noopener"><code>@Bean#destroyMethod</code></a>)</p>
 </li>
 <li>
 <p>Bean terminated</p>
