@@ -341,33 +341,49 @@
 <h2 id="_rmm_richardson_maturity_model"><a class="anchor" href="#_rmm_richardson_maturity_model"></a>RMM (Richardson Maturity Model)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>RMM is used to describe the quality of the RESTful service:</p>
+<p>RMM is used to describe the quality of the RESTful Service:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><strong>Level 0: Swamp of POX (Plain Old XML)</strong> - uses <strong>one URI</strong> and <strong>one kind of HTTP Verb</strong> (Request Method)</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Example: RPC, SOAP, XML-RPC</p>
 </li>
-<li>
-<p><strong>Level 1: Resources</strong> - uses <strong>multiple URIs</strong> to identify specific resources and <strong>one kind of HTTP Verb</strong>. It breaks large service into <strong>distinct URIs</strong>.</p>
+</ul>
+</div>
 </li>
 <li>
-<p>Example: You can GET <code>/product/1234</code> and <code>/product/5678</code></p>
+<p><strong>Level 1: Resources</strong> - uses <strong>multiple URIs</strong> to identify specific resources and <strong>one kind of HTTP Verb</strong>. It breaks large service into <strong>distinct URIs</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Example: You can <code>GET</code> <code>/product/1234</code> and <code>/product/5678</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Level 2: HTTP Verbs</strong> - uses <strong>multiple URIs</strong> and <strong>multiple kind of HTTP Verb</strong> for desired actions. It introduces HTTP Verbs to implement actions.</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
-<p>Example: You can GET and DELETE <code>/product/1234</code> and <code>/product/5678</code></p>
+<p>Example: You can <code>GET</code> and <code>DELETE</code> <code>/product/1234</code> and <code>/product/5678</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Level 3: Hypermedia</strong> - representation <strong>contains URIs</strong> which may be useful to consumers. It helps developers <strong>explore the resource</strong>. It provides <strong>discoverability</strong>, making the API more <strong>self documenting</strong></p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Spring Framework provides an implementation of <strong>HATEOAS (Hypermedia as the Engine of Application State)</strong> - in response objects you get links and information about the actions</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
