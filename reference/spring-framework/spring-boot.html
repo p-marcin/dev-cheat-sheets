@@ -341,6 +341,26 @@ public class FooService {
 </table>
 </div>
 </dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Profile.html" target="_blank" rel="noopener"><code>@Profile</code></a></dt>
+<dd>
+<p>Indicates that a component is eligible for registration when one or more specified profiles are active. You can activate profile with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/AbstractEnvironment.html#ACTIVE_PROFILES_PROPERTY_NAME" target="_blank" rel="noopener"><code>spring.profiles.active</code></a> property. The value may be comma delimited.</p>
+</li>
+<li>
+<p><code>SPRING_PROFILES_ACTIVE</code> env variable when using <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/SystemEnvironmentPropertySource.html" target="_blank" rel="noopener"><code>🟢 SystemEnvironmentPropertySource</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setActiveProfiles(java.lang.String...)" target="_blank" rel="noopener"><code>⚪ ConfigurableEnvironment#setActiveProfiles(String&#8230;&#8203; profiles)</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/ActiveProfiles.html" target="_blank" rel="noopener"><code>@ActiveProfiles</code></a> applied to a test class when loading an <code>⚪ ApplicationContext</code> for integration tests.</p>
+</li>
+</ul>
+</div>
+</dd>
 </dl>
 </div>
 </div>
