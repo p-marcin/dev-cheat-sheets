@@ -1047,12 +1047,12 @@ ls -la "/home"
 <div class="content">
 <div class="dlist">
 <dl>
-<dt class="hdlist1">First term</dt>
+<dt class="hdlist1">First Term</dt>
 <dd>
 <p>The description can be placed on the same line
 as the term.</p>
 </dd>
-<dt class="hdlist1">Second term</dt>
+<dt class="hdlist1">Second Term</dt>
 <dd>
 <p>Description of the second term.
 The description can also start on its own line.</p>
@@ -1063,9 +1063,9 @@ The description can also start on its own line.</p>
 </details>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">First term:: The description can be placed on the same line
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">First Term:: The description can be placed on the same line
 as the term.
-Second term::
+Second Term::
 Description of the second term.
 The description can also start on its own line.</code></pre>
 </div>
@@ -1132,6 +1132,90 @@ No.</code></pre>
 []
 . Cats
 . Dogs</code></pre>
+</div>
+</div>
+<details>
+<summary class="title">Attach Block to an Ancestor List</summary>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Term</dt>
+<dd>
+<p>Description:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Point 1</p>
+</li>
+<li>
+<p>Point 2</p>
+</li>
+<li>
+<p>Point 3</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Some useful Tip
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Another Description:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Point 1</p>
+</li>
+<li>
+<p>Point 2</p>
+</li>
+<li>
+<p>Point 3</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</details>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">Term::
+Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--
++
+TIP: Some useful Tip
++
+Another Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--</code></pre>
 </div>
 </div>
 </div>
