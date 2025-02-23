@@ -501,50 +501,74 @@ public class SpringBeanLifecycleConfig {
 <div class="ulist">
 <ul>
 <li>
-<p>:green_square: :blue_square: :orange_square: <code>GET</code> - requests for a resource (e.g. HTML file)</p>
+<p>🟩 🟦 🟧 <code>GET</code> - requests for a resource (e.g. HTML file)</p>
 </li>
 <li>
-<p>:green_square: :blue_square: :orange_square: <code>HEAD</code> - is like GET, but only requests for meta information without the body</p>
+<p>🟩 🟦 🟧 <code>HEAD</code> - is like GET, but only requests for meta information without the body</p>
 </li>
 <li>
-<p>:orange_square: <code>POST</code> - requests to post data to the server (e.g. form data). It is <strong>create</strong> request</p>
+<p>🟧 <code>POST</code> - requests to post data to the server (e.g. form data). It is <strong>create</strong> request</p>
 </li>
 <li>
-<p>:blue_square: <code>PUT</code> - requests to create a new resource or replace a representation of the target resource with the state defined by the representation enclosed in the request. It is <strong>create or replace</strong> request</p>
+<p>🟦 <code>PUT</code> - requests to create a new resource or replace a representation of the target resource with the state defined by the representation enclosed in the request. It is <strong>create or replace</strong> request</p>
 </li>
 <li>
-<p>:orange_square: <code>PATCH</code> - requests to apply a modification to a target resource according to the partial update defined in the representation enclosed in the request. It is <strong>update</strong> request</p>
+<p>🟧 <code>PATCH</code> - requests to apply a modification to a target resource according to the partial update defined in the representation enclosed in the request. It is <strong>update</strong> request</p>
 </li>
 <li>
-<p>:blue_square: <code>DELETE</code> - requests to delete the specified resource</p>
+<p>🟦 <code>DELETE</code> - requests to delete the specified resource</p>
 </li>
 <li>
 <p><code>CONNECT</code> - requests to establish a TCP/IP tunnel to the origin server identified by the request target. It is used to secure two-way communication through one or more HTTP proxies with SSL/TLS</p>
 </li>
 <li>
-<p>:green_square: :blue_square: <code>OPTIONS</code> - returns the HTTP methods supported by the server for the specified URL</p>
+<p>🟩 🟦 <code>OPTIONS</code> - returns the HTTP methods supported by the server for the specified URL</p>
 </li>
 <li>
-<p>:green_square: :blue_square: <code>TRACE</code> - echo the received request. Can be used to see if request was altered by intermediate servers</p>
+<p>🟩 🟦 <code>TRACE</code> - echo the received request. Can be used to see if request was altered by intermediate servers</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Legend:
-* :green_square: - Safe Methods: do not cause any changes on the server
-* :blue_square: - Idempotent Methods: multiple identical requests will have the same effect on the server
-* :orange_square: - Cacheable Methods: response is allowed to be stored for future use (cached)</p>
+<p>Legend:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>🟩 - Safe Methods: do not cause any changes on the server</p>
+</li>
+<li>
+<p>🟦 - Idempotent Methods: multiple identical requests will have the same effect on the server</p>
+</li>
+<li>
+<p>🟧 - Cacheable Methods: response is allowed to be stored for future use (cached)</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_response_status_codes"><a class="anchor" href="#_response_status_codes"></a>Response Status Codes</h3>
 <div class="paragraph">
-<p>Full list: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="bare">https://developer.mozilla.org/en-US/docs/Web/HTTP/Status</a>
-* <strong>1xx</strong> - informational
-* <strong>2xx</strong> - successful
-* <strong>3xx</strong> - redirection
-* <strong>4xx</strong> - client error
-* <strong>5xx</strong> - server side error</p>
+<p>Full list: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="bare">https://developer.mozilla.org/en-US/docs/Web/HTTP/Status</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>1xx</strong> - informational</p>
+</li>
+<li>
+<p><strong>2xx</strong> - successful</p>
+</li>
+<li>
+<p><strong>3xx</strong> - redirection</p>
+</li>
+<li>
+<p><strong>4xx</strong> - client error</p>
+</li>
+<li>
+<p><strong>5xx</strong> - server side error</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
