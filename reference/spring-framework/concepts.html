@@ -322,9 +322,6 @@ Best Practice is to declare <code>private final</code> field and initialize it i
 <p>Call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationContextAware.html#setApplicationContext(org.springframework.context.ApplicationContext)" target="_blank" rel="noopener"><code>⚪ ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext)</code></a></p>
 </li>
 <li>
-<p>Pre Initialization (call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessBeforeInitialization(java.lang.Object,java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)</code></a>)</p>
-</li>
-<li>
 <p>Call <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/annotation/postconstruct" target="_blank" rel="noopener"><code>@PostConstruct</code></a> annotated method</p>
 </li>
 <li>
@@ -332,6 +329,9 @@ Best Practice is to declare <code>private final</code> field and initialize it i
 </li>
 <li>
 <p>Call custom <code>init</code> method (can be set with <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Bean.html#initMethod()" target="_blank" rel="noopener"><code>@Bean#initMethod</code></a>)</p>
+</li>
+<li>
+<p>Pre Initialization (call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessBeforeInitialization(java.lang.Object,java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)</code></a>)</p>
 </li>
 <li>
 <p>Post Initialization (call <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessAfterInitialization(java.lang.Object,java.lang.String)" target="_blank" rel="noopener"><code>⚪ BeanPostProcessor#postProcessAfterInitialization(Object bean, String beanName)</code></a>)</p>
@@ -370,10 +370,103 @@ Best Practice is to declare <code>private final</code> field and initialize it i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-There are over <strong>14</strong> <code>Aware</code> interfaces which are used to <strong>access the Spring Framework infrastructure</strong>.
+There are over <strong>14</strong> <code>Aware</code> interfaces which are used <strong>access the Spring Framework infrastructure</strong>. Check <a href="https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html" target="_blank" rel="noopener">Customizing the Nature of a Bean</a>.
 </td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component
+public class SpringBeanLifecycleDemo implements BeanNameAware, BeanFactoryAware, ApplicationContextAware,
+        InitializingBean, BeanPostProcessor, DisposableBean {
+
+    /* Start */
+
+    public SpringBeanLifecycleDemo() {
+        System.out.println("# 1. Instantiation of Bean");
+    }
+
+    private String javaVersion;
+
+    @Value("${java.specification.version}")
+    public void setJavaVersion(String javaVersion) {
+        this.javaVersion = javaVersion;
+        System.out.println("# 2. Population of properties/dependencies: Java Version is " + this.javaVersion);
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("# 3. Call BeanNameAware#setBeanName(String name): " + name);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("# 4. Call BeanFactoryAware#setBeanFactory(BeanFactory beanFactory)");
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("# 5. Call ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext)");
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("# 6. Call @PostConstruct annotated method");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("# 7. Call InitializingBean#afterPropertiesSet()");
+    }
+
+    public void init() {
+        System.out.println("# 8. Call custom init method (can be set with @Bean#initMethod)");
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("# 9. Pre Initialization (call BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)): " + beanName);
+
+        return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("# 10. Post Initialization (call BeanPostProcessor#postProcessAfterInitialization(Object bean, String beanName)): " + beanName);
+
+        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
+    }
+
+    /* Termination */
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("# 1. Container shutdown");
+        System.out.println("# 2. Call @PreDestroy annotated method");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("# 3. Call DisposableBean#destroy()");
+    }
+
+    public void cleanup() {
+        System.out.println("# 4. Call custom destroy method (can be set with @Bean#destroyMethod)");
+    }
+
+}
+
+@Configuration
+public class SpringBeanLifecycleConfig {
+
+    @Bean(initMethod = "init", destroyMethod = "cleanup")
+    public SpringBeanLifecycleDemo springBeanLifecycleDemo() {
+        return new SpringBeanLifecycleDemo();
+    }
+
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
