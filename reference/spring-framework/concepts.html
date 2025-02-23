@@ -408,7 +408,7 @@ public class SpringBeanLifecycleDemo implements BeanNameAware, BeanFactoryAware,
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("# 5. Call ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext)" +
+        System.out.println("# 5. Call ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext): " +
                 applicationContext.getClass().getSimpleName());
     }
 
