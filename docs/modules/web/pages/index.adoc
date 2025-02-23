@@ -1,0 +1,76 @@
+= 🕸️ Web
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://developer.mozilla.org/en-US/docs/Web/HTTP",window=_blank]
+
+include::web:partial$nav.adoc[lines=2..-1]
+
+== HTTP (Hypertext Transfer Protocol)
+
+HTTP follows a classical *client-server model*, with a client opening a connection to make a *request*, then waiting until it receives a *response* from the server. HTTP is a *stateless protocol*, meaning that the server does not keep any session data between two requests, although the later addition of *cookies* adds state to some client-server interactions.
+
+=== Versions
+
+* *HTTP/0.9* - initial version which was *extremely simple*: requests consisted of a single line and started with the only possible method `GET` followed by the path to the resource.
+* *HTTP/1.0* - added *versioning information*, *status code*, *HTTP headers*. Thanks to `Content-Type` header, documents other than plain HTML files could be transmitted.
+* *HTTP/1.1* - added more *caching strategies* and *request methods* (`PUT`, `PATCH`, `DELETE`, `CONNECT`, `TRACE` and `OPTIONS`). Since this version *HTTP connection can be reused (Keep-Alive)*.
+* *HTTP/2* - improves *the average speed of communications* by *lowering latency* and *higher throughput*. No significant changes for Developers.
+* *HTTP/3* - most important change is use of the *QUIC + UDP* transport protocols instead of TCP. This slightly improves *the average speed of communications*. No significant changes for Developers.
+
+=== Request Methods
+
+* 🟩 🟦 🟧 `GET` - requests for a resource (e.g. HTML file).
+* 🟩 🟦 🟧 `HEAD` - is like GET, but only requests for meta information without the body.
+* 🟧 `POST` - requests to post data to the server (e.g. form data). It is *create* request.
+* 🟦 `PUT` - requests to create a new resource or replace a representation of the target resource with the state defined by the representation enclosed in the request. It is *create or replace* request.
+* 🟧 `PATCH` - requests to apply a modification to a target resource according to the partial update defined in the representation enclosed in the request. It is *update* request.
+* 🟦 `DELETE` - requests to delete the specified resource.
+* `CONNECT` - requests to establish a TCP/IP tunnel to the origin server identified by the request target. It is used to secure two-way communication through one or more HTTP proxies with SSL/TLS.
+* 🟩 🟦 `OPTIONS` - returns the HTTP methods supported by the server for the specified URL.
+* 🟩 🟦 `TRACE` - echo the received request. Can be used to see if request was altered by intermediate servers.
+
+Legend:
+
+* 🟩 *Safe Methods:* do not cause any changes on the server.
+* 🟦 *Idempotent Methods:* multiple identical requests will have the same effect on the server.
+* 🟧 *Cacheable Methods:* response is allowed to be stored for future use (cached).
+
+=== Response Status Codes
+
+Check https://developer.mozilla.org/en-US/docs/Web/HTTP/Status[HTTP response status codes^] for full list:
+
+* *1xx* - informational,
+* *2xx* - successful,
+* *3xx* - redirection,
+* *4xx* - client error,
+* *5xx* - server side error.
+
+== REST (Representational State Transfer)
+
+*Representation* - typically *JSON* or *XML*.
+
+*State Transfer* - typically via *HTTP*.
+
+REST APIs use HTTP Request Methods to create, manage and delete *server resources*. Resources are typically *data structures* represented by JSON or XML. *HTTP Status Codes* are used to communicate success, failure or errors.
+
+Marshalling vs Unmarshalling:
+
+* *Marshalling* - process of converting Java Objects to JSON or XML.
+* *Unmarshalling* - process of converting JSON or XML to Java Objects.
+
+== RMM (Richardson Maturity Model)
+
+RMM is used to describe the quality of the RESTful Service:
+
+* *Level 0: Swamp of POX (Plain Old XML)* - uses *one URI* and *one kind of HTTP Verb* (Request Method).
+** Example: RPC, SOAP, XML-RPC.
+* *Level 1: Resources* - uses *multiple URIs* to identify specific resources and *one kind of HTTP Verb*. It breaks large service into *distinct URIs*.
+** Example: You can `GET` `/product/1234` and `/product/5678`.
+* *Level 2: HTTP Verbs* - uses *multiple URIs* and *multiple kind of HTTP Verb* for desired actions. It introduces HTTP Verbs to implement actions.
+** Example: You can `GET` and `DELETE` `/product/1234` and `/product/5678`.
+* *Level 3: Hypermedia* - representation *contains URIs* which may be useful to consumers. It helps developers *explore the resource*. It provides *discoverability*, making the API more *self documenting*.
+** xref:spring-framework:index.adoc[Spring Framework] provides an implementation of *HATEOAS (Hypermedia as the Engine of Application State)* - in response objects you get links and information about the actions.
+
+== RESTful Best Practices
+
+* After *201* (Created) status response return `Location` HTTP Header with URI to the new resource.
+* Do not return stack trace to client - be careful to not "leak" information to Internet.

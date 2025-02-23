@@ -1,0 +1,183 @@
+= Spring WebMVC
+
+image:https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/web/webmvc.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.spring-mvc",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+----
+
+== Overview
+
+Spring MVC is *blocking* (because uses *Java Servlet API*) and *non-reactive*.
+
+*MVC* stands for *Model View Controller* and it is a common design pattern for *GUI* and *Web Applications*:
+
+* Model is a *POJO* *(Plain Old Java Object)* class which means that it *is not tied to any Java framework*
+* View *handles rendering of the response* which contains Model *to HTML page*
+* Controller *handles requests*. It is responsible for *invoking business logic* and *populating Model*
+
+== Spring Boot MVC Architecture
+
+image::spring-framework:spring-boot-mvc-architecture.png[,800]
+
+Dispatcher Servlet::
+* receives request from Client
+* passes the request to Controller and receives Model from Controller
+* passes the Model to View and receives rendered HTML page
+* passes rendered HTML page to Client
+
+The `application.properties` file should be placed under `src/main/resources`.
+
+Views should be placed under `src/main/resources/templates`.
+
+.Controller should be a class and annotated with `@Controller` annotation
+[,java]
+----
+@Controller
+public class BookController {
+    // Logic calling Service
+}
+----
+
+.Service should be a class implementing an interface and annotated with `@Service` annotation
+[,java]
+----
+@Service
+public class BookServiceImpl implements BookService {
+    // Your Business Logic calling Repository
+}
+----
+
+.Repository should be an interface which does not have to be annotated with `@Repository` annotation
+[,java]
+----
+public interface BookRepository extends JpaRepository<Book, Long> {
+    // Query methods
+}
+----
+
+== Controller
+
+[,java]
+----
+@Controller
+public class BookController {
+
+    // ...
+
+    @RequestMapping("/books") // <1>
+    public String getBooks(Model model) {
+        model.addAttribute("books", bookService.findAll()); // <2>
+        return "books"; // <3>
+    }
+
+}
+----
+<1> {spring-api-spec-url}/org/springframework/web/bind/annotation/RequestMapping.html[`@RequestMapping`^] maps web requests onto methods in request-handling classes with flexible method signatures. As a value you can provide the path mapping URIs
+<2> {spring-api-spec-url}/org/springframework/ui/Model.html#addAttribute(java.lang.String,java.lang.Object)[`⚪ Model#addAttribute(String attributeName, Object attributeValue)`^] adds the supplied attribute under the supplied name in the model
+<3> Returns view name where we can xref:spring-framework:thymeleaf.adoc#_iteration[iterate on `books` model attribute]
+
+== RestController
+
+{spring-api-spec-url}/org/springframework/web/bind/annotation/RestController.html[`@RestController`^]::
+A convenient annotation that is itself annotated with `@Controller` and `@ResponseBody`.
+
+{spring-api-spec-url}/org/springframework/web/bind/annotation/ResponseBody.html[`@ResponseBody`^]::
+Indicates a method return value should be bound to the web response body.
+
+[,java]
+----
+@RestController
+@RequestMapping("/api/v1/book")
+public class BookController {
+
+    // ...
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Book> getBooks() {
+        return bookService.getBooks();
+    }
+
+}
+----
+
+== Requesting Mapping
+
+Instead of e.g. `@RequestMapping(method = RequestMethod.GET)` you can use convenient annotations:
+
+* {spring-api-spec-url}/org/springframework/web/bind/annotation/GetMapping.html[`@GetMapping`^]
++
+[,java]
+----
+@GetMapping("/api/v1/book/{bookId}")
+public Book getBookById(@PathVariable UUID bookId) {
+	return bookService.getBookById(bookId).orElseThrow(NotFoundException::new); // 200
+}
+----
+* {spring-api-spec-url}/org/springframework/web/bind/annotation/PostMapping.html[`@PostMapping`^]
++
+[,java]
+----
+@PostMapping("/api/v1/book")
+public ResponseEntity postBook(@Validated @RequestBody BookDTO bookDTO) {
+    BookDTO savedBookDTO = bookService.saveNewBook(bookDTO);
+    URI location = URI.create("/api/v1/book/" + savedBookDTO.getId().toString());
+    return ResponseEntity.created(location).build(); // 201
+}
+----
+* {spring-api-spec-url}/org/springframework/web/bind/annotation/PutMapping.html[`@PutMapping`^]
++
+[,java]
+----
+@PutMapping("/api/v1/book/{bookId}")
+public ResponseEntity updateBookById(@PathVariable UUID bookId, @Validated @RequestBody BookDTO bookDTO) {
+    if (bookService.updateBookById(bookId, bookDTO).isEmpty()) {
+        throw new NotFoundException();
+    }
+    return ResponseEntity.noContent().build(); // 204
+}
+----
+* {spring-api-spec-url}/org/springframework/web/bind/annotation/PatchMapping.html[`@PatchMapping`^]
++
+[,java]
+----
+@PatchMapping("/api/v1/book/{bookId}")
+public ResponseEntity patchBookById(@PathVariable UUID bookId, @RequestBody BookDTO bookDTO) {
+    if (bookService.patchBookById(bookId, bookDTO).isEmpty()) {
+        throw new NotFoundException();
+    }
+    return ResponseEntity.noContent().build(); // 204
+}
+----
+* {spring-api-spec-url}/org/springframework/web/bind/annotation/DeleteMapping.html[`@DeleteMapping`^]
++
+[,java]
+----
+@DeleteMapping("/api/v1/book/{bookId}")
+public ResponseEntity deleteBookById(@PathVariable UUID bookId) {
+    if (!bookService.deleteBookById(bookId)) {
+        throw new NotFoundException();
+    }
+    return ResponseEntity.noContent().build(); // 204
+}
+----
+
+== URI Template Variable
+
+{spring-api-spec-url}/org/springframework/web/bind/annotation/PathVariable.html[`@PathVariable`^]::
+Indicates that a method parameter should be bound to a URI template variable. Supported for `@RequestMapping` annotated handler methods.
++
+[,java]
+----
+@GetMapping("/api/v1/book/{bookId}")
+public Book getBookById(@PathVariable UUID bookId) {
+	// ...
+}
+----
