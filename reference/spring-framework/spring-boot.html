@@ -228,7 +228,7 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 <p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/SpringBootConfiguration.html" target="_blank" rel="noopener"><code>@SpringBootConfiguration</code></a>,</p>
 </li>
 <li>
-<p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html" target="_blank" rel="noopener"><code>@EnableAutoConfiguration</code></a></p>
+<p><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html" target="_blank" rel="noopener"><code>@EnableAutoConfiguration</code></a>,</p>
 </li>
 <li>
 <p>and <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/ComponentScan.html" target="_blank" rel="noopener"><code>@ComponentScan</code></a>.</p>
@@ -242,10 +242,10 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 <div class="ulist">
 <ul>
 <li>
-<p>Bean factory methods for <strong>accessing application components</strong>. Inherited from <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/ListableBeanFactory.html" target="_blank" rel="noopener"><code>⚪ ListableBeanFactory</code></a></p>
+<p>Bean factory methods for <strong>accessing application components</strong>. Inherited from <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/ListableBeanFactory.html" target="_blank" rel="noopener"><code>⚪ ListableBeanFactory</code></a>.</p>
 </li>
 <li>
-<p>The ability to <strong>load file resources</strong> in a generic fashion. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/ResourceLoader.html" target="_blank" rel="noopener"><code>⚪ ResourceLoader</code></a></p>
+<p>The ability to <strong>load file resources</strong> in a generic fashion. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/io/ResourceLoader.html" target="_blank" rel="noopener"><code>⚪ ResourceLoader</code></a>.</p>
 </li>
 <li>
 <p>The ability to <strong>publish events to registered listeners</strong>. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/ApplicationEventPublisher.html" target="_blank" rel="noopener"><code>⚪ ApplicationEventPublisher</code></a>.</p>
@@ -254,14 +254,14 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 <p>The ability to <strong>resolve messages</strong>, supporting <strong>internationalization</strong>. Inherited from the <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/MessageSource.html" target="_blank" rel="noopener"><code>⚪ MessageSource</code></a>.</p>
 </li>
 <li>
-<p><strong>Inheritance</strong> from a <strong>parent context</strong>. Definitions in a descendant context will always take priority. This means, for example, that a single parent context can be used by an entire web application, while each servlet has its own child context that is <strong>independent</strong> of that of any other servlet</p>
+<p><strong>Inheritance</strong> from a <strong>parent context</strong>. Definitions in a descendant context will always take priority. This means, for example, that a single parent context can be used by an entire web application, while each servlet has its own child context that is <strong>independent</strong> of that of any other servlet.</p>
 </li>
 </ul>
 </div>
 </dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Autowired.html" target="_blank" rel="noopener"><code>@Autowired</code></a></dt>
 <dd>
-<p>Marks a constructor, setter method, field, or method parameter as to be autowired by Spring container - typically the <code>⚪ ApplicationContext</code>. See <a href="concepts.html#_dependency_injection" class="xref page">Dependency Injection</a></p>
+<p>Marks a constructor, setter method, field, or method parameter as to be autowired by Spring container - typically the <code>⚪ ApplicationContext</code>. See <a href="concepts.html#_dependency_injection" class="xref page">Dependency Injection</a>.</p>
 </dd>
 </dl>
 </div>
@@ -274,7 +274,68 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 <dl>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Primary.html" target="_blank" rel="noopener"><code>@Primary</code></a></dt>
 <dd>
-<p>Indicates that a bean should be given preference when multiple candidates (e.g. two Services implementing the same interface) are qualified to autowire a single-valued dependency</p>
+<p>Indicates that a bean should be given preference when multiple candidates (e.g. two Services implementing the same interface) are qualified to autowire a single-valued dependency.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">@Repository
+public class JdbcFooRepository extends FooRepository {
+    public JdbcFooRepository(DataSource dataSource) {
+        // ...
+    }
+}
+
+@Primary
+@Repository
+public class HibernateFooRepository extends FooRepository {
+    public HibernateFooRepository(SessionFactory sessionFactory) {
+        // ...
+    }
+}
+
+@Service
+public class FooService {
+    private final FooRepository fooRepository;
+
+    @Autowired
+    public FooService(FooRepository fooRepository) { <i class="conum" data-value="1"></i><b>(1)</b>
+        this.fooRepository = fooRepository;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Because <code>🟢 HibernateFooRepository</code> is marked with <code>@Primary</code>, it will be injected preferentially over the <code>🟢 JdbcFooRepository</code> assuming both are present as beans within the same Spring application context, which is often the case when component-scanning is applied liberally.</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Qualifier.html" target="_blank" rel="noopener"><code>Qualifier</code></a></dt>
+<dd>
+<p>May be used on a field or parameter as a qualifier for candidate beans when autowiring. It may also be used to annotate other custom annotations that can then in turn be used as qualifiers.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">@Service
+public class FooService {
+    private final FooRepository fooRepository;
+
+    @Autowired
+    public FooService(@Qualifier("jdbcFooRepository") FooRepository fooRepository) { <i class="conum" data-value="1"></i><b>(1)</b>
+        this.fooRepository = fooRepository;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In this case <code>🟢 JdbcFooRepository</code> will be injected.</td>
+</tr>
+</table>
+</div>
 </dd>
 </dl>
 </div>
@@ -291,16 +352,16 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 </dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html" target="_blank" rel="noopener"><code>@Controller</code></a></dt>
 <dd>
-<p>Indicates that an annotated class is a "Controller" (for example, a web controller). This annotation serves as a specialization of <code>@Component</code></p>
+<p>Indicates that an annotated class is a "Controller" (for example, a web controller). This annotation serves as a specialization of <code>@Component</code>.</p>
 </dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html" target="_blank" rel="noopener"><code>@Service</code></a></dt>
 <dd>
 <p>Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design (Evans, 2003) as "<em>an operation offered as an interface that stands alone in the model, with no encapsulated state</em>".
-This annotation serves as a specialization of <code>@Component</code></p>
+This annotation serves as a specialization of <code>@Component</code>.</p>
 </dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html" target="_blank" rel="noopener"><code>@Repository</code></a></dt>
 <dd>
-<p>Indicates that an annotated class is a "Repository", originally defined by Domain-Driven Design (Evans, 2003) as "<em>a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects</em>". This annotation serves as a specialization of <code>@Component</code></p>
+<p>Indicates that an annotated class is a "Repository", originally defined by Domain-Driven Design (Evans, 2003) as "<em>a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects</em>". This annotation serves as a specialization of <code>@Component</code>.</p>
 </dd>
 </dl>
 </div>
@@ -331,7 +392,7 @@ public class BootstrapData implements CommandLineRunner {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html" target="_blank" rel="noopener"><code>@Transactional</code></a> exposes a transaction to all data access operations within the current execution thread</td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html" target="_blank" rel="noopener"><code>@Transactional</code></a> exposes a transaction to all data access operations within the current execution thread.</td>
 </tr>
 </table>
 </div>

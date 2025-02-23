@@ -617,7 +617,7 @@ spring.security.oauth2.client.provider.springauth.token-uri=http://localhost:900
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration
 public class RestTemplateBuilderConfig {
 
-    ...
+    // ...
 
     @Bean
     OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository, <i class="conum" data-value="1"></i><b>(1)</b>
@@ -633,7 +633,7 @@ public class RestTemplateBuilderConfig {
         return authorizedClientServiceAuthorizedClientManager;
     }
 
-    ...
+    // ...
 
 }</code></pre>
 </div>
@@ -782,7 +782,7 @@ public class RestTemplateBuilderConfig {
     @Value("${rest.template.baseUri}")
     String baseUri;
 
-    ...
+    // ...
 
     @Bean
     RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer, OAuthClientInterceptor clientInterceptor) {
@@ -867,7 +867,7 @@ void setUp() throws JsonProcessingException {
     ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("springauth");
     OAuth2AccessToken token = new OAuth2AccessToken(OAuth2AccessToken.TokenType.BEARER, "test", Instant.MIN, Instant.MAX); <i class="conum" data-value="1"></i><b>(1)</b>
     when(authorizedClientManager.authorize(any())).thenReturn(new OAuth2AuthorizedClient(clientRegistration, "test", token));
-    ...
+    // ...
 }</code></pre>
 </div>
 </div>

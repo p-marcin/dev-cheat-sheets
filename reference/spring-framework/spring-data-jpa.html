@@ -235,7 +235,7 @@ public class Author {
     @ManyToMany(mappedBy = "authors") <i class="conum" data-value="4"></i><b>(4)</b>
     private Set&lt;Book&gt; books; <i class="conum" data-value="5"></i><b>(5)</b>
 
-    ... // Getters and Setters, toString(), equals(Object obj) and hashCode()
+    // Getters and Setters, toString(), equals(Object obj) and hashCode()
 
 }</code></pre>
 </div>
@@ -269,7 +269,7 @@ public class Author {
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
 public class Book {
 
-    ...
+    // ...
 
     @ManyToMany
     @JoinTable(name = "author_book", <i class="conum" data-value="1"></i><b>(1)</b>
@@ -277,7 +277,7 @@ public class Book {
         inverseJoinColumns = @JoinColumn(name = "author_id")) <i class="conum" data-value="3"></i><b>(3)</b>
     private Set&lt;Author&gt; authors;
 
-    ...
+    // ...
 
 }</code></pre>
 </div>
