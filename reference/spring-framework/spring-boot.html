@@ -268,6 +268,32 @@ methods and also triggers <strong>auto-configuration</strong> and <strong>compon
 </div>
 </div>
 <div class="sect1">
+<h2 id="_stereotypes"><a class="anchor" href="#_stereotypes"></a>Stereotypes</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html" target="_blank" rel="noopener"><code>@Component</code></a></dt>
+<dd>
+<p>Indicates that the annotated class is a component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.</p>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html" target="_blank" rel="noopener"><code>@Controller</code></a></dt>
+<dd>
+<p>Indicates that an annotated class is a "Controller" (for example, a web controller). This annotation serves as a specialization of <code>@Component</code>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html" target="_blank" rel="noopener"><code>@Service</code></a></dt>
+<dd>
+<p>Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design (Evans, 2003) as "<em>an operation offered as an interface that stands alone in the model, with no encapsulated state</em>".
+This annotation serves as a specialization of <code>@Component</code>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html" target="_blank" rel="noopener"><code>@Repository</code></a></dt>
+<dd>
+<p>Indicates that an annotated class is a "Repository", originally defined by Domain-Driven Design (Evans, 2003) as "<em>a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects</em>". This annotation serves as a specialization of <code>@Component</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_beans"><a class="anchor" href="#_beans"></a>Beans</h2>
 <div class="sectionbody">
 <div class="dlist">
@@ -396,32 +422,6 @@ A profile string may contain a simple profile name (for example <code>p1</code>)
 </div>
 </div>
 </div>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_stereotypes"><a class="anchor" href="#_stereotypes"></a>Stereotypes</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html" target="_blank" rel="noopener"><code>@Component</code></a></dt>
-<dd>
-<p>Indicates that the annotated class is a component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.</p>
-</dd>
-<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html" target="_blank" rel="noopener"><code>@Controller</code></a></dt>
-<dd>
-<p>Indicates that an annotated class is a "Controller" (for example, a web controller). This annotation serves as a specialization of <code>@Component</code>.</p>
-</dd>
-<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html" target="_blank" rel="noopener"><code>@Service</code></a></dt>
-<dd>
-<p>Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design (Evans, 2003) as "<em>an operation offered as an interface that stands alone in the model, with no encapsulated state</em>".
-This annotation serves as a specialization of <code>@Component</code>.</p>
-</dd>
-<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html" target="_blank" rel="noopener"><code>@Repository</code></a></dt>
-<dd>
-<p>Indicates that an annotated class is a "Repository", originally defined by Domain-Driven Design (Evans, 2003) as "<em>a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects</em>". This annotation serves as a specialization of <code>@Component</code>.</p>
 </dd>
 </dl>
 </div>
