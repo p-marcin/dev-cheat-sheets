@@ -285,81 +285,138 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_annotations"><a class="anchor" href="#_annotations"></a>Annotations</h2>
+<h2 id="_pojos"><a class="anchor" href="#_pojos"></a>POJOs</h2>
 <div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Getter" target="_blank" rel="noopener"><code>@Getter</code></a></dt>
+<dd>
+<p>Put on any field to make lombok build a standard getter.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Setter" target="_blank" rel="noopener"><code>@Setter</code></a></dt>
+<dd>
+<p>Put on any field to make lombok build a standard setter.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/NonNull"><code>@NonNull</code></a></dt>
+<dd>
+<p>If put on a parameter, lombok will insert a null-check at the start of the method / constructor&#8217;s body, throwing a <code>NullPointerException</code> with the parameter&#8217;s name as message. If put on a field, any generated method assigning a value to this field will also produce these null-checks.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/NoArgsConstructor" target="_blank" rel="noopener"><code>@NoArgsConstructor</code></a></dt>
+<dd>
+<p>Generates a no-args constructor. Will generate an error message if such a constructor cannot be written due to the existence of final fields.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/RequiredArgsConstructor" target="_blank" rel="noopener"><code>@RequiredArgsConstructor</code></a></dt>
+<dd>
+<p>Generates a constructor with required arguments. Required arguments are <code>final</code> fields and fields with constraints such as <code>@NonNull</code>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/AllArgsConstructor" target="_blank" rel="noopener"><code>@AllArgsConstructor</code></a></dt>
+<dd>
+<p>Generates an all-args constructor. An all-args constructor requires one argument for every field in the class.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/ToString" target="_blank" rel="noopener"><code>@ToString</code></a></dt>
+<dd>
+<p>Generates an implementation for the <code>⚪ Object#toString()</code> method inherited by all objects, consisting of printing the values of relevant fields.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/EqualsAndHashCode" target="_blank" rel="noopener"><code>@EqualsAndHashCode</code></a></dt>
+<dd>
+<p>Generates implementations for the <code>⚪ Object#equals(Object obj)</code> and <code>⚪ Object#hashCode()</code> methods inherited by all objects, based on relevant fields.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/experimental/FieldDefaults" target="_blank" rel="noopener"><code>@FieldDefaults</code></a></dt>
+<dd>
+<p>Adds modifiers to each field in the class with this annotation.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Data" target="_blank" rel="noopener"><code>@Data</code></a></dt>
+<dd>
+<p>Representation of a <strong>mutable</strong> entity. Equivalent to <code>@Getter</code> <code>@Setter</code> <code>@RequiredArgsConstructor</code> <code>@ToString</code> <code>@EqualsAndHashCode</code>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Value" target="_blank" rel="noopener"><code>@Value</code></a></dt>
+<dd>
+<p>Representation of an <strong>immutable</strong> entity. Equivalent to <code>@Getter</code> <code>@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)</code> <code>@AllArgsConstructor</code> <code>@ToString</code> <code>@EqualsAndHashCode</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_local_variables"><a class="anchor" href="#_local_variables"></a>Local Variables</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/val" target="_blank" rel="noopener"><code>val</code></a></dt>
+<dd>
+<p>Declares <code>final</code> (immutable) local variable.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/var" target="_blank" rel="noopener"><code>var</code></a></dt>
+<dd>
+<p>Declares <strong>mutable</strong> local variable</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_builder"><a class="anchor" href="#_builder"></a>Builder</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Builder" target="_blank" rel="noopener"><code>@Builder</code></a></dt>
+<dd>
+<p>Generates Builder design pattern for object creation.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logging"><a class="anchor" href="#_logging"></a>Logging</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/extern/slf4j/Slf4j" target="_blank" rel="noopener"><code>@Slf4j</code></a></dt>
+<dd>
+<p>Generates a <code>private static final</code> field named <code>log</code> of class <a href="https://www.slf4j.org/manual.html" target="_blank" rel="noopener"><code>org.slf4j.Logger</code></a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exceptions"><a class="anchor" href="#_exceptions"></a>Exceptions</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/SneakyThrows" target="_blank" rel="noopener"><code>@SneakyThrows</code></a></dt>
+<dd>
+<p>Throws checked exceptions without actually declaring this in your method&#8217;s <code>throws</code> clause. It simply fakes out the compiler. Useful for:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>lombok.Data</code> - equivalent to <code>@Getter</code>, <code>@Setter</code>, <code>@RequiredArgsConstructor</code>, <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
+<p>An "impossible" exception - the one which will never occur,</p>
 </li>
 <li>
-<p><code>lombok.Value</code> - immutable variant of <code>@Data</code>. Equivalent to <code>@Getter</code> <code>@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)</code> <code>@AllArgsConstructor</code> <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
-</li>
-<li>
-<p><code>lombok.Builder</code> - generates Builder design pattern for object creation</p>
-</li>
-<li>
-<p><code>lombok.experimental.FieldDefaults</code> - adds modifiers to each field in the type with this annotation</p>
-</li>
-<li>
-<p><code>lombok.Getter</code> - generates getter</p>
-</li>
-<li>
-<p><code>lombok.Setter</code> - generates setter</p>
-</li>
-<li>
-<p><code>lombok.NoArgsConstructor</code> - generates a constructor without arguments</p>
-</li>
-<li>
-<p><code>lombok.RequiredArgsConstructor</code> - generates a constructor with required arguments (the ones marked with <code>final</code> or <code>@NonNull</code>)</p>
-</li>
-<li>
-<p><code>lombok.AllArgsConstructor</code> - generates a constructor will all arguments</p>
-</li>
-<li>
-<p><code>lombok.ToString</code> - generates an implementation for the <code>java.lang.Object#toString</code> method inherited by all objects, consisting of printing the values of relevant fields</p>
-</li>
-<li>
-<p><code>lombok.EqualsAndHashCode</code> - generates implementations for the <code>java.lang.Object#equals</code> and <code>java.lang.Object#hashCode</code> methods inherited by all objects, based on relevant fields.</p>
-</li>
-<li>
-<p><code>lombok.NonNull</code> - generates a null-check, which can throw <code>java.lang.NullPointerException</code></p>
-</li>
-<li>
-<p><code>lombok.SneakyThrows</code> - throws checked exceptions without actually declaring this in your method&#8217;s <code>throws</code> clause. It simply fakes out the compiler: Useful for:</p>
-</li>
-<li>
-<p>An "impossible" exception - the one which will never occur</p>
-</li>
-<li>
-<p>A needlessly strict interface</p>
-</li>
-<li>
-<p><code>lombok.Synchronized</code> - a safer variant of <code>synchronized</code> method modifier. It will synchronize on a private internal Object named <code>$lock</code> instead of <code>this</code>. Locking on <code>this</code> or your own class object can have unfortunate side-effects, as other code not under your control can lock on these objects as well, which can cause race conditions and other nasty threading-related bugs.</p>
-</li>
-<li>
-<p><code>lombok.Locked</code> - like <code>@Synchronized</code>, but using <code>java.util.concurrent.locks.ReentrantLock</code>. It is recommended for Virtual Threads (introduced in Java 20)</p>
-</li>
-<li>
-<p><code>lombok.extern.java.Log</code> - generates a <code>log</code> field of type <code>java.util.logging.Logger</code> which is awful</p>
-</li>
-<li>
-<p><code>lombok.extern.slf4j.Slf4j</code> - generates a <code>log</code> field of type [org.slf4j.Logger](<a href="https://www.slf4j.org/manual.html" class="bare">https://www.slf4j.org/manual.html</a>)</p>
+<p>A needlessly strict interface, such as <code>⚪ Runnable</code></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Local variables:</p>
+</dd>
+</dl>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>lombok.val</code> - declares <strong>final</strong> local variable</p>
-</li>
-<li>
-<p><code>lombok.var</code> - declares <strong>mutable</strong> (not final) local variable</p>
-</li>
-</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_concurrency"><a class="anchor" href="#_concurrency"></a>Concurrency</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Synchronized" target="_blank" rel="noopener"><code>@Synchronized</code></a></dt>
+<dd>
+<p>Safer variant of <code>synchronized</code> method modifier. It will synchronize on a private internal Object named <code>$lock</code> instead of <code>this</code>. Locking on <code>this</code> or your own class object can have unfortunate side effects, as other code not under your control can lock on these objects as well, which can cause race conditions and other nasty threading-related bugs.</p>
+</dd>
+<dt class="hdlist1"><a href="https://projectlombok.org/api/lombok/Locked" target="_blank" rel="noopener"><code>@Locked</code></a></dt>
+<dd>
+<p>Like <code>@Synchronized</code>, but using <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html" target="_blank" rel="noopener"><code>🟢 ReentrantLock</code></a>. It is <strong>recommended for Virtual Threads</strong> (introduced in Java 20)</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
