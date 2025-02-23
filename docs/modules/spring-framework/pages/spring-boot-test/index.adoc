@@ -1,0 +1,54 @@
+= Spring Boot Test
+
+image:https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-framework/reference/testing.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-boot/reference/testing/index.html",window=_blank]
+image:https://img.shields.io/badge/Mockito%20Documentation-2088E9?logo=quickLook&logoColor[link="https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html",window=_blank]
+image:https://img.shields.io/badge/JavaHamcrest%20Documentation-2088E9?logo=quickLook&logoColor[link="https://hamcrest.org/JavaHamcrest/",window=_blank]
+
+include::spring-framework:partial$nav.adoc[tag=spring-boot-test]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+----
+
+== Testing Terminology
+
+Unit Tests::
+Designed to test specific sections of code. Ideal coverage is *70-80%*.
+Integration Tests::
+Designed to test behaviors between objects and parts of the overall system. They can include the Spring Context, database and message brokers.
+Functional Tests::
+Testing the running application. Application is live, likely deployed in a known environment.
+
+== Spring Boot Test
+
+{spring-boot-api-spec-url}/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^]::
+Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
+* Uses {spring-boot-api-spec-url}/org/springframework/boot/test/context/SpringBootContextLoader.html[`🟢 SpringBootContextLoader`^] as the default `⚪ ContextLoader` when no specific {spring-api-spec-url}/org/springframework/test/context/ContextConfiguration.html[`@ContextConfiguration(loader=...)`^] is defined.
+* Automatically searches for a `@SpringBootConfiguration` when nested `@Configuration` is not used, and no explicit classes are specified.
+* Allows custom Environment properties to be defined using the `properties` attribute.
+* Allows application arguments to be defined using the `args` attribute.
+* Provides support for different `webEnvironment` modes, including the ability to start a fully running web server listening on a defined or random port
+* Registers a {spring-boot-api-spec-url}/org/springframework/boot/test/web/client/TestRestTemplate.html[`🟢 TestRestTemplate`^] and/or {spring-api-spec-url}/org/springframework/test/web/reactive/server/WebTestClient.html[`⚪ WebTestClient`^] bean for use in web tests that are using a fully running web server
+
+.`@SpringBootTest` example
+[,java]
+----
+@SpringBootTest
+class BookControllerIT {
+    @Autowired
+    BookController bookController;
+
+    @Test
+    void testController() {
+        // Assertions
+    }
+}
+----
