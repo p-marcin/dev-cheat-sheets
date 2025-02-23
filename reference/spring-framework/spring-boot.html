@@ -317,12 +317,12 @@ public class FooService {
 <p>May be used on a field or parameter as a qualifier for candidate beans when autowiring. It may also be used to annotate other custom annotations that can then in turn be used as qualifiers.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">@Service
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">@Service("bestFooService") <i class="conum" data-value="1"></i><b>(1)</b>
 public class FooService {
     private final FooRepository fooRepository;
 
     @Autowired
-    public FooService(@Qualifier("jdbcFooRepository") FooRepository fooRepository) { <i class="conum" data-value="1"></i><b>(1)</b>
+    public FooService(@Qualifier("jdbcFooRepository") FooRepository fooRepository) { <i class="conum" data-value="2"></i><b>(2)</b>
         this.fooRepository = fooRepository;
     }
 }</code></pre>
@@ -332,7 +332,11 @@ public class FooService {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In this case <code>🟢 JdbcFooRepository</code> will be injected.</td>
+<td>You can set a custom component name, so later you can use this name in <code>@Qualifier</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In this case <code>🟢 JdbcFooRepository</code> will be injected (notice, it is class name starting lower case).</td>
 </tr>
 </table>
 </div>
