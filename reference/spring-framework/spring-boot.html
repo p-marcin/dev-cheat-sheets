@@ -360,6 +360,34 @@ public class FooService {
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>If no profile is active using one of those options, a default profile is enabled as a fallback. The name of the default profile is <code>default</code>: <code>@Profile({"EN", "default"})</code>. You can change default profile name with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/AbstractEnvironment.html#DEFAULT_PROFILES_PROPERTY_NAME" target="_blank" rel="noopener"><code>spring.profiles.default</code></a> property. The value may be comma delimited.</p>
+</li>
+<li>
+<p><code>SPRING_PROFILES_DEFAULT</code> env variable when using <code>🟢 SystemEnvironmentPropertySource</code></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setDefaultProfiles(java.lang.String...)" target="_blank" rel="noopener"><code>⚪ ConfigurableEnvironment#setDefaultProfiles(String&#8230;&#8203; profiles)</code></a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A profile string may contain a simple profile name (for example <code>p1</code>) or a profile expression. A profile expression allows for more complicated profile logic to be expressed, for example <code>p1 &amp; p2</code>. See <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/Profiles.html#of(java.lang.String...)" target="_blank" rel="noopener"><code>⚪ Profiles.of(String&#8230;&#8203;)</code></a> for more details about supported formats.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
 </dd>
 </dl>
 </div>
