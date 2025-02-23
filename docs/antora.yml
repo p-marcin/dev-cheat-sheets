@@ -4,6 +4,7 @@ version: ~
 nav:
   - modules/java/nav.adoc
   - modules/spring-framework/nav.adoc
+  - modules/database/nav.adoc
   - modules/server/nav.adoc
   - modules/asciidoc/nav.adoc
 asciidoc:
