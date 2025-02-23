@@ -599,15 +599,35 @@ public class SpringBeanLifecycleConfig {
 <h2 id="_rmm_richardson_maturity_model"><a class="anchor" href="#_rmm_richardson_maturity_model"></a>RMM (Richardson Maturity Model)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>RMM is used to describe the quality of the RESTful service:
-* <strong>Level 0: Swamp of POX (Plain Old XML)</strong> - uses <strong>one URI</strong> and <strong>one kind of HTTP Verb</strong> (Request Method)
-* Example: RPC, SOAP, XML-RPC
-* <strong>Level 1: Resources</strong> - uses <strong>multiple URIs</strong> to identify specific resources and <strong>one kind of HTTP Verb</strong>. It breaks large service into <strong>distinct URIs</strong>.
-* Example: You can GET <code>/product/1234</code> and <code>/product/5678</code>
-* <strong>Level 2: HTTP Verbs</strong> - uses <strong>multiple URIs</strong> and <strong>multiple kind of HTTP Verb</strong> for desired actions. It introduces HTTP Verbs to implement actions.
-* Example: You can GET and DELETE <code>/product/1234</code> and <code>/product/5678</code>
-* <strong>Level 3: Hypermedia</strong> - representation <strong>contains URIs</strong> which may be useful to consumers. It helps developers <strong>explore the resource</strong>. It provides <strong>discoverability</strong>, making the API more <strong>self documenting</strong>
-* Spring Framework provides an implementation of <strong>HATEOAS (Hypermedia as the Engine of Application State)</strong> - in response objects you get links and information about the actions</p>
+<p>RMM is used to describe the quality of the RESTful service:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Level 0: Swamp of POX (Plain Old XML)</strong> - uses <strong>one URI</strong> and <strong>one kind of HTTP Verb</strong> (Request Method)</p>
+</li>
+<li>
+<p>Example: RPC, SOAP, XML-RPC</p>
+</li>
+<li>
+<p><strong>Level 1: Resources</strong> - uses <strong>multiple URIs</strong> to identify specific resources and <strong>one kind of HTTP Verb</strong>. It breaks large service into <strong>distinct URIs</strong>.</p>
+</li>
+<li>
+<p>Example: You can GET <code>/product/1234</code> and <code>/product/5678</code></p>
+</li>
+<li>
+<p><strong>Level 2: HTTP Verbs</strong> - uses <strong>multiple URIs</strong> and <strong>multiple kind of HTTP Verb</strong> for desired actions. It introduces HTTP Verbs to implement actions.</p>
+</li>
+<li>
+<p>Example: You can GET and DELETE <code>/product/1234</code> and <code>/product/5678</code></p>
+</li>
+<li>
+<p><strong>Level 3: Hypermedia</strong> - representation <strong>contains URIs</strong> which may be useful to consumers. It helps developers <strong>explore the resource</strong>. It provides <strong>discoverability</strong>, making the API more <strong>self documenting</strong></p>
+</li>
+<li>
+<p>Spring Framework provides an implementation of <strong>HATEOAS (Hypermedia as the Engine of Application State)</strong> - in response objects you get links and information about the actions</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -630,11 +650,23 @@ public class SpringBeanLifecycleConfig {
 <h2 id="_spring_boot_dev_tools"><a class="anchor" href="#_spring_boot_dev_tools"></a>Spring Boot DEV Tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spring Boot DEV Tools are <strong>additional set of tools</strong> that can make the application development experience <strong>a little more pleasant</strong>:
-* application <strong>automatically restart</strong> whenever files on the classpath change (in IntelliJ IDEA you can just <code>Recompile java file</code> or <code>Build Project</code> in <code>Build</code> top menu)
-* starts embedded <strong>LiveReload</strong> server that can be used to <strong>trigger a browser refresh</strong> when a resource is changed
-* <strong>disable caching options</strong> by default, so changes can be seen immediately
-* you can configure <strong>global DEV Tools settings</strong> by adding a file named <code>.spring-boot-devtools.properties</code> to your <code>${HOME}</code> folder. Any properties added to this file will apply to <strong>all</strong> Spring Boot applications on your machine that use DEV Tools</p>
+<p>Spring Boot DEV Tools are <strong>additional set of tools</strong> that can make the application development experience <strong>a little more pleasant</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>application <strong>automatically restart</strong> whenever files on the classpath change (in IntelliJ IDEA you can just <code>Recompile java file</code> or <code>Build Project</code> in <code>Build</code> top menu)</p>
+</li>
+<li>
+<p>starts embedded <strong>LiveReload</strong> server that can be used to <strong>trigger a browser refresh</strong> when a resource is changed</p>
+</li>
+<li>
+<p><strong>disable caching options</strong> by default, so changes can be seen immediately</p>
+</li>
+<li>
+<p>you can configure <strong>global DEV Tools settings</strong> by adding a file named <code>.spring-boot-devtools.properties</code> to your <code>${HOME}</code> folder. Any properties added to this file will apply to <strong>all</strong> Spring Boot applications on your machine that use DEV Tools</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
 <h3 id="_spring_resttemplate"><a class="anchor" href="#_spring_resttemplate"></a>Spring RestTemplate</h3>
@@ -680,10 +712,20 @@ public class SpringBeanLifecycleConfig {
 <p>The <code>@Version</code> property is returned as <code>ETag</code> (Entity Tag) header in response. It is used to determine a change in content at a given URL.</p>
 </div>
 <div class="paragraph">
-<p>When you make a GET request to:
-* <code>/resources</code> - you&#8217;ll get list of resources
-* <code>/profile/resources</code> - you&#8217;ll get information about resources REST API
-* <code>/resources/search/findByProperty?property=test</code> - you&#8217;ll get the result of Repository <code>findByProperty</code> method invocation</p>
+<p>When you make a GET request to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/resources</code> - you&#8217;ll get list of resources</p>
+</li>
+<li>
+<p><code>/profile/resources</code> - you&#8217;ll get information about resources REST API</p>
+</li>
+<li>
+<p><code>/resources/search/findByProperty?property=test</code> - you&#8217;ll get the result of Repository <code>findByProperty</code> method invocation</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -691,28 +733,68 @@ public class SpringBeanLifecycleConfig {
 <h2 id="_spring_data_jpa"><a class="anchor" href="#_spring_data_jpa"></a>Spring Data JPA</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spring Data JPA provides repository support for the Jakarta Persistence API (JPA). It eases development of applications with a consistent programming model that need to access JPA data sources:
-* [Defining Query Methods](<a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html" class="bare">https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html</a>)</p>
+<p>Spring Data JPA provides repository support for the Jakarta Persistence API (JPA). It eases development of applications with a consistent programming model that need to access JPA data sources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[Defining Query Methods](<a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html" class="bare">https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html</a>)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Spring Data JPA does not have a default limit on records returned and does not set a default sort. The only limit is memory of the JVM:
-* [Paging, Iterating Large Results, Sorting &amp; Limiting](<a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html#repositories.special-parameters" class="bare">https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html#repositories.special-parameters</a>)</p>
+<p>Spring Data JPA does not have a default limit on records returned and does not set a default sort. The only limit is memory of the JVM:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[Paging, Iterating Large Results, Sorting &amp; Limiting](<a href="https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html#repositories.special-parameters" class="bare">https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html#repositories.special-parameters</a>)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>JPA specific cascade types:
-* <code>ALL</code> - propagates all operations
-* <code>PERSIST</code> - also saves child objects (transient instances)
-* <code>MERGE</code> - copies the state of a given object to the persistent object. MERGE includes child entities
-* <code>REMOVE</code> - cascades delete operations to child objects
-* <code>REFRESH</code> - cascades refresh operations to child objects
-* <code>DETACH</code> - detaches child objects from persistence context</p>
+<p>JPA specific cascade types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ALL</code> - propagates all operations</p>
+</li>
+<li>
+<p><code>PERSIST</code> - also saves child objects (transient instances)</p>
+</li>
+<li>
+<p><code>MERGE</code> - copies the state of a given object to the persistent object. MERGE includes child entities</p>
+</li>
+<li>
+<p><code>REMOVE</code> - cascades delete operations to child objects</p>
+</li>
+<li>
+<p><code>REFRESH</code> - cascades refresh operations to child objects</p>
+</li>
+<li>
+<p><code>DETACH</code> - detaches child objects from persistence context</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Hibernate specific cascade types:
-* <code>DELETE</code> - same as JPA <code>REMOVE</code>
-* <code>SAVE_UPDATE</code> - cascades Hibernate save and update operations to child objects
-* <code>REPLICATE</code> - replicates child objects to second data source
-* <code>LOCK</code> - reattaches entity and children to persistence context - without refresh</p>
+<p>Hibernate specific cascade types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DELETE</code> - same as JPA <code>REMOVE</code></p>
+</li>
+<li>
+<p><code>SAVE_UPDATE</code> - cascades Hibernate save and update operations to child objects</p>
+</li>
+<li>
+<p><code>REPLICATE</code> - replicates child objects to second data source</p>
+</li>
+<li>
+<p><code>LOCK</code> - reattaches entity and children to persistence context - without refresh</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Spring Data JPA by default supports implicit transactions: repository methods will create transaction by default, if there is no active transaction:
@@ -825,14 +907,30 @@ public class SpringBeanLifecycleConfig {
 <p>Spring MVC Controllers are tricky to test property. They have a high degree of integration with Spring MVC framework. JUnit tests are not sufficient to test the framework interaction.</p>
 </div>
 <div class="paragraph">
-<p>Spring Mock MVC is a testing environment for the testing of Spring MVC Controllers:
-* Provides mocks of the Servlet runtime environment (simulates the execution of controller as if it was running under Spring with Tomcat)
-* Can be run with (Integration Test) or without (true Unit Test) Spring Context</p>
+<p>Spring Mock MVC is a testing environment for the testing of Spring MVC Controllers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides mocks of the Servlet runtime environment (simulates the execution of controller as if it was running under Spring with Tomcat)</p>
+</li>
+<li>
+<p>Can be run with (Integration Test) or without (true Unit Test) Spring Context</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Spring Boot supports a concept of <strong>Test Splices</strong> which bring up a targeted segment of the auto-configured Spring Boot environment:
-* e.g. just the Database components or just the Web components
-* user defined Spring beans typically are not initialized</p>
+<p>Spring Boot supports a concept of <strong>Test Splices</strong> which bring up a targeted segment of the auto-configured Spring Boot environment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. just the Database components or just the Web components</p>
+</li>
+<li>
+<p>user defined Spring beans typically are not initialized</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>@WebMvcTest</strong> is a Spring Boot test splice which creates a MockMVC environment for the controller under a test. Dependencies of it are not included and need to be added to the Spring Context in the test environment.</p>
