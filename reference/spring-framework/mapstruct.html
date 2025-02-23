@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Project Lombok :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/project-lombok.html">
+    <title>MapStruct :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/mapstruct.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -140,10 +140,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-boot-test.html">Spring Boot Test</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="project-lombok.html">Project Lombok</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="mapstruct.html">MapStruct</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -194,21 +194,21 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="project-lombok.html">Project Lombok</a></li>
+    <li><a href="mapstruct.html">MapStruct</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/project-lombok.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/mapstruct.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Project Lombok</h1>
+<h1 class="page">MapStruct</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://projectlombok.org/features/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://mapstruct.org/documentation/reference-guide/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
 </div>
 </div>
@@ -216,13 +216,7 @@
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Project Lombok <strong>saves your time</strong> and gives you <strong>cleaner code</strong>. It provides <strong>annotations</strong> which help to eliminate writing <strong>ceremonial code</strong> e.g. getters and setters.</p>
-</div>
-<div class="paragraph">
-<p>Why "Lombok"? "Java" is also an island in Indonesia. "Lombok" is the <strong>second island</strong> east of the island "Java". "Lombok" is also Indonesian for <strong>chilli</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Lombok <strong>hooks in</strong> via the <strong>annotation processor API</strong>. The <strong>raw source code</strong> is passed to Lombok for <strong>code generation</strong> before Java compilation continues. Code is <strong>generated</strong> and <strong>compiled</strong>, there is <strong>no runtime performance penalty</strong>.</p>
+<p>MapStruct is a <strong>code generator</strong> which automates <strong>generation of Type Converters</strong>. It works like <a href="project-lombok.html" class="xref page">Project Lombok</a> via annotation processing during code compilation. It is useful for creating Type Converters which can convert <strong>Data Transfer Object (DTO) into Database Entity</strong> and <strong>Database Entity into Data Transfer Object (DTO)</strong>.</p>
 </div>
 </div>
 </div>
@@ -233,24 +227,39 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
   &lt;dependency&gt;
-    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;
+    &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;
+    &lt;version&gt;${org.mapstruct.version}&lt;/version&gt;
     &lt;optional&gt;true&lt;/optional&gt;
   &lt;/dependency&gt;
 &lt;/dependencies&gt;
 &lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
-      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-      &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-      &lt;configuration&gt;
-        &lt;excludes&gt;
-          &lt;exclude&gt;
-            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
-            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
-          &lt;/exclude&gt;
-        &lt;/excludes&gt;
-      &lt;/configuration&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+          &lt;annotationProcessorPaths&gt;
+            &lt;path&gt;
+              &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;
+              &lt;artifactId&gt;mapstruct-processor&lt;/artifactId&gt;
+              &lt;version&gt;${mapstruct.version}&lt;/version&gt;
+            &lt;/path&gt;
+            &lt;path&gt;
+              &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+              &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+              &lt;version&gt;${lombok.version}&lt;/version&gt;
+            &lt;/path&gt;
+            &lt;path&gt;
+              &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+              &lt;artifactId&gt;lombok-mapstruct-binding&lt;/artifactId&gt;
+              &lt;version&gt;${lombok-mapstruct.version}&lt;/version&gt;
+            &lt;/path&gt;
+          &lt;/annotationProcessorPaths&gt;
+          &lt;compilerArgs&gt;
+            &lt;compilerArg&gt;-Amapstruct.defaultComponentModel=spring&lt;/compilerArg&gt;
+          &lt;/compilerArgs&gt;
+        &lt;/configuration&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
 &lt;/build&gt;</code></pre>
@@ -259,107 +268,27 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
+<h2 id="_generate_type_converter"><a class="anchor" href="#_generate_type_converter"></a>Generate Type Converter</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://plugins.jetbrains.com/plugin/6317-lombok" target="_blank" rel="noopener">Lombok IntelliJ IDE plugin</a>,</p>
-</li>
-<li>
-<p>Enable annotation processing (in IntelliJ IDEA go to <span class="menuseq"><b class="menu">Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Build, Execution, Deployment</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Compiler</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Annotation Processors</b></span>).</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://mapstruct.org/documentation/stable/api/org/mapstruct/Mapper.html" target="_blank" rel="noopener"><code>@Mapper</code></a></dt>
+<dd>
+<p>Marks an interface or abstract class as a Mapper and activates the <strong>generation</strong> of an implementation of that type via MapStruct:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Mapper
+public interface CustomerMapper {
+
+    Customer toCustomer(CustomerDTO customerDTO);
+
+    CustomerDTO toCustomerDto(Customer customer);
+
+}</code></pre>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_delombok"><a class="anchor" href="#_delombok"></a>Delombok</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Delombok converts <strong>Lombok annotations</strong> to <strong>code</strong> in <strong>source class</strong>.</p>
-</div>
-<div class="paragraph">
-<p>In IntelliJ IDEA delombok is available in top menu under <span class="menuseq"><b class="menu">Refactor</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Delombok</b></span>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_annotations"><a class="anchor" href="#_annotations"></a>Annotations</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>lombok.Data</code> - equivalent to <code>@Getter</code>, <code>@Setter</code>, <code>@RequiredArgsConstructor</code>, <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
-</li>
-<li>
-<p><code>lombok.Value</code> - immutable variant of <code>@Data</code>. Equivalent to <code>@Getter</code> <code>@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)</code> <code>@AllArgsConstructor</code> <code>@ToString</code> and <code>@EqualsAndHashCode</code></p>
-</li>
-<li>
-<p><code>lombok.Builder</code> - generates Builder design pattern for object creation</p>
-</li>
-<li>
-<p><code>lombok.experimental.FieldDefaults</code> - adds modifiers to each field in the type with this annotation</p>
-</li>
-<li>
-<p><code>lombok.Getter</code> - generates getter</p>
-</li>
-<li>
-<p><code>lombok.Setter</code> - generates setter</p>
-</li>
-<li>
-<p><code>lombok.NoArgsConstructor</code> - generates a constructor without arguments</p>
-</li>
-<li>
-<p><code>lombok.RequiredArgsConstructor</code> - generates a constructor with required arguments (the ones marked with <code>final</code> or <code>@NonNull</code>)</p>
-</li>
-<li>
-<p><code>lombok.AllArgsConstructor</code> - generates a constructor will all arguments</p>
-</li>
-<li>
-<p><code>lombok.ToString</code> - generates an implementation for the <code>java.lang.Object#toString</code> method inherited by all objects, consisting of printing the values of relevant fields</p>
-</li>
-<li>
-<p><code>lombok.EqualsAndHashCode</code> - generates implementations for the <code>java.lang.Object#equals</code> and <code>java.lang.Object#hashCode</code> methods inherited by all objects, based on relevant fields.</p>
-</li>
-<li>
-<p><code>lombok.NonNull</code> - generates a null-check, which can throw <code>java.lang.NullPointerException</code></p>
-</li>
-<li>
-<p><code>lombok.SneakyThrows</code> - throws checked exceptions without actually declaring this in your method&#8217;s <code>throws</code> clause. It simply fakes out the compiler: Useful for:</p>
-</li>
-<li>
-<p>An "impossible" exception - the one which will never occur</p>
-</li>
-<li>
-<p>A needlessly strict interface</p>
-</li>
-<li>
-<p><code>lombok.Synchronized</code> - a safer variant of <code>synchronized</code> method modifier. It will synchronize on a private internal Object named <code>$lock</code> instead of <code>this</code>. Locking on <code>this</code> or your own class object can have unfortunate side-effects, as other code not under your control can lock on these objects as well, which can cause race conditions and other nasty threading-related bugs.</p>
-</li>
-<li>
-<p><code>lombok.Locked</code> - like <code>@Synchronized</code>, but using <code>java.util.concurrent.locks.ReentrantLock</code>. It is recommended for Virtual Threads (introduced in Java 20)</p>
-</li>
-<li>
-<p><code>lombok.extern.java.Log</code> - generates a <code>log</code> field of type <code>java.util.logging.Logger</code> which is awful</p>
-</li>
-<li>
-<p><code>lombok.extern.slf4j.Slf4j</code> - generates a <code>log</code> field of type [org.slf4j.Logger](<a href="https://www.slf4j.org/manual.html" class="bare">https://www.slf4j.org/manual.html</a>)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Local variables:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>lombok.val</code> - declares <strong>final</strong> local variable</p>
-</li>
-<li>
-<p><code>lombok.var</code> - declares <strong>mutable</strong> (not final) local variable</p>
-</li>
-</ul>
+</dd>
+</dl>
 </div>
 </div>
 </div>
