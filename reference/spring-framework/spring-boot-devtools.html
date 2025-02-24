@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>H2 Database :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/h2-database.html">
+    <title>Spring Boot DevTools :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/spring-framework/spring-boot-devtools.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -116,7 +116,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spring-data-jpa.html">Spring Data JPA</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="h2-database.html">H2 Database</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -146,7 +146,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mapstruct.html">MapStruct</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="spring-boot-devtools.html">Spring Boot DevTools</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -210,22 +210,21 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">☘️ Spring Framework</a></li>
-    <li><a href="h2-database.html">H2 Database</a></li>
+    <li><a href="spring-boot-devtools.html">Spring Boot DevTools</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/h2-database.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/spring-framework/pages/spring-boot-devtools.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">H2 Database</h1>
+<h1 class="page">Spring Boot DevTools</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.h2database.com/html/quickstart.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/H2%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="H2%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span>
-<span class="image"><a class="image" href="https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.h2-web-console" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Spring%20Boot%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://docs.spring.io/spring-boot/reference/using/devtools.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
 </div>
 </div>
@@ -235,9 +234,9 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-    &lt;groupId&gt;com.h2database&lt;/groupId&gt;
-    &lt;artifactId&gt;h2&lt;/artifactId&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
@@ -247,48 +246,23 @@
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>H2 Database is <strong>in-memory</strong> database, so it&#8217;s only running in the context of the Spring application.</p>
+<p>Spring Boot DEV Tools are <strong>additional set of tools</strong> that can make the application development experience <strong>a little more pleasant</strong>:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_h2s_web_console"><a class="anchor" href="#_h2s_web_console"></a>H2&#8217;s Web Console</h2>
-<div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>spring.h2.console.enabled=true</code></dt>
-<dd>
-<p>Enables H2&#8217;s Web Console</p>
-</dd>
-<dt class="hdlist1"><code>http://localhost:8080/h2-console</code></dt>
-<dd>
-<p>URL for H2&#8217;s Web Console. Connection details can be found in Spring App logs (look for <code>H2ConsoleAutoConfiguration</code> line).</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-The H2 console is only intended for use <strong>during development</strong>, so you should take care to ensure that <code>spring.h2.console.enabled</code> is not set to <code>true</code> in production.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Check also <a href="https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.h2-web-console" target="_blank" rel="noopener">Spring Boot Documentation</a>
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Application <strong>automatically restart</strong> whenever files on the classpath change (in IntelliJ IDEA you can just <code>Recompile '.java'</code> or <code>Build Project</code> in <code>Build</code> top menu).</p>
+</li>
+<li>
+<p>Starts embedded <strong>LiveReload</strong> server that can be used to <strong>trigger a browser refresh</strong> when a resource is changed.</p>
+</li>
+<li>
+<p><strong>Disable caching options</strong> by default, so changes can be seen immediately.</p>
+</li>
+<li>
+<p>You can configure <strong>global DEV Tools settings</strong> by adding a file named <code>.spring-boot-devtools.properties</code> to your <code>${HOME}</code> folder. Any properties added to this file will apply to <strong>all</strong> Spring Boot applications on your machine that use DEV Tools.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

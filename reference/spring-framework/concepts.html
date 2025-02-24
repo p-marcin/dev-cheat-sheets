@@ -147,6 +147,9 @@
     <a class="nav-link" href="mapstruct.html">MapStruct</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="spring-boot-devtools.html">Spring Boot DevTools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="debug.html">Debugging techniques</a>
   </li>
 </ul>
@@ -508,32 +511,10 @@ public class SpringBeanLifecycleConfig {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spring_boot_dev_tools"><a class="anchor" href="#_spring_boot_dev_tools"></a>Spring Boot DEV Tools</h2>
+<h2 id="_spring_resttemplate"><a class="anchor" href="#_spring_resttemplate"></a>Spring RestTemplate</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Spring Boot DEV Tools are <strong>additional set of tools</strong> that can make the application development experience <strong>a little more pleasant</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>application <strong>automatically restart</strong> whenever files on the classpath change (in IntelliJ IDEA you can just <code>Recompile java file</code> or <code>Build Project</code> in <code>Build</code> top menu)</p>
-</li>
-<li>
-<p>starts embedded <strong>LiveReload</strong> server that can be used to <strong>trigger a browser refresh</strong> when a resource is changed</p>
-</li>
-<li>
-<p><strong>disable caching options</strong> by default, so changes can be seen immediately</p>
-</li>
-<li>
-<p>you can configure <strong>global DEV Tools settings</strong> by adding a file named <code>.spring-boot-devtools.properties</code> to your <code>${HOME}</code> folder. Any properties added to this file will apply to <strong>all</strong> Spring Boot applications on your machine that use DEV Tools</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_spring_resttemplate"><a class="anchor" href="#_spring_resttemplate"></a>Spring RestTemplate</h3>
-<div class="paragraph">
 <p>RestTemplate is in <strong>maintenance mode</strong> (no new features are planned). It is recommended to <strong>use Spring WebClient for new development</strong>.</p>
-</div>
 </div>
 </div>
 </div>
