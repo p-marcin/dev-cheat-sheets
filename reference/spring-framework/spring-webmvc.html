@@ -392,12 +392,39 @@ public class BookController {
     // ...
 
     @RequestMapping(method = RequestMethod.GET)
-    public List&lt;Book&gt; listBooks() {
-        return bookService.listBooks();
+    public List&lt;Book&gt; getBooks() {
+        return bookService.getBooks();
     }
 
 }</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requesting_mapping"><a class="anchor" href="#_requesting_mapping"></a>Requesting Mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Instead of e.g. <code>@RequestMapping(method = RequestMethod.GET)</code> you can use convenience annotations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html" target="_blank" rel="noopener"><code>@GetMapping</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PostMapping.html" target="_blank" rel="noopener"><code>@PostMapping</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PutMapping.html" target="_blank" rel="noopener"><code>@PutMapping</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PatchMapping.html" target="_blank" rel="noopener"><code>@PatchMapping</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/DeleteMapping.html" target="_blank" rel="noopener"><code>@DeleteMapping</code></a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
