@@ -239,7 +239,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>You can check <code>max_connections</code> and <code>superuser_reserved_connections</code> with these queries:</p>
+<p>You can check <code>max_connections</code> and <code>superuser_reserved_connections</code> in PostgreSQL with these queries:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -262,7 +262,7 @@ Check <a href="https://www.pgpool.net/mediawiki/index.php/Relationship_between_m
 </div>
 </div>
 <div class="sect1">
-<h2 id="_keep_connections_at_stable_level"><a class="anchor" href="#_keep_connections_at_stable_level"></a>Keep connections at stable level</h2>
+<h2 id="_keep_pgpool_connections_at_stable_level"><a class="anchor" href="#_keep_pgpool_connections_at_stable_level"></a>Keep Pgpool connections at stable level</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Without below numbers, idle connections were slowly increasing and had been reaching the limit of <code>max_connections=400</code> (memory usage was also quickly increasing):</p>
@@ -270,10 +270,10 @@ Check <a href="https://www.pgpool.net/mediawiki/index.php/Relationship_between_m
 <div class="ulist">
 <ul>
 <li>
-<p><code>child_life_time=60</code></p>
+<p><code>connection_life_time=60</code></p>
 </li>
 <li>
-<p><code>connection_life_time=60</code></p>
+<p><code>child_life_time=60</code></p>
 </li>
 </ul>
 </div>
