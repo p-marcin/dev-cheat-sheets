@@ -365,6 +365,38 @@ public class BookController {
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_restcontroller"><a class="anchor" href="#_restcontroller"></a>RestController</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html" target="_blank" rel="noopener"><code>@RestController</code></a></dt>
+<dd>
+<p>A convenience annotation that is itself annotated with <code>@Controller</code> and <code>@ResponseBody</code>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseBody.html" target="_blank" rel="noopener"><code>@ResponseBody</code></a></dt>
+<dd>
+<p>Indicates a method return value should be bound to the web response body.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RestController
+public class BookController {
+
+    // ...
+
+    @RequestMapping("/api/v1/book")
+    public List&lt;Book&gt; listBooks() {
+        return bookService.listBooks();
+    }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
