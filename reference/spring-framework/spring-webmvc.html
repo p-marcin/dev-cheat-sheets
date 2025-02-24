@@ -411,18 +411,66 @@ public class BookController {
 <ul>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html" target="_blank" rel="noopener"><code>@GetMapping</code></a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GetMapping("/api/v1/book/{bookId}")
+public Book getBookById(@PathVariable UUID bookId) {
+	return bookService.getBookById(bookId).orElseThrow(NotFoundException::new); // 200
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PostMapping.html" target="_blank" rel="noopener"><code>@PostMapping</code></a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PostMapping("/api/v1/book")
+public ResponseEntity postBook(@Validated @RequestBody BookDTO bookDTO) {
+    BookDTO savedBookDTO = bookService.saveNewBook(bookDTO);
+    ResponseEntity.created(URI.create("/api/v1/book/" + savedBookDTO.getId().toString())).build(); // 201
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PutMapping.html" target="_blank" rel="noopener"><code>@PutMapping</code></a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PutMapping("/api/v1/book/{bookId}")
+public ResponseEntity updateBookById(@PathVariable UUID bookId, @Validated @RequestBody BookDTO bookDTO) {
+        if (bookService.updateBookById(bookId, bookDTO).isEmpty()) {
+            throw new NotFoundException();
+        }
+        return ResponseEntity.noContent().build(); // 204
+    }</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PatchMapping.html" target="_blank" rel="noopener"><code>@PatchMapping</code></a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PatchMapping("/api/v1/book/{bookId}")
+public ResponseEntity patchBookById(@PathVariable UUID bookId, @RequestBody BookDTO bookDTO) {
+    bookService.patchBookById(bookId, bookDTO);
+    return ResponseEntity.noContent().build(); // 204
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/DeleteMapping.html" target="_blank" rel="noopener"><code>@DeleteMapping</code></a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DeleteMapping("/api/v1/book/{bookId}")
+public ResponseEntity deleteBookById(@PathVariable UUID bookId) {
+    if (!bookService.deleteBookById(bookId)) {
+        throw new NotFoundException();
+    }
+    return ResponseEntity.noContent().build(); // 204
+}</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
