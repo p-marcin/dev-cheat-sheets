@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>🧮 Database :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/database/index.html">
+    <title>PostgreSQL HA - Bitnami :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/database/postgresql-ha.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -162,11 +162,11 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">🧮 Database</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="postgresql-ha.html">PostgreSQL HA - Bitnami</a>
   </li>
 </ul>
@@ -207,22 +207,77 @@
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
     <li><a href="index.html">🧮 Database</a></li>
+    <li><a href="postgresql-ha.html">PostgreSQL HA - Bitnami</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/database/pages/index.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/database/pages/postgresql-ha.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">🧮 Database</h1>
+<h1 class="page">PostgreSQL HA - Bitnami</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://artifacthub.io/packages/helm/bitnami/postgresql-ha" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Bitnami%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Bitnami%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span>
+<span class="image"><a class="image" href="https://www.postgresql.org/docs/current/index.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/PostgreSQL%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="PostgreSQL%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span>
+<span class="image"><a class="image" href="https://www.pgpool.net/mediawiki/index.php/Documentation" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Pgpool%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Pgpool%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pgpool_restarts_due_to_sorry_too_many_clients_already"><a class="anchor" href="#_pgpool_restarts_due_to_sorry_too_many_clients_already"></a>Pgpool restarts due to "Sorry, too many clients already"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to guarantee that the application connection requests are never rejected, and that the connection requests wait until a database connection is available, the following condition should be met:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>max_pool * num_init_children &lt;= (max_connections - superuser_reserved_connections)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can check <code>max_connections</code> and <code>superuser_reserved_connections</code> with these SQLs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">SHOW max_connections;
+SHOW superuser_reserved_connections;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Check <a href="https://www.pgpool.net/mediawiki/index.php/Relationship_between_max_pool,_num_init_children,_and_max_connections" target="_blank" rel="noopener">Relationship between max pool, num init children, and max connections</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_keep_connections_at_stable_level"><a class="anchor" href="#_keep_connections_at_stable_level"></a>Keep connections at stable level</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Without below numbers, idle connections were slowly increasing and had been reaching the limit of <code>max_connections=400</code> (memory usage was also quickly increasing):</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="postgresql-ha.html" class="xref page">PostgreSQL HA - Bitnami</a></p>
+<p><code>child_life_time=60</code></p>
+</li>
+<li>
+<p><code>connection_life_time=60</code></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 </article>
   </div>
