@@ -428,7 +428,7 @@ public Book getBookById(@PathVariable UUID bookId) {
 public ResponseEntity postBook(@Validated @RequestBody BookDTO bookDTO) {
     BookDTO savedBookDTO = bookService.saveNewBook(bookDTO);
     URI location = URI.create("/api/v1/book/" + savedBookDTO.getId().toString());
-    ResponseEntity.created(location).build(); // 201
+    return ResponseEntity.created(location).build(); // 201
 }</code></pre>
 </div>
 </div>
@@ -439,11 +439,11 @@ public ResponseEntity postBook(@Validated @RequestBody BookDTO bookDTO) {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PutMapping("/api/v1/book/{bookId}")
 public ResponseEntity updateBookById(@PathVariable UUID bookId, @Validated @RequestBody BookDTO bookDTO) {
-        if (bookService.updateBookById(bookId, bookDTO).isEmpty()) {
-            throw new NotFoundException();
-        }
-        return ResponseEntity.noContent().build(); // 204
-    }</code></pre>
+    if (bookService.updateBookById(bookId, bookDTO).isEmpty()) {
+        throw new NotFoundException();
+    }
+    return ResponseEntity.noContent().build(); // 204
+}</code></pre>
 </div>
 </div>
 </li>
