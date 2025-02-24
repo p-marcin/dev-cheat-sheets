@@ -427,7 +427,8 @@ public Book getBookById(@PathVariable UUID bookId) {
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PostMapping("/api/v1/book")
 public ResponseEntity postBook(@Validated @RequestBody BookDTO bookDTO) {
     BookDTO savedBookDTO = bookService.saveNewBook(bookDTO);
-    ResponseEntity.created(URI.create("/api/v1/book/" + savedBookDTO.getId().toString())).build(); // 201
+    URI location = URI.create("/api/v1/book/" + savedBookDTO.getId().toString());
+    ResponseEntity.created(location).build(); // 201
 }</code></pre>
 </div>
 </div>
