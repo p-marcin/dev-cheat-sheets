@@ -314,6 +314,17 @@ MockMvc mockMvc;</code></pre>
     .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Testing Controller POST request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/book")
+        .accept(MediaType.APPLICATION_JSON)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(testBook)))
+    .andExpect(MockMvcResultMatchers.status().isCreated())
+    .andExpect(MockMvcResultMatchers.header().exists(HttpHeaders.LOCATION));</code></pre>
+</div>
+</div>
 </dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/bean/override/mockito/MockitoBean.html" target="_blank" rel="noopener"><code>@MockitoBean</code></a></dt>
 <dd>
