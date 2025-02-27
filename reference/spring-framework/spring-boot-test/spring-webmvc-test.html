@@ -370,7 +370,8 @@ void testGetBookById() {
 <div class="listingblock">
 <div class="title">Example of <code>🔴 MockMvc</code> json path validation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">.andExpect(MockMvcResultMatchers.jsonPath("$.content.length()", Is.is(3))); <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">.andExpect(MockMvcResultMatchers.jsonPath("$.content[1].id", Is.is("some-id-123"))) <i class="conum" data-value="1"></i><b>(1)</b>
+.andExpect(MockMvcResultMatchers.jsonPath("$.content.length()", Is.is(3))); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -378,6 +379,10 @@ void testGetBookById() {
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td><a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/Is.html#is(T)" target="_blank" rel="noopener"><code>🟢 Is#is(T value)</code></a> - matcher from JavaHamcrest which is a shortcut to the frequently used <code>is(<a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/IsEqual.html#equalTo(T)" target="_blank" rel="noopener">equalTo(x)</a>)</code> (where <a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/Is.html#is(org.hamcrest.Matcher)" target="_blank" rel="noopener"><code>is(Matcher&lt;T&gt; matcher)</code></a> only decorates another matcher).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Asserts that we have 3 objects in <code>content</code> array</td>
 </tr>
 </table>
 </div>
