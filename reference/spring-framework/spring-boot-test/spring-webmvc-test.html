@@ -347,6 +347,41 @@ void testGetBookById() {
 </dd>
 </dl>
 </div>
+<div class="sect2">
+<h3 id="_jayway_jsonpath"><a class="anchor" href="#_jayway_jsonpath"></a>Jayway JsonPath</h3>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://github.com/json-path/JsonPath?tab=readme-ov-file#jayway-jsonpath" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Jayway%20JsonPath%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Jayway%20JsonPath%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+<div class="paragraph">
+<p>A Java DSL (Domain Specific Language) for <strong>reading JSON documents</strong>. It is <strong>included</strong> in Spring Boot Test dependency. Useful for <strong>performing assertions against the JSON object</strong> that is coming back from <code>🔴 MockMvc</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">JsonPath expressions can use the dot-notation:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">$.store.book[0].title</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">or the bracket-notation:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">$['store']['book'][0]['title']</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example of <code>🔴 MockMvc</code> json path validation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">.andExpect(MockMvcResultMatchers.jsonPath("$.content.length()", Is.is(3))); <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/Is.html#is(T)" target="_blank" rel="noopener"><code>🟢 Is#is(T value)</code></a> - matcher from JavaHamcrest which is a shortcut to the frequently used <code>is(<a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/IsEqual.html#equalTo(T)" target="_blank" rel="noopener">equalTo(x)</a>)</code> (where <a href="https://hamcrest.org/JavaHamcrest/javadoc/3.0//org/hamcrest/core/Is.html#is(org.hamcrest.Matcher)" target="_blank" rel="noopener"><code>is(Matcher&lt;T&gt; matcher)</code></a> only decorates another matcher).</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </article>
