@@ -127,18 +127,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="spring-security.html">Spring Security</a>
+    <a class="nav-link" href="spring-security/index.html">Spring Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spring-authorization-server.html">Spring Authorization Server</a>
+    <a class="nav-link" href="spring-security/spring-authorization-server.html">Spring Authorization Server</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="spring-resource-server.html">Spring Resource Server</a>
+    <a class="nav-link" href="spring-security/spring-resource-server.html">Spring Resource Server</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="spring-boot-test.html">Spring Boot Test</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="spring-boot-test/index.html">Spring Boot Test</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="spring-boot-test/spring-webmvc-test.html">Spring WebMVC Test</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="lombok.html">Lombok</a>
@@ -726,56 +732,6 @@ public class SpringBeanLifecycleConfig {
 <p>In Spring Boot if API is only on classpath (with no implementation), you can use the annotations, but validation will not occur. After Spring 2.3, you must include <code>org.springframework.boot:spring-boot-starter-validation</code></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_testing"><a class="anchor" href="#_testing"></a>Testing</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Unit Tests - designed to test specific sections of code. Ideal coverage is <strong>70-80%</strong>.</p>
-</li>
-<li>
-<p>Integration Tests - designed to test behaviors between objects and parts of the overall system. They can include the Spring Context, database and message brokers.</p>
-</li>
-<li>
-<p>Functional Tests - testing the running application.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Spring MVC Controllers are tricky to test property. They have a high degree of integration with Spring MVC framework. JUnit tests are not sufficient to test the framework interaction.</p>
-</div>
-<div class="paragraph">
-<p>Spring Mock MVC is a testing environment for the testing of Spring MVC Controllers:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Provides mocks of the Servlet runtime environment (simulates the execution of controller as if it was running under Spring with Tomcat)</p>
-</li>
-<li>
-<p>Can be run with (Integration Test) or without (true Unit Test) Spring Context</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Spring Boot supports a concept of <strong>Test Splices</strong> which bring up a targeted segment of the auto-configured Spring Boot environment:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. just the Database components or just the Web components</p>
-</li>
-<li>
-<p>user defined Spring beans typically are not initialized</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>@WebMvcTest</strong> is a Spring Boot test splice which creates a MockMVC environment for the controller under a test. Dependencies of it are not included and need to be added to the Spring Context in the test environment.</p>
 </div>
 </div>
 </div>
