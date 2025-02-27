@@ -324,7 +324,7 @@ MockMvc mockMvc;</code></pre>
 BookService bookService;
 
 @Test
-void testGetBookById() {
+void testGetBookById() throws Exception {
     Book testBook = // ...
     BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class)))
         .willReturn(testBook);
