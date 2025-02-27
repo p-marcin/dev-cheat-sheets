@@ -243,36 +243,111 @@
 <p>Spring MVC Controllers are tricky to test properly. They have a high degree of integration with Spring MVC framework. JUnit tests are not sufficient to test the framework interaction.</p>
 </div>
 <div class="paragraph">
-<p>Spring Mock MVC is a testing environment for the testing of Spring MVC Controllers:</p>
+<p>Spring Boot supports a concept of <strong>Test Splices</strong> which bring up a targeted segment of the autoconfigured Spring Boot environment:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Provides mocks of the Servlet runtime environment (simulates the execution of controller as if it was running under Spring with Tomcat)</p>
+<p>e.g. just the Database components or just the Web components,</p>
 </li>
 <li>
-<p>Can be run with (Integration Test) or without (true Unit Test) Spring Context</p>
+<p>user defined Spring beans typically are not initialized.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Spring Boot supports a concept of <strong>Test Splices</strong> which bring up a targeted segment of the auto-configured Spring Boot environment:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. just the Database components or just the Web components</p>
-</li>
-<li>
-<p>user defined Spring beans typically are not initialized</p>
-</li>
-</ul>
 </div>
+<div class="sect1">
+<h2 id="_webmvctest"><a class="anchor" href="#_webmvctest"></a>WebMvcTest</h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener"><code>@WebMvcTest</code></a></dt>
 <dd>
 <p>A Spring Boot test splice which creates a MockMVC environment for the controller under a test. Dependencies of it are not included and need to be added to the Spring Context in the test environment.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>@WebMvcTest</code> will autoconfigure <strong>all the Controllers</strong>. If you want to autoconfigure only specific Controllers, use it like: <code>@WebMvcTest(BookController.class)</code>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html" target="_blank" rel="noopener"><code>🔴 MockMvc</code></a></dt>
+<dd>
+<p>Main entry point for server-side Spring MVC test support.</p>
+<div class="listingblock">
+<div class="title">In <code>@WebMvcTest</code> you can autowire <code>🔴 MockMvc</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Autowired
+MockMvc mockMvc;</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_controller_requests"><a class="anchor" href="#_testing_controller_requests"></a>Testing Controller requests</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html" target="_blank" rel="noopener"><code>🟠 MockMvcRequestBuilders</code></a></dt>
+<dd>
+<p>Static factory methods for building <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/mock/web/MockHttpServletRequest.html" target="_blank" rel="noopener"><code>🟢 MockHttpServletRequest</code></a> which is mock implementation of the <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/servlet/http/httpservletrequest" target="_blank" rel="noopener"><code>⚪ HttpServletRequest</code></a>.</p>
+</dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html" target="_blank" rel="noopener"><code>🟠 MockMvcResultMatchers</code></a></dt>
+<dd>
+<p>Static factory methods for building <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/ResultMatcher.html" target="_blank" rel="noopener"><code>⚪ ResultMatcher</code></a>-based result actions. A <code>⚪ ResultMatcher</code> matches the result of an executed request against some expectation.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="title">Testing Controller GET request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/" + UUID.randomUUID())
+        .accept(MediaType.APPLICATION_JSON))
+    .andExpect(MockMvcResultMatchers.status().isOk())
+    .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/bean/override/mockito/MockitoBean.html" target="_blank" rel="noopener"><code>@MockitoBean</code></a></dt>
+<dd>
+<p>Can be used in test classes to override a bean in the test&#8217;s <code>⚪ ApplicationContext</code> with a Mockito mock. For example a Service which is called by Controller.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@MockitoBean
+BookService bookService;
+
+@Test
+void testGetBookById() {
+    Book testBook = // ...
+    BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class)))
+        .willReturn(testBook);
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/BDDMockito.html" target="_blank" rel="noopener"><code>🟢 BDDMockito</code></a></dt>
+<dd>
+<p>Behavior Driven Development style of writing tests uses <code>//given</code> <code>//when</code> <code>//then</code> comments as fundamental parts of your test methods.</p>
+</dd>
+<dt class="hdlist1"><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/ArgumentMatchers.html" target="_blank" rel="noopener"><code>🟢 ArgumentMatchers</code></a></dt>
+<dd>
+<p>Allows flexible verification or stubbing. For example <code>any()</code> matches anything, including nulls, while <code>any(Class&lt;T&gt; type)</code> matches any object of given type, excluding nulls.</p>
+</dd>
+</dl>
+</div>
 </dd>
 </dl>
 </div>
