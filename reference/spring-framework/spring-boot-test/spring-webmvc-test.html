@@ -387,6 +387,44 @@ void testGetBookById() throws Exception {
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_fasterxml_jackson"><a class="anchor" href="#_fasterxml_jackson"></a>FasterXML Jackson</h3>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://github.com/FasterXML/jackson?tab=readme-ov-file#jackson-project-home-github" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/FasterXML%20Jackson%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="FasterXML%20Jackson%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+<div class="paragraph">
+<p>The Java JSON library.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest/com/fasterxml/jackson/databind/ObjectMapper.html" target="_blank" rel="noopener"><code>🟢 ObjectMapper</code></a></dt>
+<dd>
+<p>Provides functionality for reading and writing JSON, either to and from basic POJOs (Plain Old Java Objects), or to and from a general-purpose JSON Tree Model (<a href="https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest/com/fasterxml/jackson/databind/JsonNode.html" target="_blank" rel="noopener"><code>🟠 JsonNode</code></a>), as well as related functionality for performing conversions.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="title">You can autowire <code>🟢 ObjectMapper</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Autowired
+ObjectMapper objectMapper;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Reading JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Some someObject = objectMapper.readValue(jsonString, Some.class);
+List&lt;Some&gt; someList = objectMapper.readValue(jsonArrayString, new TypeReference&lt;List&lt;Some&gt;&gt;(){});
+Map&lt;String, Some&gt; someMap = objectMapper.readValue(jsonMapString, new TypeReference&lt;Map&lt;String, Some&gt;&gt;(){});</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Writing JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String jsonString = objectMapper.writeValueAsString(someObject);</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
