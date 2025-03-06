@@ -274,7 +274,7 @@ each FILE, separated by TABs, to standard output. With no FILE, or when FILE is 
 <div class="listingblock">
 <div class="title">Merge 2 lines</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
 test1,
 test2
 test3,
@@ -310,7 +310,7 @@ test5, test6</code></pre>
 <div class="listingblock">
 <div class="title">Multiple script expressions</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ echo "test" | sed "s/te/ab/;s/st/cd/" <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo "test" | sed "s/te/ab/;s/st/cd/" <i class="conum" data-value="1"></i><b>(1)</b>
 abcd
 
 $ echo "test" | sed -e "s/te/ab/" -e "s/st/cd/" <i class="conum" data-value="1"></i><b>(1)</b>
@@ -352,7 +352,7 @@ If you want to escape <code>\</code> character, you need to define it like: <cod
 <div class="listingblock">
 <div class="title">Reuse matched portion of the pattern space with <code>&amp;</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ echo -e "test1\ntest2" | sed "s/test.*/#&amp;/"
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo -e "test1\ntest2" | sed "s/test.*/#&amp;/"
 #test1
 #test2</code></pre>
 </div>
@@ -366,7 +366,7 @@ If you want to escape <code>\</code> character, you need to define it like: <cod
 <div class="listingblock">
 <div class="title">Processing a file with <code>.sed</code> script file</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat test.txt
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat test.txt
 test1
 test2
 test3
@@ -455,7 +455,7 @@ $ {
 <div class="listingblock">
 <div class="title">Replace, Substitute and Delete a line</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat script-file.sed
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat script-file.sed
 /^test1$/c replaced <i class="conum" data-value="1"></i><b>(1)</b>
 s/^test2$/test200/ <i class="conum" data-value="2"></i><b>(2)</b>
 /^test3$/d <i class="conum" data-value="3"></i><b>(3)</b>
@@ -485,7 +485,7 @@ test4</code></pre>
 <div class="listingblock">
 <div class="title">Delete next line</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat script-file.sed
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat script-file.sed
 /test1/ {
     n;d <i class="conum" data-value="1"></i><b>(1)</b>
 }
@@ -507,7 +507,7 @@ test4</code></pre>
 <div class="listingblock">
 <div class="title">Delete three lines</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat script-file.sed
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat script-file.sed
 /test1/ {
     N;N;d <i class="conum" data-value="1"></i><b>(1)</b>
 }
@@ -527,7 +527,7 @@ test4</code></pre>
 <div class="listingblock">
 <div class="title">Execute a command from script file</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat script-file.sed
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat script-file.sed
 /test1/e seq -s "," 4 <i class="conum" data-value="1"></i><b>(1)</b>
 /test2/e seq 2
 
@@ -552,7 +552,7 @@ test4</code></pre>
 <div class="listingblock">
 <div class="title">Execute a command from the file</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cat test.txt
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cat test.txt
 test1
 test2
 test3
