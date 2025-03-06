@@ -1,0 +1,12 @@
+= 💲 Bash
+
+image:https://img.shields.io/badge/GNU%20Documentation-2088E9?logo=quickLook&logoColor[link="https://www.gnu.org/manual/",window=_blank]
+image:https://img.shields.io/badge/Bash%20Documentation-2088E9?logo=quickLook&logoColor[link="https://www.gnu.org/software/bash/manual/html_node/index.html",window=_blank]
+
+include::bash:partial$nav.adoc[lines=2..-1]
+
+== Overview
+
+Bash is the GNU Project's shell—the Bourne Again SHell. This is an `sh`-compatible shell that incorporates useful features from the Korn shell (`ksh`) and the C shell (`csh`).
+
+It offers functional improvements over `sh` for both programming and interactive use. In addition, most `sh` scripts can be run by Bash without modification.

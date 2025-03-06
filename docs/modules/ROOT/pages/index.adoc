@@ -14,6 +14,7 @@ include::java:partial$nav.adoc[]
 include::spring-framework:partial$nav.adoc[]
 include::database:partial$nav.adoc[]
 include::server:partial$nav.adoc[]
+include::bash:partial$nav.adoc[]
 include::asciidoc:partial$nav.adoc[]
 
 == External Resources

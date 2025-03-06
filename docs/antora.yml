@@ -6,6 +6,7 @@ nav:
   - modules/spring-framework/nav.adoc
   - modules/database/nav.adoc
   - modules/server/nav.adoc
+  - modules/bash/nav.adoc
   - modules/asciidoc/nav.adoc
 asciidoc:
   attributes:
