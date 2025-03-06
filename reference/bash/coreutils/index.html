@@ -256,6 +256,41 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_paste_merge_lines_of_files"><a class="anchor" href="#_paste_merge_lines_of_files"></a>Paste: Merge lines of files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://www.gnu.org/software/coreutils/manual/html_node/paste-invocation.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Paste%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Paste%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+</div>
+<div class="listingblock">
+<div class="title">Usage</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">paste [OPTION]... [FILE]...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Write lines consisting of the sequentially corresponding lines from
+each FILE, separated by TABs, to standard output. With no FILE, or when FILE is <code>-</code>, read standard input.</p>
+</div>
+<div class="listingblock">
+<div class="title">Merge 2 lines</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
+test1,
+test2
+test3,
+test4
+test5,
+test6
+
+$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6" | paste -d " " - -
+test1, test2
+test3, test4
+test5, test6</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_sed_a_stream_editor"><a class="anchor" href="#_sed_a_stream_editor"></a>Sed: A Stream Editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -554,41 +589,6 @@ test4
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_paste_merge_lines_of_files"><a class="anchor" href="#_paste_merge_lines_of_files"></a>Paste: Merge lines of files</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.gnu.org/software/coreutils/manual/html_node/paste-invocation.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Paste%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Paste%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">paste [OPTION]... [FILE]...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Write lines consisting of the sequentially corresponding lines from
-each FILE, separated by TABs, to standard output. With no FILE, or when FILE is <code>-</code>, read standard input.</p>
-</div>
-<div class="listingblock">
-<div class="title">Merge 2 lines</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
-test1,
-test2
-test3,
-test4
-test5,
-test6
-
-$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6" | paste -d " " - -
-test1, test2
-test3, test4
-test5, test6</code></pre>
 </div>
 </div>
 </div>
