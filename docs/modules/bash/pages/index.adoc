@@ -1,0 +1,184 @@
+= 💲 Bash
+
+image:https://img.shields.io/badge/GNU%20Documentation-2088E9?logo=quickLook&logoColor[link="https://www.gnu.org/manual/",window=_blank]
+image:https://img.shields.io/badge/Bash%20Documentation-2088E9?logo=quickLook&logoColor[link="https://www.gnu.org/software/bash/manual/html_node/index.html",window=_blank]
+
+include::bash:partial$nav.adoc[lines=2..-1]
+
+== Overview
+
+Bash is the GNU Project's shell—the Bourne Again SHell. This is an `sh`-compatible shell that incorporates useful features from the Korn shell (`ksh`) and the C shell (`csh`).
+
+It offers functional improvements over `sh` for both programming and interactive use. In addition, most `sh` scripts can be run by Bash without modification.
+
+== Cheat Sheet
+
+Bash Colors and Formatting: https://misc.flogisoft.com/bash/tip_colors_and_formatting[misc.flogisoft.com/bash/tip_colors_and_formatting^]
+
+.Beginning of the script
+[,bash]
+----
+#!/bin/bash
+# SCRIPT DESCRIPTION
+
+set -o errexit  # ABORT ON NON-ZERO EXIT STATUS
+set -o pipefail # DON"T HIDE ERRORS WITHIN PIPES
+----
+
+.Help method
+[,bash]
+----
+usage() {
+  cat << EOF
+Usage: ${0} [OPTION]... [positional-argument1] [positional-argument2]
+
+Description
+
+OPTIONS:
+  -s, --set=''           Option description
+  -z                     Option description
+
+Examples:
+  # Example description
+  ${0} -s "option argument" "positional-argument"
+EOF
+  exit 1
+}
+----
+
+.Read options
+[,bash]
+----
+while getopts ":hs:z" option; do # <1>
+  case "${option}" in
+    s) variable1="${OPTARG}" ;; # <2> <3>
+    z) variable2="some-value" ;; # <4>
+    h|?) usage ;;
+  esac
+done
+----
+<1> `:` as first character of _optstring_: `":..."` turns on silent reporting. You won't see errors like "illegal option -- a".
+<2> `s` option which takes an argument, needs `s:` in _optstring_.
+<3> `+${OPTARG}+` contains option's argument.
+<4> `z` option which does not take any argument, needs `z` in _optstring_.
+
+.Read long options
+[,bash]
+----
+while [[ "$#" -gt 0 ]]; do
+  case "${1}" in
+    -s|--set) [[ -z "${2}" ]] && usage; variable1="${2}"; shift ;;
+    -z) variable2="some-value" ;;
+    *) [[ "${1}" == -* ]] && usage || break ;;
+  esac
+  shift
+done
+----
+
+.Read positional arguments
+[,bash]
+----
+shift $((OPTIND - 1)) # <1> <2> <3>
+positionalArgument1=${1}
+positionalArgument2=${2}
+----
+<1> This line is only needed when options are read by `getopts`.
+<2> `shift` shifts positional arguments by `n` + 1.
+<3> `+${OPTIND}+` contains index of the next argument to be processed. It is initialized to `1` each time the shell or a shell script is invoked.
+
+[TIP]
+====
+`+$@+` contains all options and positional arguments. With `shift` you can control what `+$@+` contains.
+
+`+$@+` is an array, while `+$*+` is a single string. When you pass them to a method, they should be quoted: `+"$@"+`/`+"$*"+`
+
+[,shell]
+----
+$ ./test.sh -s abc -z def ghi
+Before shift, $@: -s abc -z def ghi
+After shift, $@: def ghi
+----
+
+`+$#+` contains number of all options and positional arguments. With `shift` you can control what `+$#+` contains.
+
+[,shell]
+----
+$ ./test.sh -s abc -z def ghi
+Before shift, $#: 5
+After shift, $#: 2
+----
+====
+
+.Read username and password from the user. Password is masked by `*` characters.
+[,bash]
+----
+read -p "Enter Username: " -r username
+pass="Enter Password: "
+while IFS= read -p "${pass}" -r -s -n 1 letter; do # <1> <2> <3> <4> <5>
+  [[ -z "${letter}" ]] && break
+  password+="${letter}"
+  pass="*"
+done; echo
+----
+<1> `IFS=` removes the default word splitting behavior (on spaces, tabs and new lines). IFS stands for Internal Field Separator.
+<2> `-p` outputs the prompt without a trailing new line before attempting to read.
+<3> `-r` does not allow backslashes to escape any characters
+<4> `-s` does not echo input coming from a terminal.
+<5> `-n` returns after reading 1 character rather than waiting for a new line.
+
+.Changing default value of IFS
+[,bash]
+----
+strings="foo bar foo:bar"
+for string in ${strings}; do # <1>
+  echo "${string}";
+done
+IFS=":"
+for string in ${strings}; do # <2>
+  echo "${string}";
+done
+unset IFS
+for string in ${strings}; do # <3>
+  echo "${string}";
+done
+----
+<1> Outputs:
++
+[,shell]
+----
+foo
+bar
+foo:bar
+----
+<2> Outputs:
++
+[,shell]
+----
+foo bar foo
+bar
+----
+<3> Outputs the same as in point 1.
+
+.Parsing JSON response
+[,bash]
+----
+response=$(cat << EOF
+{
+  "name": "John",
+  "age": 30,
+  "items": [
+    "Sword",
+    "Shield"
+  ]
+}
+EOF
+)
+
+echo "${response}" | jq -M -r ".name" # <1> <2>
+echo "${response}" | jq -M -r ".items.[]" # <3>
+echo "${response}" | jq -M -r ".items.[1]" # <4>
+----
+<1> `-M` disables colored output, `-r` outputs strings without escaped and quotes.
+<2> Outputs `John`.
+<3> Outputs `Sword` and `Shield` delimited by new line.
+<4> Outputs `Shield`.
