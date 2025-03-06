@@ -12,6 +12,7 @@ include::ROOT:partial$java-type-legend.adoc[]
 
 include::java:partial$nav.adoc[]
 include::spring-framework:partial$nav.adoc[]
+include::web:partial$nav.adoc[]
 include::database:partial$nav.adoc[]
 include::server:partial$nav.adoc[]
 include::bash:partial$nav.adoc[]
