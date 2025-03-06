@@ -1,6 +1,7 @@
 = Spring Resource Server
 
-image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-boot/reference/web/spring-security.html#web.security.oauth2.server",window=_blank]
 
 == Maven Dependency
 

@@ -1,5 +1,7 @@
 = DEV Cheat Sheets
 
+image:https://img.shields.io/badge/All%20Documentations-2088E9?logo=quickLook&logoColor[xref=documentations.adoc]
+
 include::ROOT:example$README.md[tag=intro]
 
 == Legend
@@ -12,6 +14,7 @@ include::ROOT:partial$java-type-legend.adoc[]
 
 include::java:partial$nav.adoc[]
 include::spring-framework:partial$nav.adoc[]
+include::web:partial$nav.adoc[]
 include::database:partial$nav.adoc[]
 include::server:partial$nav.adoc[]
 include::bash:partial$nav.adoc[]

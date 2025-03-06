@@ -1,0 +1,92 @@
+= Documentations
+
+List of all Docs, API Specs and other useful stuff:
+
+== Java Backend
+
+Java::
+image:https://img.shields.io/badge/Java%20Doc-2088E9?logo=quickLook[link="https://dev.java/learn/",window=_blank]
+image:https://img.shields.io/badge/Java%20API%20Spec-DF7716?logo=devbox[link="{java-api-spec-url}",window=_blank]
+
+Jakarta EE::
+image:https://img.shields.io/badge/Jakarta%20EE%20Doc-2088E9?logo=quickLook[link="https://jakarta.ee/specifications/platform/10/jakarta-platform-spec-10.0",window=_blank]
+image:https://img.shields.io/badge/Jakarta%20EE%20API%20Spec-DF7716?logo=devbox[link="{jakarta-ee-api-spec-url}",window=_blank]
+
+Spring Framework::
+image:https://img.shields.io/badge/Spring%20Framework%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-framework/reference/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Framework%20API%20Spec-DF7716?logo=devbox[link="{spring-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Spring%20Boot%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-boot/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20API%20Spec-DF7716?logo=devbox[link="{spring-boot-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Spring%20Data%20Commons%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-data/commons/reference/",window=_blank]
+image:https://img.shields.io/badge/Spring%20Data%20Commons%20API%20Spec-DF7716?logo=devbox[link="{spring-data-commons-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Spring%20Data%20JPA%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-data/jpa/reference/",window=_blank]
+image:https://img.shields.io/badge/Spring%20Data%20JPA%20API%20Spec-DF7716?logo=devbox[link="{spring-data-jpa-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Spring%20Security%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-security/reference/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Security%20API%20Spec-DF7716?logo=devbox[link="{spring-security-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Spring%20Auth%20Server%20Doc-2088E9?logo=quickLook[link="https://docs.spring.io/spring-authorization-server/reference/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Auth%20Server%20API%20Spec-DF7716?logo=devbox[link="{spring-auth-server-api-spec-url}",window=_blank]
+
+Hibernate::
+image:https://img.shields.io/badge/Hibernate%20Doc-2088E9?logo=quickLook[link="https://hibernate.org/orm/documentation/6.6/",window=_blank]
+image:https://img.shields.io/badge/Hibernate%20API%20Spec-DF7716?logo=devbox[link="{hibernate-api-spec-url}",window=_blank]
+
+Reactor::
+image:https://img.shields.io/badge/Reactor%20Doc-2088E9?logo=quickLook[link="https://projectreactor.io/docs/core/release/reference/aboutDoc.html",window=_blank]
+image:https://img.shields.io/badge/Reactor%20API%20Spec-DF7716?logo=devbox[link="{reactor-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Reactor%20Test%20Doc-2088E9?logo=quickLook[link="https://projectreactor.io/docs/core/release/reference/testing.html",window=_blank]
+image:https://img.shields.io/badge/Reactor%20Test%20API%20Spec-DF7716?logo=devbox[link="{reactor-test-api-spec-url}",window=_blank]
+
+Lombok::
+image:https://img.shields.io/badge/Lombok%20Doc-2088E9?logo=quickLook[link="https://projectlombok.org/features/",window=_blank]
+image:https://img.shields.io/badge/Lombok%20API%20Spec-DF7716?logo=devbox[link="{lombok-api-spec-url}",window=_blank]
+
+MapStruct::
+image:https://img.shields.io/badge/MapStruct%20Doc-2088E9?logo=quickLook[link="https://mapstruct.org/documentation/stable/reference/html/",window=_blank]
+image:https://img.shields.io/badge/MapStruct%20API%20Spec-DF7716?logo=devbox[link="{mapstruct-api-spec-url}",window=_blank]
+
+Jackson::
+image:https://img.shields.io/badge/Jackson%20Core%20Doc-2088E9?logo=quickLook[link="https://github.com/FasterXML/jackson-core/wiki",window=_blank]
+image:https://img.shields.io/badge/Jackson%20Core%20API%20Spec-DF7716?logo=devbox[link="{jackson-core-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Jackson%20Annotations%20Doc-2088E9?logo=quickLook[link="https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations",window=_blank]
+image:https://img.shields.io/badge/Jackson%20Annotations%20API%20Spec-DF7716?logo=devbox[link="{jackson-annotations-api-spec-url}",window=_blank]
++
+image:https://img.shields.io/badge/Jackson%20Databind%20Doc-2088E9?logo=quickLook[link="https://github.com/FasterXML/jackson-databind/wiki",window=_blank]
+image:https://img.shields.io/badge/Jackson%20Databind%20API%20Spec-DF7716?logo=devbox[link="{jackson-databind-api-spec-url}",window=_blank]
+
+== Frontend
+
+React::
+image:https://img.shields.io/badge/React%20Doc-2088E9?logo=quickLook[link="https://react.dev/reference/react",window=_blank]
+
+== Java Testing
+
+JUnit::
+image:https://img.shields.io/badge/JUnit%20Doc-2088E9?logo=quickLook[link="https://junit.org/junit5/docs/current/user-guide/",window=_blank]
+image:https://img.shields.io/badge/JUnit%20API%20Spec-DF7716?logo=devbox[link="{junit-api-spec-url}",window=_blank]
+
+AssertJ::
+image:https://img.shields.io/badge/AssertJ%20Doc-2088E9?logo=quickLook[link="https://assertj.github.io/doc/",window=_blank]
+image:https://img.shields.io/badge/AssertJ%20Core%20API%20Spec-DF7716?logo=devbox[link="{assertj-core-api-spec-url}",window=_blank]
+
+Mockito::
+image:https://img.shields.io/badge/Mockito%20Doc-2088E9?logo=quickLook[link="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html",window=_blank]
+image:https://img.shields.io/badge/Mockito%20API%20Spec-DF7716?logo=devbox[link="{mockito-api-spec-url}",window=_blank]
+
+Hamcrest::
+image:https://img.shields.io/badge/Hamcrest%20Doc-2088E9?logo=quickLook[link="https://hamcrest.org/JavaHamcrest/tutorial",window=_blank]
+image:https://img.shields.io/badge/Hamcrest%20API%20Spec-DF7716?logo=devbox[link="{hamcrest-api-spec-url}",window=_blank]
+
+== Other
+
+AsciiDoc::
+image:https://img.shields.io/badge/AsciiDoc%20Doc-2088E9?logo=quickLook[link="https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/",window=_blank]
+
+Antora::
+image:https://img.shields.io/badge/Antora%20Doc-2088E9?logo=quickLook[link="https://docs.antora.org/antora/latest/",window=_blank]

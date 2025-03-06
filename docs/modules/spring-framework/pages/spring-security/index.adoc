@@ -1,6 +1,9 @@
 = Spring Security
 
-image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-security/reference/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-security/reference/index.html",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Documentation-2088E9?logo=quickLook&logoColor[link="https://docs.spring.io/spring-boot/reference/web/spring-security.html",window=_blank]
+
+include::spring-framework:partial$nav.adoc[tag=spring-security]
 
 == Maven Dependencies
 
@@ -19,7 +22,7 @@ image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor
 
 NOTE: Just by adding the dependency, Spring Boot will provide us *sensible defaults*. For example, it will *autoconfigure Basic HTTP Authentication* and secure all REST API endpoints.
 
-CAUTION: Basic HTTP Auth should be used with HTTPS, because username and password are sent over the internet as *base64* encoded and *without HTTPS they can be easily decoded*. It is discouraged to use Basic HTTP Auth in an Enterprise project.
+WARNING: Basic HTTP Auth should be used with HTTPS, because username and password are sent over the internet as *base64* encoded and *without HTTPS they can be easily decoded*. It is discouraged to use Basic HTTP Auth in an Enterprise project.
 
 == Basic HTTP Auth
 
@@ -56,8 +59,8 @@ spring.security.user.password=my-password
 
 === Using `🟢 RestTemplate` with Basic HTTP Auth
 
-You'll have to invoke https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/client/RestTemplateBuilder.html#basicAuthentication(java.lang.String,java.lang.String)[`🟢 RestTemplateBuilder#basicAuthentication(String username,
-String password)`^] when configuring Bean xref:spring-web-client.adoc#_externalize_base_uri[here].
+You'll have to invoke {spring-boot-api-spec-url}/org/springframework/boot/web/client/RestTemplateBuilder.html#basicAuthentication(java.lang.String,java.lang.String)[`🟢 RestTemplateBuilder#basicAuthentication(String username,
+String password)`^] when configuring Bean xref:spring-framework:servlet-stack/spring-web-client.adoc#_externalize_base_uri[here].
 
 === Testing HTTP GET with Basic HTTP Auth
 
@@ -106,9 +109,9 @@ public class SecurityConfig {
 <2> Setup HTTP Basic Auth with the defaults
 <3> Do not require CSRF Token on `/api/**` urls
 
-[CAUTION]
+[WARNING]
 ====
-If your test is annotated with https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^], then you need to create https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^] like this:
+If your test is annotated with {spring-boot-api-spec-url}/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^], then you need to create {spring-api-spec-url}/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^] like this:
 
 [,java]
 ----
@@ -118,7 +121,7 @@ MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac)
 ----
 <1> Configure `🔴 MockMvc` to use Spring Security
 
-If your test is annotated with https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^], then you need to import `🟢 SecurityConfig` by annotating the test class with:
+If your test is annotated with {spring-boot-api-spec-url}/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^], then you need to import `🟢 SecurityConfig` by annotating the test class with:
 
 [,java]
 ----
@@ -136,15 +139,15 @@ OAuth 2.0::
 OAuth Roles::
 * *Client* - the application requesting access
 * *Resource Owner* - the user who wishes to grant an application (Client) access
-* xref:spring-authorization-server.adoc[*Authorization Server*] - verifies the identity of the user then issues access tokens to the application
-* xref:spring-resource-server.adoc[*Resource Server*] - the resource to access
+* xref:spring-framework:spring-security/spring-authorization-server.adoc[*Authorization Server*] - verifies the identity of the user then issues access tokens to the application
+* xref:spring-framework:spring-security/spring-resource-server.adoc[*Resource Server*] - the resource to access
 
 []
 Client Credentials Flow::
 Most common OAuth https://auth0.com/docs/get-started/authentication-and-authorization-flow/which-oauth-2-0-flow-should-i-use[Authorization Flow] for RESTful APIs. It is used by services, where the user is a service role.
 +
 .Client Credentials Flow with JWT
-image::oauth2-client-credentials-flow-with-jwt.png[,600]
+image::spring-framework:oauth2-client-credentials-flow-with-jwt.png[,600]
 
 JWT::
 *JSON Web Token*. It contains *user information* and *authorized roles* (scopes). It has three parts: *Header*, *Payload* (data) and *Signature*. All 3 parts are tokenized using *base64 encoding*.
@@ -205,17 +208,17 @@ spring.security.oauth2.client.provider.springauth.authorization-uri=http://local
 spring.security.oauth2.client.provider.springauth.token-uri=http://localhost:9000/oauth2/token
 ----
 
-Next, you need to add `@Bean` for https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html[`⚪ OAuth2AuthorizedClientManager`^] which will be *responsible for the overall management* of https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClient.html[`🟢 OAuth2AuthorizedClient`^]. The primary responsibilities include:
+Next, you need to add `@Bean` for {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html[`⚪ OAuth2AuthorizedClientManager`^] which will be *responsible for the overall management* of {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizedClient.html[`🟢 OAuth2AuthorizedClient`^]. The primary responsibilities include:
 
-. *Authorizing (or re-authorizing) an OAuth 2.0 Client* by leveraging an https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientProvider.html[`⚪ OAuth2AuthorizedClientProvider`^]
-. *Delegating the persistence* of an `🟢 OAuth2AuthorizedClient`, typically using an https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientService.html[`⚪ OAuth2AuthorizedClientService`^] or https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/web/OAuth2AuthorizedClientRepository.html[`⚪ OAuth2AuthorizedClientRepository`^]
+. *Authorizing (or re-authorizing) an OAuth 2.0 Client* by leveraging an {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizedClientProvider.html[`⚪ OAuth2AuthorizedClientProvider`^]
+. *Delegating the persistence* of an `🟢 OAuth2AuthorizedClient`, typically using an {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizedClientService.html[`⚪ OAuth2AuthorizedClientService`^] or {spring-security-api-spec-url}/org/springframework/security/oauth2/client/web/OAuth2AuthorizedClientRepository.html[`⚪ OAuth2AuthorizedClientRepository`^]
 
 [,java]
 ----
 @Configuration
 public class RestTemplateBuilderConfig {
 
-    ...
+    // ...
 
     @Bean
     OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository, // <1>
@@ -231,17 +234,17 @@ public class RestTemplateBuilderConfig {
         return authorizedClientServiceAuthorizedClientManager;
     }
 
-    ...
+    // ...
 
 }
 ----
-<1> https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistrationRepository.html[`⚪ ClientRegistrationRepository`^] checks if client `registrationId` provided in authorization request is present in registration repository (enriched from registration properties)
-<2> `⚪ OAuth2AuthorizedClientProvider` is *a strategy* for authorizing (or re-authorizing) an OAuth 2.0 Client. Implementations will typically implement a specific *authorization grant type*. Here we build https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/ClientCredentialsOAuth2AuthorizedClientProvider.html[`🟢 ClientCredentialsOAuth2AuthorizedClientProvider`^] which is an implementation for `client_credentials` grant.
-<3> https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/AuthorizedClientServiceOAuth2AuthorizedClientManager.html[`🔴 AuthorizedClientServiceOAuth2AuthorizedClientManager`^] is an implementation of `⚪ OAuth2AuthorizedClientManager` which persist `🟢 OAuth2AuthorizedClient`:
+<1> {spring-security-api-spec-url}/org/springframework/security/oauth2/client/registration/ClientRegistrationRepository.html[`⚪ ClientRegistrationRepository`^] checks if client `registrationId` provided in authorization request is present in registration repository (enriched from registration properties)
+<2> `⚪ OAuth2AuthorizedClientProvider` is *a strategy* for authorizing (or re-authorizing) an OAuth 2.0 Client. Implementations will typically implement a specific *authorization grant type*. Here we build {spring-security-api-spec-url}/org/springframework/security/oauth2/client/ClientCredentialsOAuth2AuthorizedClientProvider.html[`🟢 ClientCredentialsOAuth2AuthorizedClientProvider`^] which is an implementation for `client_credentials` grant.
+<3> {spring-security-api-spec-url}/org/springframework/security/oauth2/client/AuthorizedClientServiceOAuth2AuthorizedClientManager.html[`🔴 AuthorizedClientServiceOAuth2AuthorizedClientManager`^] is an implementation of `⚪ OAuth2AuthorizedClientManager` which persist `🟢 OAuth2AuthorizedClient`:
 * By default, when an authorization attempt *succeeds*, the `🟢 OAuth2AuthorizedClient` will be *saved* in the `⚪ OAuth2AuthorizedClientService`.
 * By default, when an authorization attempt *fails* due to an `invalid_grant` error, the previously saved `🟢 OAuth2AuthorizedClient` will be *removed* from the `⚪ OAuth2AuthorizedClientService`.
 
-You'll also need to implement `@Component` for https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/ClientHttpRequestInterceptor.html[`⚪ ClientHttpRequestInterceptor`^] which allows to *modify the outgoing request and/or the incoming response*:
+You'll also need to implement `@Component` for {spring-api-spec-url}/org/springframework/http/client/ClientHttpRequestInterceptor.html[`⚪ ClientHttpRequestInterceptor`^] which allows to *modify the outgoing request and/or the incoming response*:
 
 [,java]
 ----
@@ -319,8 +322,8 @@ public class OAuthClientInterceptor implements ClientHttpRequestInterceptor {
 }
 ----
 <1> `⚪ OAuth2AuthorizedClientManager` from previous step.
-<2> `⚪ ClientRegistrationRepository` returns https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/registration/ClientRegistration.html[`🔴 ClientRegistration`^] *enriched* with our `springauth` registration properties.
-<3> https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizeRequest.html[`🔴 OAuth2AuthorizeRequest`^] represents *a request* the `⚪ OAuth2AuthorizedClientManager` *uses to authorize (or re-authorize) the client* identified by the provided client `registrationId` (`springauth`) and principal (`oidc-client`).
+<2> `⚪ ClientRegistrationRepository` returns {spring-security-api-spec-url}/org/springframework/security/oauth2/client/registration/ClientRegistration.html[`🔴 ClientRegistration`^] *enriched* with our `springauth` registration properties.
+<3> {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizeRequest.html[`🔴 OAuth2AuthorizeRequest`^] represents *a request* the `⚪ OAuth2AuthorizedClientManager` *uses to authorize (or re-authorize) the client* identified by the provided client `registrationId` (`springauth`) and principal (`oidc-client`).
 <4> `⚪ OAuth2AuthorizedClientManager` returns `🟢 OAuth2AuthorizedClient` after *successful authorization*.
 <5> `🟢 OAuth2AuthorizedClient` *contains JWT* which we can include in the `Authorization` *header* of the original request.
 <6> Original request is executed.
@@ -335,7 +338,7 @@ public class RestTemplateBuilderConfig {
     @Value("${rest.template.baseUri}")
     String baseUri;
 
-    ...
+    // ...
 
     @Bean
     RestTemplateBuilder restTemplateBuilder(RestTemplateBuilderConfigurer configurer, OAuthClientInterceptor clientInterceptor) {
@@ -354,7 +357,7 @@ public class RestTemplateBuilderConfig {
 
 If your test is annotated with `@SpringBootTest`, then you don't need additional configuration.
 
-If your test is annotated with `@RestClientTest`, then you need to *mock* `⚪ OAuth2AuthorizedClientManager` with https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/mock/mockito/MockBean.html[`@MockBean`^]:
+If your test is annotated with `@RestClientTest`, then you need to *mock* `⚪ OAuth2AuthorizedClientManager` with {spring-boot-api-spec-url}/org/springframework/boot/test/mock/mockito/MockBean.html[`@MockBean`^]:
 
 [,java]
 ----
@@ -362,7 +365,7 @@ If your test is annotated with `@RestClientTest`, then you need to *mock* `⚪ O
 OAuth2AuthorizedClientManager authorizedClientManager;
 ----
 
-and add a https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/context/TestConfiguration.html[`@TestConfiguration`^]
+and add a {spring-boot-api-spec-url}/org/springframework/boot/test/context/TestConfiguration.html[`@TestConfiguration`^]
 
 [,java]
 ----
@@ -398,7 +401,7 @@ void setUp() throws JsonProcessingException {
     ClientRegistration clientRegistration = clientRegistrationRepository.findByRegistrationId("springauth");
     OAuth2AccessToken token = new OAuth2AccessToken(OAuth2AccessToken.TokenType.BEARER, "test", Instant.MIN, Instant.MAX); // <1>
     when(authorizedClientManager.authorize(any())).thenReturn(new OAuth2AuthorizedClient(clientRegistration, "test", token));
-    ...
+    // ...
 }
 ----
-<1> This https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/core/OAuth2AccessToken.html[`🟢 OAuth2AccessToken`^] will be returned together with `🟢 OAuth2AuthorizedClient` after invoking https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html#authorize(org.springframework.security.oauth2.client.OAuth2AuthorizeRequest)[`OAuth2AuthorizedClientManager#authorize(OAuth2AuthorizeRequest authorizeRequest)`^]
+<1> This {spring-security-api-spec-url}/org/springframework/security/oauth2/core/OAuth2AccessToken.html[`🟢 OAuth2AccessToken`^] will be returned together with `🟢 OAuth2AuthorizedClient` after invoking {spring-security-api-spec-url}/org/springframework/security/oauth2/client/OAuth2AuthorizedClientManager.html#authorize(org.springframework.security.oauth2.client.OAuth2AuthorizeRequest)[`OAuth2AuthorizedClientManager#authorize(OAuth2AuthorizeRequest authorizeRequest)`^]
