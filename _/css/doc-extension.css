@@ -19,3 +19,7 @@
 .doc .admonitionblock td.content {
     background: #f6f6f6;
 }
+
+.doc .admonitionblock td.content code {
+    background: #e6e6e6;
+}
