@@ -22,4 +22,7 @@
 
 .doc .admonitionblock td.content code {
     background: #e6e6e6;
+    font-size: .95em;
+    border-radius: .25em;
+    padding: .125em .25em;
 }
