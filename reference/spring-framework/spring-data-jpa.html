@@ -268,25 +268,30 @@
 <h2 id="_database_entity"><a class="anchor" href="#_database_entity"></a>Database Entity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In <code>domain</code> package you can define a Database Entity:</p>
+<p>In <code>domain</code> or <code>entity</code> package you can define a Database Entity:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity <i class="conum" data-value="1"></i><b>(1)</b>
 public class Author {
 
-    @Id <i class="conum" data-value="2"></i><b>(2)</b>
-    @GeneratedValue(strategy = GenerationType.AUTO) <i class="conum" data-value="3"></i><b>(3)</b>
-    private Long id;
+    @Id  <i class="conum" data-value="2"></i><b>(2)</b>
+    @GeneratedValue <i class="conum" data-value="3"></i><b>(3)</b>
+    @UuidGenerator <i class="conum" data-value="4"></i><b>(4)</b>
+    @JdbcTypeCode(SqlTypes.CHAR) <i class="conum" data-value="5"></i><b>(5)</b>
+    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false) <i class="conum" data-value="6"></i><b>(6)</b>
+    private UUID id;
 
-    private String firstName;
+    @Version <i class="conum" data-value="7"></i><b>(7)</b>
+    private Integer version;
 
-    private String lastName;
+    @CreationTimestamp <i class="conum" data-value="8"></i><b>(8)</b>
+    private LocalDateTime creationDate;
 
-    @ManyToMany(mappedBy = "authors") <i class="conum" data-value="4"></i><b>(4)</b>
-    private Set&lt;Book&gt; books; <i class="conum" data-value="5"></i><b>(5)</b>
+    @UpdateTimestamp <i class="conum" data-value="9"></i><b>(9)</b>
+    private LocalDateTime updateDate;
 
-    // Getters and Setters, toString(), equals(Object obj) and hashCode()
+    // Other fields, Constructors, Getters and Setters, toString(), equals(Object obj) and hashCode()
 
 }</code></pre>
 </div>
@@ -295,57 +300,39 @@ public class Author {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/entity" target="_blank" rel="noopener"><code>@Entity</code></a> specifies that the class is a Database Entity</td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/entity" target="_blank" rel="noopener"><code>@Entity</code></a> specifies that the class is a Database Entity.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/id" target="_blank" rel="noopener"><code>@Id</code></a> specifies the primary key of an Entity</td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/id" target="_blank" rel="noopener"><code>@Id</code></a> specifies the primary key of an Entity.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generatedvalue" target="_blank" rel="noopener"><code>@GeneratedValue</code></a> specifies the generation strategy for the value of primary key. <code>AUTO</code> indicates that the persistence provider should pick an appropriate strategy for the particular database. See <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generationtype" target="_blank" rel="noopener"><code>🟣 GenerationType</code></a> for other generation strategies.</td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generatedvalue" target="_blank" rel="noopener"><code>@GeneratedValue</code></a> specifies the generation strategy for the value of primary key. See <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/generationtype" target="_blank" rel="noopener"><code>🟣 GenerationType</code></a> for generation strategies. <code>AUTO</code> selects <code>SEQUENCE</code>, <code>TABLE</code>, or <code>UUID</code> based on the Entity identifier type and capabilities of the database.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/manytomany" target="_blank" rel="noopener"><code>@ManyToMany</code></a> specifies a many-valued association with many-to-many multiplicity. The <code>mappedBy</code> is a field that owns the relationship.</td>
+<td><a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/annotations/UuidGenerator.html" target="_blank" rel="noopener"><code>@UuidGenerator</code></a> specifies that an Entity identifier is generated as a UUID type.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>⚪ Set&lt;E&gt;</code> is preferred here as each element will be unique</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Entity
-public class Book {
-
-    // ...
-
-    @ManyToMany
-    @JoinTable(name = "author_book", <i class="conum" data-value="1"></i><b>(1)</b>
-        joinColumns = @JoinColumn(name = "book_id"), <i class="conum" data-value="2"></i><b>(2)</b>
-        inverseJoinColumns = @JoinColumn(name = "author_id")) <i class="conum" data-value="3"></i><b>(3)</b>
-    private Set&lt;Author&gt; authors;
-
-    // ...
-
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/jointable" target="_blank" rel="noopener"><code>@JoinTable</code></a> specifies the mapping of associations. It is applied to the <strong>owning side of an association</strong>. The <code>name</code> is a name of the join table</td>
+<td><a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/annotations/JdbcTypeCode.html" target="_blank" rel="noopener"><code>@JdbcTypeCode</code></a> specifies the JDBC type-code to use for the column mapping.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>joinColumns</code> is a <a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/joincolumn" target="_blank" rel="noopener"><code>@JoinColumn</code></a> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity <strong>owning the association</strong></td>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/column" target="_blank" rel="noopener"><code>@Column</code></a> specifies the mapped column for a field. If no <code>@Column</code> is specified, the default values apply.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>inverseJoinColumns</code> is a <code>@JoinColumn</code> array of the <strong>foreign key columns</strong> of the join table which reference the primary table of the entity that <strong>does not own the association</strong>.</td>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><a href="https://jakarta.ee/specifications/platform/10/apidocs/jakarta/persistence/version" target="_blank" rel="noopener"><code>@Version</code></a> specifies the version field that serves as its optimistic lock value. The version is used to ensure integrity when performing the merge operation and for optimistic concurrency control.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/annotations/CreationTimestamp.html" target="_blank" rel="noopener"><code>@CreationTimestamp</code></a> specifies that the annotated field is a generated creation timestamp. The timestamp is generated just once, when an entity instance is inserted in the database.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><a href="https://docs.jboss.org/hibernate/orm/current/javadocs/org/hibernate/annotations/UpdateTimestamp.html" target="_blank" rel="noopener"><code>@UpdateTimestamp</code></a> specifies that the annotated field is a generated update timestamp. The timestamp is regenerated every time an entity instance is updated in the database.</td>
 </tr>
 </table>
 </div>
