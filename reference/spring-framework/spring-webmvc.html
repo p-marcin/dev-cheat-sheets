@@ -551,7 +551,7 @@ public ResponseEntity handleNotFoundException() {
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Handle custom exception globally</div>
+<div class="title">Handle custom exception globally with <code>@ControllerAdvice</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ControllerAdvice <i class="conum" data-value="1"></i><b>(1)</b>
 public class ExceptionController {
@@ -568,7 +568,24 @@ public class ExceptionController {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Specialization of <code>@Component</code> for classes that declare <code>@ExceptionHandler</code>, <code>@InitBinder</code>, or <code>@ModelAttribute</code> methods to be shared across multiple <code>@Controller</code> classes.</td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html" target="_blank" rel="noopener"><code>@ControllerAdvice</code></a> - specialization of <code>@Component</code> for classes that declare <code>@ExceptionHandler</code>, <code>@InitBinder</code>, or <code>@ModelAttribute</code> methods to be shared across multiple <code>@Controller</code> classes.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Handle custom exception globally with <code>@ResponseStatus</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ResponseStatus(HttpStatus.NOT_FOUND, "Value Not Found") <i class="conum" data-value="1"></i><b>(1)</b>
+public class NotFoundException extends RuntimeException {
+    // Constructors...
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html" target="_blank" rel="noopener"><code>@ResponseStatus</code></a> marks a method or exception class with the status <code>code()</code> and <code>reason()</code> that should be returned. It is alternative to <code>@ControllerAdvice</code>.</td>
 </tr>
 </table>
 </div>
