@@ -363,6 +363,14 @@ MockMvc mockMvc;</code></pre>
     .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Testing Controller DELETE request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/book/{bookId}", testBook.getId())
+        .accept(MediaType.APPLICATION_JSON)
+    .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
+</div>
+</div>
 </dd>
 </dl>
 </div>
