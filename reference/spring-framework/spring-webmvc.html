@@ -603,11 +603,40 @@ public class NotFoundException extends RuntimeException {
 <dd>
 <p>Abstract base class for <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html" target="_blank" rel="noopener"><code>⚪ HandlerExceptionResolver</code></a> implementations. You can implement it to have full control over response (including body).</p>
 </dd>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/autoconfigure/web/servlet/error/BasicErrorController.html" target="_blank" rel="noopener"><code>🟢 BasicErrorController</code></a></dt>
+<dd>
+<p>Basic global error Controller included by Spring Boot, rendering <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/web/servlet/error/ErrorAttributes.html" target="_blank" rel="noopener"><code>⚪ ErrorAttributes</code></a>. This class can be extended for additional error response customization.</p>
+</dd>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/ResponseStatusException.html" target="_blank" rel="noopener"><code>🟢 ResponseStatusException</code></a></dt>
 <dd>
 <p>Exception added in Spring Framework 5 which allows setting the HTTP Status Code and Reason Exception Message in constructor.</p>
 </dd>
 </dl>
+</div>
+<div class="sect2">
+<h3 id="_spring_boot_properties"><a class="anchor" href="#_spring_boot_properties"></a>Spring Boot properties:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>server.error.include-binding-errors=never</code> - when to include "errors" attribute.</p>
+</li>
+<li>
+<p><code>server.error.include-exception=false</code> - when to include the "exception" attribute.</p>
+</li>
+<li>
+<p><code>server.error.include-message=never</code> - when to include "message" attribute.</p>
+</li>
+<li>
+<p><code>server.error.include-stacktrace=never</code> - when to include the "trace" attribute.</p>
+</li>
+<li>
+<p><code>server.error.path=/error</code> - path of the error controller.</p>
+</li>
+<li>
+<p><code>server.error.whitelabel.enabled=true</code> - enable the default error page displayed in browsers in case of a server error.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
