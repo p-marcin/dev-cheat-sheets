@@ -356,22 +356,22 @@ MockMvc mockMvc;</code></pre>
 <div class="listingblock">
 <div class="title">Testing Controller PUT request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Object&gt; bookMap = new HashMap&lt;&gt;();
-bookMap.put("name", "New Book Name");
-mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBookDTO.getId())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(bookMap)))
+        .content(objectMapper.writeValueAsString(testBookDTO)))
     .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Testing Controller PATCH request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/book/{bookId}", testBookDTO.getId())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Object&gt; bookMap = new HashMap&lt;&gt;();
+bookMap.put("name", "New Book Name");
+mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(testBookDTO)))
+        .content(objectMapper.writeValueAsString(bookMap)))
     .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
 </div>
 </div>
