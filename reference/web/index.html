@@ -379,11 +379,8 @@
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_rmm_richardson_maturity_model"><a class="anchor" href="#_rmm_richardson_maturity_model"></a>RMM (Richardson Maturity Model)</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_rmm_richardson_maturity_model"><a class="anchor" href="#_rmm_richardson_maturity_model"></a>RMM (Richardson Maturity Model)</h3>
 <div class="paragraph">
 <p>RMM is used to describe the quality of the RESTful Service:</p>
 </div>
@@ -432,10 +429,8 @@
 </ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_restful_best_practices"><a class="anchor" href="#_restful_best_practices"></a>RESTful Best Practices</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_restful_best_practices"><a class="anchor" href="#_restful_best_practices"></a>RESTful Best Practices</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -445,6 +440,72 @@
 <p>Do not return stack trace to client - be careful to not "leak" information to Internet.</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grpc_google_remote_procedure_call"><a class="anchor" href="#_grpc_google_remote_procedure_call"></a>gRPC (Google Remote Procedure Call)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Superfast communication system created by Google. It helps different applications talk to each other efficiently, even if they use different programming languages. It is designed for <strong>speed</strong>, <strong>low data usage</strong>, and <strong>real-time communication</strong>, which makes it perfect to use for Microservices, Cloud apps, and backend services.</p>
+</div>
+<div class="sect2">
+<h3 id="_grpc_vs_rest"><a class="anchor" href="#_grpc_vs_rest"></a>gRPC vs REST</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">gRPC</th>
+<th class="tableblock halign-left valign-top">REST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Use <strong>HTTP/2</strong>. Single connection handles multiple parallel request at the same time.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>High Network Latency:</strong> typically use <strong>HTTP/1.1</strong>. New connection for every request.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Communication is based on <strong>Protobuf (Protocol Buffer)</strong> which is in binary format with compressed data. Serialization and Deserialization is much faster.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Data Processing Overhead:</strong> communication is based on <strong>JSON</strong> which is human-readable text. Serialization and Deserialization is slower.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Supports 4 different type of communication patterns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unary</strong> (one request, one response)</p>
+</li>
+<li>
+<p><strong>Server Streaming</strong> (one request, many responses) e.g. server notifies client about progress</p>
+</li>
+<li>
+<p><strong>Client Streaming</strong> (many requests, one response) e.g. server waits until client finish upload of all files</p>
+</li>
+<li>
+<p><strong>Bidirectional Streaming</strong> (many requests, many responses) e.g. chat application</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Request-Response Model (no live-streaming).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
