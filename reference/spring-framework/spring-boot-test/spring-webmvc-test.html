@@ -324,7 +324,7 @@ MockMvc mockMvc;</code></pre>
 <div class="listingblock">
 <div class="title">Testing Controller GET request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/" + UUID.randomUUID())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/{bookId}", testBook.getId())
         .accept(MediaType.APPLICATION_JSON))
     .andExpect(MockMvcResultMatchers.status().isOk())
     .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));</code></pre>
@@ -356,7 +356,7 @@ MockMvc mockMvc;</code></pre>
 <div class="listingblock">
 <div class="title">Testing Controller PUT request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBook.getId())
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(testBook)))
