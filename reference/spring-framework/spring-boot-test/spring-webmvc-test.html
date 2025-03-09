@@ -324,7 +324,7 @@ MockMvc mockMvc;</code></pre>
 <div class="listingblock">
 <div class="title">Testing Controller GET request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/{bookId}", testBook.getId())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON))
     .andExpect(MockMvcResultMatchers.status().isOk())
     .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));</code></pre>
@@ -338,7 +338,7 @@ MockMvc mockMvc;</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/book")
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(testBook))) <i class="conum" data-value="1"></i><b>(1)</b>
+        .content(objectMapper.writeValueAsString(testBookDTO))) <i class="conum" data-value="1"></i><b>(1)</b>
     .andExpect(MockMvcResultMatchers.status().isCreated())
     .andExpect(MockMvcResultMatchers.header().exists(HttpHeaders.LOCATION));</code></pre>
 </div>
@@ -347,7 +347,7 @@ MockMvc mockMvc;</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Converts <code>testBook</code> into JSON with <a href="index.html#_fasterxml_jackson" class="xref page">FasterXML Jackson</a></td>
+<td>Converts <code>testBookDTO</code> into JSON with <a href="index.html#_fasterxml_jackson" class="xref page">FasterXML Jackson</a></td>
 </tr>
 </table>
 </div>
@@ -356,17 +356,27 @@ MockMvc mockMvc;</code></pre>
 <div class="listingblock">
 <div class="title">Testing Controller PUT request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBook.getId())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(testBook)))
+        .content(objectMapper.writeValueAsString(testBookDTO)))
+    .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Testing Controller PATCH request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/book/{bookId}", testBookDTO.getId())
+        .accept(MediaType.APPLICATION_JSON)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(testBookDTO)))
     .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Testing Controller DELETE request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/book/{bookId}", testBook.getId())
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
     .andExpect(MockMvcResultMatchers.status().isNoContent());</code></pre>
 </div>
@@ -389,9 +399,9 @@ BookService bookService;
 
 @Test
 void testGetBookById() throws Exception {
-    BookDTO testBook = // ...
+    BookDTO testBookDTO = // ...
     BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class))) <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
-        .willReturn(testBook);
+        .willReturn(testBookDTO);
     // ...
 }</code></pre>
 </div>
@@ -439,10 +449,10 @@ ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor;
 
 @Test
 void testDeleteBookById() throws Exception {
-    BookDTO testBook = // ...
+    BookDTO testBookDTO = // ...
     // ...
     verify(bookService).deleteBookById(uuidArgumentCaptor.capture());
-    Assertions.assertThat(testBook.getId()).isEqualTo(uuidArgumentCaptor.getValue()); <i class="conum" data-value="2"></i><b>(2)</b>
+    Assertions.assertThat(testBookDTO.getId()).isEqualTo(uuidArgumentCaptor.getValue()); <i class="conum" data-value="2"></i><b>(2)</b>
 }</code></pre>
 </div>
 </div>
