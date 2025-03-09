@@ -321,6 +321,9 @@ MockMvc mockMvc;</code></pre>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html" target="_blank" rel="noopener"><code>🟠 MockMvcResultMatchers</code></a></dt>
 <dd>
 <p>Static factory methods for building <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/ResultMatcher.html" target="_blank" rel="noopener"><code>⚪ ResultMatcher</code></a>-based result actions. A <code>⚪ ResultMatcher</code> matches the result of an executed request against some expectation.</p>
+</dd>
+</dl>
+</div>
 <div class="listingblock">
 <div class="title">Testing Controller GET request</div>
 <div class="content">
@@ -336,12 +339,21 @@ MockMvc mockMvc;</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/book")
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
-        .content(objectMapper.writeValueAsString(testBook)))
+        .content(objectMapper.writeValueAsString(testBook))) <i class="conum" data-value="1"></i><b>(1)</b>
     .andExpect(MockMvcResultMatchers.status().isCreated())
     .andExpect(MockMvcResultMatchers.header().exists(HttpHeaders.LOCATION));</code></pre>
 </div>
 </div>
-</dd>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Converts <code>testBook</code> into JSON with <a href="index.html#_fasterxml_jackson" class="xref page">FasterXML Jackson</a></td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/context/bean/override/mockito/MockitoBean.html" target="_blank" rel="noopener"><code>@MockitoBean</code></a></dt>
 <dd>
 <p>Can be used in test classes to override a bean in the test&#8217;s <code>⚪ ApplicationContext</code> with a Mockito mock. For example a Service which is called by Controller.</p>
