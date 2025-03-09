@@ -322,7 +322,7 @@ MockMvc mockMvc;</code></pre>
 <dd>
 <p>Static factory methods for building <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/ResultMatcher.html" target="_blank" rel="noopener"><code>⚪ ResultMatcher</code></a>-based result actions. A <code>⚪ ResultMatcher</code> matches the result of an executed request against some expectation.</p>
 <div class="listingblock">
-<div class="title">Testing Controller GET request</div>
+<div class="title">Test Controller GET request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON))
@@ -333,7 +333,7 @@ MockMvc mockMvc;</code></pre>
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Testing Controller POST request</div>
+<div class="title">Test Controller POST request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/book")
         .accept(MediaType.APPLICATION_JSON)
@@ -354,7 +354,7 @@ MockMvc mockMvc;</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Testing Controller PUT request</div>
+<div class="title">Test Controller PUT request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
@@ -364,7 +364,7 @@ MockMvc mockMvc;</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Testing Controller PATCH request</div>
+<div class="title">Test Controller PATCH request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Object&gt; bookMap = new HashMap&lt;&gt;();
 bookMap.put("name", "New Book Name");
@@ -376,7 +376,7 @@ mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/book/{bookId}", testBookDT
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Testing Controller DELETE request</div>
+<div class="title">Test Controller DELETE request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/book/{bookId}", testBookDTO.getId())
         .accept(MediaType.APPLICATION_JSON)
@@ -446,7 +446,7 @@ Behavior Driven Development style of writing tests uses <code>//given</code> <co
 <div class="openblock">
 <div class="content">
 <div class="listingblock">
-<div class="title">Capturing and asserting Arguments</div>
+<div class="title">Capture and assert arguments</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Captor <i class="conum" data-value="1"></i><b>(1)</b>
 ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor;
@@ -455,7 +455,7 @@ ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor;
 void testDeleteBookById() throws Exception {
     BookDTO testBookDTO = // ...
     // ...
-    verify(bookService).deleteBookById(uuidArgumentCaptor.capture());
+    Mockito.verify(bookService).deleteBookById(uuidArgumentCaptor.capture());
     Assertions.assertThat(testBookDTO.getId()).isEqualTo(uuidArgumentCaptor.getValue()); <i class="conum" data-value="2"></i><b>(2)</b>
 }</code></pre>
 </div>
@@ -476,6 +476,13 @@ void testDeleteBookById() throws Exception {
 </div>
 </dd>
 </dl>
+</div>
+<div class="listingblock">
+<div class="title">Throw an exception on given method call</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class)))
+        .willThrow(NotFoundException.class);</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -516,6 +523,18 @@ void testDeleteBookById() throws Exception {
 <td>Asserts that we have 3 objects in <code>content</code> array.</td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_exception_handling"><a class="anchor" href="#_testing_exception_handling"></a>Testing Exception Handling</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Test 404 HTTP Response Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/book/{bookId}", UUID.randomUUID()))
+    .andExpect(status().isNotFound());</code></pre>
 </div>
 </div>
 </div>

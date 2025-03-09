@@ -424,7 +424,7 @@ public class BookController {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_requesting_mapping"><a class="anchor" href="#_requesting_mapping"></a>Requesting Mapping</h2>
+<h2 id="_specialized_request_mappings"><a class="anchor" href="#_specialized_request_mappings"></a>Specialized Request Mappings</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Instead of e.g. <code>@RequestMapping(method = RequestMethod.GET)</code> you can use convenient annotations:</p>
@@ -532,6 +532,23 @@ public Book getBookById(@PathVariable UUID bookId) {
 <p>Resolves standard Spring MVC exceptions and translates them to corresponding HTTP status codes. It does not write content to the body of the response.</p>
 </dd>
 </dl>
+</div>
+<div class="listingblock">
+<div class="title">Handle custom exception in Controller method</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ExceptionHandler(NotFoundException.class) <i class="conum" data-value="1"></i><b>(1)</b>
+public ResponseEntity handleNotFoundException() {
+    return ResponseEntity.notFound().build();
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html" target="_blank" rel="noopener"><code>@ExceptionHandler</code></a> handles exceptions in specific handler classes and/or handler methods. Here it handles custom <code>🟢 NotFoundException</code> which extends <code>🟢 RuntimeException</code>.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
