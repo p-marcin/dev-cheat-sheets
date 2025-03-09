@@ -389,24 +389,25 @@ BookService bookService;
 
 @Test
 void testGetBookById() throws Exception {
-    Book testBook = // ...
-    BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class)))
+    BookDTO testBook = // ...
+    BDDMockito.given(bookService.getBookById(ArgumentMatchers.any(UUID.class))) <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
         .willReturn(testBook);
     // ...
 }</code></pre>
 </div>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/BDDMockito.html" target="_blank" rel="noopener"><code>🟢 BDDMockito</code></a></dt>
-<dd>
-<p>Behavior Driven Development style of writing tests uses <code>//given</code> <code>//when</code> <code>//then</code> comments as fundamental parts of your test methods.</p>
-</dd>
-<dt class="hdlist1"><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/ArgumentMatchers.html" target="_blank" rel="noopener"><code>🟢 ArgumentMatchers</code></a></dt>
-<dd>
-<p>Allows flexible verification or stubbing. For example <code>any()</code> matches anything, including nulls, while <code>any(Class&lt;T&gt; type)</code> matches any object of given type, excluding nulls.</p>
-</dd>
-</dl>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/BDDMockito.html" target="_blank" rel="noopener"><code>🟢 BDDMockito</code></a> -
+Behavior Driven Development style of writing tests uses <code>//given</code> <code>//when</code> <code>//then</code> comments as fundamental parts of your test methods.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/ArgumentMatchers.html" target="_blank" rel="noopener"><code>🟢 ArgumentMatchers</code></a> - allows flexible verification or stubbing. For example <code>any()</code> matches anything, including nulls, while <code>any(Class&lt;T&gt; type)</code> matches any object of given type, excluding nulls.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -415,16 +416,43 @@ void testGetBookById() throws Exception {
 <div class="listingblock">
 <div class="title">Verify that behavior happened once</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Mockito.verify(bookService).updateBookById(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(BookDTO.class));</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Mockito.verify(bookService).updateBookById(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(BookDTO.class)); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#verify(java.lang.Object)" target="_blank" rel="noopener"><code>🟢 Mockito#verify(T mock)</code></a></dt>
-<dd>
-<p>Verifies certain behavior happened once. It is alias to: <code>verify(mock, Mockito.times(1)).someMethod("some arg");</code></p>
-</dd>
-</dl>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#verify(java.lang.Object)" target="_blank" rel="noopener"><code>🟢 Mockito#verify(T mock)</code></a> - verifies certain behavior happened once. It is alias to: <code>verify(mock, Mockito.times(1)).someMethod("some arg");</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Capturing and asserting Arguments</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Captor <i class="conum" data-value="1"></i><b>(1)</b>
+ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor;
+
+@Test
+void testDeleteBookById() throws Exception {
+    BookDTO testBook = // ...
+    // ...
+    verify(bookService).deleteBookById(uuidArgumentCaptor.capture());
+    assertThat(testBook.getId()).isEqualTo(uuidArgumentCaptor.getValue());
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Captor.html" target="_blank" rel="noopener"><code>@Captor</code></a> - allows shorthand <a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/ArgumentCaptor.html" target="_blank" rel="noopener"><code>🟢 ArgumentCaptor</code></a> creation on fields (instead of <code>ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor = ArgumentCaptor.forClass(UUID.class)</code>).</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
