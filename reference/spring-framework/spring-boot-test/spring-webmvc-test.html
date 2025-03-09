@@ -442,7 +442,7 @@ void testDeleteBookById() throws Exception {
     BookDTO testBook = // ...
     // ...
     verify(bookService).deleteBookById(uuidArgumentCaptor.capture());
-    assertThat(testBook.getId()).isEqualTo(uuidArgumentCaptor.getValue());
+    Assertions.assertThat(testBook.getId()).isEqualTo(uuidArgumentCaptor.getValue()); <i class="conum" data-value="2"></i><b>(2)</b>
 }</code></pre>
 </div>
 </div>
@@ -451,6 +451,10 @@ void testDeleteBookById() throws Exception {
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td><a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Captor.html" target="_blank" rel="noopener"><code>@Captor</code></a> - allows shorthand <a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/ArgumentCaptor.html" target="_blank" rel="noopener"><code>🟢 ArgumentCaptor</code></a> creation on fields (instead of <code>ArgumentCaptor&lt;UUID&gt; uuidArgumentCaptor = ArgumentCaptor.forClass(UUID.class)</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://www.javadoc.io/doc/org.assertj/assertj-core/latest/org/assertj/core/api/Assertions.html" target="_blank" rel="noopener"><code>🟢 Assertions</code></a> - AssertJ entry point for assertion methods for different types. Each method in this class is a static factory for a type-specific assertion object.</td>
 </tr>
 </table>
 </div>
