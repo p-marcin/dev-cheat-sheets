@@ -420,8 +420,9 @@ Map&lt;String, Some&gt; someMap = objectMapper.readValue(jsonMapString, new Type
 <h2 id="_testing_exceptions"><a class="anchor" href="#_testing_exceptions"></a>Testing Exceptions</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">Verify that a particular type of exception is thrown</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">assertThrows(NotFoundException.class, () -&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">assertThrows(NotFoundException.class, () -&gt; { <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
     bookController.updateBookById(UUID.randomUUID(), BeerDTO.builder().build());
 });</code></pre>
 </div>
@@ -431,7 +432,24 @@ Map&lt;String, Some&gt; someMap = objectMapper.readValue(jsonMapString, new Type
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td><a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html#assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable)" target="_blank" rel="noopener"><code>Assertions#assertThrows(Class&lt;T&gt; expectedType,
-Executable executable)</code></a> asserts that execution of the supplied <code>executable</code> throws an exception of the <code>expectedType</code> and return the exception.</td>
+Executable executable)</code></a> asserts that execution of the supplied <code>executable</code> throws an exception of the <code>expectedType</code> and return the exception.
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It not only checks for the type of the thrown exception but also its subclasses, making it suitable for more generalized exception handling tests. The <code>assertThrows(Class&lt;T&gt; expectedType,
+Executable executable)</code> assertion method returns the thrown exception object to allow performing additional assertions on it.
+</td>
+</tr>
+</table>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><a href="https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/function/Executable.html" target="_blank" rel="noopener"><code>⚪ Executable</code></a> is a functional interface that can be used to implement any generic block of code that potentially throws a <a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/lang/Throwable.html" target="_blank" rel="noopener"><code>🟢 Throwable</code></a>.</td>
 </tr>
 </table>
 </div>
