@@ -356,6 +356,29 @@ class BookControllerIT {
 </dl>
 </div>
 <div class="sect2">
+<h3 id="_how_to_rollback_test"><a class="anchor" href="#_how_to_rollback_test"></a>How to rollback test?</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/annotation/Rollback.html" target="_blank" rel="noopener"><code>@Rollback</code></a></dt>
+<dd>
+<p>Used to indicate whether a test-managed transaction should be rolled back after the test method has completed. You can start test-managed transaction with <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html" target="_blank" rel="noopener"><code>@Transactional</code></a>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/annotation/Commit.html" target="_blank" rel="noopener"><code>@Commit</code></a> can be used as direct replacement for <code>@Rollback(false)</code>.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_fasterxml_jackson"><a class="anchor" href="#_fasterxml_jackson"></a>FasterXML Jackson</h3>
 <div class="paragraph">
 <p>The Java JSON library.</p>
