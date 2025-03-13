@@ -406,7 +406,7 @@ positionalArgument2=${2}</code></pre>
 <p><code>$@</code> contains all options and positional arguments. With <code>shift</code> you can control what <code>$@</code> contains.</p>
 </div>
 <div class="paragraph">
-<p><code>$@</code> is an array, while <code>$*</code> is a single string.</p>
+<p><code>$@</code> is an array, while <code>$*</code> is a single string. When you pass them to a method, they should be quoted: <code>"$@"</code>/<code>"$*"</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
