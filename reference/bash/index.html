@@ -292,6 +292,73 @@
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_cheat_sheet"><a class="anchor" href="#_cheat_sheet"></a>Cheat Sheet</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Beginning of the script</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
+# SCRIPT DESCRIPTION
+
+set -o errexit  # ABORT ON NON-ZERO EXIT STATUS
+set -o pipefail # DON"T HIDE ERRORS WITHIN PIPES</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Help method</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">help() {
+  cat &lt;&lt; EOF
+Usage: ${0} [OPTION]... [positional-argument1] [positional-argument2]
+
+Description
+
+OPTIONS:
+  -s, --silent          Option description
+
+Examples:
+  # Example description
+  ${0} -s "positional-argument"
+EOF
+  exit 1
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Read options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while getopts "hsz:" option; do
+  case "${option}" in
+    s) variable1="value" ;; <i class="conum" data-value="1"></i><b>(1)</b>
+    z) variable2="${OPTARG}" ;; <i class="conum" data-value="2"></i><b>(2)</b>
+    h|\?) help ;;
+  esac
+done</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>s</code> option which does not take any value, needs <code>s</code> in <code>getopts</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>z</code> option which takes a value, needs <code>z:</code> in <code>getopts</code></td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Read positional arguments</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">shift $((OPTIND - 1))
+positionalArgument1=${1}
+positionalArgument2=${2}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
