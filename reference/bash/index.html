@@ -308,18 +308,19 @@ set -o pipefail # DON"T HIDE ERRORS WITHIN PIPES</code></pre>
 <div class="listingblock">
 <div class="title">Help method</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">help() {
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">usage() {
   cat &lt;&lt; EOF
 Usage: ${0} [OPTION]... [positional-argument1] [positional-argument2]
 
 Description
 
 OPTIONS:
-  -s, --silent          Option description
+  -s, --set=''           Option description
+  -z                     Option description
 
 Examples:
   # Example description
-  ${0} -s "positional-argument"
+  ${0} -s "option argument" "positional-argument"
 EOF
   exit 1
 }</code></pre>
@@ -328,11 +329,11 @@ EOF
 <div class="listingblock">
 <div class="title">Read options</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while getopts "hsz:" option; do
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while getopts ":hs:z" option; do <i class="conum" data-value="1"></i><b>(1)</b>
   case "${option}" in
-    s) variable1="value" ;; <i class="conum" data-value="1"></i><b>(1)</b>
-    z) variable2="${OPTARG}" ;; <i class="conum" data-value="2"></i><b>(2)</b>
-    h|\?) help ;;
+    s) variable1="${OPTARG}" ;; <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b>
+    z) variable2="some-value" ;; <i class="conum" data-value="4"></i><b>(4)</b>
+    h|?) usage ;;
   esac
 done</code></pre>
 </div>
@@ -341,21 +342,92 @@ done</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>s</code> option which does not take any value, needs <code>s</code> in <code>getopts</code></td>
+<td><code>:</code> as first character of <em>optstring</em>: <code>":&#8230;&#8203;"</code> turns on silent reporting. You won&#8217;t see errors like "illegal option&#8201;&#8212;&#8201;a".</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>z</code> option which takes a value, needs <code>z:</code> in <code>getopts</code></td>
+<td><code>s</code> option which takes an argument, needs <code>s:</code> in <em>optstring</em>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>${OPTARG}</code> contains option&#8217;s argument.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>z</code> option which does not take any argument, needs <code>z</code> in <em>optstring</em>.</td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
+<div class="title">Read long options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while [[ "$#" -gt 0 ]]; do
+  case "${1}" in
+    -s|--set) [[ -z "${2}" ]] &amp;&amp; usage; variable1="${2}"; shift ;;
+    -z) variable2="some-value" ;;
+    *) [[ "${1}" == -* ]] &amp;&amp; usage || break ;;
+  esac
+  shift
+done</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">Read positional arguments</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">shift $((OPTIND - 1))
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">shift $((OPTIND - 1)) <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b>
 positionalArgument1=${1}
 positionalArgument2=${2}</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This line is only needed when options are read by <code>getopts</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>shift</code> shifts positional arguments by <code>n</code> + 1.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>${OPTIND}</code> contains index of the next argument to be processed. It is initialized to <code>1</code> each time the shell or a shell script is invoked.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>$@</code> contains all options and positional arguments. With <code>shift</code> you can control what <code>$@</code> contains.</p>
+</div>
+<div class="paragraph">
+<p><code>$@</code> is an array, while <code>$*</code> is a single string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ ./test.sh -s abc -z def ghi
+Before shift, $@: -s abc -z def ghi
+After shift, $@: def ghi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>$#</code> contains number of all options and positional arguments. With <code>shift</code> you can control what <code>$#</code> contains.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ ./test.sh -s abc -z def ghi
+Before shift, $#: 5
+After shift, $#: 2</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
