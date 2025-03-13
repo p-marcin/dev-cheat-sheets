@@ -449,7 +449,7 @@ done; echo</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>-p</code> outputs the prompt without a trailing new line before attempting to read</td>
+<td><code>-p</code> outputs the prompt without a trailing new line before attempting to read.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -457,11 +457,11 @@ done; echo</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>-s</code> does not echo input coming from a terminal</td>
+<td><code>-s</code> does not echo input coming from a terminal.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>-n</code> returns after reading 1 character rather than waiting for a new line</td>
+<td><code>-n</code> returns after reading 1 character rather than waiting for a new line.</td>
 </tr>
 </table>
 </div>
@@ -509,7 +509,47 @@ done</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Outputs the same as in point 1</td>
+<td>Outputs the same as in point 1.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Parsing JSON response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">response=$(cat &lt;&lt; EOF
+{
+  "name": "John",
+  "age": 30,
+  "items": [
+    "Sword",
+    "Shield"
+  ]
+}
+EOF
+)
+
+echo "${response}" | jq -M -r ".name" <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+echo "${response}" | jq -M -r ".items.[]" <i class="conum" data-value="3"></i><b>(3)</b>
+echo "${response}" | jq -M -r ".items.[1]" <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>-M</code> disables colored output, <code>-r</code> outputs strings without escaped and quotes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Outputs <code>John</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Outputs <code>Sword</code> and <code>Shield</code> delimited by new lines.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Outputs <code>Shield</code>.</td>
 </tr>
 </table>
 </div>
