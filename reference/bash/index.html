@@ -429,6 +429,90 @@ After shift, $#: 2</code></pre>
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="title">Read username and password from the user. Password is masked by <code>*</code> characters.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">read -p "Enter Username: " -r username
+pass="Enter Password: "
+while IFS= read -p "${pass}" -r -s -n 1 letter; do <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b>
+  [[ -z "${letter}" ]] &amp;&amp; break
+  password+="${letter}"
+  pass="*"
+done; echo</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>IFS=</code> removes the default word splitting behavior (on spaces, tabs and new lines). IFS stands for Internal Field Separator.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>-p</code> outputs the prompt without a trailing new line before attempting to read</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>-r</code> does not allow backslashes to escape any characters</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>-s</code> does not echo input coming from a terminal</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>-n</code> returns after reading 1 character rather than waiting for a new line</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Changing default value of IFS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">strings="foo bar foo:bar"
+for string in ${strings}; do <i class="conum" data-value="1"></i><b>(1)</b>
+  echo "${string}";
+done
+IFS=":"
+for string in ${strings}; do <i class="conum" data-value="2"></i><b>(2)</b>
+  echo "${string}";
+done
+unset IFS
+for string in ${strings}; do <i class="conum" data-value="3"></i><b>(3)</b>
+  echo "${string}";
+done</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Outputs:
+<div class="paragraph">
+<p>foo</p>
+</div>
+<div class="paragraph">
+<p>bar</p>
+</div>
+<div class="paragraph">
+<p>foo:bar</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Outputs:
+<div class="paragraph">
+<p>foo bar foo</p>
+</div>
+<div class="paragraph">
+<p>bar</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Outputs the same as in point 1</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </article>
