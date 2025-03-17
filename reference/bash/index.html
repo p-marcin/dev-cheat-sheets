@@ -226,6 +226,9 @@
     <a class="nav-link" href="coreutils/index.html">Coreutils (file, shell, text manipulation)</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jq.html">Jq: JSON Stream Processor</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="sed.html">Sed: Stream Editor</a>
   </li>
 </ul>
@@ -275,6 +278,9 @@
 <p><a href="coreutils/index.html" class="xref page">Coreutils (file, shell, text manipulation)</a></p>
 </li>
 <li>
+<p><a href="jq.html" class="xref page">Jq: JSON Stream Processor</a></p>
+</li>
+<li>
 <p><a href="sed.html" class="xref page">Sed: Stream Editor</a></p>
 </li>
 </ul>
@@ -309,6 +315,17 @@ set -o pipefail # DON"T HIDE ERRORS WITHIN PIPES</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">Useful constants</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">readonly STEP="[\e[1;96mSTEP\e[0m] \e[1;96m*-*-*-*-*-*-*\e[0m"
+readonly DEBUG="[\e[1;36mDEBUG\e[0m]"
+readonly INFO="[\e[1;34mINFO\e[0m]"
+readonly WARNING="[\e[1;33mWARNING\e[0m]"
+readonly ERROR="[\e[1;31mERROR\e[0m]"
+readonly SUCCESS="[\e[1;32mSUCCESS\e[0m]"</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">Help method</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">usage() {
@@ -323,7 +340,7 @@ OPTIONS:
 
 Examples:
   # Example description
-  ${0} -s "option argument" "positional-argument"
+  ${0} -s "option-argument" "positional-argument"
 EOF
   exit 1
 }</code></pre>
@@ -366,20 +383,28 @@ done</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while [[ "$#" -gt 0 ]]; do
   case "${1}" in
-    -s|--set) [[ -z "${2}" ]] &amp;&amp; usage; variable1="${2}"; shift ;;
+    -s|--set) [[ -z "${2}" ]] &amp;&amp; usage; variable1="${2}"; shift ;; <i class="conum" data-value="1"></i><b>(1)</b>
     -z) variable2="some-value" ;;
     *) [[ "${1}" == -* ]] &amp;&amp; usage || break ;;
   esac
-  shift
+  shift <i class="conum" data-value="1"></i><b>(1)</b>
 done</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>shift</code> shifts positional arguments by <code>n</code> + 1. Since we don&#8217;t use <code>getopts</code>, we need to <code>shift</code> manually.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Read positional arguments</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">shift $((OPTIND - 1)) <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b>
-positionalArgument1=${1}
-positionalArgument2=${2}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">shift $((OPTIND - 1)) <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+positionalArgument1="${1}"
+positionalArgument2="${2}"</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -390,10 +415,6 @@ positionalArgument2=${2}</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>shift</code> shifts positional arguments by <code>n</code> + 1.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><code>${OPTIND}</code> contains index of the next argument to be processed. It is initialized to <code>1</code> each time the shell or a shell script is invoked.</td>
 </tr>
 </table>
@@ -429,6 +450,63 @@ After shift, $#: 2</code></pre>
 </div>
 </div>
 </td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Source script</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">if [[ -f ./test.sh ]]; then <i class="conum" data-value="1"></i><b>(1)</b>
+  . ./test.sh <i class="conum" data-value="2"></i><b>(2)</b>
+fi</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Checks if the script file exists.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Reads and executes commands from the script in the current shell context. <code>source</code> is a synonym for <code>.</code></td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Do not execute script when sourced</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b>
+  # The file is not executed, but sourced in another script
+  return 0
+fi
+
+main "$@"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>BASH_SOURCE</code> is an array variable whose members are the source filenames.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>${0}</code> expands to the name of the shell or shell script.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Example: when <code>test1.sh</code> calls <code>test2.sh</code>, and <code>test2.sh</code> calls <code>test3.sh</code>:
+<div class="ulist">
+<ul>
+<li>
+<p><code>"${BASH_SOURCE[0]}"</code> in: <code>test3.sh</code> will be equal to <code>test3.sh</code>,</p>
+</li>
+<li>
+<p>but <code>${0}</code> will be equal to <code>test1.sh</code>.</p>
+</li>
+</ul>
+</div></td>
 </tr>
 </table>
 </div>
@@ -510,47 +588,7 @@ bar</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Outputs the same as in point 1.</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Parsing JSON response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">response=$(cat &lt;&lt; EOF
-{
-  "name": "John",
-  "age": 30,
-  "items": [
-    "Sword",
-    "Shield"
-  ]
-}
-EOF
-)
-
-echo "${response}" | jq -M -r ".name" <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
-echo "${response}" | jq -M -r ".items.[]" <i class="conum" data-value="3"></i><b>(3)</b>
-echo "${response}" | jq -M -r ".items.[1]" <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>-M</code> disables colored output, <code>-r</code> outputs strings without escaped and quotes.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Outputs <code>John</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Outputs <code>Sword</code> and <code>Shield</code> delimited by new line.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Outputs <code>Shield</code>.</td>
+<td>Outputs the same result as in point 1.</td>
 </tr>
 </table>
 </div>

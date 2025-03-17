@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>☕ Java :: DEV Cheat Sheets</title>
-    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/java/index.html">
+    <title>Jq: JSON Stream Processor :: DEV Cheat Sheets</title>
+    <link rel="canonical" href="https://p-marcin.github.io/dev-cheat-sheets/reference/bash/jq.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -54,23 +54,23 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">☕ Java</a>
+    <a class="nav-link" href="../java/index.html">☕ Java</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">API</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="api/lambda-expression.html">Lambda Expression</a>
+    <a class="nav-link" href="../java/api/lambda-expression.html">Lambda Expression</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api/the-stream-api/the-stream-api.html">The Stream API</a>
+    <a class="nav-link" href="../java/api/the-stream-api/the-stream-api.html">The Stream API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="api/the-stream-api/parallelism.html">Parallelism</a>
+    <a class="nav-link" href="../java/api/the-stream-api/parallelism.html">Parallelism</a>
   </li>
 </ul>
   </li>
@@ -78,13 +78,13 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="concepts/concepts.html">Concepts</a>
+    <a class="nav-link" href="../java/concepts/concepts.html">Concepts</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="concepts/microservices.html">Microservices</a>
+    <a class="nav-link" href="../java/concepts/microservices.html">Microservices</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="concepts/reactive-programming.html">Reactive Programming</a>
+    <a class="nav-link" href="../java/concepts/reactive-programming.html">Reactive Programming</a>
   </li>
 </ul>
   </li>
@@ -220,16 +220,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../bash/index.html">💲 Bash</a>
+    <a class="nav-link" href="index.html">💲 Bash</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../bash/coreutils/index.html">Coreutils (file, shell, text manipulation)</a>
+    <a class="nav-link" href="coreutils/index.html">Coreutils (file, shell, text manipulation)</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="jq.html">Jq: JSON Stream Processor</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../bash/jq.html">Jq: JSON Stream Processor</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../bash/sed.html">Sed: Stream Editor</a>
+    <a class="nav-link" href="sed.html">Sed: Stream Editor</a>
   </li>
 </ul>
   </li>
@@ -255,101 +255,75 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="index.html">☕ Java</a></li>
+    <li><a href="index.html">💲 Bash</a></li>
+    <li><a href="jq.html">Jq: JSON Stream Processor</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/java/pages/index.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/bash/pages/jq.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">☕ Java</h1>
+<h1 class="page">Jq: JSON Stream Processor</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://dev.java/learn/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span>
-<span class="image"><a class="image" href="https://docs.oracle.com/en/java/javase/23/docs/api/index.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/API%20Specification-2088E9?logo=quickLook&amp;logoColor" alt="API%20Specification 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
+<p><span class="image"><a class="image" href="https://jqlang.org/manual/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Jq%20Documentation-2088E9?logo=quickLook&amp;logoColor" alt="Jq%20Documentation 2088E9?logo=quickLook&amp;logoColor"></a></span></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>API</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="api/lambda-expression.html" class="xref page">Lambda Expression</a></p>
-</li>
-<li>
-<p><a href="api/the-stream-api/the-stream-api.html" class="xref page">The Stream API</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="api/the-stream-api/parallelism.html" class="xref page">Parallelism</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
 </div>
-</li>
-<li>
-<p><a href="concepts/concepts.html" class="xref page">Concepts</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="concepts/microservices.html" class="xref page">Microservices</a></p>
-</li>
-<li>
-<p><a href="concepts/reactive-programming.html" class="xref page">Reactive Programming</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>jq</code> filters run on a stream of JSON data. The input to <code>jq</code> is parsed as a sequence of whitespace-separated JSON values which are passed through the provided filter one at a time. The output(s) of the filter are written to standard output, as a sequence of newline-separated JSON data.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_cheat_sheet"><a class="anchor" href="#_cheat_sheet"></a>Cheat Sheet</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_files_exists_vs_file_exists"><a class="anchor" href="#_files_exists_vs_file_exists"></a><code>Files.exists</code> vs <code>file.exists</code></h3>
-<div class="paragraph">
-<p><code>🔴 java.nio.file.Files</code> is part of the newer, more efficient NIO.2 API introduced in Java 7, which is designed for better performance and scalability.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/Files.html#exists(java.nio.file.Path,java.nio.file.LinkOption...)" target="_blank" rel="noopener"><code>Files#exists(Path path, LinkOption&#8230;&#8203; options)</code></a>
-is optimized for different file systems, because it uses the
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/spi/FileSystemProvider.html#checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)" target="_blank" rel="noopener"><code>🟠 FileSystemProvider#checkAccess(Path path, AccessMode&#8230;&#8203; modes)</code></a>
-under the hood, allowing different implementations to optimize the file existence check based on the underlying file system. This makes it more efficient compared to
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/File.html#exists()" target="_blank" rel="noopener"><code>file#exists()</code></a>
-, which relies on the older I/O mechanisms.</p>
-</div>
 <div class="listingblock">
-<div class="title">Example</div>
+<div class="title">Parsing JSON response</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Before Java 11
-Path someFile = Paths.get("/tmp/some-file.txt");
-// After Java 11
-someFile = Paths.of("/tmp/some-file.txt");
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">response=$(cat &lt;&lt; EOF
+{
+  "name": "John",
+  "age": 30,
+  "items": [
+    "Sword",
+    "Shield"
+  ]
+}
+EOF
+)
 
-assertTrue(Files.exists(someFile));</code></pre>
+echo "${response}" | jq -M -r ".name" <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+echo "${response}" | jq -M -r ".items.[]" <i class="conum" data-value="3"></i><b>(3)</b>
+echo "${response}" | jq -M -r ".items.[1]" <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Stay away from the legacy <code>🟢 java.io.File</code> class. Better check <a href="https://dev.java/learn/modernio/" target="_blank" rel="noopener">Common I/O Tasks in Modern Java</a>
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>-M</code> disables colored output, <code>-r</code> outputs strings without escaped and quotes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Outputs <code>John</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Outputs <code>Sword</code> and <code>Shield</code> delimited by new line.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Outputs <code>Shield</code>.</td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
