@@ -511,6 +511,42 @@ main "$@"</code></pre>
 </table>
 </div>
 <div class="listingblock">
+<div class="title">Create table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">readonly SEPARATOR="\e[1;33m#\e[0m"
+readonly SEPARATOR_LINE="\e[1;33m$(printf "%.s#" {1..101})\e[0m"
+
+letters=("abc" "def")
+numbers=("123" "456")
+
+printSeparator() {
+  printf "%b\n" "${SEPARATOR_LINE}"
+}
+
+printHeader() {
+  local title="${1^^}"
+  printf "%b %-108b %b\n" \
+    "${SEPARATOR}" "\e[1;32m${title}\e[0m" "${SEPARATOR}"
+}
+
+printRow() {
+  local column1="${1}"
+  local column2="${2}"
+  printf "%b %-47b %b %-47b %b\n" \
+    "${SEPARATOR}" "${column1}" \
+    "${SEPARATOR}" "${column2}" "${SEPARATOR}"
+}
+
+printSeparator
+printHeader "Title"
+printSeparator
+while read -r column1 column2; do
+  printRow "${column1}" "${column2}"
+done &lt; &lt;(paste -d " " &lt;(printf "%s\n" "${letters[@]}") &lt;(printf "%s\n" "${numbers[@]}"))
+printSeparator</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">Read username and password from the user. Password is masked by <code>*</code> characters.</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">read -p "Enter Username: " -r username
