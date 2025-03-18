@@ -600,7 +600,7 @@ main "$@"</code></pre>
   echo -e "\n[\e[1m${now}\e[0m] Task completed in \e[1m${minutes}\e[0m minutes and \e[1m${seconds}\e[0m seconds"
 }
 
-trap executionTime EXIT</code></pre>
+trap executionTime EXIT <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -608,6 +608,14 @@ trap executionTime EXIT</code></pre>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td><code>SECONDS</code> expands to the number of seconds since the shell was started. Assignment to this variable resets the count to the value assigned, and the expanded value becomes the value assigned plus the number of seconds since the assignment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Reads and executes commands from <code>executionTime</code> function when the shell receives <code>EXIT</code> signal.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>EXIT</code> or <code>0</code> occurs when the shell exits. <code>RETURN</code> occurs each time a shell function or a script executed with the <code>.</code> or <code>source</code> builtins finishes executing.</td>
 </tr>
 </table>
 </div>
