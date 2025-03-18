@@ -541,13 +541,25 @@ After shift, $#: 2</code></pre>
 
 while getopts ":hq" option; do
   case "${option}" in
-    q) fileDescriptor="/dev/null" ;;
+    q) fileDescriptor="/dev/null" ;; <i class="conum" data-value="1"></i><b>(1)</b>
     h|?) usage ;;
   esac
 done
 
-cat test.txt &gt;${fileDescriptor}</code></pre>
+cat test.txt &gt;${fileDescriptor} <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>/dev/null</code> discards data. It is used to suppress program output.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>&gt;</code> operator redirects standard output to the file descriptor specified after it. <code>&amp;&gt;</code> operator also redirects standard error to standard output.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Source script</div>
