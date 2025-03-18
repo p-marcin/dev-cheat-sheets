@@ -757,6 +757,50 @@ done; echo</code></pre>
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="title">Update Maven artifactId version</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">updateArtifactIdVersion() {
+  local artifactId="${1}"
+  local version="${2}"
+  if ! grep -A 1 "&lt;artifactId&gt;${artifactId}&lt;/artifactId&gt;" pom.xml | grep -q "${version}"; then
+    sed -z -i "s|\(&lt;artifactId&gt;${artifactId}&lt;/artifactId&gt;[^&lt;]*&lt;version&gt;\)[^&lt;]*\(&lt;/version&gt;\)|\1${version}\2|" "pom.xml"; <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b> <i class="conum" data-value="6"></i><b>(6)</b> <i class="conum" data-value="7"></i><b>(7)</b>
+  fi
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>-z</code> enables multi-line matching (treats file as one block).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>&lt;artifactId&gt;${artifactId}&lt;/artifactId&gt;</code> matches exactly this tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>[^&lt;]*</code> matches any text (like spaces, newlines, or other characters) until the next <code>&lt;</code> is encountered.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>&lt;version&gt;</code> matches the opening <code>&lt;version&gt;</code> tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>[^&lt;]*</code> captures the actual version number (which is anything between <code>&lt;version&gt;</code> and <code>&lt;/version&gt;</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>&lt;/version&gt;</code> matches the closing <code>&lt;/version&gt;</code> tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><code>\1</code> and <code>\2</code> are capturing groups from <code>\(&#8230;&#8203;\)</code></td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </article>
