@@ -394,7 +394,7 @@ Bash Colors and Formatting: <a href="https://misc.flogisoft.com/bash/tip_colors_
 <div class="title">Help method</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">usage() {
-  cat &lt;&lt; EOF
+  cat &lt;&lt; EOF <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
 Usage: ${0} [OPTION]... [positional-argument1] [positional-argument2]
 
 Description
@@ -406,10 +406,26 @@ OPTIONS:
 Examples:
   # Example description
   ${0} -s "option-argument" "positional-argument"
-EOF
+EOF <i class="conum" data-value="3"></i><b>(3)</b>
   exit 1
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>&lt;&lt;</code> starts Here Document which is a special-purpose code block.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>EOF</code> after <code>&lt;&lt;</code> is a limit string which will end Here Document. When limit string is quoted like <code>"EOF"</code>, then variable substitution is disabled.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>EOF</code> declared second time ends Here Document. There can be neither leading nor trailing whitespace.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Read options</div>
@@ -623,7 +639,7 @@ trap executionTime EXIT <i class="conum" data-value="2"></i><b>(2)</b> <i class=
 <div class="title">Create table</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">readonly SEPARATOR="\e[1;33m#\e[0m"
-readonly SEPARATOR_LINE="\e[1;33m$(printf "%.s#" {1..101})\e[0m"
+readonly SEPARATOR_LINE="\e[1;33m$(printf "#%.0s" {1..101})\e[0m" <i class="conum" data-value="1"></i><b>(1)</b>
 
 letters=("abc" "def")
 numbers=("123" "456")
@@ -634,7 +650,7 @@ printSeparator() {
 
 printHeader() {
   local title="${1^^}"
-  printf "%b %-108b %b\n" \
+  printf "%b %-108b %b\n" \ <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
     "${SEPARATOR}" "\e[1;32m${title}\e[0m" "${SEPARATOR}"
 }
 
@@ -654,6 +670,39 @@ while read -r column1 column2; do
 done &lt; &lt;(paste -d " " &lt;(printf "%s\n" "${letters[@]}") &lt;(printf "%s\n" "${numbers[@]}"))
 printSeparator</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>printf "#%.0s" {1..101}</code>:
+<div class="ulist">
+<ul>
+<li>
+<p>bash expands <code>{1..101}</code> so the command becomes: <code>printf "#%.0s" 1 2 3 &#8230;&#8203; 101</code></p>
+</li>
+<li>
+<p><code>#%.0s</code> will always print a single <code>#</code> no matter what argument it is given, because <code>%.0s</code> specifies precision which truncates the string to fit the specified width (<code>0</code>).</p>
+</li>
+<li>
+<p>As <code>printf</code> reuses the format string to consume all the arguments, this simply prints <code>#</code> 101 times.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>-</code> in <code>%-108b</code> aligns printed text to the left. By default, the text is right-aligned.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>108</code> in <code>%-108b</code> is a padding.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>%b</code> in <code>%-108b</code> expands backslash escape sequences in the corresponding argument.</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Read username and password from the user. Password is masked by <code>*</code> characters.</div>
