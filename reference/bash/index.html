@@ -650,7 +650,7 @@ printSeparator() {
 
 printHeader() {
   local title="${1^^}"
-  printf "%b %-108b %b\n" \ <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+  printf "%b %-108b %b\n" \ <i class="conum" data-value="2"></i><b>(2)</b>
     "${SEPARATOR}" "\e[1;32m${title}\e[0m" "${SEPARATOR}"
 }
 
@@ -675,11 +675,11 @@ printSeparator</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>printf "#%.0s" {1..101}</code>:
+<td>In <code>printf "#%.0s" {1..101}</code>:
 <div class="ulist">
 <ul>
 <li>
-<p>bash expands <code>{1..101}</code> so the command becomes: <code>printf "#%.0s" 1 2 3 &#8230;&#8203; 101</code></p>
+<p>bash expands <code>{1..101}</code> so the command becomes: <code>printf "#%.0s" 1 2 3 &#8230;&#8203; 101</code>.</p>
 </li>
 <li>
 <p><code>#%.0s</code> will always print a single <code>#</code> no matter what argument it is given, because <code>%.0s</code> specifies precision which truncates the string to fit the specified width (<code>0</code>).</p>
@@ -692,15 +692,20 @@ printSeparator</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>-</code> in <code>%-108b</code> aligns printed text to the left. By default, the text is right-aligned.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>108</code> in <code>%-108b</code> is a padding.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>%b</code> in <code>%-108b</code> expands backslash escape sequences in the corresponding argument.</td>
+<td>In <code>%-108b</code>:
+<div class="ulist">
+<ul>
+<li>
+<p><code>-</code> aligns printed text to the left. By default, the text is right-aligned.</p>
+</li>
+<li>
+<p><code>108</code> is a padding.</p>
+</li>
+<li>
+<p><code>%b</code> expands backslash escape sequences in the corresponding argument.</p>
+</li>
+</ul>
+</div></td>
 </tr>
 </table>
 </div>
