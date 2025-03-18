@@ -302,6 +302,62 @@
 <h2 id="_cheat_sheet"><a class="anchor" href="#_cheat_sheet"></a>Cheat Sheet</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">Best way to check booleans (there are no booleans in bash, they are strings)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">isError=true
+
+if [[ "${isError}" == true ]]; then
+  echo "Error"
+fi</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Changing default value of IFS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">strings="foo bar foo:bar"
+for string in ${strings}; do <i class="conum" data-value="1"></i><b>(1)</b>
+  echo "${string}";
+done
+IFS=":" <i class="conum" data-value="2"></i><b>(2)</b>
+for string in ${strings}; do <i class="conum" data-value="3"></i><b>(3)</b>
+  echo "${string}";
+done
+unset IFS <i class="conum" data-value="4"></i><b>(4)</b>
+for string in ${strings}; do <i class="conum" data-value="5"></i><b>(5)</b>
+  echo "${string}";
+done</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Outputs <code>foo</code>, <code>bar</code> and <code>foo:bar</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>IFS</code> stands for Internal Field Separator. The default word splitting behavior is on spaces, tabs and new lines. If you set it to <code>:</code>, then you will split on this character only.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Outputs <code>foo bar foo</code> and <code>bar</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Reverts <code>IFS</code> to default behavior.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Outputs the same result as in point 1.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_script_blocks"><a class="anchor" href="#_script_blocks"></a>Script Blocks</h2>
+<div class="sectionbody">
+<div class="listingblock">
 <div class="title">Beginning of the script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
@@ -463,6 +519,21 @@ After shift, $#: 2</code></pre>
 </table>
 </div>
 <div class="listingblock">
+<div class="title">Suppress all normal output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">fileDescriptor="/dev/stdout"
+
+while getopts ":hq" option; do
+  case "${option}" in
+    q) fileDescriptor="/dev/null" ;;
+    h|?) usage ;;
+  esac
+done
+
+cat test.txt &gt;${fileDescriptor}</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">Source script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">if [[ -f ./test.sh ]]; then <i class="conum" data-value="1"></i><b>(1)</b>
@@ -592,7 +663,7 @@ done; echo</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>IFS=</code> removes the default word splitting behavior (on spaces, tabs and new lines). IFS stands for Internal Field Separator.</td>
+<td><code>IFS=</code> removes the default word splitting behavior (on spaces, tabs and new lines).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -609,39 +680,6 @@ done; echo</code></pre>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
 <td><code>-n</code> returns after reading 1 character rather than waiting for a new line.</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Changing default value of IFS</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">strings="foo bar foo:bar"
-for string in ${strings}; do <i class="conum" data-value="1"></i><b>(1)</b>
-  echo "${string}";
-done
-IFS=":"
-for string in ${strings}; do <i class="conum" data-value="2"></i><b>(2)</b>
-  echo "${string}";
-done
-unset IFS
-for string in ${strings}; do <i class="conum" data-value="3"></i><b>(3)</b>
-  echo "${string}";
-done</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Outputs <code>foo</code>, <code>bar</code> and <code>foo:bar</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Outputs <code>foo bar foo</code> and <code>bar</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Outputs the same result as in point 1.</td>
 </tr>
 </table>
 </div>
