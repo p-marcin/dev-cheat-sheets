@@ -301,9 +301,6 @@
 <div class="sect1">
 <h2 id="_cheat_sheet"><a class="anchor" href="#_cheat_sheet"></a>Cheat Sheet</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Bash Colors and Formatting: <a href="https://misc.flogisoft.com/bash/tip_colors_and_formatting" target="_blank" rel="noopener">misc.flogisoft.com/bash/tip_colors_and_formatting</a></p>
-</div>
 <div class="listingblock">
 <div class="title">Beginning of the script</div>
 <div class="content">
@@ -324,6 +321,18 @@ readonly WARNING="[\e[1;33mWARNING\e[0m]"
 readonly ERROR="[\e[1;31mERROR\e[0m]"
 readonly SUCCESS="[\e[1;32mSUCCESS\e[0m]"</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Bash Colors and Formatting: <a href="https://misc.flogisoft.com/bash/tip_colors_and_formatting" target="_blank" rel="noopener">misc.flogisoft.com/bash/tip_colors_and_formatting</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Help method</div>
@@ -509,6 +518,19 @@ main "$@"</code></pre>
 </div></td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="title">Print execution time at the end of the script</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">executionTime() {
+  now=$(date +"%F %T")
+  minutes=$((SECONDS / 60))
+  seconds=$((SECONDS % 60))
+  echo -e "\n[\e[1m${now}\e[0m] Task completed in \e[1m${minutes}\e[0m minutes and \e[1m${seconds}\e[0m seconds"
+}
+
+trap executionTime EXIT</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">Create table</div>
