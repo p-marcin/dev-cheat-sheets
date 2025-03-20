@@ -1,0 +1,22 @@
+= Concepts
+
+include::java:partial$nav.adoc[tag=concepts]
+
+== DRY (Don't Repeat Yourself)
+
+Define things one time, *avoid duplication*. Code maintenance and refactoring becomes easier.
+
+== SOLID principles of Object-Oriented Programming
+
+Single Responsibility::
+Every class should have a *single responsibility*. Classes should be small - avoid "god" classes
+Open Closed::
+Classes should be *open for extension*, but *closed for modification*. You should be able to extend the behavior of a class without modifying it
+Liskov Substitution::
+Objects in a program would be *replaceable* with instances of *their subtypes* without altering the correctness of the program. A square *is* a rectangle, a rectangle *is not* a square
+Interface Segregation::
+Make *fine-grained* interfaces that are client specific. Many client specific interfaces are better than one "general purpose" interface - avoid "god" interfaces
++
+NOTE: Notice relationship to the Single Responsibility principle
+Dependency Inversion::
+Abstractions (like interfaces or abstract classes) should *not rely on the details of their implementations* and that concrete implementations should *depend on these abstractions*. This ensures that both high-level and low-level modules interact through *the same abstract contract*, making the system *more modular* and *flexible*.

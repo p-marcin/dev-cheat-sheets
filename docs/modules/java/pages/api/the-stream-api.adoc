@@ -1,0 +1,415 @@
+= The Stream API
+
+include::java:partial$nav.adoc[tag=the-stream-api]
+
+== Map/Filter/Reduce algorithm implementation in JDK
+
+Steps of the *Map/Filter/Reduce algorithm*:
+
+Map::
+*Changes the type* of the data, *does not change the number* of elements. The mapping step *respects the order* of your objects
+
+Filter::
+*Does not change the type* of the data, *changes the number* of elements. You may end up with no data
+
+Reduce::
+Produces *a result*
+
+If we want to create *an efficient implementation* of the Map/Filter/Reduce algorithm, it *should not duplicate any data*. It should work in the same way, performance wise, as the *iterative pattern*. Map/Filter/Reduce algorithm implemented by the Collection API would cause *duplication of the data* (storing the data in an intermediate structure)
+
+The Stream API::
+Implementation of the Map/Filter/Reduce algorithm that *does not duplicate any data* and that *does not create any load on the CPU or memory*
+
+IMPORTANT: Stream by definition is *an empty object* - it does not carry any kind of data
+
+NOTE: Every time you call a method on a Stream that returns another Stream, it is going to be *a new Stream object*
+
+Difference between the Stream API and iterative approach is that in the Stream API we *describe the computation and not how this computation should be conducted*. This is none of my business, this is the business of the API
+
+Reduce method triggers *the computation of the elements*, and those elements are going to be taken *one-by-one, first mapped, then filtered and computed if they pass the filtering step*. Using Streams is about *creating pipelines of operations*.
+
+Intermediate operation (Map/Filter)::
+Operation that creates a Stream (it does not do anything, it does not process any data)
+
+Terminal operation (Reduce)::
+Operation that produces a result (it will trigger the computation of the elements)
+
+IMPORTANT: If you have a pattern using a Stream that *does not end up with a Terminal operation*, your pattern is not going to process any data. *It will be useless code*
+
+WARNING: You are *not allowed* to process *the same Stream twice*. This is why it is completely useless to create intermittent variables to store the Streams. *You should inline it*
+
+== The Stream API
+
+The Stream API gives you *4* interfaces:
+
+* {java-api-docs}/java.base/java/util/stream/Stream.html[`⚪ *Stream<T>*`^] - a sequence of elements supporting sequential and parallel aggregate operations
++
+[cols="1,3,4a"]
+|===
+| Modifier and Type | Method | Description
+
+| `<R> Stream<R>`
+| `map(Function<? super T,? extends R> mapper)`
+| Returns a stream consisting of the results of applying the given function to the elements of this stream.
+
+| `IntStream`
+| `mapToInt(ToIntFunction<? super T> mapper)`
+| Returns an `⚪ IntStream` consisting of the results of applying the given function to the elements of this stream.
+
+| `<R> Stream<R>`
+| `flatMap(Function<? super T,? extends Stream<? extends R>> mapper)`
+| Returns a stream consisting of the results of replacing each element of this stream with the contents of a mapped stream produced by applying the provided mapping function to each element
+
+[,java]
+----
+long count = cities.stream() // <1>
+    .flatMap(city -> city.getPeople().stream()) // <2>
+    .count(); // <3>
+----
+<1> 3 cities
+<2> With 3 people each
+<3> Returns 9
+
+| `Stream<T>`
+| `filter(Predicate<? super T> predicate)`
+| Returns a stream consisting of the elements of this stream that match the given predicate.
+
+| `Optional<T>`
+| `reduce(BinaryOperator<T> accumulator)`
+| Performs a reduction on the elements of this stream, using an associative accumulation function, and returns an {java-api-docs}/java.base/java/util/Optional.html[`🔴 Optional<T>`^] describing the reduced value, if any. See <<_reducing_data_to_compute_statistics>>.
+
+| `T`
+| `reduce(T identity, BinaryOperator<T> accumulator)`
+| Performs a reduction on the elements of this stream, using the provided identity value and an associative accumulation function, and returns the reduced value. See <<_reducing_data_to_compute_statistics>>.
+
+| `<R, A> R`
+| `collect(Collector<? super T,A,R> collector)`
+| Performs a mutable reduction operation on the elements of this stream using a `⚪ Collector<T,A,R>`. See <<_the_collectors_api>> and <<_collecting_data_from_streams_to_create_listssetsmaps>>.
+
+| `Stream<T>`
+| `distinct()`
+| Returns a stream consisting of the distinct elements (according to {java-api-docs}/java.base/java/lang/Object.html#equals(java.lang.Object)[`🟢 Object#equals(Object obj)`^]) of this stream.
+
+| `Stream<T>`
+| `sorted()`
+| Returns a stream consisting of the elements of this stream, sorted according to natural order.
+
+| `long`
+| `count()`
+| Returns the count of elements in this stream.
+
+| `Optional<T>`
+| `min(Comparator<? super T> comparator)`
+| Returns the minimum element of this stream according to the provided `⚪ Comparator<T>`.
+
+| `Optional<T>`
+| `max(Comparator<? super T> comparator)`
+| Returns the maximum element of this stream according to the provided `⚪ Comparator<T>`.
+
+| `Object[]`
+| `toArray()`
+| Returns an array containing the elements of this stream.
+
+| `<A> A[]`
+| `toArray(IntFunction<A[]> generator)`
+| Returns an array containing the elements of this stream, using the provided generator function to allocate the returned array, as well as any additional arrays that might be required for a partitioned execution or for resizing. For example `toArray(String[]::new)` will return `String[]`.
+
+|===
+
+* {java-api-docs}/java.base/java/util/stream/IntStream.html[`⚪ *IntStream*`^] - `int` primitive specialization of `⚪ Stream<T>`
++
+[cols="1,3,4a"]
+|===
+| Modifier and Type | Method | Description
+
+| `OptionalInt`
+| `min()`
+| Returns an {java-api-docs}/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the minimum element of this stream, or an empty optional if this stream is empty.
+
+| `OptionalInt`
+| `max()`
+| Returns an {java-api-docs}/java.base/java/util/OptionalInt.html[`🔴 OptionalInt`^] describing the maximum element of this stream, or an empty optional if this stream is empty.
+
+| `OptionalDouble`
+| `average()`
+| Returns an {java-api-docs}/java.base/java/util/OptionalDouble.html[`🔴 OptionalDouble`^] describing the arithmetic mean of elements of this stream, or an empty optional if this stream is empty.
+
+| `int`
+| `sum()`
+| Returns the sum of elements in this stream.
+
+| `IntSummaryStatistics`
+| `summaryStatistics()`
+| Returns an {java-api-docs}/java.base/java/util/IntSummaryStatistics.html[`🟢 IntSummaryStatistics`^] describing various summary data about the elements of this stream.
+
+|===
+
+* {java-api-docs}/java.base/java/util/stream/LongStream.html[`⚪ *LongStream*`^] - `long` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
+* {java-api-docs}/java.base/java/util/stream/DoubleStream.html[`⚪ *DoubleStream*`^] - `double` primitive specialization of `⚪ Stream<T>`. It has similar methods to `⚪ IntStream`
+
+[#_the_collectors_api]
+== The Collectors API
+
+{java-api-docs}/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] - implementations of {java-api-docs}/java.base/java/util/stream/Collector.html[`⚪ Collector<T,A,R>`^] that implement various useful reduction operations, such as accumulating elements into collections, summarizing elements according to various criteria, etc.
+
+Type parameters of `⚪ Collector<T,A,R>`:
+
+* `T` - the type of input elements to the reduction operation
+* `A` - the mutable accumulation type of the reduction operation (often hidden as an implementation detail)
+* `R` - the result type of the reduction operation
+
+[cols="1,3,4a"]
+|===
+| Modifier and Type | Method | Description
+
+| `static <T> Collector<T,?,List<T>>`
+| `toList()`
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into a new `⚪ List<T>`, in encounter order.
+
+| `static <T> Collector<T,?,List<T>>`
+| `toUnmodifiableList()`
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into an unmodifiable `⚪ List<T>`, in encounter order.
+
+| `static <T> Collector<T,?,Set<T>>`
+| `toSet()`
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into a new `⚪ Set<T>`.
+
+| `static <T> Collector<T,?,Set<T>>`
+| `toUnmodifiableSet()`
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into an unmodifiable `⚪ Set<T>`.
+
+| `static <T, C extends Collection<T>> Collector<T,?,C>`
+| `toCollection(Supplier<C> collectionFactory)`
+| Returns a `⚪ Collector<T,A,R>` that accumulates the input elements into a new `⚪ Collection<T>`, in encounter order. For example `toCollection(MyCollection::new)` will return `🟢 MyCollection`.
+
+| `static Collector<CharSequence,?,String>`
+| `joining()`
+| Returns a `⚪ Collector<T,A,R>` that concatenates the input elements into a `🔴 String`, in encounter order. The string won't be delimited.
+
+| `static Collector<CharSequence,?,String>`
+| `joining(CharSequence delimiter)`
+| Returns a `⚪ Collector<T,A,R>` that concatenates the input elements, separated by the specified delimiter, in encounter order.
+
+| `static Collector<CharSequence,?,String>`
+| `joining(CharSequence delimiter, CharSequence prefix, CharSequence suffix)`
+| Returns a `⚪ Collector<T,A,R>` that concatenates the input elements, separated by the specified delimiter, with the specified prefix and suffix, in encounter order.
+
+| `static <T, K> Collector<T,?,Map<K,List<T>>>`
+| `groupingBy(Function<? super T,? extends K> classifier)`
+| Returns a `⚪ Collector<T,A,R>` implementing a "group by" operation on input elements of type `T`, grouping elements according to a classification function, and returning the results in a `⚪ Map`.
+
+| `static <T, K, A, D> Collector<T,?,Map<K,D>>`
+| `groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)`
+| Returns a `⚪ Collector<T,A,R>` implementing a cascaded "group by" operation on input elements of type `T`, grouping elements according to a classification function, and then performing a reduction operation on the values associated with a given key using the specified downstream `⚪ Collector<T,A,R>`.
+
+| `static <T> Collector<T,?,Long>`
+| `counting()`
+| Returns a `⚪ Collector<T,A,R>` accepting elements of type `T` that counts the number of input elements.
+
+| `static <T> Collector<T,?,Integer>`
+| `summingInt(ToIntFunction<? super T> mapper)`
+| Returns a `⚪ Collector<T,A,R>` that produces the sum of an integer-valued function applied to the input elements. For example `summingInt(City::getPopulation)` will return population of all cities.
+
+|===
+
+== Building a Stream from Data in Memory
+
+* Creating a Stream from *Arrays*:
+** 🔴 {java-api-docs}/java.base/java/util/Arrays.html#stream(T%5B%5D)[`Arrays#stream(T[+]+ array)`^] - returns a sequential `Stream<T>` with the specified array as its source
+** ⚪ {java-api-docs}/java.base/java/util/stream/Stream.html#of(T%2E%2E%2E)[`Stream<T>#of(T... values)`^] - returns a sequential ordered stream whose elements are the specified values
++
+[,java]
+----
+Stream<String> streamOfStrings = Stream.<String>of("abcd", "efgh");
+----
+* Creating a Stream from *a Text File*:
+** 🔴 {java-api-docs}/java.base/java/nio/file/Files.html#lines(java.nio.file.Path)[`Files#lines(Path path)`^] - read all lines from a file as a `Stream<String>`
++
+[,java]
+----
+Path path = Path.of("src/main/resources/first-names.txt"); // <1>
+try (Stream<String> lines = Files.lines(path)) {
+    long count = lines.count(); // <2>
+} catch (IOException e) {
+    e.printStackTrace();
+}
+----
+<1> File with 200 lines
+<2> Returns 200
+* Creating a Stream from *a RegEx*:
+** 🔴 {java-api-docs}/java.base/java/util/regex/Pattern.html[`Pattern#splitAsStream(CharSequence input)`^] - creates a `Stream<String>` from the given input sequence around matches of this pattern.
++
+[,java]
+----
+String sentence = "the quick brown fox jumps over the lazy dog";
+
+// <1>
+String[] words = sentence.split(" ");
+long count1 = Arrays.stream(words).count(); // <3>
+
+// <2>
+long count2 = Pattern.compile(" ").splitAsStream(sentence).count(); // <3>
+----
+<1> *Bad Practice:* we create an array and store it in memory
+<2> *Best Practice:* we do not create an array when we create a `⚪ Stream<T>` from `🔴 Pattern`
+<3> Returns 9
+* Creating an `⚪ IntStream` *(Stream of ASCII Codes)* from a String:
+** 🔴 {java-api-docs}/java.base/java/lang/String.html[`String#chars()`^] - Returns an `⚪ IntStream` of int zero-extending the char values from this sequence.
++
+[,java]
+----
+String sentence = "the quick brown fox jumps over the lazy dog";
+sentence.chars()
+    .mapToObj(codePoint -> Character.toString(codePoint)) // <1>
+    .filter(letter -> !letter.equals(" "))
+    .distinct().sorted().forEach(System.out::print);
+----
+<1> Converts `⚪ IntStream` to `⚪ Stream<String>`
+* *Selecting* elements of a Stream:
++
+[,java]
+----
+IntStream.range(0, 30)
+    .skip(10) // <1>
+    .limit(10) // <2>
+    .forEach(index -> System.out.print(index + " ")); // <3>
+----
+<1> Skip first 10 elements
+<2> Take next 10 elements after skip
+<3> Prints "10 11 12 13 14 15 16 17 18 19"
+* *Closing* a `⚪ Stream<T>` with a `⚪ Predicate<? super T>`:
+** {java-api-docs}/java.base/java/util/stream/Stream.html#takeWhile(java.util.function.Predicate)[`takeWhile`^] - consume elements of the `⚪ Stream<T>` until `⚪ Predicate<? super T>` is *true*
++
+[,java]
+----
+Stream.<Class<?>>iterate(ArrayList.class, c -> c.getSuperclass())
+    .takeWhile(c -> c != null)
+    .forEach(System.out::println);
+// Prints:
+class java.util.ArrayList
+class java.util.AbstractList
+class java.util.AbstractCollection
+class java.lang.Object
+----
+** {java-api-docs}/java.base/java/util/stream/Stream.html#dropWhile(java.util.function.Predicate)[`dropWhile`^] - consume remaining elements of the `⚪ Stream<T>` after `⚪ Predicate<? super T>` becomes *false*
++
+[,java]
+----
+Stream.<Class<?>>iterate(ArrayList.class, c -> c.getSuperclass())
+    .dropWhile(c -> !c.equals(AbstractCollection.class))
+    .forEach(System.out::println);
+// Prints
+class java.util.AbstractCollection
+class java.lang.Object
+null
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "java.lang.Class.getSuperclass()" because "c" is null
+----
+
+== Converting a For Loop to a Stream
+
+* The following:
++
+[,java]
+----
+int sum = 0;
+int count = 0;
+for (Person person : people) {
+    if (person.getAge() > 20) {
+        count++;
+        sum += person.getAge();
+    }
+}
+double average = 0d;
+if (count > 0) {
+    average = sum / count;
+}
+----
+can be converted into:
++
+[,java]
+----
+double average = people.stream()
+    .mapToInt(Person::getAge)
+    .filter(age -> age > 20)
+    .average().orElseThrow();
+----
+* The Stream API *always computes one thing*. Never sacrifice the *readability* of your code to the *performance*. The performance here is measured in *nanoseconds*:
++
+[,java]
+----
+double totalAmount = 0;
+int frequentRenterPoints = 0;
+String statement = composeHeader();
+for (Rental rental : rentals) {
+    totalAmount += computeRentalAmount(rental);
+    frequentRenterPoints += getFrequentRenterPoints(rental);
+    statement += computeStatementLine(rental);
+}
+statement += composeFooter(totalAmount, frequentRenterPoints);
+----
+can be converted into:
++
+[,java]
+----
+double totalAmount = rentals.stream()
+    .mapToDouble(this::computeRentalAmount)
+    .sum();
+int frequentRenterPoints = rentals.stream()
+    .mapToInt(this::getFrequentRenterPoints)
+    .sum();
+String statement = composeHeader();
+statement += rentals.stream()
+    .map(this::computeStatementLine)
+    .collect(Collectors.joining());
+statement += composeFooter(totalAmount, frequentRenterPoints);
+----
+
+TIP: Forget about *processing your data in one pass* (unless you are doing *an SQL request*). Most of the time when you have a for loop or when you have a `⚪ Stream<T>`, the JVM will optimize that for you and get rid of your for loop, get rid of your iteration, and you will have a zero pass of your data, just inline code, *extremely performant, and extremely efficient*. See
+https://colinchjava.github.io/2023-10-25/08-46-54-893363-fine-grained-optimizations-provided-by-jit-compiler-in-java/[Fine-grained optimizations provided by JIT Compiler in Java^]
+
+[#_reducing_data_to_compute_statistics]
+== Reducing Data to compute Statistics
+
+{java-api-docs}/java.base/java/util/stream/Stream.html#reduce(java.lang.Object,java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(T identity, BinaryOperator<T> accumulator)`^] adds the Identity Element before the elements of the `⚪ Stream<T>`.
+
+* If you have an empty `⚪ Stream<T>`, it will *return Identity Element*
+* If you have only one element in the `⚪ Stream<T>`, it will *return the reduction of the Identity Element and this only element*:
++
+image:java:the-stream-api/stream-reduce.png[,500]
+
+WARNING: Some reduction operations *do not have any Identity Element* (in case for the {java-api-docs}/java.base/java/util/stream/IntStream.html#min()[`⚪ IntStream#min()`^], the {java-api-docs}/java.base/java/util/stream/IntStream.html#max()[`⚪ IntStream#max()`^], the {java-api-docs}/java.base/java/util/stream/IntStream.html#average()[`⚪ IntStream#average()`^] and {java-api-docs}/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)[`⚪ Stream<T>#reduce(BinaryOperator<T> accumulator)`^].
+
+WARNING: `🔴 Optional<T>` are used by the Stream API, because in cases where we have an empty `⚪ Stream<T>` without any Identity Element *we don't have any result*.
+
+[#_collecting_data_from_streams_to_create_listssetsmaps]
+== Collecting Data from Streams to create Lists/Sets/Maps
+
+Collector::
+Complex object *used to reduce a Stream*. Can be used to gather data in *collections* and *maps* - it is called as *reduction in a "mutable container"* or *mutable reduction*
+
+Downstream Collector::
+Collector that is passed to {java-api-docs}/java.base/java/util/stream/Collectors.html#groupingBy(java.util.function.Function,java.util.stream.Collector)[`🔴 Collectors#groupingBy(Function<? super T,? extends K> classifier, Collector<? super T,A,D> downstream)`^] which is applied to the streaming of the list of values
+
+The Collector API::
+Uses the {java-api-docs}/java.base/java/util/stream/Stream.html#collect(java.util.stream.Collector)[`⚪ Stream#collect(Collector<? super T,A,R> collector)`^] that takes `⚪ Collector<T,A,R>` implementation as a parameter:
++
+* Use {java-api-docs}/java.base/java/util/stream/Collectors.html[`🔴 Collectors`^] class and its factory methods
+* You can create your own collectors, but it is complex and tricky
+
+[,java]
+----
+// Bad Practice
+List<Person> people = new ArrayList<>();
+List<Person> peopleFromNewYork = new ArrayList<>(); // <1>
+people.stream()
+    .filter(p -> p.getCity().equals("New York"))
+    .forEach(p -> peopleFromNewYork.add(p));
+
+// Best Practice
+List<Person> people = new ArrayList<>();
+List<Person> peopleFromNewYork = people.stream()
+    .filter(p -> p.getCity().equals("New York"))
+    .collect(Collectors.toList()); // <2>
+----
+<1> Creating a `⚪ List<E>` to store the result
+<2> Using `⚪ Collector<T,A,R>` to store the result in `⚪ List<E>`
