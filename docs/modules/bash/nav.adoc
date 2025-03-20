@@ -1,0 +1,4 @@
+* xref:bash:index.adoc[]
+** xref:bash:coreutils/index.adoc[]
+** xref:bash:jq.adoc[]
+** xref:bash:sed.adoc[]
