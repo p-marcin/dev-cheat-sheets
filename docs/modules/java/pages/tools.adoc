@@ -1,0 +1,3 @@
+= Tools
+
+include::java:partial$nav.adoc[tag=tools]
