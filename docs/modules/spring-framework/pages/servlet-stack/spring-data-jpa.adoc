@@ -1,0 +1,83 @@
+= Spring Data JPA
+
+image:https://img.shields.io/badge/Spring%20Data%20JPA%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-data-jpa-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Data%20JPA%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-data-jpa-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Data%20JPA%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{spring-data-jpa-api-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+----
+
+== Database Entity
+
+In `domain` or `entity` package you can define a Database Entity:
+
+[,java]
+----
+@Entity // <1>
+public class Book {
+
+    @Id  // <2>
+    @GeneratedValue // <3>
+    @UuidGenerator // <4>
+    @JdbcTypeCode(SqlTypes.CHAR) // <5>
+    @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false) // <6>
+    private UUID id;
+
+    @Version // <7>
+    private Integer version;
+
+    @CreationTimestamp // <8>
+    private LocalDateTime creationDate;
+
+    @UpdateTimestamp // <9>
+    private LocalDateTime updateDate;
+
+    // Other fields, Constructors, Getters and Setters, toString(), equals(Object obj) and hashCode()
+
+}
+----
+<1> {jakarta-ee-api-docs}/jakarta/persistence/entity[`@Entity`^] specifies that the class is a Database Entity.
+<2> {jakarta-ee-api-docs}/jakarta/persistence/id[`@Id`^] specifies the primary key of an Entity.
+<3> {jakarta-ee-api-docs}/jakarta/persistence/generatedvalue[`@GeneratedValue`^] specifies the generation strategy for the value of primary key. See {jakarta-ee-api-docs}/jakarta/persistence/generationtype[`🟣 GenerationType`^] for generation strategies. `AUTO` selects `SEQUENCE`, `TABLE`, or `UUID` based on the Entity identifier type and capabilities of the database.
+<4> {hibernate-api-docs}/org/hibernate/annotations/UuidGenerator.html[`@UuidGenerator`^] specifies that an Entity identifier is generated as a UUID type.
+<5> {hibernate-api-docs}/org/hibernate/annotations/JdbcTypeCode.html[`@JdbcTypeCode`^] specifies the JDBC type-code to use for the column mapping.
+<6> {jakarta-ee-api-docs}/jakarta/persistence/column[`@Column`^] specifies the mapped column for a field. If no `@Column` is specified, the default values apply.
+<7> {jakarta-ee-api-docs}/jakarta/persistence/version[`@Version`^] specifies the version field that serves as its optimistic lock value. The version is used to ensure integrity when performing the merge operation and for optimistic concurrency control.
+<8> {hibernate-api-docs}/org/hibernate/annotations/CreationTimestamp.html[`@CreationTimestamp`^] specifies that the annotated field is a generated creation timestamp. The timestamp is generated just once, when an entity instance is inserted in the database.
+<9> {hibernate-api-docs}/org/hibernate/annotations/UpdateTimestamp.html[`@UpdateTimestamp`^] specifies that the annotated field is a generated update timestamp. The timestamp is regenerated every time an entity instance is updated in the database.
+
+== Repository
+
+When we run the application, Spring Data JPA is going to *provide* us a Repository *implementation*. It means that we only have to define a Repository interface.
+
+{spring-data-commons-api-docs}/org/springframework/data/repository/CrudRepository.html[`⚪ CrudRepository<T,ID>`^]::
+Repository for generic CRUD operations on a Repository for a specific type:
++
+--
+* `T` is the domain type the Repository manages,
+* `ID` is the type of the id of the Entity the Repository manages.
+--
++
+[,java]
+----
+public interface BookRepository extends CrudRepository<Book, UUID> {}
+----
+
+{spring-data-commons-api-docs}/org/springframework/data/repository/ListCrudRepository.html[`⚪ ListCrudRepository<T,ID>`^]::
+Extension to `⚪ CrudRepository<T,ID>` returning `⚪ List` instead of `⚪ Iterable` where applicable.
+
+{spring-data-commons-api-docs}/org/springframework/data/repository/PagingAndSortingRepository.html[`⚪ PagingAndSortingRepository<T,ID>`^]::
+Repository fragment to provide methods to retrieve entities using the *pagination* and *sorting* abstraction. In many cases this will be combined with `⚪ CrudRepository<T,ID>` or similar or with manually added methods to provide CRUD functionality.
+
+{spring-data-commons-api-docs}/org/springframework/data/repository/ListPagingAndSortingRepository.html[`⚪ ListPagingAndSortingRepository<T,ID>`^]::
+Extension to `⚪ PagingAndSortingRepository<T,ID>` returning `⚪ List` instead of `⚪ Iterable` where applicable.
+
+{spring-data-jpa-api-docs}/org/springframework/data/jpa/repository/JpaRepository.html[`⚪ JpaRepository<T,ID>`^]::
+JPA specific extension of Repository. Extension to `⚪ ListCrudRepository<T,ID>` and `⚪ ListPagingAndSortingRepository<T,ID>` which can also {spring-data-jpa-docs}/repositories/query-by-example.html[Query by Example^].

@@ -1,0 +1,143 @@
+= Spring Authorization Server
+
+image:https://img.shields.io/badge/Spring%20Auth%20Server%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-auth-server-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Auth%20Server%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-auth-server-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Auth%20Server%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{spring-auth-server-api-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+</dependency>
+----
+
+== Getting Started
+
+In the official documentation you can find example implementation of {spring-auth-server-docs}/getting-started.html#defining-required-components[`🟢 SecurityConfig`^].
+
+=== Example
+
+With the following {spring-auth-server-api-docs}/org/springframework/security/oauth2/server/authorization/client/InMemoryRegisteredClientRepository.html[`🔴 InMemoryRegisteredClientRepository`^]:
+
+[,java]
+----
+@Bean
+public RegisteredClientRepository registeredClientRepository() {
+    RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
+            .clientId("oidc-client")
+            .clientSecret("{noop}secret")
+            .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+            .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+            .redirectUri("http://127.0.0.1:8080/login/oauth2/code/oidc-client")
+            .redirectUri("http://127.0.0.1:8080/authorized")
+            .scope(OidcScopes.OPENID)
+            .scope(OidcScopes.PROFILE)
+            .scope("message.read")
+            .scope("message.write")
+            .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+            .build();
+
+    return new InMemoryRegisteredClientRepository(oidcClient);
+}
+----
+
+you can request JWT token in Postman in `Authorization` tab with `OAuth 2.0` type by configuring new token:
+
+* `Grant Type`: Client Credentials
+* `Access Token URL`: http://localhost:9000/oauth2/token
+* `Client ID`: oidc-client
+* `Client Secret`: secret
+* `Scope`: message.read message.write
+
+and hitting `Get New Access Token` button.
+
+WARNING: `🔴 InMemoryRegisteredClientRepository` is recommended ONLY to be used during *development/testing*.
+
+The encoded JWT `Access Token` looks like:
+[,txt]
+----
+eyJraWQiOiJkNDkzYjc0Ni03NzhhLTQ5OWQtOWU1OS00ZDVmZWE4ZWFlYWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvaWRjLWNsaWVudCIsImF1ZCI6Im9pZGMtY2xpZW50IiwibmJmIjoxNzI4MzMyMzY2LCJzY29wZSI6WyJtZXNzYWdlLnJlYWQiLCJtZXNzYWdlLndyaXRlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTA5MCIsImV4cCI6MTcyODMzMjY2NiwiaWF0IjoxNzI4MzMyMzY2LCJqdGkiOiI4N2YxZmVmYy1lODEwLTQ4MGItYjUyMC03ZmFmNTI1MDdiZmIifQ.iR34FpFD-Ev4Haxs_hhqp_73b-AN5O0x-GpV7ji_jHVohg-jR7RiLHMC-EbYtUcpMnUSd-c4Zm8O7j_JMKUdShLlWxfVMb06YPa9Hz-Np0aaH26EcHCt-ydFFof0xri7HEfWOcs0N_Ba1YLwDpK2E2I1hDYgqF3HRlVyLgSobokYKEJFUIMtq3WJVxEbOqv0rm9R6ULL3YHsRghubQBLHrdmoQMpVDNczytC29s16DfMOmy_Ob7fMDzOo-NLEEPtADHlcPkhzl0nVumcfIQo7LPXU7ZHZm0Qav-c3c8kXfZLrRdOET3raZkxx1VRS9nPDARNqGr5wyNeSL-4MDp-jA
+----
+
+The decoded JWT `Access Token` looks like:
+
+[,json]
+----
+{
+  "header":{
+    "kid":"d493b746-778a-499d-9e59-4d5fea8eaeab",
+    "alg":"RS256"
+  },
+  "payload":{
+    "sub":"oidc-client",
+    "aud":"oidc-client",
+    "nbf":1728332366,
+    "scope":[
+      "message.read",
+      "message.write"
+    ],
+    "iss":"http://localhost:9000",
+    "exp":1728332666,
+    "iat":1728332366,
+    "jti":"87f1fefc-e810-480b-b520-7faf52507bfb"
+  }
+}
+----
+
+In Postman the `Authorization` header will be added to each request with value: `Bearer eyJraWQiOiJkNDkzYjc0Ni03NzhhLTQ5OWQtOWU1OS00ZDVmZWE4ZWFlYWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvaWRjLWNsaWVudCIsImF1ZCI6Im9pZGMtY2xpZW50IiwibmJmIjoxNzI4MzMyMzY2LCJzY29wZSI6WyJtZXNzYWdlLnJlYWQiLCJtZXNzYWdlLndyaXRlIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTA5MCIsImV4cCI6MTcyODMzMjY2NiwiaWF0IjoxNzI4MzMyMzY2LCJqdGkiOiI4N2YxZmVmYy1lODEwLTQ4MGItYjUyMC03ZmFmNTI1MDdiZmIifQ.iR34FpFD-Ev4Haxs_hhqp_73b-AN5O0x-GpV7ji_jHVohg-jR7RiLHMC-EbYtUcpMnUSd-c4Zm8O7j_JMKUdShLlWxfVMb06YPa9Hz-Np0aaH26EcHCt-ydFFof0xri7HEfWOcs0N_Ba1YLwDpK2E2I1hDYgqF3HRlVyLgSobokYKEJFUIMtq3WJVxEbOqv0rm9R6ULL3YHsRghubQBLHrdmoQMpVDNczytC29s16DfMOmy_Ob7fMDzOo-NLEEPtADHlcPkhzl0nVumcfIQo7LPXU7ZHZm0Qav-c3c8kXfZLrRdOET3raZkxx1VRS9nPDARNqGr5wyNeSL-4MDp-jA` where after `Bearer` there is *encoded JWT*.
+
+=== Customizing Authorization Server port
+
+You can customize Authorization Server port with this property
+
+[,properties]
+----
+server.port=9000
+----
+
+=== Customizing Authorization Server endpoints
+
+You can find Authorization Server endpoints in {spring-auth-server-api-docs}/org/springframework/security/oauth2/server/authorization/settings/AuthorizationServerSettings.html#builder()[`🔴 AuthorizationServerSettings.html#builder()`^]. If you want to customize them, check {spring-auth-server-docs}/configuration-model.html#configuring-authorization-server-settings[official documentation].
+
+== Testing
+
+An example how OAuth 2.0 with JWT support can be added to the test:
+
+[,java]
+----
+mockMvc.perform(get("/api/v1/resource")
+            with(jwt().jwt(jwt -> jwt.claims(claims -> {
+                    claims.put("scope", "message-read");
+                    claims.put("scope", "message-write");
+                }).subject("oidc-client").notBefore(Instant.now().minusSeconds(5L)))) // <1>
+            .accept(MediaType.APPLICATION_JSON))
+    .andExpect(status().isOk())
+    .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+    .andExpect(jsonPath("$.content.length()", is(3)));
+----
+<1> This way we can add `Authorization` header to the request
+
+[WARNING]
+====
+If your test is annotated with {spring-boot-api-docs}/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^], then you need to create {spring-framework-api-docs}/org/springframework/test/web/servlet/MockMvc.html[`🔴 MockMvc`^] like this:
+
+[,java]
+----
+MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+    .apply(springSecurity()) // <1>
+    .build();
+----
+<1> Configure `🔴 MockMvc` to use Spring Security
+
+If your test is annotated with {spring-boot-api-docs}/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html[`@WebMvcTest`^], then you need to import `🟢 SecurityConfig` by annotating the test class with:
+
+[,java]
+----
+@Import(SecurityConfig.class)
+----
+====

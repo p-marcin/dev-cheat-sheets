@@ -1,0 +1,120 @@
+= Spring Boot Test
+
+image:https://img.shields.io/badge/Spring%20Test%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-test-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Test%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-test-docs}",window=_blank]
+
+image:https://img.shields.io/badge/JUnit%20Docs-2088E9?logo=quickLook&logoColor=white[link="{junit-docs}",window=_blank]
+image:https://img.shields.io/badge/JUnit%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{junit-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/AssertJ%20Core%20Docs-2088E9?logo=quickLook&logoColor=white[link="{assertj-core-docs}",window=_blank]
+image:https://img.shields.io/badge/AssertJ%20Core%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{assertj-core-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Mockito%20Docs-2088E9?logo=quickLook&logoColor=white[link="{mockito-docs}",window=_blank]
+image:https://img.shields.io/badge/Mockito%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{mockito-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Hamcrest%20Docs-2088E9?logo=quickLook&logoColor=white[link="{hamcrest-docs}",window=_blank]
+image:https://img.shields.io/badge/Hamcrest%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{hamcrest-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Jackson%20Databind%20Docs-2088E9?logo=quickLook&logoColor=white[link="{jackson-databind-docs}",window=_blank]
+image:https://img.shields.io/badge/Jackson%20Databind%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{jackson-databind-api-docs}",window=_blank]
+
+include::spring-framework:partial$nav.adoc[tag=spring-boot-test]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+----
+
+== Testing Terminology
+
+Unit Tests::
+Designed to test specific sections of code. Ideal coverage is *70-80%*.
+Integration Tests::
+Designed to test behaviors between objects and parts of the overall system. They can include the Spring Context, database and message brokers.
+Functional Tests::
+Testing the running application. Application is live, likely deployed in a known environment.
+
+== Spring Boot Test
+
+{spring-boot-api-docs}/org/springframework/boot/test/context/SpringBootTest.html[`@SpringBootTest`^]::
+Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
++
+--
+* Uses {spring-boot-api-docs}/org/springframework/boot/test/context/SpringBootContextLoader.html[`🟢 SpringBootContextLoader`^] as the default `⚪ ContextLoader` when no specific {spring-framework-api-docs}/org/springframework/test/context/ContextConfiguration.html[`@ContextConfiguration(loader=...)`^] is defined.
+* Automatically searches for a `@SpringBootConfiguration` when nested `@Configuration` is not used, and no explicit classes are specified.
+* Allows custom Environment properties to be defined using the `properties` attribute.
+* Allows application arguments to be defined using the `args` attribute.
+* Provides support for different `webEnvironment` modes, including the ability to start a fully running web server listening on a defined or random port.
+* Registers a {spring-boot-api-docs}/org/springframework/boot/test/web/client/TestRestTemplate.html[`🟢 TestRestTemplate`^] and/or {spring-framework-api-docs}/org/springframework/test/web/reactive/server/WebTestClient.html[`⚪ WebTestClient`^] bean for use in web tests that are using a fully running web server.
+--
++
+.`@SpringBootTest` example
+[,java]
+----
+@SpringBootTest
+class BookControllerIT {
+    @Autowired
+    BookController bookController;
+
+    @Test
+    void testController() {
+        // Assertions
+    }
+}
+----
+
+=== How to rollback test?
+
+{spring-framework-api-docs}/org/springframework/test/annotation/Rollback.html[`@Rollback`^]::
+Used to indicate whether a test-managed transaction should be rolled back after the test method has completed. You can start test-managed transaction with {spring-framework-api-docs}/org/springframework/transaction/annotation/Transactional.html[`@Transactional`^].
++
+TIP: {spring-framework-api-docs}/org/springframework/test/annotation/Commit.html[`@Commit`^] can be used as direct replacement for `@Rollback(false)`.
+
+=== FasterXML Jackson
+
+The Java JSON library.
+
+{jackson-databind-api-docs}/com/fasterxml/jackson/databind/ObjectMapper.html[`🟢 ObjectMapper`^]::
+Provides functionality for reading and writing JSON, either to and from basic POJOs (Plain Old Java Objects), or to and from a general-purpose JSON Tree Model ({jackson-databind-api-docs}/com/fasterxml/jackson/databind/JsonNode.html[`🟠 JsonNode`^]), as well as related functionality for performing conversions.
++
+.You can autowire `🟢 ObjectMapper`
+[,java]
+----
+@Autowired
+ObjectMapper objectMapper;
+----
++
+.Reading JSON
+[,java]
+----
+Some someObject = objectMapper.readValue(jsonString, Some.class);
+List<Some> someList = objectMapper.readValue(jsonArrayString, new TypeReference<List<Some>>(){});
+Map<String, Some> someMap = objectMapper.readValue(jsonMapString, new TypeReference<Map<String, Some>>(){});
+----
++
+.Writing JSON
+[,java]
+----
+String jsonString = objectMapper.writeValueAsString(someObject);
+----
+
+== Testing Exceptions
+
+.Verify that a particular type of exception is thrown
+[,java]
+----
+assertThrows(NotFoundException.class, () -> { // <1> <2>
+    bookController.updateBookById(UUID.randomUUID(), BeerDTO.builder().build());
+});
+----
+<1> {junit-api-docs}/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html#assertThrows(java.lang.Class,org.junit.jupiter.api.function.Executable)[`Assertions#assertThrows(Class<T> expectedType,
+Executable executable)`^] asserts that execution of the supplied `executable` throws an exception of the `expectedType` and return the exception.
++
+NOTE: It not only checks for the type of the thrown exception but also its subclasses, making it suitable for more generalized exception handling tests.
+<2> {junit-api-docs}/org.junit.jupiter.api/org/junit/jupiter/api/function/Executable.html[`⚪ Executable`^] is a functional interface that can be used to implement any generic block of code that potentially throws a {java-api-docs}/java.base/java/lang/Throwable.html[`🟢 Throwable`^].

@@ -1,0 +1,49 @@
+= Thymeleaf
+
+image:https://img.shields.io/badge/Thymeleaf%20Docs-2088E9?logo=quickLook&logoColor=white[link="{thymeleaf-docs}",window=_blank]
+image:https://img.shields.io/badge/Thymeleaf%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{thymeleaf-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Thymeleaf%20Spring%20Docs-2088E9?logo=quickLook&logoColor=white[link="{thymeleaf-spring-docs}",window=_blank]
+image:https://img.shields.io/badge/Thymeleaf%20Spring%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{thymeleaf-spring-api-docs}",window=_blank]
+image:https://img.shields.io/badge/Thymeleaf%20Spring%20Security%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{thymeleaf-spring-security-api-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+----
+
+== Namespace
+
+[,html]
+----
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+----
+
+== Iteration
+
+You can iterate on *any arrays* and *any objects implementing*:
+
+* {java-api-docs}/java.base/java/lang/Iterable.html[`⚪ Iterable<T>`^] - e.g. `⚪ List<E>`
+* `⚪ Map<K,V>` - in this case iteration variables will be of class `⚪ Map.Entry<K,V>`
+* and so on
+
+[,html]
+----
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.publisher.name}"></td>
+    </tr>
+</table>
+----
