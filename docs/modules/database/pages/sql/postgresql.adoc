@@ -1,0 +1,31 @@
+= image:https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg[role=category-logo] PostgreSQL
+
+image:https://img.shields.io/badge/PostgreSQL%20Docs-2088E9?logo=quickLook&logoColor=white[link="{postgresql-docs}",window=_blank]
+image:https://img.shields.io/badge/Pgpool%20Docs-2088E9?logo=quickLook&logoColor=white[link="{pgpool-docs}",window=_blank]
+image:https://img.shields.io/badge/Awesome%20PostgreSQL-FC60A8?logo=awesomelists&logoColor=white[link="{awesome-postgresql}",window=_blank]
+image:https://img.shields.io/badge/PostgreSQL%20Helm-0F1689?logo=helm&logoColor=white[link="{postgresql-helm}",window=_blank]
+
+== Pgpool restarts due to "Sorry, too many clients already"
+
+In order to guarantee that the application connection requests are never rejected, and that the connection requests wait until a database connection is available, the following condition should be met:
+
+----
+max_pool * num_init_children <= (max_connections - superuser_reserved_connections)
+----
+
+You can check `max_connections` and `superuser_reserved_connections` in PostgreSQL with these queries:
+
+[,postgresql]
+----
+SHOW max_connections;
+SHOW superuser_reserved_connections;
+----
+
+TIP: Check https://www.pgpool.net/mediawiki/index.php/Relationship_between_max_pool,_num_init_children,_and_max_connections[Relationship between max pool, num init children, and max connections^]
+
+== Keep Pgpool connections at stable level
+
+Without below numbers, idle connections were slowly increasing and had been reaching the limit of `max_connections=400` (memory usage was also quickly increasing):
+
+* `connection_life_time=60`
+* `child_life_time=60`

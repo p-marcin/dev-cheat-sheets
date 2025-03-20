@@ -1,0 +1,3 @@
+= pass:a[<span class="image category-logo"><img src="{site-url}/reference/{imagesdir}/database.svg"></span>] Database
+
+include::database:partial$nav.adoc[lines=2..-1]
