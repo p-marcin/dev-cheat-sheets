@@ -1,0 +1,17 @@
+site:
+  title: Javowiec.dev
+  url: https://javowiec.dev
+  start_page: reference::index.adoc
+content:
+  sources:
+    - url: ./
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+asciidoc:
+  attributes:
+    icons: font

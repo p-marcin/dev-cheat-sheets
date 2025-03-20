@@ -1,0 +1,5 @@
+static_files:
+  # https://docs.antora.org/antora/latest/publish-to-github-pages/#jekyll-and-underscore-files
+  - .nojekyll
+  # https://docs.antora.org/antora/latest/publish-to-github-pages/#using-a-custom-domain
+  - CNAME

@@ -1,0 +1,81 @@
+.doc {
+    max-width: 100%;
+}
+
+.doc code,
+.doc p code,
+.doc thead code,
+.doc .colist > table code {
+    color: #222;
+    background: #f6f6f6;
+}
+
+.doc pre.highlight > code,
+.doc .listingblock pre:not(.highlight),
+.doc .literalblock pre {
+    background: #f6f6f6;
+}
+
+.doc .admonitionblock td.content {
+    background: #f6f6f6;
+}
+
+.doc .admonitionblock td.content code {
+    background: #e6e6e6;
+    font-size: .95em;
+    border-radius: .25em;
+    padding: .125em .25em;
+}
+
+.doc .title code {
+    font-size: .95em;
+    border-radius: .25em;
+    padding: .125em .25em;
+}
+
+body.hidden .doc > h1.page:first-child + aside.toc.embedded {
+    margin-top: 1rem;
+}
+
+body.hidden .doc > h1.page:first-child  {
+    display: none;
+}
+
+.doc > h1.page:first-child {
+    font-size: 1.9rem;
+}
+
+.nav-menu .category-logo img {
+    vertical-align: text-bottom;
+    height: 19px;
+}
+
+.breadcrumbs .category-logo img {
+    vertical-align: text-bottom;
+    height: 18px;
+}
+
+.doc > h1.page:first-child .category-logo img {
+    vertical-align: middle;
+    height: 44px;
+}
+
+.doc .category-logo img {
+    vertical-align: middle;
+    height: 21px;
+}
+
+.breadcrumbs .main-logo img {
+    margin-bottom: 2px;
+}
+
+.doc .main-logo img {
+    vertical-align: middle;
+    height: 34px;
+    margin-bottom: 7px;
+}
+
+.buy-me-a-coffee img {
+    height: 40px !important;
+    width: 160px !important;
+}
