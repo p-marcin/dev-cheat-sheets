@@ -1,0 +1,775 @@
+= image:https://cdn.simpleicons.org/asciidoctor/E40046[role=category-logo] AsciiDoc
+:experimental:
+:url-home: https://javowiec.dev
+
+image:https://img.shields.io/badge/AsciiDoc%20Docs-2088E9?logo=quickLook&logoColor=white[link="{asciidoc-docs}",window=_blank]
+image:https://img.shields.io/badge/AsciiDoc%20Reference-DF7716?logo=devbox&logoColor=white[link="{asciidoc-reference}",window=_blank]
+
+image:https://img.shields.io/badge/Antora%20Docs-2088E9?logo=quickLook&logoColor=white[link="{antora-docs}",window=_blank]
+
+include::asciidoc:partial$nav.adoc[lines=2..-1]
+
+== Cheat Sheet
+
+=== Links
+
+.Internal Link
+[%collapsible]
+====
+{url-home}[This is Internal Link]
+====
+[,adoc]
+----
+https://javowiec.dev[This is Internal Link]
+----
+
+.External Link
+[%collapsible]
+====
+{url-home}[This is External Link^]
+====
+[,adoc]
+----
+https://javowiec.dev[This is External Link^]
+----
+
+.External Link with spaces and special characters
+[%collapsible]
+====
+link:++https://example.org/?q=[a b]++[This is External Link with spaces and special characters^]
+====
+[,adoc]
+----
+link:++https://example.org/?q=[a b]++[This is External Link with spaces and special characters^]
+----
+
+.Internal Shield Link
+[%collapsible]
+====
+image:https://img.shields.io/badge/Example-2088E9?logo=quickLook[xref=index.adoc]
+====
+[,adoc]
+----
+image:https://img.shields.io/badge/Example-2088E9?logo=quickLook[xref=index.adoc]
+----
+
+.External Shield Link
+[%collapsible]
+====
+image:https://img.shields.io/badge/Some%20Documentation-2088E9?logo=quickLook[link="{url-home}",window=_blank]
+====
+[,adoc]
+----
+image:https://img.shields.io/badge/Some%20Documentation-2088E9?logo=quickLook[link="https://javowiec.dev",window=_blank]
+----
+
+[TIP]
+====
+Shield parameters -> https://shields.io/badges/static-badge[CLICK HERE^]
+
+Icons -> https://simpleicons.org[CLICK HERE^]
+====
+
+=== Anchors and Cross-References
+
+.Anchors
+[%collapsible]
+====
+[[inline-anchor]]Inline Anchor
+
+[#block-anchor]
+Block Anchor
+====
+[,adoc]
+----
+[[inline-anchor]]Inline Anchor
+
+[#block-anchor]
+Block Anchor
+----
+
+.Cross-Reference
+[%collapsible]
+====
+This is Cross-Reference to <<inline-anchor>>
+
+This is Cross-Reference to <<block-anchor>>
+
+This is Cross-Reference to <<_includes,Includes Section>>
+
+This is Cross-Reference to <<_includes>>
+====
+[,adoc]
+----
+This is Cross-Reference to <<inline-anchor>>
+
+This is Cross-Reference to <<block-anchor>>
+
+This is Cross-Reference to <<_includes,Includes Section>>
+
+This is Cross-Reference to <<_includes>>
+----
+
+.Inter-Document Cross-Reference
+[%collapsible]
+====
+This is Inter-Document Cross-Reference to xref:ROOT:index.adoc#_resources[Resources]
+====
+[,adoc]
+----
+This is Inter-Document Cross-Reference to xref:ROOT:index.adoc#_resources[Resources]
+----
+
+=== Includes
+
+.Include Documents
+[%collapsible]
+====
+include::ROOT:partial$java-type-legend.adoc[]
+====
+[,adoc]
+----
+\include::ROOT:partial$java-type-legend.adoc[]
+----
+
+.Include Content by Lines
+[%collapsible]
+====
+Include Lines from 1 to 3:
+
+include::ROOT:partial$java-type-legend.adoc[lines=1..3]
+
+Include Lines from 2 to the end of the document:
+
+include::ROOT:partial$java-type-legend.adoc[lines=2..-1]
+====
+[,adoc]
+----
+Include Lines from 1 to 3:
+
+\include::ROOT:partial$java-type-legend.adoc[lines=1..3]
+
+Include Lines from 2 to the end of the document:
+
+\include::ROOT:partial$java-type-legend.adoc[lines=2..-1]
+----
+
+.Include Content by Tagged Region
+[%collapsible]
+====
+Include Tagged Region:
+
+include::index.adoc[tag=example-tag,indent=0]
+====
+You can tag a region:
+[,adoc]
+----
+// tag::example-tag[]
+This is Tagged Region
+// end::example-tag[]
+----
+And then include it:
+[,adoc]
+----
+Include Tagged Region:
+
+\include::index.adoc[tag=example-tag,indent=0]
+----
+
+=== Images
+
+.Inline Image
+[%collapsible]
+====
+image:ROOT:duke.svg[]
+with paragraph
+====
+[,adoc]
+----
+image:ROOT:duke.svg[]
+with paragraph
+----
+
+.Block Image
+[%collapsible]
+====
+.Title
+image::ROOT:duke.svg[align=left]
+with paragraph
+====
+[,adoc]
+----
+.Title
+image::ROOT:duke.svg[align=left]
+with paragraph
+----
+
+.Resize Image
+[%collapsible]
+====
+image::ROOT:duke.svg[,200]
+====
+[,adoc]
+----
+image::ROOT:duke.svg[,200]
+----
+
+TIP: You can set the following attributes in the image: `+[Title,Width,Height]+`
+
+.Inline Image on the right
+[%collapsible]
+====
+Paragraph on the left and image:ROOT:duke.svg[,200,,role=right]
+====
+[,adoc]
+----
+Paragraph on the left and image:ROOT:duke.svg[,200,,role=right]
+----
+
+=== Videos
+
+.YouTube Video
+[%collapsible]
+====
+video::b-Cr0EWwaTk[youtube,width=640,height=360,align=left]
+====
+[,adoc]
+----
+video::b-Cr0EWwaTk[youtube,width=640,height=360,align=left]
+----
+
+.YouTube Video with Playback Time
+[%collapsible]
+====
+video::b-Cr0EWwaTk[youtube,width=640,height=360,align=left,start=86,end=97]
+====
+[,adoc]
+----
+video::b-Cr0EWwaTk[youtube,width=640,height=360,align=left,start=86,end=97]
+----
+
+=== Code
+
+.Inline Code
+[%collapsible]
+====
+This is `+inline code+`
+====
+[,adoc]
+----
+This is `+inline code+`
+----
+
+.Code with Syntax Highlighting and Callouts
+[%collapsible]
+====
+.Title
+[,java]
+----
+public class Main { // <1>
+    public static void main(String[] args){ // <2>
+        System.out.println("Hello World!");
+    }
+}
+----
+<1> Class
+<2> Method
+====
+[,adoc]
+....
+.Title
+[,java]
+----
+public class Main { // \<1>
+    public static void main(String[] args){ // \<2>
+        System.out.println("Hello World!");
+    }
+}
+----
+<1> Class
+<2> Method
+....
+
+TIP: Syntax Highlighting -> https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md[CLICK HERE^]
+
+TIP: An alternative delimiter to four dashes (`+----+`) is four dots (`+....+`)
+
+[TIP]
+====
+Callouts can be in different formats which depends on language:
+
+- `+// <1>+`
+- `+# <1>+`
+- `+;; <1>+`
+- `+<!--<1>-->+`
+====
+
+=== Admonitions
+
+.Simple Admonitions
+[%collapsible]
+====
+NOTE: This is a note
+
+TIP: This is a tip
+
+WARNING: This is a warning
+
+IMPORTANT: This is something important
+====
+[,adoc]
+----
+NOTE: This is a note
+
+TIP: This is a tip
+
+WARNING: This is a warning
+
+IMPORTANT: This is something important
+----
+
+.Complex Admonition
+[%collapsible]
+====
+[NOTE]
+.Title
+=====
+This is admonition with complex content and a list:
+
+- one
+- two
+- three
+=====
+====
+[,adoc]
+----
+[NOTE]
+.Title
+====
+This is admonition with complex content and a list:
+
+- one
+- two
+- three
+====
+----
+
+=== Blocks
+
+.Collapsible Block
+[%collapsible]
+====
+This is a collapsible block
+====
+[,adoc]
+----
+.Collapsible Block
+[%collapsible]
+====
+This is a collapsible block
+====
+----
+
+[TIP]
+======
+When nesting a delimited block that uses the same structural container, it’s necessary to vary the length of the delimiter lines:
+
+.Click Me
+[%collapsible]
+====
+.Click Me Too
+[%collapsible]
+=====
+This is a collapsible block in another collapsible block
+=====
+====
+[,adoc]
+----
+.Click Me
+[%collapsible]
+====
+.Click Me Too
+[%collapsible]
+=====
+This is a collapsible block in another collapsible block
+=====
+====
+----
+======
+
+.Blockquotes
+[%collapsible]
+====
+"I hold it that a little rebellion now and then is a good thing,
+and as necessary in the political world as storms in the physical."
+-- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+
+[quote,Monty Python and the Holy Grail]
+____
+Dennis: Come and see the violence inherent in the system. Help! Help! I'm being repressed!
+
+King Arthur: Bloody peasant!
+
+Dennis: Oh, what a giveaway! Did you hear that? Did you hear that, eh? That's what I'm on about! Did you see him repressing me? You saw him, Didn't you?
+____
+====
+[,adoc]
+....
+"I hold it that a little rebellion now and then is a good thing,
+and as necessary in the political world as storms in the physical."
+-- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11
+
+[quote,Monty Python and the Holy Grail]
+____
+Dennis: Come and see the violence inherent in the system. Help! Help! I'm being repressed!
+
+King Arthur: Bloody peasant!
+
+Dennis: Oh, what a giveaway! Did you hear that? Did you hear that, eh? That's what I'm on about! Did you see him repressing me? You saw him, Didn't you?
+____
+....
+
+.Thematic Break
+[%collapsible]
+====
+Before
+
+'''
+
+After
+====
+[,adoc]
+----
+Before
+
+'''
+
+After
+----
+
+=== Lists
+
+.Unordered List
+[%collapsible]
+====
+* List item
+** Nested list item
+*** Deeper nested list item
++
+[,bash]
+----
+ls -la "/home"
+----
+* Another list item
+** Another nested list item
+====
+[,adoc]
+....
+* List item
+** Nested list item
+*** Deeper nested list item
++
+[,bash]
+----
+ls -la "/home"
+----
+* Another list item
+** Another nested list item
+....
+
+.Ordered List
+[%collapsible]
+====
+. List item
+.. Nested list item
+... Deeper nested list item
+. Another list item
+.. Another nested list item
+====
+[,adoc]
+----
+. List item
+.. Nested list item
+... Deeper nested list item
+. Another list item
+.. Another nested list item
+----
+
+.Checklist
+[%collapsible]
+====
+* [x] Checked
+* [*] Also checked
+* [ ] Not checked
+====
+[,adoc]
+----
+* [x] Checked
+* [*] Also checked
+* [ ] Not checked
+----
+
+.Description List
+[%collapsible]
+====
+First Term:: The description can be placed on the same line
+as the term.
+Second Term::
+Description of the second term.
+The description can also start on its own line.
+====
+[,adoc]
+----
+First Term:: The description can be placed on the same line
+as the term.
+Second Term::
+Description of the second term.
+The description can also start on its own line.
+----
+
+.Question and Answer List
+[%collapsible]
+====
+[qanda]
+What is the answer?::
+This is the answer.
+
+Are cameras allowed?::
+Are backpacks allowed?::
+No.
+====
+[,adoc]
+----
+[qanda]
+What is the answer?::
+This is the answer.
+
+Are cameras allowed?::
+Are backpacks allowed?::
+No.
+----
+
+.Separate Two Lists
+[%collapsible]
+====
+. Apples
+. Oranges
+
+[]
+. Cats
+. Dogs
+====
+[,adoc]
+----
+. Apples
+. Oranges
+
+[]
+. Cats
+. Dogs
+----
+
+.Attach Block to an Ancestor List
+[%collapsible]
+====
+Term::
+Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--
++
+TIP: Some useful Tip
++
+Another Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--
+====
+[,adoc]
+----
+Term::
+Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--
++
+TIP: Some useful Tip
++
+Another Description:
++
+--
+. Point 1
+. Point 2
+. Point 3
+--
+----
+
+=== Tables
+
+.Table
+[%collapsible]
+====
+.Title
+|===
+|Column 1 -> Header Row |Column 2 -> Header Row
+
+|Cell in Column 1 -> Row 1
+|Cell in Column 2 -> Row 1
+
+|Cell in Column 1 -> Row 2
+|Cell in Column 2 -> Row 2
+|===
+====
+[,adoc]
+----
+.Title
+|===
+|Column 1 -> Header Row |Column 2 -> Header Row
+
+|Cell in Column 1 -> Row 1
+|Cell in Column 2 -> Row 1
+
+|Cell in Column 1 -> Row 2
+|Cell in Column 2 -> Row 2
+|===
+----
+
+.Table with columns having different relative widths and containing AsciiDoc content
+[%collapsible]
+=====
+[cols="1,3,4a"]
+|===
+| Modifier and Type | Method | Description
+
+| `T`
+| `block()`
+| Subscribe to this `🟠 Mono<T>` and *block indefinitely* until a next signal is received. Returns that value, or `null` if the `🟠 Mono<T>` completes empty.
+[,java]
+----
+Mono<Person> personMono = personRepository.getById(1);
+Person person = personMono.block();
+System.out.println(person);
+----
+[IMPORTANT]
+====
+Not recommended to use as it *blocks indefinitely*
+====
+|===
+=====
+[,adoc]
+....
+[cols="1,3,4a"]
+|===
+| Modifier and Type | Method | Description
+
+| `T`
+| `block()`
+| Subscribe to this `🟠 Mono<T>` and *block indefinitely* until a next signal is received. Returns that value, or `null` if the `🟠 Mono<T>` completes empty.
+[,java]
+----
+Mono<Person> personMono = personRepository.getById(1);
+Person person = personMono.block();
+System.out.println(person);
+----
+[IMPORTANT]
+====
+Not recommended to use as it *blocks indefinitely*
+====
+|===
+....
+
+=== Attributes and Substitutions
+
+Attribute Definition
+
+You define attribute on the document header. The first empty line in the document marks the end of the header.
+
+[,adoc]
+----
+= Document Title
+:url-home: https://javowiec.dev
+----
+
+.Attribute Substitution
+[%collapsible]
+====
+Check out {url-home}[DEV Cheat Sheets]!
+====
+[,adoc]
+----
+Check out {url-home}[DEV Cheat Sheets]!
+----
+
+TIP: Global Attributes -> https://docs.antora.org/antora/latest/playbook/asciidoc-attributes/[CLICK HERE^]
+
+=== Macros
+
+[TIP]
+====
+To use below macros you need to add `+:experimental:+` attribute on the document header.
+
+[,adoc]
+----
+= Document Title
+:experimental:
+----
+====
+
+.Keyboard Macro
+[%collapsible]
+====
+|===
+|Shortcut |Description
+
+|kbd:[Ctrl+C]
+|Copy
+
+|kbd:[Ctrl+V]
+|Paste
+|===
+====
+[,adoc]
+----
+|===
+|Shortcut |Description
+
+|kbd:[Ctrl+C]
+|Copy
+
+|kbd:[Ctrl+V]
+|Paste
+|===
+----
+
+.Button Macro
+[%collapsible]
+====
+Press the btn:[OK] button when you are finished
+====
+[,adoc]
+----
+Press the btn:[OK] button when you are finished
+----
+
+.Menu Macro
+[%collapsible]
+====
+menu:File[New > Project...]
+
+"File > Manage IDE Settings > Import Settings..."
+====
+[,adoc]
+----
+menu:File[New > Project...]
+
+"File > Manage IDE Settings > Import Settings..."
+----
