@@ -1,0 +1,6 @@
+= ☘️ Spring Framework
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="https://spring.io/projects/spring-framework#learn",window=_blank]
+image:https://img.shields.io/badge/Spring%20Initializr-2088E9?logo=quickLook&logoColor[link="https://start.spring.io",window=_blank]
+
+include::spring-framework:partial$nav.adoc[lines=2..-1]
