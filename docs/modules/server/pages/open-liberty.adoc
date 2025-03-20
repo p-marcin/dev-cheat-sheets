@@ -1,0 +1,28 @@
+= image:https://raw.githubusercontent.com/OpenLiberty/logos/refs/heads/main/logomark/svg/OL_logomark.svg[role=category-logo] Open Liberty
+
+image:https://img.shields.io/badge/Open%20Liberty%20Docs-2088E9?logo=quickLook&logoColor=white[link="{open-liberty-docs}",window=_blank]
+
+== Segmentation Fault in Debug Mode
+
+Segmentation Fault::
+An event resulting in *exit code 139*. It occurs when a process receives a *SIGSEGV* signal, which is generated when the operating system detects that the process is trying to access memory that either does not exist or that it lacks permission to access.
+
+.Start Open Liberty in Debug Mode
+[,java]
+----
+-Dwas.debug.mode=true // <1>
+-Dsun.reflect.noInflation=true // <2>
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777 // <3>
+----
+<1> Specific to WebSphere-based servers, including Open Liberty. Enables the internal debugging mode, which modifies how the JVM and Open Liberty handle debugging-related optimizations.
+<2> https://publib.boulder.ibm.com/httpserv/cookbook/Java.html#Java-Reflection_Inflation[`sun.reflect.noInflation=true`^]
+enables *immediate inflation* on all method invocations. In general, inflated Java bytecode accessors are *faster* than native JNI accessors, at the cost of additional native and Java memory usage.
+<3> Enables *Java Debug Wire Protocol (JDWP)* for remote debugging
+
+Forgetting to set `sun.reflect.noInflation` JVM property in Debug Mode can cause Segmentation Fault, for example, during the invocation of
+{hibernate-api-docs}/org/hibernate/Session.html#flush()[`⚪ Session#flush()`^] in Hibernate. You might forget to set this JVM property when starting Open Liberty with `ws-server.jar`. However, if you use the
+https://github.com/OpenLiberty/open-liberty/blob/gm-25.0.0.1/dev/com.ibm.ws.kernel.boot.ws-server/publish/bin/server#L1762[`server`^]
+script, it is automatically included.
+
+NOTE: The `sun.reflect.noInflation=true` JVM property was added to `server` script as a fix for
+https://github.com/OpenLiberty/open-liberty/issues/1091[Issue #1091 - Fix for Hot code replace in JAX-RS applications^]
