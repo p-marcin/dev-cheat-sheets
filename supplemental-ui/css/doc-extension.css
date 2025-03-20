@@ -1,0 +1,34 @@
+.doc {
+    max-width: 100%;
+}
+
+.doc code,
+.doc p code,
+.doc thead code,
+.doc .colist > table code {
+    color: #222;
+    background: #f6f6f6;
+}
+
+.doc pre.highlight > code,
+.doc .listingblock pre:not(.highlight),
+.doc .literalblock pre {
+    background: #f6f6f6;
+}
+
+.doc .admonitionblock td.content {
+    background: #f6f6f6;
+}
+
+.doc .admonitionblock td.content code {
+    background: #e6e6e6;
+    font-size: .95em;
+    border-radius: .25em;
+    padding: .125em .25em;
+}
+
+.doc .title code {
+    font-size: .95em;
+    border-radius: .25em;
+    padding: .125em .25em;
+}
