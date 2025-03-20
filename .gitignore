@@ -1,0 +1,6 @@
+# INTELLIJ IDEA
+.idea/
+target/
+node_modules/
+build/
+TODO.md
