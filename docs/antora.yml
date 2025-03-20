@@ -1,3 +1,63 @@
 name: reference
 title: DEV Cheat Sheets
 version: ~
+nav:
+  - modules/java/nav.adoc
+  - modules/spring-framework/nav.adoc
+  - modules/web/nav.adoc
+  - modules/database/nav.adoc
+  - modules/server/nav.adoc
+  - modules/bash/nav.adoc
+  - modules/asciidoc/nav.adoc
+asciidoc:
+  attributes:
+    java-docs: https://dev.java/learn
+    java-api-docs: https://docs.oracle.com/en/java/javase/23/docs/api
+    jakarta-ee-docs: https://jakarta.ee/specifications/platform/10/jakarta-platform-spec-10.0
+    jakarta-ee-api-docs: https://jakarta.ee/specifications/platform/10/apidocs
+    spring-framework-docs: https://docs.spring.io/spring-framework/reference
+    spring-framework-api-docs: https://docs.spring.io/spring-framework/docs/current/javadoc-api
+    spring-boot-docs: https://docs.spring.io/spring-boot
+    spring-boot-api-docs: https://docs.spring.io/spring-boot/api/java
+    spring-data-commons-docs: https://docs.spring.io/spring-data/commons/reference
+    spring-data-commons-api-docs: https://docs.spring.io/spring-data/commons/docs/current/api
+    spring-data-jpa-docs: https://docs.spring.io/spring-data/jpa/reference
+    spring-data-jpa-api-docs: https://docs.spring.io/spring-data/jpa/docs/current/api
+    spring-security-docs: https://docs.spring.io/spring-security/reference
+    spring-security-api-docs: https://docs.spring.io/spring-security/site/docs/current/api
+    spring-auth-server-docs: https://docs.spring.io/spring-authorization-server/reference
+    spring-auth-server-api-docs: https://docs.spring.io/spring-authorization-server/docs/current/api
+    hibernate-docs: https://hibernate.org/orm/documentation/6.6/
+    hibernate-api-docs: https://docs.jboss.org/hibernate/orm/current/javadocs
+    reactor-core-docs: https://projectreactor.io/docs/core/release/reference
+    reactor-core-api-docs: https://projectreactor.io/docs/core/release/api
+    reactor-test-api-docs: https://projectreactor.io/docs/test/release/api
+    lombok-docs: https://projectlombok.org/features
+    lombok-api-docs: https://projectlombok.org/api
+    mapstruct-docs: https://mapstruct.org/documentation/stable/reference/html
+    mapstruct-api-docs: https://mapstruct.org/documentation/stable/api
+    jackson-core-docs: https://github.com/FasterXML/jackson-core/wiki
+    jackson-core-api-docs: https://www.javadoc.io/static/com.fasterxml.jackson.core/jackson-core/2.18.3
+    jackson-annotations-docs: https://github.com/FasterXML/jackson-annotations/wiki
+    jackson-annotations-api-docs: https://www.javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest/com.fasterxml.jackson.annotation
+    jackson-databind-docs: https://github.com/FasterXML/jackson-databind/wiki
+    jackson-databind-api-docs: https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest
+    docker-docs: https://docs.docker.com
+    docker-reference: https://docs.docker.com/reference
+    kubernetes-docs: https://kubernetes.io/docs
+    kubernetes-reference: https://kubernetes.io/docs/reference
+    helm-docs: https://helm.sh/docs
+    helm-reference: https://helm.sh/docs/helm
+    react-docs: https://react.dev/learn
+    react-reference: https://react.dev/reference
+    junit-docs: https://junit.org/junit5/docs/current/user-guide
+    junit-api-docs: https://junit.org/junit5/docs/current/api
+    assertj-core-docs: https://assertj.github.io/doc
+    assertj-core-api-docs: https://www.javadoc.io/doc/org.assertj/assertj-core/latest
+    mockito-docs: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html
+    mockito-api-docs: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito
+    hamcrest-docs: https://hamcrest.org/JavaHamcrest/tutorial
+    hamcrest-api-docs: https://hamcrest.org/JavaHamcrest/javadoc/3.0
+    asciidoc-docs: https://docs.asciidoctor.org/asciidoc/latest
+    asciidoc-reference: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference
+    antora-docs: https://docs.antora.org/antora/latest
