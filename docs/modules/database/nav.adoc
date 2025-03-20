@@ -1,0 +1,2 @@
+* xref:database:index.adoc[]
+** xref:database:postgresql-ha.adoc[]
