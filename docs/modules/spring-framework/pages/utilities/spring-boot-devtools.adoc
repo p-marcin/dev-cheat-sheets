@@ -1,0 +1,28 @@
+= Spring Boot DevTools
+:experimental:
+
+image:https://img.shields.io/badge/Spring%20Boot%20DevTools%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-devtools-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+</dependency>
+----
+
+== Overview
+
+Spring Boot DEV Tools are *additional set of tools* that can make the application development experience *a little more pleasant*:
+
+* Application *automatically restart* whenever files on the classpath change (in IntelliJ IDEA you can just `Recompile '.java'` or `Build Project` in `Build` top menu).
+* Starts embedded *LiveReload* server that can be used to *trigger a browser refresh* when a resource is changed.
+* *Disable caching options* by default, so changes can be seen immediately.
+* You can configure *global DEV Tools settings* by adding a file named `.spring-boot-devtools.properties` to your `+${HOME}+` folder. Any properties added to this file will apply to *all* Spring Boot applications on your machine that use DEV Tools.
+
+== IntelliJ IDEA Ultimate Edition
+
+By enabling "Modify Options > On 'Update' Action / On frame deactivation > Update classes and resources" in `Run/Debug Configurations` you can trigger automatic restart of application during these events when using DevTools.

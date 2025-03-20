@@ -1,0 +1,120 @@
+= Lombok
+:experimental:
+
+image:https://img.shields.io/badge/Lombok%20Docs-2088E9?logo=quickLook&logoColor=white[link="{lombok-docs}",window=_blank]
+image:https://img.shields.io/badge/Lombok%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{lombok-api-docs}",window=_blank]
+
+== Overview
+
+Project Lombok *saves your time* and gives you *cleaner code*. It provides *annotations* which help to eliminate writing *ceremonial code* e.g. getters and setters.
+
+Why "Lombok"? "Java" is also an island in Indonesia. "Lombok" is the *second island* east of the island "Java". "Lombok" is also Indonesian for *chilli*.
+
+Lombok *hooks in* via the *annotation processor API*. The *raw source code* is passed to Lombok for *code generation* before Java compilation continues. Code is *generated* and *compiled*, there is *no runtime performance penalty*.
+
+== Maven Dependency
+
+[,xml]
+----
+<dependencies>
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+  </dependency>
+</dependencies>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <excludes>
+          <exclude>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+          </exclude>
+        </excludes>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+----
+
+== Requirements
+
+* https://plugins.jetbrains.com/plugin/6317-lombok[Lombok IntelliJ IDE plugin^],
+* Enable annotation processing (in IntelliJ IDEA go to "Settings > Build, Execution, Deployment > Compiler > Annotation Processors").
+
+== Delombok
+
+Delombok converts *Lombok annotations* to *code* in *source class*.
+
+In IntelliJ IDEA delombok is available in top menu under "Refactor > Delombok".
+
+== POJOs
+
+{lombok-api-docs}/lombok/Getter[`@Getter`^]::
+Put on any field to make lombok build a standard getter.
+
+{lombok-api-docs}/lombok/Setter[`@Setter`^]::
+Put on any field to make lombok build a standard setter.
+
+{lombok-api-docs}/lombok/NonNull[`@NonNull`^]::
+If put on a parameter, lombok will insert a null-check at the start of the method / constructor's body, throwing a `NullPointerException` with the parameter's name as message. If put on a field, any generated method assigning a value to this field will also produce these null-checks.
+
+{lombok-api-docs}/lombok/NoArgsConstructor[`@NoArgsConstructor`^]::
+Generates a no-args constructor. Will generate an error message if such a constructor cannot be written due to the existence of final fields.
+
+{lombok-api-docs}/lombok/RequiredArgsConstructor[`@RequiredArgsConstructor`^]::
+Generates a constructor with required arguments. Required arguments are `final` fields and fields with constraints such as `@NonNull`.
+
+{lombok-api-docs}/lombok/AllArgsConstructor[`@AllArgsConstructor`^]::
+Generates an all-args constructor. An all-args constructor requires one argument for every field in the class.
+
+{lombok-api-docs}/lombok/ToString[`@ToString`^]::
+Generates an implementation for the `⚪ Object#toString()` method inherited by all objects, consisting of printing the values of relevant fields.
+
+{lombok-api-docs}/lombok/EqualsAndHashCode[`@EqualsAndHashCode`^]::
+Generates implementations for the `⚪ Object#equals(Object obj)` and `⚪ Object#hashCode()` methods inherited by all objects, based on relevant fields.
+
+{lombok-api-docs}/lombok/experimental/FieldDefaults[`@FieldDefaults`^]::
+Adds modifiers to each field in the class with this annotation.
+
+{lombok-api-docs}/lombok/Data[`@Data`^]::
+Representation of a *mutable* entity. Equivalent to `@Getter` `@Setter` `@RequiredArgsConstructor` `@ToString` `@EqualsAndHashCode`.
+
+{lombok-api-docs}/lombok/Value[`@Value`^]::
+Representation of an *immutable* entity. Equivalent to `@Getter` `@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)` `@AllArgsConstructor` `@ToString` `@EqualsAndHashCode`.
+
+== Local Variables
+
+{lombok-api-docs}/lombok/val[`val`^]::
+Declares `final` (immutable) local variable.
+
+{lombok-api-docs}/lombok/var[`var`^]::
+Declares *mutable* local variable
+
+== Builder Design Pattern
+
+{lombok-api-docs}/lombok/Builder[`@Builder`^]::
+Generates Builder design pattern for object creation.
+
+== Logging
+
+{lombok-api-docs}/lombok/extern/slf4j/Slf4j[`@Slf4j`^]::
+Generates a `private static final` field named `log` of class https://www.slf4j.org/manual.html[`org.slf4j.Logger`^]
+
+== Exceptions
+
+{lombok-api-docs}/lombok/SneakyThrows[`@SneakyThrows`^]::
+Throws checked exceptions without actually declaring this in your method's `throws` clause. It simply fakes out the compiler. Useful for:
+* An "impossible" exception - the one which will never occur,
+* A needlessly strict interface, such as `⚪ Runnable`
+
+== Concurrency
+
+{lombok-api-docs}/lombok/Synchronized[`@Synchronized`^]::
+Safer variant of `synchronized` method modifier. It will synchronize on a private internal Object named `$lock` instead of `this`. Locking on `this` or your own class object can have unfortunate side effects, as other code not under your control can lock on these objects as well, which can cause race conditions and other nasty threading-related bugs.
+{lombok-api-docs}/lombok/Locked[`@Locked`^]::
+Like `@Synchronized`, but using {java-api-docs}/java.base/java/util/concurrent/locks/ReentrantLock.html[`🟢 ReentrantLock`^]. It is *recommended for Virtual Threads* (introduced in Java 20)

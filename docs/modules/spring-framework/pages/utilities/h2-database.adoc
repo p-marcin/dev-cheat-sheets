@@ -1,0 +1,31 @@
+= H2 Database
+
+image:https://img.shields.io/badge/Spring%20Boot%20H2%20Database%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-h2-database-docs}",window=_blank]
+image:https://img.shields.io/badge/H2%20Database%20Docs-2088E9?logo=quickLook&logoColor=white[link="{h2-database-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+----
+
+== Overview
+
+H2 Database is *in-memory* database, so it's only running in the context of the Spring application.
+
+== H2's Web Console
+
+`spring.h2.console.enabled=true`::
+Enables H2's Web Console
+
+`+http://localhost:8080/h2-console+`::
+URL for H2's Web Console. Connection details can be found in Spring App logs (look for `H2ConsoleAutoConfiguration` line).
+
+WARNING: The H2 console is only intended for use *during development*, so you should take care to ensure that `spring.h2.console.enabled` is not set to `true` in production.
+
+TIP: Check also {spring-boot-docs}/reference/data/sql.html#data.sql.h2-web-console[Spring Boot Documentation^]

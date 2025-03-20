@@ -1,0 +1,6 @@
+= image:https://www.vectorlogo.zone/logos/springio/springio-icon.svg[role=category-logo] Spring Framework
+
+image:https://img.shields.io/badge/Spring%20Initializr-6DB33F?logo=spring&logoColor=white[link="{spring-initializr}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Framework%20Projects-6DB33F?logo=spring&logoColor=white[link="{spring-framework-projects}",window=_blank]
+
+include::spring-framework:partial$nav.adoc[lines=2..-1]

@@ -1,0 +1,142 @@
+= Spring Boot
+
+image:https://img.shields.io/badge/Spring%20Framework%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-framework-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Framework%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{spring-framework-api-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Spring%20Boot%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{spring-boot-api-docs}",window=_blank]
+
+== Maven Dependency
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+</dependency>
+----
+
+== Spring Boot Application
+
+{spring-boot-api-docs}/org/springframework/boot/autoconfigure/SpringBootApplication.html[`@SpringBootApplication`^]::
+Indicates a configuration class that declares one or more
+{spring-framework-api-docs}/org/springframework/context/annotation/Bean.html[`@Bean`^]
+methods and also triggers *auto-configuration* and *component scanning*. This is a convenience annotation that is equivalent to declaring:
+* {spring-boot-api-docs}/org/springframework/boot/SpringBootConfiguration.html[`@SpringBootConfiguration`^],
+* {spring-boot-api-docs}/org/springframework/boot/autoconfigure/EnableAutoConfiguration.html[`@EnableAutoConfiguration`^],
+* and {spring-framework-api-docs}/org/springframework/context/annotation/ComponentScan.html[`@ComponentScan`^].
+
+{spring-framework-api-docs}/org/springframework/context/ApplicationContext.html[`⚪ ApplicationContext`^]::
+Central interface to provide *configuration* for an application. This is *read-only* while the application is running, but may be *reloaded* if the implementation supports this. It provides:
+* Bean factory methods for *accessing application components*. Inherited from {spring-framework-api-docs}/org/springframework/beans/factory/ListableBeanFactory.html[`⚪ ListableBeanFactory`^].
+* The ability to *load file resources* in a generic fashion. Inherited from the {spring-framework-api-docs}/org/springframework/core/io/ResourceLoader.html[`⚪ ResourceLoader`^].
+* The ability to *publish events to registered listeners*. Inherited from the {spring-framework-api-docs}/org/springframework/context/ApplicationEventPublisher.html[`⚪ ApplicationEventPublisher`^].
+* The ability to *resolve messages*, supporting *internationalization*. Inherited from the {spring-framework-api-docs}/org/springframework/context/MessageSource.html[`⚪ MessageSource`^].
+* *Inheritance* from a *parent context*. Definitions in a descendant context will always take priority. This means, for example, that a single parent context can be used by an entire web application, while each servlet has its own child context that is *independent* of that of any other servlet.
+
+{spring-framework-api-docs}/org/springframework/beans/factory/annotation/Autowired.html[`@Autowired`^]::
+Marks a constructor, setter method, field, or method parameter as to be autowired by Spring container - typically the `⚪ ApplicationContext`. See xref:spring-framework:concepts.adoc#_dependency_injection[Dependency Injection].
+
+== Stereotypes
+
+{spring-framework-api-docs}/org/springframework/stereotype/Component.html[`@Component`^]::
+Indicates that the annotated class is a component. Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.
+{spring-framework-api-docs}/org/springframework/stereotype/Controller.html[`@Controller`^]::
+Indicates that an annotated class is a "Controller" (for example, a web controller). This annotation serves as a specialization of `@Component`.
+{spring-framework-api-docs}/org/springframework/stereotype/Service.html[`@Service`^]::
+Indicates that an annotated class is a "Service", originally defined by Domain-Driven Design (Evans, 2003) as "_an operation offered as an interface that stands alone in the model, with no encapsulated state_".
+This annotation serves as a specialization of `@Component`.
+{spring-framework-api-docs}/org/springframework/stereotype/Repository.html[`@Repository`^]::
+Indicates that an annotated class is a "Repository", originally defined by Domain-Driven Design (Evans, 2003) as "_a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects_". This annotation serves as a specialization of `@Component`.
+
+== Beans
+
+{spring-framework-api-docs}/org/springframework/context/annotation/Primary.html[`@Primary`^]::
+Indicates that a bean should be given preference when multiple candidates (e.g. two Services implementing the same interface) are qualified to autowire a single-valued dependency.
++
+[,adoc]
+----
+@Repository
+public class JdbcFooRepository extends FooRepository {
+    public JdbcFooRepository(DataSource dataSource) {
+        // ...
+    }
+}
+
+@Primary
+@Repository
+public class HibernateFooRepository extends FooRepository {
+    public HibernateFooRepository(SessionFactory sessionFactory) {
+        // ...
+    }
+}
+
+@Service
+public class FooService {
+    private final FooRepository fooRepository;
+
+    @Autowired
+    public FooService(FooRepository fooRepository) { // <1>
+        this.fooRepository = fooRepository;
+    }
+}
+----
+<1> Because `🟢 HibernateFooRepository` is marked with `@Primary`, it will be injected preferentially over the `🟢 JdbcFooRepository` assuming both are present as beans within the same Spring application context, which is often the case when component-scanning is applied liberally.
+
+{spring-framework-api-docs}/org/springframework/beans/factory/annotation/Qualifier.html[`@Qualifier`^]::
+May be used on a parameter or field as a qualifier for candidate beans when autowiring. It may also be used to annotate other custom annotations that can then in turn be used as qualifiers.
++
+[,adoc]
+----
+@Service("bestFooService") // <1>
+public class FooService {
+    private final FooRepository fooRepository;
+
+    @Autowired
+    public FooService(@Qualifier("jdbcFooRepository") FooRepository fooRepository) { // <2>
+        this.fooRepository = fooRepository;
+    }
+}
+----
+<1> You can set a custom component name, so later you can use this name in `@Qualifier`.
+<2> In this case `🟢 JdbcFooRepository` will be injected (notice, it is class name starting lower case).
+
+{spring-framework-api-docs}/org/springframework/context/annotation/Profile.html[`@Profile`^]::
+Indicates that a component is eligible for registration when one or more specified profiles are active. You can activate profile with:
++
+--
+* {spring-framework-api-docs}/org/springframework/core/env/AbstractEnvironment.html#ACTIVE_PROFILES_PROPERTY_NAME[`spring.profiles.active`^] property. The value may be comma delimited.
+* `SPRING_PROFILES_ACTIVE` env variable when using {spring-framework-api-docs}/org/springframework/core/env/SystemEnvironmentPropertySource.html[`🟢 SystemEnvironmentPropertySource`^]
+* {spring-framework-api-docs}++/org/springframework/core/env/ConfigurableEnvironment.html#setActiveProfiles(java.lang.String...)++[`⚪ ConfigurableEnvironment#setActiveProfiles(String... profiles)`^]
+* {spring-framework-api-docs}/org/springframework/test/context/ActiveProfiles.html[`@ActiveProfiles`^] applied to a test class when loading an `⚪ ApplicationContext` for integration tests.
+--
++
+TIP: A profile string may contain a simple profile name (for example `p1`) or a profile expression. A profile expression allows for more complicated profile logic to be expressed, for example `p1 & p2`. See {spring-framework-api-docs}++/org/springframework/core/env/Profiles.html#of(java.lang.String...)++[`⚪ Profiles.of(String...)`^] for more details about supported formats.
++
+If no profile is active using one of those options, a default profile is enabled as a fallback. The name of the default profile is `default`: `@Profile({"EN", "default"})`. You can change default profile name with:
++
+--
+* {spring-framework-api-docs}/org/springframework/core/env/AbstractEnvironment.html#DEFAULT_PROFILES_PROPERTY_NAME[`spring.profiles.default`^] property. The value may be comma delimited.
+* `SPRING_PROFILES_DEFAULT` env variable when using `🟢 SystemEnvironmentPropertySource`
+* {spring-framework-api-docs}++/org/springframework/core/env/ConfigurableEnvironment.html#setDefaultProfiles(java.lang.String...)++[`⚪ ConfigurableEnvironment#setDefaultProfiles(String... profiles)`^]
+--
+
+== CommandLineRunner
+
+{spring-boot-api-docs}/org/springframework/boot/CommandLineRunner.html[`⚪ CommandLineRunner`^] is used to indicate that a bean should run when it is contained within a SpringApplication.
+
+.Example: use `⚪ CommandLineRunner` to populate data for H2 Database during app startup
+[,java]
+----
+@Component
+public class BootstrapData implements CommandLineRunner {
+
+    @Transactional // <1>
+    @Override
+    public void run(String... args) throws Exception {
+        // Populate data for H2 Database using Repositories
+    }
+
+}
+----
+<1> {spring-framework-api-docs}/org/springframework/transaction/annotation/Transactional.html[`@Transactional`^] exposes a transaction to all data access operations within the current execution thread.

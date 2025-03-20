@@ -1,0 +1,48 @@
+= Spring Data R2DBC
+
+image:https://img.shields.io/badge/Spring%20Data%20R2DBC%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-data-r2dbc-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Data%20R2DBC%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-data-r2dbc-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Data%20R2DBC%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{spring-data-r2dbc-api-docs}",window=_blank]
+
+Spring Data R2DBC provides repository support for the *Reactive Relational Database Connectivity* (R2DBC) API.
+
+WARNING: JPA works with JDBC. JDBC is *fully blocking API*.
+
+== Maven Dependencies
+
+[,xml]
+----
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+</dependency>
+----
+
+In terms of databases, Spring Data R2DBC requires *a driver* to abstract common SQL functionality over vendor-specific flavours. Support for the databases can be checked https://docs.spring.io/spring-data/relational/reference/r2dbc/getting-started.html#requirements[here^] (you need to add chosen driver as Maven Dependency).
+
+== Initializing Database
+
+You can initialize Database with `🟢 DatabaseConfig`:
+
+[,java]
+----
+@Configuration
+public class DatabaseConfig {
+
+    @Value("classpath:/schema.sql")
+    Resource resource; // <1>
+
+    @Bean
+    ConnectionFactoryInitializer connectionFactoryInitializer(ConnectionFactory connectionFactory) {
+        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer(); // <2>
+        initializer.setConnectionFactory(connectionFactory); // <3>
+        initializer.setDatabasePopulator(new ResourceDatabasePopulator(resource)); // <4>
+        return initializer;
+    }
+
+}
+----
+<1> Database SQL script which will be used to create schema. The `schema.sql` is located under `src/main/resources`
+<2> {spring-framework-api-docs}/org/springframework/r2dbc/connection/init/ConnectionFactoryInitializer.html[`🟢 ConnectionFactoryInitializer`^] is used to *set up* a database during *initialization* and *clean up* a database during *destruction*.
+<3> https://r2dbc.io/spec/1.0.0.RELEASE/api/io/r2dbc/spi/ConnectionFactory.html[`⚪ ConnectionFactory`^] is *an R2DBC factory for creating connections* and *entry point for a driver*.
+<4> {spring-framework-api-docs}/org/springframework/r2dbc/connection/init/ResourceDatabasePopulator.html[`🟢 ResourceDatabasePopulator`^] populates, initializes, or cleans up a database using SQL scripts defined in external {spring-framework-api-docs}/org/springframework/core/io/Resource.html[`⚪ Resource`^].

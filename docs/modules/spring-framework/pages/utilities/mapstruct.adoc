@@ -1,0 +1,70 @@
+= MapStruct
+
+image:https://img.shields.io/badge/MapStruct%20Docs-2088E9?logo=quickLook&logoColor=white[link="{mapstruct-docs}",window=_blank]
+image:https://img.shields.io/badge/MapStruct%20API%20Docs-DF7716?logo=devbox&logoColor=white[link="{mapstruct-api-docs}",window=_blank]
+
+== Overview
+
+MapStruct is a *code generator* which automates *generation of Type Converters*. It works like xref:spring-framework:utilities/lombok.adoc[Project Lombok] via annotation processing during code compilation. It is useful for creating Type Converters which can convert *Data Transfer Object (DTO) into Database Entity* and *Database Entity into Data Transfer Object (DTO)*.
+
+NOTE: Spring Framework has a functional interface: {spring-framework-api-docs}/org/springframework/core/convert/converter/Converter.html[`⚪ Converter<S,T>`^] which has `convert(S source)` method returning `T` target type. It is an alternative to MapStruct. See {spring-framework-docs}/core/validation/convert.html[Spring Type Conversion^].
+
+== Maven Dependency
+
+[,xml]
+----
+<dependencies>
+  <dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <optional>true</optional>
+  </dependency>
+</dependencies>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>${lombok-mapstruct.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+          </compilerArgs>
+        </configuration>
+    </plugin>
+  </plugins>
+</build>
+----
+
+== Generate Type Converter
+
+{mapstruct-api-docs}/org/mapstruct/Mapper.html[`@Mapper`^]::
+Marks an interface or abstract class as a Mapper and activates the **generation** of an implementation of that type via MapStruct:
++
+[,java]
+----
+@Mapper
+public interface CustomerMapper {
+
+    Customer toCustomer(CustomerDTO customerDTO);
+
+    CustomerDTO toCustomerDTO(Customer customer);
+
+}
+----

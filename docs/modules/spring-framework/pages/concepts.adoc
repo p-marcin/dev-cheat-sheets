@@ -1,0 +1,279 @@
+= Concepts
+
+== Overview
+*Spring Framework* is the most popular Java framework for building *highly scalable* and *reliable* Enterprise Applications.
+It is well suited for *Monolithic* and *Microservice Architecture*.
+
+Spring Framework was introduced by *Rod Johnson* in *2003* as a *simpler alternative to J2EE.* In *March 2004* version *1.0* has been released.
+
+== Spring Framework vs Spring Boot
+Spring Framework is a *collection of framework libraries*.
+
+*Spring Boot* is *automated tooling* for Spring Framework applications. Think of it as a *wrapper* around Spring.
+One of the best feature of Spring Boot is *auto-configuration* of application based on the jar dependencies.
+
+== Inversion of Control (IoC)
+
+Inversion of Control::
+A technique to allow dependencies to be injected at runtime. Control of the dependencies *is being inverted over to managing framework*.
+
+== Dependency Injection
+
+Dependency Injection::
+A technique where a *needed dependency is injected by another object*. In Spring Framework by the Spring IoC container (`⚪ ApplicationContext`).
+
+Types of Dependency Injection:
+
+* *By constructor* - *most preferred*, for *mandatory* dependencies
++
+[,java]
+----
+private final BookService bookService;
+
+public BookController(BookService bookService) {
+    this.bookService = bookService;
+}
+----
+* *By setters (using `@Autowired` on a setter)* - for *optional* dependencies
++
+[,java]
+----
+private BookService bookService;
+
+@Autowired
+public void setBookService(BookService bookService) {
+    this.bookService = bookService;
+}
+----
+* *By class fields (using `@Autowired` on a field)* - *least preferred* except test class where you can use it on `package-private` fields. Using it on a `private` fields is evil as Spring can use reflection to set them. It "works", but is slow and makes testing difficult
++
+[,java]
+----
+@Autowired
+BookService bookService;
+----
+
+You can inject *Interfaces* *(preferred)* and *concrete Classes* *(should be avoided)*.
+
+TIP: Best Practice is to declare `private final` field and initialize it in the constructor.
+
+== Spring Bean Lifecycle
+
+Start:
+
+. Instantiation of Bean
+. Population of properties/dependencies
+. Call {spring-framework-api-docs}/org/springframework/beans/factory/BeanNameAware.html#setBeanName(java.lang.String)[`⚪ BeanNameAware#setBeanName(String name)`^]
+. Call {spring-framework-api-docs}/org/springframework/beans/factory/BeanFactoryAware.html#setBeanFactory(org.springframework.beans.factory.BeanFactory)[`⚪ BeanFactoryAware#setBeanFactory(BeanFactory beanFactory)`^]
+. Call {spring-framework-api-docs}/org/springframework/context/ApplicationContextAware.html#setApplicationContext(org.springframework.context.ApplicationContext)[`⚪ ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext)`^]
+. Call {jakarta-ee-api-docs}/jakarta/annotation/postconstruct[`@PostConstruct`^] annotated method
+. Call {spring-framework-api-docs}/org/springframework/beans/factory/InitializingBean.html#afterPropertiesSet()[`⚪ InitializingBean#afterPropertiesSet()`^]
+. Call custom `init` method (can be set with {spring-framework-api-docs}/org/springframework/context/annotation/Bean.html#initMethod()[`@Bean#initMethod`^])
+. Pre Initialization (call {spring-framework-api-docs}/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessBeforeInitialization(java.lang.Object,java.lang.String)[`⚪ BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)`^])
+. Post Initialization (call {spring-framework-api-docs}/org/springframework/beans/factory/config/BeanPostProcessor.html#postProcessAfterInitialization(java.lang.Object,java.lang.String)[`⚪ BeanPostProcessor#postProcessAfterInitialization(Object bean, String beanName)`^])
+. Bean ready to use
+
+Termination:
+
+. Container shutdown
+. Call {jakarta-ee-api-docs}/jakarta/annotation/predestroy[`@PreDestroy`^] annotated method
+. Call {spring-framework-api-docs}/org/springframework/beans/factory/DisposableBean.html#destroy()[`⚪ DisposableBean#destroy()`^]
+. Call custom `destroy` method (can be set with {spring-framework-api-docs}/org/springframework/context/annotation/Bean.html#destroyMethod()[`@Bean#destroyMethod`^])
+. Bean terminated
+
+NOTE: There are over *14* `Aware` interfaces which are used *access the Spring Framework infrastructure*. Check {spring-framework-docs}/core/beans/factory-nature.html[Customizing the Nature of a Bean^].
+
+.Spring Bean Lifecycle Demo
+[%collapsible]
+====
+[,java]
+----
+@Component
+public class SpringBeanLifecycleDemo implements BeanNameAware, BeanFactoryAware, ApplicationContextAware,
+        InitializingBean, BeanPostProcessor, DisposableBean {
+
+    /* Start */
+
+    public SpringBeanLifecycleDemo() {
+        System.out.println("# 1. Instantiation of Bean");
+    }
+
+    private String javaVersion;
+
+    @Value("${java.specification.version}")
+    public void setJavaVersion(String javaVersion) {
+        this.javaVersion = javaVersion;
+        System.out.println("# 2. Population of properties/dependencies: Java Version is " + this.javaVersion);
+    }
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("# 3. Call BeanNameAware#setBeanName(String name): " + name);
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println(
+                "# 4. Call BeanFactoryAware#setBeanFactory(BeanFactory beanFactory): " + beanFactory.getClass().getSimpleName());
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("# 5. Call ApplicationContextAware#setApplicationContext(ApplicationContext applicationContext): " +
+                applicationContext.getClass().getSimpleName());
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("# 6. Call @PostConstruct annotated method");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("# 7. Call InitializingBean#afterPropertiesSet()");
+    }
+
+    public void init() {
+        System.out.println("# 8. Call custom init method (can be set with @Bean#initMethod)");
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println(
+                "# 9. Pre Initialization (call BeanPostProcessor#postProcessBeforeInitialization(Object bean, String beanName)): " +
+                        beanName);
+
+        return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println(
+                "# 10. Post Initialization (call BeanPostProcessor#postProcessAfterInitialization(Object bean, String beanName)): " +
+                        beanName);
+
+        return BeanPostProcessor.super.postProcessAfterInitialization(bean, beanName);
+    }
+
+    /* Termination */
+
+    @PreDestroy
+    public void preDestroy() {
+        System.out.println("# 1. Container shutdown");
+        System.out.println("# 2. Call @PreDestroy annotated method");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("# 3. Call DisposableBean#destroy()");
+    }
+
+    public void cleanup() {
+        System.out.println("# 4. Call custom destroy method (can be set with @Bean#destroyMethod)");
+    }
+
+}
+
+@Configuration
+public class SpringBeanLifecycleConfig {
+
+    @Bean(initMethod = "init", destroyMethod = "cleanup")
+    public SpringBeanLifecycleDemo springBeanLifecycleDemo() {
+        return new SpringBeanLifecycleDemo();
+    }
+
+}
+----
+====
+
+== Spring RestTemplate
+
+RestTemplate is in *maintenance mode* (no new features are planned). It is recommended to *use Spring RestClient for new development*.
+
+== Spring WebFlux
+
+Spring WebFlux is *non-blocking* (because does not use Java Servlet API) and *reactive*.
+
+WebFlux uses project *Reactor* to provide reactive web services. It follows very closely to the configuration model of Spring MVC.
+
+=== Spring WebFlux.fn
+
+Spring WebFlux.fn is a functional programming model used to define endpoints. It is alternative to annotation based configuration.
+
+=== Spring WebClient
+
+Spring WebClient is *reactive* web client. By default, uses *Reactor Netty* - a *non-blocking* HTTP Client library.
+
+== Spring Data REST
+
+Spring Data REST makes it easy to build hypermedia-driven REST web services on top of Spring Data repositories.
+
+Spring Data REST builds on top of Spring Data repositories, analyzes your application’s domain model and exposes hypermedia-driven HTTP resources for aggregates contained in the model.
+
+The `@Version` property is returned as `ETag` (Entity Tag) header in response. It is used to determine a change in content at a given URL.
+
+When you make a GET request to:
+
+* `/resources` - you'll get list of resources
+* `/profile/resources` - you'll get information about resources REST API
+* `/resources/search/findByProperty?property=test` - you'll get the result of Repository `findByProperty` method invocation
+
+== Spring Data JPA
+
+Spring Data JPA provides repository support for the Jakarta Persistence API (JPA). It eases development of applications with a consistent programming model that need to access JPA data sources:
+
+* [Defining Query Methods]({spring-data-jpa-docs}/repositories/query-methods-details.html)
+
+Spring Data JPA does not have a default limit on records returned and does not set a default sort. The only limit is memory of the JVM:
+
+* [Paging, Iterating Large Results, Sorting & Limiting]({spring-data-jpa-docs}/repositories/query-methods-details.html#repositories.special-parameters)
+
+JPA specific cascade types:
+
+* `ALL` - propagates all operations
+* `PERSIST` - also saves child objects (transient instances)
+* `MERGE` - copies the state of a given object to the persistent object. MERGE includes child entities
+* `REMOVE` - cascades delete operations to child objects
+* `REFRESH` - cascades refresh operations to child objects
+* `DETACH` - detaches child objects from persistence context
+
+Hibernate specific cascade types:
+
+* `DELETE` - same as JPA `REMOVE`
+* `SAVE_UPDATE` - cascades Hibernate save and update operations to child objects
+* `REPLICATE` - replicates child objects to second data source
+* `LOCK` - reattaches entity and children to persistence context - without refresh
+
+Spring Data JPA by default supports implicit transactions: repository methods will create transaction by default, if there is no active transaction:
+* they aren't used in the test context where Spring Boot will create a transaction for the tests and roll it back
+* implicit transactions are only used outside a transactional context:
+* if you have a method under test with one or more repository method call, you may see different results when run outside the test context
+
+== Database
+
+Creating a connection to the database is a fairly heavy operation. [HikariCP](https://github.com/brettwooldridge/HikariCP) creates a pool of connections to the database, establishes that network connection to the database, so you have multiple connections established which take resources (memory). Connection pool helps significantly when you have a load on the system.
+
+== Flyway ([Documentation]({spring-boot-docs}/how-to/data-initialization.html#howto.data-initialization.migration-tool.flyway))
+
+* Migrations are the process of moving programming code from one system to another. Database Migrations typically need to occur prior to, or in conjunction with application code.
+* Database migrations are a very important part of the process of moving you application code to production.
+* Database Migration tools can:
+* Create a new database
+* Hold history of migrations
+* Have a reproducible state of the database
+* Help manage changes being applied to numerous database instances
+
+== OpenCSV ([Documentation](https://opencsv.sourceforge.net/))
+
+* OpenCSV is a handy tool for parsing CSV files.
+* `com.opencsv.bean.@CsvBindByName` - specifies a binding between a column name of the CSV input and a field in a bean
+* `org.springframework.util.ResourceUtils.getFile("classpath:csvdata/data.csv")` - resolves the given resource location to a `java.io.File`
+
+== Jakarta Bean Validation
+
+* Jakarta Bean Validation - a Java API standard which provides a standard way of performing validation and handling errors. The primary implementation of this API is Hibernate implementation called Hibernate Validator
+* Validation support can be used in Controllers, Services and other Spring managed Components
+* Spring MVC will return a 400 Bad Request Error for validation failures
+* Spring Data JPA will throw an exception for JPA constraint violations
+* Best practice is to add validation constraints that match your database constraints.
+* In Spring Boot if API is only on classpath (with no implementation), you can use the annotations, but validation will not occur. After Spring 2.3, you must include `org.springframework.boot:spring-boot-starter-validation`

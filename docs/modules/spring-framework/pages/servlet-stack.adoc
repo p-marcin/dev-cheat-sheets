@@ -1,0 +1,6 @@
+= Servlet Stack
+
+image:https://img.shields.io/badge/Spring%20Servlet%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-servlet-docs}",window=_blank]
+image:https://img.shields.io/badge/Spring%20Boot%20Servlet%20Docs-2088E9?logo=quickLook&logoColor=white[link="{spring-boot-servlet-docs}",window=_blank]
+
+include::spring-framework:partial$nav.adoc[tag=servlet-stack]
