@@ -1,0 +1,299 @@
+= image:https://www.vectorlogo.zone/logos/linux/linux-icon.svg[role=category-logo] Linux
+
+image:https://img.shields.io/badge/GNU%20Docs-2088E9?logo=quickLook&logoColor=white[link="{gnu-docs}",window=_blank]
+image:https://img.shields.io/badge/Awesome%20Shell-FC60A8?logo=awesomelists&logoColor=white[link="{awesome-shell}",window=_blank]
+
+image:https://img.shields.io/badge/Bash%20Docs-2088E9?logo=quickLook&logoColor=white[link="{bash-docs}",window=_blank]
+
+include::linux:partial$nav.adoc[lines=2..-1]
+
+== Bash Overview
+
+Bash is the GNU Project's shell - the **B**ourne **A**gain **SH**ell. This is an `sh`-compatible shell that incorporates useful features from the Korn shell (`ksh`) and the C shell (`csh`).
+
+It offers functional improvements over `sh` for both programming and interactive use. In addition, most `sh` scripts can be run by Bash without modification.
+
+== Cheat Sheet
+
+.Best way to check booleans (there are no booleans in bash, they are strings)
+[,bash]
+----
+isError=true
+
+if [[ "${isError}" == true ]]; then
+  echo "Error"
+fi
+----
+
+.Changing default value of IFS
+[,bash]
+----
+strings="foo bar foo:bar"
+for string in ${strings}; do # <1>
+  echo "${string}";
+done
+IFS=":" # <2>
+for string in ${strings}; do # <3>
+  echo "${string}";
+done
+unset IFS # <4>
+for string in ${strings}; do # <5>
+  echo "${string}";
+done
+----
+<1> Outputs `foo`, `bar` and `foo:bar`
+<2> `IFS` stands for Internal Field Separator. The default word splitting behavior is on spaces, tabs and new lines. If you set it to `:`, then you will split on this character only.
+<3> Outputs `foo bar foo` and `bar`
+<4> Reverts `IFS` to default behavior.
+<5> Outputs the same result as in point 1.
+
+== Script Blocks
+
+.Beginning of the script
+[,bash]
+----
+#!/bin/bash
+# SCRIPT DESCRIPTION
+
+set -o errexit  # ABORT ON NON-ZERO EXIT STATUS
+set -o pipefail # DON'T HIDE ERRORS WITHIN PIPES
+----
+
+.Useful constants
+[,bash]
+----
+readonly STEP="[\e[1;96mSTEP\e[0m] \e[1;96m*-*-*-*-*-*-*\e[0m"
+readonly DEBUG="[\e[1;36mDEBUG\e[0m]"
+readonly INFO="[\e[1;34mINFO\e[0m]"
+readonly WARNING="[\e[1;33mWARNING\e[0m]"
+readonly ERROR="[\e[1;31mERROR\e[0m]"
+readonly SUCCESS="[\e[1;32mSUCCESS\e[0m]"
+----
+
+TIP: Bash Colors and Formatting: https://misc.flogisoft.com/bash/tip_colors_and_formatting[misc.flogisoft.com/bash/tip_colors_and_formatting^]
+
+.Help method
+[,bash]
+----
+usage() {
+  cat << EOF # <1> <2>
+Usage: ${0} [OPTION]... [positional-argument1] [positional-argument2]
+
+Description
+
+OPTIONS:
+  -s, --set=''           Option description
+  -z                     Option description
+
+Examples:
+  # Example description
+  ${0} -s "option-argument" "positional-argument"
+EOF # <3>
+  exit 1
+}
+----
+<1> `<<` starts Here Document which is a special-purpose code block.
+<2> `EOF` after `<<` is a limit string which will end Here Document. When limit string is quoted like `"EOF"`, then variable substitution is disabled.
+<3> `EOF` declared second time ends Here Document. There can be neither leading nor trailing whitespace.
+
+.Read options
+[,bash]
+----
+while getopts ":hs:z" option; do # <1>
+  case "${option}" in
+    s) variable1="${OPTARG}" ;; # <2> <3>
+    z) variable2="some-value" ;; # <4>
+    h|?) usage ;;
+  esac
+done
+----
+<1> `:` as first character of _optstring_: `":..."` turns on silent reporting. You won't see errors like "illegal option -- a".
+<2> `s` option which takes an argument, needs `s:` in _optstring_.
+<3> `+${OPTARG}+` contains option's argument.
+<4> `z` option which does not take any argument, needs `z` in _optstring_.
+
+.Read long options
+[,bash]
+----
+while [[ "$#" -gt 0 ]]; do
+  case "${1}" in
+    -s|--set) [[ -z "${2}" ]] && usage; variable1="${2}"; shift ;; # <1>
+    -z) variable2="some-value" ;;
+    *) [[ "${1}" == -* ]] && usage || break ;;
+  esac
+  shift # <1>
+done
+----
+<1> `shift` shifts positional arguments by `n` + 1. Since we don't use `getopts`, we need to `shift` manually.
+
+.Read positional arguments
+[,bash]
+----
+shift $((OPTIND - 1)) # <1> <2>
+positionalArgument1="${1}"
+positionalArgument2="${2}"
+----
+<1> This line is only needed when options are read by `getopts`.
+<2> `+${OPTIND}+` contains index of the next argument to be processed. It is initialized to `1` each time the shell or a shell script is invoked.
+
+[TIP]
+====
+`+$@+` contains all options and positional arguments. With `shift` you can control what `+$@+` contains.
+
+`+$@+` is an array, while `+$*+` is a single string. When you pass them to a method, they should be quoted: `+"$@"+`/`+"$*"+`
+
+[,shell]
+----
+$ ./test.sh -s abc -z def ghi
+Before shift, $@: -s abc -z def ghi
+After shift, $@: def ghi
+----
+
+`+$#+` contains number of all options and positional arguments. With `shift` you can control what `+$#+` contains.
+
+[,shell]
+----
+$ ./test.sh -s abc -z def ghi
+Before shift, $#: 5
+After shift, $#: 2
+----
+====
+
+.Suppress all normal output
+[,bash]
+----
+fileDescriptor="/dev/stdout"
+
+while getopts ":hq" option; do
+  case "${option}" in
+    q) fileDescriptor="/dev/null" ;; # <1>
+    h|?) usage ;;
+  esac
+done
+
+cat test.txt >${fileDescriptor} # <2>
+----
+<1> `/dev/null` discards data. It is used to suppress program output.
+<2> `>` operator redirects standard output to the file descriptor specified after it. `&>` operator also redirects standard error to standard output.
+
+.Source script
+[,bash]
+----
+if [[ -f ./test.sh ]]; then # <1>
+  . ./test.sh # <2>
+fi
+----
+<1> Checks if the script file exists.
+<2> Reads and executes commands from the script in the current shell context. `source` is a synonym for `.`
+
+.Do not execute script when sourced
+[,bash]
+----
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then # <1> <2> <3>
+  # The file is not executed, but sourced in another script
+  return 0
+fi
+
+main "$@"
+----
+<1> `BASH_SOURCE` is an array variable whose members are the source filenames.
+<2> `+${0}+` expands to the name of the shell or shell script.
+<3> Example: when `test1.sh` sources `test2.sh`, and `test2.sh` sources `test3.sh`:
+* `"${BASH_SOURCE[0]}"` in: `test3.sh` will be equal to `test3.sh`,
+* but `+${0}+` will be equal to `test1.sh`.
+
+.Print execution time at the end of the script
+[,bash]
+----
+executionTime() {
+  now=$(date +"%F %T")
+  minutes=$((SECONDS / 60)) # <1>
+  seconds=$((SECONDS % 60))
+  echo -e "\n[\e[1m${now}\e[0m] Task completed in \e[1m${minutes}\e[0m minutes and \e[1m${seconds}\e[0m seconds"
+}
+
+trap executionTime EXIT # <2> <3>
+----
+<1> `SECONDS` expands to the number of seconds since the shell was started. Assignment to this variable resets the count to the value assigned, and the expanded value becomes the value assigned plus the number of seconds since the assignment.
+<2> Reads and executes commands from `executionTime` function when the shell receives `EXIT` signal.
+<3> `EXIT` or `0` occurs when the shell exits. `RETURN` occurs each time a shell function or a script executed with the `.` or `source` builtins finishes executing.
+
+.Create table
+[,bash]
+----
+readonly SEPARATOR="\e[1;33m#\e[0m"
+readonly SEPARATOR_LINE="\e[1;33m$(printf "#%.0s" {1..101})\e[0m" # <1>
+
+letters=("abc" "def")
+numbers=("123" "456")
+
+printSeparator() {
+  printf "%b\n" "${SEPARATOR_LINE}"
+}
+
+printHeader() {
+  local title="${1^^}"
+  printf "%b %-108b %b\n" \ # <2>
+    "${SEPARATOR}" "\e[1;32m${title}\e[0m" "${SEPARATOR}"
+}
+
+printRow() {
+  local column1="${1}"
+  local column2="${2}"
+  printf "%b %-47b %b %-47b %b\n" \
+    "${SEPARATOR}" "${column1}" \
+    "${SEPARATOR}" "${column2}" "${SEPARATOR}"
+}
+
+printSeparator
+printHeader "Title"
+printSeparator
+while read -r column1 column2; do
+  printRow "${column1}" "${column2}"
+done < <(paste -d " " <(printf "%s\n" "${letters[@]}") <(printf "%s\n" "${numbers[@]}"))
+printSeparator
+----
+<1> In `printf "#%.0s" {1..101}`:
+* bash expands `{1..101}` so the command becomes: `printf "#%.0s" 1 2 3 ... 101`.
+* `#%.0s` will always print a single `+#+` no matter what argument it is given, because `%.0s` specifies precision which truncates the string to fit the specified width (`0`).
+* As `printf` reuses the format string to consume all the arguments, this simply prints `#` 101 times.
+<2> In `%-108b`:
+* `-` aligns printed text to the left. By default, the text is right-aligned.
+* `108` is a padding.
+* `%b` expands backslash escape sequences in the corresponding argument.
+
+.Read username and password from the user. Password is masked by `*` characters.
+[,bash]
+----
+read -p "Enter Username: " -r username
+pass="Enter Password: "
+while IFS= read -p "${pass}" -r -s -n 1 letter; do # <1> <2> <3> <4> <5>
+  [[ -z "${letter}" ]] && break
+  password+="${letter}"
+  pass="*"
+done; echo
+----
+<1> `IFS=` removes the default word splitting behavior (on spaces, tabs and new lines).
+<2> `-p` outputs the prompt without a trailing new line before attempting to read.
+<3> `-r` does not allow backslashes to escape any characters
+<4> `-s` does not echo input coming from a terminal.
+<5> `-n` returns after reading 1 character rather than waiting for a new line.
+
+.Update Maven artifactId version
+[,bash]
+----
+updateArtifactIdVersion() {
+  local artifactId="${1}"
+  local version="${2}"
+  if ! grep -A 1 "<artifactId>${artifactId}</artifactId>" pom.xml | grep -q "${version}"; then
+    sed -z -i "s|\(<artifactId>${artifactId}</artifactId>[^<]*<version>\)[^<]*\(</version>\)|\1${version}\2|" "pom.xml"; # <1> <2> <3> <4> <5> <6> <7>
+  fi
+}
+----
+<1> `-z` enables multi-line matching (treats file as one block).
+<2> `+<artifactId>${artifactId}</artifactId>+` matches exactly this tag.
+<3> `+[^<]*+` matches any text (like spaces, newlines, or other characters) until the next `<` is encountered.
+<4> `<version>` matches the opening `<version>` tag.
+<5> `+[^<]*+` captures the actual version number (which is anything between `<version>` and `</version>`).
+<6> `</version>` matches the closing `</version>` tag.
+<7> `\1` and `\2` are capturing groups from `\(...\)`

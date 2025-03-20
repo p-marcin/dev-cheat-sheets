@@ -1,0 +1,37 @@
+= Coreutils (file, shell, text manipulation)
+
+image:https://img.shields.io/badge/Coreutils%20Docs-2088E9?logo=quickLook&logoColor=white[link="{coreutils-docs}",window=_blank]
+
+== Overview
+
+The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system. These are the core utilities which are expected to exist on every operating system.
+
+== Paste: Merge lines of files
+
+image:https://img.shields.io/badge/Paste%20Docs-2088E9?logo=quickLook&logoColor=white[link="{coreutils-docs}#paste-invocation",window=_blank]
+
+Writes lines consisting of the sequentially corresponding lines from
+each FILE, separated by TABs, to standard output. With no FILE, or when FILE is `-`, read standard input.
+
+.Usage
+[,bash]
+----
+paste [OPTION]... [FILE]...
+----
+
+.Merge 2 lines
+[,shell]
+----
+$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
+test1,
+test2
+test3,
+test4
+test5,
+test6
+
+$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6" | paste -d " " - -
+test1, test2
+test3, test4
+test5, test6
+----

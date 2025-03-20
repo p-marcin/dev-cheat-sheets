@@ -1,0 +1,171 @@
+= Sed: Stream Editor
+
+image:https://img.shields.io/badge/Sed%20Docs-2088E9?logo=quickLook&logoColor=white[link="{sed-docs}",window=_blank]
+
+== Overview
+
+A stream editor is used to perform basic text transformations on an input stream (a file or input from a pipeline).
+
+== The s Command
+
+.Multiple script expressions
+[,shell]
+----
+$ echo "test" | sed "s/te/ab/;s/st/cd/" // <1>
+abcd
+
+$ echo "test" | sed -e "s/te/ab/" -e "s/st/cd/" // <1>
+abcd
+----
+<1> `s/regexp/replacement/[flags]`: the `s` command attempts to match the pattern space against the supplied regular expression `regexp`; if the match is successful, then that portion of the pattern space which was matched is replaced with `replacement`.
+
+TIP: You can change `/` separator in `s///` for example to `|`: `s|||` if you have many `/` in the input (e.g. web url).
+
+TIP: If you want to escape `\` character, you need to define it like: `\\\`.
+
+.Reuse matched portion of the pattern space with `&`
+[,shell]
+----
+$ echo -e "test1\ntest2" | sed "s/test.*/#&/"
+#test1
+#test2
+----
+
+== Sed Scripts
+
+.Processing a file with `.sed` script file
+[,shell]
+----
+$ cat test.txt
+test1
+test2
+test3
+test4
+
+$ cat script-file.sed
+# Append text after matching line // <1>
+/^test1$/ { // <2>
+    a
+    a test-from-script-file
+    a
+}
+
+$ sed -E -i -f script-file.sed test.txt // <3> <4> <5>
+
+$ cat test.txt
+test1
+
+test-from-script-file
+
+test2
+test3
+test4
+----
+<1> `#` begins a comment; the comment continues until the next newline.
++
+WARNING: if the first two characters of the `sed` script are `#n`, then the `-n` (no-autoprint) option is forced. If you want to put a comment in the first line of your script and that comment begins with the letter `n` and you do not want this behavior, then be sure to either use a capital `N`, or place at least one space before the `n`.
+<2> `^` means "starts with" and `$` means "ends with". You can use one, both, or neither.
+<3> `-E`: use extended regular expressions rather than basic regular expressions. See https://www.gnu.org/software/sed/manual/html_node/ERE-syntax.html#ERE-syntax[Extended regular expressions^]
+<4> `i`: edit file in-place. GNU `sed` does this by creating a temporary file and sending output to this file rather than to the standard output. When the end of the file is reached, the temporary file is renamed to the output file’s original name.
+<5> `-f script-file.sed`: add the commands contained in the script file to the set of commands to be run while processing the input. Script file can contain many commands. Multiple script files can be specified with `-f` option.
+
+.Insert text at first line and append text at the last line
+[,bash]
+----
+1 {
+    i Beginning of file // <1>
+}
+
+$ {
+    a End of file // <2>
+}
+----
+<1> `i` inserts text before a line
+<2> `a` appends text after a line
+
+.Replace, Substitute and Delete a line
+[,shell]
+----
+$ cat script-file.sed
+/^test1$/c replaced // <1>
+s/^test2$/test200/ // <2>
+/^test3$/d // <3>
+
+$ sed -E -f script-file.sed test.txt
+replaced
+test200
+test4
+----
+<1> `c`: replace (change) lines with text
+<2> `s/regexp/replacement/[flags]`: substitute, match the regular expression `regexp` against the content of the pattern space. If found, replace matched string with `replacement`.
+<3> `d`: delete the pattern space
+
+.Delete next line
+[,shell]
+----
+$ cat script-file.sed
+/test1/ {
+    n;d // <1>
+}
+
+$ sed -E -f script-file.sed test.txt
+test1
+test3
+test4
+----
+<1> `n`: (next) If auto-print is not disabled, print the pattern space, then, regardless, replace the pattern space with the next line of input. If there is no more input then sed exits without processing any more commands.
+
+.Delete three lines
+[,shell]
+----
+$ cat script-file.sed
+/test1/ {
+    N;N;d // <1>
+}
+
+$ sed -E -f script-file.sed test.txt
+test4
+----
+<1> `N`: Add a newline to the pattern space, then append the next line of input to the pattern space. If there is no more input then sed exits without processing any more commands.
+
+.Execute a command from script file
+[,shell]
+----
+$ cat script-file.sed
+/test1/e seq -s "," 4 // <1>
+/test2/e seq 2
+
+$ sed -E -f script-file.sed test.txt
+1,2,3,4
+test1
+1
+2
+test2
+test3
+test4
+----
+<1> `e command`: executes command and sends its output to the output stream. The command can run across multiple lines, all but the last ending with a back-slash `\`.
+
+.Execute a command from the file
+[,shell]
+----
+$ cat test.txt
+test1
+test2
+test3
+test4
+TZ="Europe/Warsaw" date +"%Y-%m-%d %H:%M:%S %z"
+
+$ cat script-file.sed
+/date/e // <1>
+
+$ sed -E -f script-file.sed test.txt
+test1
+test2
+test3
+test4
+2025-03-06 18:00:00 +0100
+----
+<1> `e`: executes the command that is found in pattern space and replaces the pattern space with the output; a trailing newline is suppressed.
+
+WARNING: `e` command is specific to GNU `sed`, so you must use it with care and only when you are sure that hindering portability is not evil. It is not supported by standard `sed`.
