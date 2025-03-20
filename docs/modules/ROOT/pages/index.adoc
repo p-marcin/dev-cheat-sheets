@@ -1,0 +1,68 @@
+[.hidden]
+= DEV Cheat Sheets
+
+image:ROOT:logo.jpg[]
+
+== pass:a[<span class="image main-logo"><img src="{site-url}/_/img/favicon.ico"></span>] DEV Cheat Sheets
+
+image:https://img.shields.io/badge/All%20Docs-2088E9?logo=quickLook&logoColor[xref=docs.adoc]
+
+include::ROOT:example$README.md[tag=intro]
+
+== Legend
+
+I mark Java types with the below symbols:
+
+include::ROOT:partial$java-type-legend.adoc[]
+
+== Resources
+
+// tag::resources[]
+include::java:partial$nav.adoc[]
+include::spring-framework:partial$nav.adoc[]
+include::web:partial$nav.adoc[]
+include::messaging:partial$nav.adoc[]
+include::database:partial$nav.adoc[]
+include::server:partial$nav.adoc[]
+include::cloud:partial$nav.adoc[]
+include::git:partial$nav.adoc[]
+include::linux:partial$nav.adoc[]
+include::asciidoc:partial$nav.adoc[]
+// end::resources[]
+
+== External Resources
+
+* 😎 https://github.com/sindresorhus/awesome[Awesome Lists^] - awesome lists about all kinds of interesting topics
+* 🚀 Learning
+** https://github.com/codecrafters-io/build-your-own-x[Build Your Own X^] - master programming by recreating your favorite technologies from scratch
+** https://github.com/bradtraversy/design-resources-for-developers[Design Resources for Developers^] - curated list of design and UI resources from stock photos, web templates, CSS frameworks, UI libraries, tools and much more
+** https://github.com/HugoMatilla/Effective-JAVA-Summary[Effective Java Summary^] - summary of the book Effective Java 2nd Edition by Joshua Bloch
+** https://github.com/mtdvio/every-programmer-should-know[Every Programmer Should Know^] - a collection of (mostly) technical things every software developer should know about
+** https://github.com/TheAlgorithms/Java/blob/master/DIRECTORY.md[Java Algorithms^] - design patterns implemented in Java
+** https://java-design-patterns.com/patterns[Java Design Patterns^] - all algorithms implemented in Java
+** https://github.com/kamranahmedse/design-patterns-for-humans[Design Patterns For Humans^] - an ultra-simplified explanation to design patterns
+** https://github.com/donnemartin/system-design-primer[System Design Primer^] - learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards
+* ⚙️ Tools & APIs
+** https://github.com/techiescamp/devops-tools[DevOps Tools^] - curated list of the best DevOps tools
+** https://github.com/ripienaar/free-for-dev[Free for Dev^] - a list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev
+** https://github.com/johanjanssen/JavaHiddenGems[Java Hidden Gems^] - many lesser known Java tools and libraries
+** https://github.com/public-apis/public-apis[Public APIs^] - a collective list of free APIs
+* 💼 Interview & Career Preparation
+** https://roadmap.sh[Developer Roadmap^] - interactive roadmaps, guides and other educational content to help developers grow in their careers
+** https://github.com/jwasham/coding-interview-university[Coding Interview University^] - a complete computer science study plan to become a software engineer
+** https://www.techinterviewhandbook.org[Tech Interview Handbook^] - curated coding interview preparation materials for busy software engineers
+** https://github.com/AndrewStetsenko/tech-jobs-with-relocation[Tech Jobs With Relocation^] - all-in-one guide to getting a tech job abroad
+
+== Legal Notice
+
+include::ROOT:example$README.md[tag=legal-notice]
+
+== Support
+
+Hey there! If you enjoy my work and would like to support me, consider buying me a coffee! 🙂 Your contributions help me keep creating, and I truly appreciate every bit of support you offer.
+
+image:https://cdn.buymeacoffee.com/buttons/v2/default-blue.png[Buy me a Coffee,link="{buy-me-a-coffee}",role="buy-me-a-coffee",window=_blank]
+
+Also, please consider giving this project a ⭐ on https://github.com/p-marcin/dev-cheat-sheets[GitHub^]. This kind of support helps promote the project and lets others know that it's worth checking out.
+
+Thank you for being amazing!

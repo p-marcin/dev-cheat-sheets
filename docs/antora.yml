@@ -1,3 +1,393 @@
 name: reference
 title: DEV Cheat Sheets
 version: ~
+nav:
+  - modules/java/nav.adoc
+  - modules/spring-framework/nav.adoc
+  - modules/web/nav.adoc
+  - modules/messaging/nav.adoc
+  - modules/database/nav.adoc
+  - modules/server/nav.adoc
+  - modules/cloud/nav.adoc
+  - modules/git/nav.adoc
+  - modules/linux/nav.adoc
+  - modules/asciidoc/nav.adoc
+asciidoc:
+  attributes:
+    #= Common =#
+    buy-me-a-coffee: https://www.buymeacoffee.com/p.marcin
+    #= Docs =#
+    # IDE
+    ## IntelliJ IDEA
+    intellij-idea-docs: https://www.jetbrains.com/help/idea
+    # Java Backend
+    ## Java
+    java-docs: https://dev.java/learn
+    java-api-docs: https://docs.oracle.com/en/java/javase/23/docs/api
+    awesome-java: https://github.com/akullpp/awesome-java
+    ## Jakarta EE
+    jakarta-ee-docs: https://jakarta.ee/specifications/platform/10/jakarta-platform-spec-10.0
+    jakarta-ee-api-docs: https://jakarta.ee/specifications/platform/10/apidocs
+    ## Spring Framework
+    spring-initializr: https://start.spring.io
+    spring-framework-projects: https://spring.io/projects/spring-boot
+    #+
+    spring-framework-docs: https://docs.spring.io/spring-framework/reference
+    spring-framework-api-docs: https://docs.spring.io/spring-framework/docs/current/javadoc-api
+    #+
+    spring-boot-docs: https://docs.spring.io/spring-boot
+    spring-boot-api-docs: https://docs.spring.io/spring-boot/api/java
+    #+
+    spring-servlet-docs: https://docs.spring.io/spring-framework/reference/web.html
+    spring-boot-servlet-docs: https://docs.spring.io/spring-boot/reference/web/servlet.html
+    #+
+    spring-webmvc-docs: https://docs.spring.io/spring-framework/reference/web/webmvc.html
+    spring-boot-webmvc-docs: https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.spring-mvc
+    #+
+    spring-data-commons-docs: https://docs.spring.io/spring-data/commons/reference
+    spring-data-commons-api-docs: https://docs.spring.io/spring-data/commons/docs/current/api
+    #+
+    spring-data-jpa-docs: https://docs.spring.io/spring-data/jpa/reference
+    spring-boot-data-jpa-docs: https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.jpa-and-spring-data
+    spring-data-jpa-api-docs: https://docs.spring.io/spring-data/jpa/docs/current/api
+    #+
+    spring-boot-h2-database-docs: https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.h2-web-console
+    h2-database-docs: https://www.h2database.com/html/quickstart.html
+    #+
+    spring-resttemplate-docs: https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-resttemplate
+    spring-boot-resttemplate-docs: https://docs.spring.io/spring-boot/reference/io/rest-client.html#io.rest-client.resttemplate
+    #+
+    spring-reactive-docs: https://docs.spring.io/spring-framework/reference/web-reactive.html
+    spring-boot-reactive-docs: https://docs.spring.io/spring-boot/reference/web/reactive.html
+    #+
+    spring-webflux-docs: https://docs.spring.io/spring-framework/reference/web/webflux.html
+    spring-boot-webflux-docs: https://docs.spring.io/spring-boot/reference/web/reactive.html#web.reactive.webflux
+    #+
+    spring-data-r2dbc-docs: https://docs.spring.io/spring-data/relational/reference/r2dbc.html
+    spring-boot-data-r2dbc-docs: https://docs.spring.io/spring-boot/reference/data/sql.html#data.sql.r2dbc
+    spring-data-r2dbc-api-docs: https://docs.spring.io/spring-data/r2dbc/docs/current/api
+    #+
+    spring-security-docs: https://docs.spring.io/spring-security/reference
+    spring-boot-security-docs: https://docs.spring.io/spring-boot/reference/web/spring-security.html
+    spring-security-api-docs: https://docs.spring.io/spring-security/site/docs/current/api
+    #+
+    spring-auth-server-docs: https://docs.spring.io/spring-authorization-server/reference
+    spring-boot-auth-server-docs: https://docs.spring.io/spring-boot/reference/web/spring-security.html#web.security.oauth2.authorization-server
+    spring-auth-server-api-docs: https://docs.spring.io/spring-authorization-server/docs/current/api
+    #+
+    spring-resource-server-docs: https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html
+    spring-boot-resource-server-docs: https://docs.spring.io/spring-boot/reference/web/spring-security.html#web.security.oauth2.server
+    #+
+    spring-test-docs: https://docs.spring.io/spring-framework/reference/testing.html
+    spring-boot-test-docs: https://docs.spring.io/spring-boot/reference/testing
+    jayway-jsonpath-docs: https://github.com/json-path/JsonPath
+    #+
+    spring-boot-devtools-docs: https://docs.spring.io/spring-boot/reference/using/devtools.html
+    ## Hibernate
+    hibernate-docs: https://hibernate.org/orm/documentation/6.6
+    hibernate-api-docs: https://docs.jboss.org/hibernate/orm/current/javadocs
+    ## Reactor
+    reactor-core-docs: https://projectreactor.io/docs/core/release/reference
+    reactor-core-api-docs: https://projectreactor.io/docs/core/release/api
+    #+
+    reactor-test-docs: https://projectreactor.io/docs/core/release/reference/testing.html
+    reactor-test-api-docs: https://projectreactor.io/docs/test/release/api
+    ## Lombok
+    lombok-docs: https://projectlombok.org/features
+    lombok-api-docs: https://projectlombok.org/api
+    ## MapStruct
+    mapstruct-docs: https://mapstruct.org/documentation/stable/reference/html
+    mapstruct-api-docs: https://mapstruct.org/documentation/stable/api
+    ## Jackson
+    jackson-core-docs: https://github.com/FasterXML/jackson-core/wiki
+    jackson-core-api-docs: https://www.javadoc.io/static/com.fasterxml.jackson.core/jackson-core/2.18.3
+    #+
+    jackson-annotations-docs: https://github.com/FasterXML/jackson-annotations/wiki
+    jackson-annotations-api-docs: https://www.javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest/com.fasterxml.jackson.annotation
+    #+
+    jackson-databind-docs: https://github.com/FasterXML/jackson-databind/wiki
+    jackson-databind-api-docs: https://javadoc.io/doc/com.fasterxml.jackson.core/jackson-databind/latest
+    # Java Testing
+    ## JUnit
+    junit-docs: https://junit.org/junit5/docs/current/user-guide
+    junit-api-docs: https://junit.org/junit5/docs/current/api
+    ## AssertJ
+    assertj-core-docs: https://assertj.github.io/doc
+    assertj-core-api-docs: https://www.javadoc.io/doc/org.assertj/assertj-core/latest
+    ## Mockito
+    mockito-docs: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html
+    mockito-api-docs: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito
+    ## Hamcrest
+    hamcrest-docs: https://hamcrest.org/JavaHamcrest/tutorial
+    hamcrest-api-docs: https://hamcrest.org/JavaHamcrest/javadoc/3.0
+    ## FreeMarker
+    freemarker-docs: https://freemarker.apache.org/docs
+    freemarker-api-docs: https://freemarker.apache.org/docs/api
+    # Java Tools
+    ## Ant
+    ant-docs: https://ant.apache.org/manual
+    ant-tasks-docs: https://ant.apache.org/manual/tasksoverview.html
+    ## JBang
+    jbang-docs: https://www.jbang.dev/documentation/guide/latest
+    ## JMeter
+    jmeter-docs: https://jmeter.apache.org/usermanual
+    jmeter-api-docs: https://jmeter.apache.org/api
+    ## JReleaser
+    jreleaser-docs: https://jreleaser.org/guide/latest
+    ## Maven
+    maven-repository: https://central.sonatype.com
+    #+
+    maven-docs: https://maven.apache.org/guides
+    maven-plugins: https://maven.apache.org/plugins
+    maven-cli-options: https://maven.apache.org/ref/3.9.9/maven-embedder/cli.html
+    ## PicoCLI
+    picocli-docs: https://picocli.info
+    picocli-api-docs: https://picocli.info/apidocs-all
+    ## Quarkus
+    quarkus-docs: https://quarkus.io/guides
+    # Frontend
+    ## Web Development
+    web-development-docs: https://developer.mozilla.org/en-US/docs/Learn_web_development
+    w3schools-docs: https://www.w3schools.com
+    awesome-frontend-development: https://github.com/dypsilon/frontend-dev-bookmarks
+    #+
+    html-docs: https://developer.mozilla.org/en-US/docs/Web/HTML
+    awesome-html: https://github.com/diegocard/awesome-html5
+    #+
+    css-docs: https://developer.mozilla.org/en-US/docs/Web/CSS
+    awesome-css: https://github.com/awesome-css-group/awesome-css
+    #+
+    tailwind-css-docs: https://v3.tailwindcss.com/docs
+    awesome-tailwind-css: https://github.com/aniftyco/awesome-tailwindcss
+    #+
+    javascript-docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+    javascript-modern-docs: https://javascript.info
+    awesome-javascript: https://github.com/sorrycc/awesome-javascript
+    #+
+    typescript-docs: https://www.typescriptlang.org/docs
+    typescript-reference: https://www.typescriptlang.org/docs/handbook/modules/reference.html
+    #+
+    driverjs-docs: https://driverjs.com/docs
+    #+
+    vite-docs: https://vite.dev/guide
+    vite-api-docs: https://vite.dev/config
+    #+
+    node-docs: https://nodejs.org/en/learn
+    node-api-docs: https://nodejs.org/docs/latest/api
+    #+
+    google-fonts: https://fonts.google.com
+    ## React
+    react-docs: https://react.dev/learn
+    react-api-docs: https://react.dev/reference
+    awesome-react: https://github.com/enaqx/awesome-react
+    #+
+    nextjs-docs: https://nextjs.org/docs
+    nextjs-api-docs: https://nextjs.org/docs/app/api-reference
+    awesome-nextjs: https://github.com/unicodeveloper/awesome-nextjs
+    #+
+    mantine-docs: https://mantine.dev/getting-started
+    mantine-components: https://ui.mantine.dev
+    #+
+    daisyui-docs: https://daisyui.com/docs
+    daisyui-components: https://daisyui.com/components
+    #+
+    heroui-docs: https://www.heroui.com/docs
+    heroui-components: https://www.heroui.com/docs/components
+    #+
+    shadcnui-docs: https://ui.shadcn.com/docs
+    shadcnui-components: https://ui.shadcn.com/docs/components
+    #+
+    aceternityui-docs: https://ui.aceternity.com/docs/cli
+    aceternityui-components: https://ui.aceternity.com/components
+    #+
+    tailwind-plus-docs: https://tailwindcss.com/plus/ui-blocks/documentation
+    tailwind-plus-components: https://tailwindcss.com/plus/ui-blocks
+    #+
+    react-icons: https://react-icons.github.io/react-icons
+    ## Thymeleaf
+    thymeleaf-docs: https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html
+    thymeleaf-api-docs: https://www.thymeleaf.org/apidocs/thymeleaf/3.1.3.RELEASE
+    #+
+    thymeleaf-spring-docs: https://www.thymeleaf.org/doc/tutorials/3.1/thymeleafspring.html
+    thymeleaf-spring-api-docs: https://www.thymeleaf.org/apidocs/thymeleaf-spring6/3.1.3.RELEASE
+    thymeleaf-spring-security-api-docs: https://www.thymeleaf.org/apidocs/thymeleaf-extras-springsecurity6/3.1.3.RELEASE
+    # Desktop
+    ## Desktop Development
+    wails-docs: https://wails.io/docs/guides/application-development
+    wails-api-docs: https://wails.io/docs/reference/runtime/intro
+    # Mobile
+    ## Mobile Development
+    awesome-mobile-web-development: https://github.com/myshov/awesome-mobile-web-development
+    #+
+    react-native-docs: https://reactnative.dev/docs/getting-started
+    react-native-api-docs: https://reactnative.dev/docs/accessibilityinfo
+    awesome-react-native: https://github.com/jondot/awesome-react-native
+    #+
+    expo-docs: https://docs.expo.dev/guides/overview
+    expo-api-docs: https://docs.expo.dev/versions/latest
+    # Web
+    ## HTTP
+    http-docs: https://developer.mozilla.org/en-US/docs/Web/HTTP
+    ## XML
+    xml-docs: https://developer.mozilla.org/en-US/docs/Web/XML
+    xml-schema-docs: https://www.w3schools.com/xml/schema_intro.asp
+    ## JSON
+    json-docs: https://www.json.org
+    json-schema-docs: https://json-schema.org/docs
+    #+
+    json-api-docs: https://jsonapi.org/format
+    ## REST
+    rest-docs: https://restfulapi.net
+    awesome-rest: https://github.com/marmelab/awesome-rest
+    #+
+    open-api-docs: https://swagger.io/docs/specification/v3_0/about
+    ## GraphQL
+    graphql-docs: https://graphql.org/learn
+    awesome-graphql: https://github.com/chentsulin/awesome-graphql
+    #+
+    graphql-java-docs: https://www.graphql-java.com/documentation/getting-started
+    graphql-java-api-docs: https://javadoc.io/doc/com.graphql-java/graphql-java
+    ## gRPC
+    grpc-docs: https://grpc.io/docs/languages/java
+    grpc-api-docs: https://grpc.github.io/grpc-java/javadoc
+    # Messaging
+    ## Kafka
+    kafka-docs: https://kafka.apache.org/documentation
+    kafka-api-docs: https://kafka.apache.org/40/javadoc
+    ## RabbitMQ
+    rabbitmq-docs: https://www.rabbitmq.com/docs
+    #+
+    rabbitmq-java-docs: https://www.rabbitmq.com/client-libraries/java-client
+    rabbitmq-java-api-docs: https://rabbitmq.github.io/rabbitmq-java-client/api/4.x.x
+    # NoSQL Database
+    ## Cassandra (write-heavy workloads / Wide Column store)
+    cassandra-docs: https://cassandra.apache.org/doc/latest
+    awesome-cassandra: https://github.com/Anant/awesome-cassandra
+    ## Couchbase (caching / search engine / JSON-like Document store / SQL-like querying)
+    couchbase-docs: https://docs.couchbase.com/java-sdk/current/hello-world/overview.html
+    couchbase-api-docs: https://docs.couchbase.com/sdk-api/couchbase-java-client
+    ## ElasticSearch (search engine / JSON-like Document store)
+    elasticsearch-docs: https://www.elastic.co/docs
+    elasticsearch-api-docs: https://artifacts.elastic.co/javadoc/co/elastic/clients/elasticsearch-java/8.17.3/index.html
+    ## MongoDB (JSON-like Document store)
+    mongodb-docs: https://www.mongodb.com/docs/manual
+    awesome-mongodb: https://github.com/ramnes/awesome-mongodb
+    ## Redis (caching / Key-Value store)
+    redis-docs: https://redis.io/docs/latest/develop
+    #+
+    jedis-docs: https://redis.github.io/jedis
+    jedis-api-docs: https://www.javadoc.io/doc/redis.clients/jedis/latest
+    #+
+    lettuce-docs: https://redis.github.io/lettuce
+    lettuce-api-docs: https://www.javadoc.io/doc/io.lettuce/lettuce-core/latest
+    # SQL Database
+    ## PostgreSQL
+    postgresql-docs: https://www.postgresql.org/docs/current
+    pgpool-docs: https://www.pgpool.net/docs/latest/en/html
+    awesome-postgresql: https://github.com/dhamaniasad/awesome-postgres
+    postgresql-helm: https://artifacthub.io/packages/helm/bitnami/postgresql-ha
+    #+
+    neon-docs: https://neon.tech/docs
+    awesome-neon: https://github.com/tyaga001/awesome-neon
+    # Server
+    ## Open Liberty
+    open-liberty-docs: https://openliberty.io/docs/latest
+    ## Reactor Netty
+    reactor-netty-docs: https://projectreactor.io/docs/netty/release/reference
+    reactor-netty-api-docs: https://projectreactor.io/docs/netty/release/api
+    ## Tomcat
+    tomcat-docs: https://tomcat.apache.org/tomcat-11.0-doc
+    # Reverse Proxy
+    ## Nginx
+    nginx-docs: https://nginx.org/en/docs
+    ## Traefik
+    traefik-docs: https://doc.traefik.io/traefik
+    # Cloud
+    ## Go
+    go-packages: https://pkg.go.dev
+    #+
+    go-docs: https://go.dev/doc
+    go-standard-library: https://pkg.go.dev/std
+    awesome-go: https://github.com/avelino/awesome-go
+    ## Docker
+    docker-hub: https://hub.docker.com
+    #+
+    docker-docs: https://docs.docker.com
+    docker-reference: https://docs.docker.com/reference
+    awesome-docker: https://github.com/veggiemonk/awesome-docker
+    ## Kubernetes
+    kubernetes-docs: https://kubernetes.io/docs
+    kubernetes-reference: https://kubernetes.io/docs/reference
+    awesome-kubernetes: https://github.com/ramitsurana/awesome-kubernetes
+    #+
+    krew-docs: https://krew.sigs.k8s.io/docs
+    #+
+    k3s-docs: https://docs.k3s.io
+    #+
+    k3d-docs: https://k3d.io/stable/usage/configfile
+    ## Ingress Controller
+    nginx-ingress-controller-docs: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration
+    #+
+    traefik-ingress-controller-docs: https://doc.traefik.io/traefik/providers/kubernetes-ingress
+    ## Helm
+    artifact-hub: https://artifacthub.io
+    #+
+    helm-docs: https://helm.sh/docs
+    ## Fly
+    fly-docs: https://fly.io/docs
+    fly-reference: https://fly.io/docs/reference
+    # Payments
+    ## Stripe
+    stripe-docs: https://docs.stripe.com/api?lang=java
+    stripe-api-docs: https://stripe.dev/stripe-java
+    # Security
+    ## Cloudflare
+    cloudflare-radar: https://radar.cloudflare.com
+    #+
+    cloudflare-docs: https://developers.cloudflare.com
+    cloudflare-api-docs: https://developers.cloudflare.com/api
+    awesome-cloudflare: https://github.com/irazasyed/awesome-cloudflare
+    # Git
+    ## Git
+    git-docs: https://git-scm.com/docs
+    awesome-git: https://github.com/git-tips/tips
+    ## GitHub
+    github-marketplace: https://github.com/marketplace
+    #+
+    github-docs: https://docs.github.com/en
+    awesome-github: https://github.com/phillipadsmith/awesome-github
+    awesome-github-actions: https://github.com/sdras/awesome-actions
+    # Python
+    ## Python
+    python-docs: https://www.python.org/doc
+    awesome-python: https://github.com/vinta/awesome-python
+    #+
+    virtualenv-docs: https://virtualenv.pypa.io/en/latest
+    # Linux
+    ## GNU
+    gnu-docs: https://www.gnu.org/manual
+    awesome-shell: https://github.com/alebcay/awesome-shell
+    #+
+    bash-docs: https://www.gnu.org/software/bash/manual/bash.html
+    coreutils-docs: https://www.gnu.org/software/coreutils/manual/coreutils.html
+    sed-docs: https://www.gnu.org/software/sed/manual/sed.html
+    ## Jq
+    jq-docs: https://jqlang.org/manual
+    # Other
+    ## AI
+    chatgpt-docs: https://platform.openai.com/docs
+    chatgpt-api-docs: https://platform.openai.com/docs/api-reference
+    awesome-chatgpt: https://github.com/sindresorhus/awesome-chatgpt
+    ## AsciiDoc
+    asciidoc-docs: https://docs.asciidoctor.org/asciidoc/latest
+    asciidoc-reference: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference
+    ## Antora
+    antora-docs: https://docs.antora.org/antora/latest
+    antora-default-ui-docs: https://docs.antora.org/antora-ui-default
+    ## Icons
+    shields: https://shields.io/badges
+    simple-icons: https://simpleicons.org
+    #+
+    reshot: https://reshot.com
+    #+
+    vector-logo-zone: https://vectorlogo.zone
