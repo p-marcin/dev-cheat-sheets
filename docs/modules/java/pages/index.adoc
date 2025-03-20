@@ -1,0 +1,32 @@
+= ☕ Java
+
+image:https://img.shields.io/badge/Documentation-2088E9?logo=quickLook&logoColor[link="{java-docs}",window=_blank]
+image:https://img.shields.io/badge/API%20Specification-2088E9?logo=quickLook&logoColor[link="{java-api-docs}/index.html",window=_blank]
+
+include::java:partial$nav.adoc[lines=2..-1]
+
+== Cheat Sheet
+
+=== `Files.exists` vs `file.exists`
+
+`🔴 java.nio.file.Files` is part of the newer, more efficient NIO.2 API introduced in Java 7, which is designed for better performance and scalability.
+
+link:{java-api-docs}++/java.base/java/nio/file/Files.html#exists(java.nio.file.Path,java.nio.file.LinkOption...)++[`Files#exists(Path path, LinkOption... options)`^]
+is optimized for different file systems, because it uses the
+link:{java-api-docs}++/java.base/java/nio/file/spi/FileSystemProvider.html#checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)++[`🟠 FileSystemProvider#checkAccess(Path path, AccessMode... modes)`^]
+under the hood, allowing different implementations to optimize the file existence check based on the underlying file system. This makes it more efficient compared to
+{java-api-docs}/java.base/java/io/File.html#exists()[`file#exists()`^]
+, which relies on the older I/O mechanisms.
+
+.Example
+[,java]
+----
+// Before Java 11
+Path someFile = Paths.get("/tmp/some-file.txt");
+// After Java 11
+someFile = Paths.of("/tmp/some-file.txt");
+
+assertTrue(Files.exists(someFile));
+----
+
+TIP: Stay away from the legacy `🟢 java.io.File` class. Better check {java-docs}/modernio/[Common I/O Tasks in Modern Java^]
