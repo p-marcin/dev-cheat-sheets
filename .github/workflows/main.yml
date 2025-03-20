@@ -1,0 +1,29 @@
+name: Deploy Site
+
+on: push
+
+jobs:
+  main:
+    name: Deploy Site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Antora
+        run: ./scripts/install.sh
+      - name: Generate Site
+        run: ./scripts/generate.sh
+      - name: Deploy Site
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/site
+          branch: gh-pages
+          commit-message: "[CI] Deploy Site for ${{ github.sha }}"
