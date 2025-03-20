@@ -1,0 +1,15 @@
+#navbar-logo {
+    height: 35px;
+    margin-bottom: 7px;
+}
+
+@media (max-width: 480px) {
+    #navbar-title {
+        display: none;
+    }
+}
+
+.navbar-dropdown {
+    left: auto;
+    right: 0;
+}
