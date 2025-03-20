@@ -1,0 +1,33 @@
+= Jq: JSON Stream Processor
+
+image:https://img.shields.io/badge/Jq%20Docs-2088E9?logo=quickLook&logoColor=white[link="{jq-docs}",window=_blank]
+
+== Overview
+
+`jq` filters run on a stream of JSON data. The input to `jq` is parsed as a sequence of whitespace-separated JSON values which are passed through the provided filter one at a time. The output(s) of the filter are written to standard output, as a sequence of newline-separated JSON data.
+
+== Cheat Sheet
+
+.Parsing JSON response
+[,bash]
+----
+response=$(cat << EOF
+{
+  "name": "John",
+  "age": 30,
+  "items": [
+    "Sword",
+    "Shield"
+  ]
+}
+EOF
+)
+
+echo "${response}" | jq -M -r ".name" # <1> <2>
+echo "${response}" | jq -M -r ".items.[]" # <3>
+echo "${response}" | jq -M -r ".items.[1]" # <4>
+----
+<1> `-M` disables colored output, `-r` outputs strings without escaped and quotes.
+<2> Outputs `John`.
+<3> Outputs `Sword` and `Shield` delimited by new line.
+<4> Outputs `Shield`.
