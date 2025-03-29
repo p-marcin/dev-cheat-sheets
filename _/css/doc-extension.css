@@ -32,3 +32,17 @@
     border-radius: .25em;
     padding: .125em .25em;
 }
+
+.doc > h1.page:first-child .h1-image img {
+    height: 2rem;
+}
+
+.doc .h1-image img {
+    height: 1.0625em;
+}
+
+@media screen and (min-width: 1024px) {
+    .doc .h1-image img {
+        height: .94444rem;
+    }
+}
