@@ -44,11 +44,11 @@
 }
 
 .doc > h1.page:first-child .category-logo img {
-    vertical-align: text-bottom;
+    vertical-align: middle;
     height: 46px;
 }
 
 .doc .category-logo img {
-    vertical-align: text-bottom;
+    vertical-align: middle;
     height: 21px;
 }
