@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Coreutils (file, shell, text manipulation) :: Javowiec.pl</title>
-    <link rel="canonical" href="https://javowiec.pl/reference/linux/coreutils/index.html">
+    <title> Helm :: Javowiec.pl</title>
+    <link rel="canonical" href="https://javowiec.pl/reference/cloud/helm/helm.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -229,16 +229,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../cloud/index.html"><span class="image"><img src="https://cdn.simpleicons.org/icloud/3693F3?viewbox=auto" alt="3693F3?viewbox=auto" width="32"></span> Cloud</a>
+    <a class="nav-link" href="../index.html"><span class="image"><img src="https://cdn.simpleicons.org/icloud/3693F3?viewbox=auto" alt="3693F3?viewbox=auto" width="32"></span> Cloud</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cloud/docker/docker.html"><span class="image"><img src="https://cdn.simpleicons.org/docker/2496ED?viewbox=auto" alt="2496ED?viewbox=auto" width="32"></span> Docker</a>
+    <a class="nav-link" href="../docker/docker.html"><span class="image"><img src="https://cdn.simpleicons.org/docker/2496ED?viewbox=auto" alt="2496ED?viewbox=auto" width="32"></span> Docker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cloud/kubernetes/kubernetes.html"><span class="image"><img src="https://cdn.simpleicons.org/kubernetes/326CE5?viewbox=auto" alt="326CE5?viewbox=auto" width="32"></span> Kubernetes</a>
+    <a class="nav-link" href="../kubernetes/kubernetes.html"><span class="image"><img src="https://cdn.simpleicons.org/kubernetes/326CE5?viewbox=auto" alt="326CE5?viewbox=auto" width="32"></span> Kubernetes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../cloud/helm/helm.html"><span class="image"><img src="https://cdn.simpleicons.org/helm/0F1689?viewbox=auto" alt="0F1689?viewbox=auto" width="32"></span> Helm</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="helm.html"><span class="image"><img src="https://cdn.simpleicons.org/helm/0F1689?viewbox=auto" alt="0F1689?viewbox=auto" width="32"></span> Helm</a>
   </li>
 </ul>
   </li>
@@ -248,16 +248,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">🖥️ Linux</a>
+    <a class="nav-link" href="../../linux/index.html">🖥️ Linux</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="index.html">Coreutils (file, shell, text manipulation)</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../linux/coreutils/index.html">Coreutils (file, shell, text manipulation)</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../jq.html">Jq: JSON Stream Processor</a>
+    <a class="nav-link" href="../../linux/jq.html">Jq: JSON Stream Processor</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../sed.html">Sed: Stream Editor</a>
+    <a class="nav-link" href="../../linux/sed.html">Sed: Stream Editor</a>
   </li>
 </ul>
   </li>
@@ -283,68 +283,19 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="../index.html">🖥️ Linux</a></li>
-    <li><a href="index.html">Coreutils (file, shell, text manipulation)</a></li>
+    <li><a href="../index.html"><span class="image"><img src="https://cdn.simpleicons.org/icloud/3693F3?viewbox=auto" alt="3693F3?viewbox=auto" width="32"></span> Cloud</a></li>
+    <li><a href="helm.html"><span class="image"><img src="https://cdn.simpleicons.org/helm/0F1689?viewbox=auto" alt="0F1689?viewbox=auto" width="32"></span> Helm</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/linux/pages/coreutils/index.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/cloud/pages/helm/helm.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Coreutils (file, shell, text manipulation)</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.gnu.org/software/coreutils/manual/coreutils.html" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Coreutils%20Docs-2088E9?logo=quickLook&amp;logoColor=white" alt="Coreutils%20Docs 2088E9?logo=quickLook&amp;logoColor=white"></a></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system. These are the core utilities which are expected to exist on every operating system.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_paste_merge_lines_of_files"><a class="anchor" href="#_paste_merge_lines_of_files"></a>Paste: Merge lines of files</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="https://www.gnu.org/software/coreutils/manual/coreutils.html#paste-invocation" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Paste%20Docs-2088E9?logo=quickLook&amp;logoColor=white" alt="Paste%20Docs 2088E9?logo=quickLook&amp;logoColor=white"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Writes lines consisting of the sequentially corresponding lines from
-each FILE, separated by TABs, to standard output. With no FILE, or when FILE is <code>-</code>, read standard input.</p>
-</div>
-<div class="listingblock">
-<div class="title">Usage</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">paste [OPTION]... [FILE]...</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Merge 2 lines</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6"
-test1,
-test2
-test3,
-test4
-test5,
-test6
+<h1 class="page"><span class="image"><img src="https://cdn.simpleicons.org/helm/0F1689?viewbox=auto" alt="0F1689?viewbox=auto" width="32"></span> Helm</h1>
 
-$ echo -e "test1,\ntest2\ntest3,\ntest4\ntest5,\ntest6" | paste -d " " - -
-test1, test2
-test3, test4
-test5, test6</code></pre>
-</div>
-</div>
-</div>
-</div>
 </article>
   </div>
 </main>
