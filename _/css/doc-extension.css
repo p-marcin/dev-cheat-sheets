@@ -33,16 +33,22 @@
     padding: .125em .25em;
 }
 
+.nav-menu .category-logo img {
+    vertical-align: text-bottom;
+    height: 19px;
+}
+
+.breadcrumbs .category-logo img {
+    vertical-align: text-bottom;
+    height: 18px;
+}
+
 .doc > h1.page:first-child .category-logo img {
-    height: 2rem;
+    vertical-align: text-bottom;
+    height: 46px;
 }
 
 .doc .category-logo img {
-    height: 1.0625em;
-}
-
-@media screen and (min-width: 1024px) {
-    .doc .category-logo img {
-        height: .94444rem;
-    }
+    vertical-align: text-bottom;
+    height: 21px;
 }
