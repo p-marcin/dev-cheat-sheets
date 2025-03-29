@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title> Java :: Javowiec.pl</title>
-    <link rel="canonical" href="https://javowiec.pl/reference/java/index.html">
+    <title> Kafka :: Javowiec.pl</title>
+    <link rel="canonical" href="https://javowiec.pl/reference/messaging/kafka.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../_/css/site.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
@@ -57,23 +57,23 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/duke.svg"></span> Java</a>
+    <a class="nav-link" href="../java/index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/duke.svg"></span> Java</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">API</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="api/lambda-expression.html">Lambda Expression</a>
+    <a class="nav-link" href="../java/api/lambda-expression.html">Lambda Expression</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="api/the-stream-api/the-stream-api.html">The Stream API</a>
+    <a class="nav-link" href="../java/api/the-stream-api/the-stream-api.html">The Stream API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="api/the-stream-api/parallelism.html">Parallelism</a>
+    <a class="nav-link" href="../java/api/the-stream-api/parallelism.html">Parallelism</a>
   </li>
 </ul>
   </li>
@@ -81,13 +81,13 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="concepts/concepts.html">Concepts</a>
+    <a class="nav-link" href="../java/concepts/concepts.html">Concepts</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="concepts/microservices.html">Microservices</a>
+    <a class="nav-link" href="../java/concepts/microservices.html">Microservices</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="concepts/reactive-programming.html">Reactive Programming</a>
+    <a class="nav-link" href="../java/concepts/reactive-programming.html">Reactive Programming</a>
   </li>
 </ul>
   </li>
@@ -197,10 +197,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../messaging/index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/messaging.svg"></span> Messaging</a>
+    <a class="nav-link" href="index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/messaging.svg"></span> Messaging</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../messaging/kafka.html"><span class="image category-logo"><img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="apache kafka icon"></span> Kafka</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="kafka.html"><span class="image category-logo"><img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="apache kafka icon"></span> Kafka</a>
   </li>
 </ul>
   </li>
@@ -303,104 +303,21 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DEV Cheat Sheets</a></li>
-    <li><a href="index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/duke.svg"></span> Java</a></li>
+    <li><a href="index.html"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/messaging.svg"></span> Messaging</a></li>
+    <li><a href="kafka.html"><span class="image category-logo"><img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="apache kafka icon"></span> Kafka</a></li>
   </ul>
 </nav>
-<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/java/pages/index.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/p-marcin/dev-cheat-sheets/blob/main/docs/modules/messaging/pages/kafka.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><span class="image category-logo"><img src="https://javowiec.pl/reference/_images/duke.svg"></span> Java</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page"><span class="image category-logo"><img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="apache kafka icon"></span> Kafka</h1>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="https://dev.java/learn" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Java%20Docs-2088E9?logo=quickLook&amp;logoColor=white" alt="Java%20Docs 2088E9?logo=quickLook&amp;logoColor=white"></a></span>
-<span class="image"><a class="image" href="https://docs.oracle.com/en/java/javase/23/docs/api" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Java%20API%20Docs-DF7716?logo=devbox&amp;logoColor=white" alt="Java%20API%20Docs DF7716?logo=devbox&amp;logoColor=white"></a></span>
-<span class="image"><a class="image" href="https://github.com/akullpp/awesome-java" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Awesome%20Java-FC60A8?logo=awesomelists&amp;logoColor=white" alt="Awesome%20Java FC60A8?logo=awesomelists&amp;logoColor=white"></a></span></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>API</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="api/lambda-expression.html" class="xref page">Lambda Expression</a></p>
-</li>
-<li>
-<p><a href="api/the-stream-api/the-stream-api.html" class="xref page">The Stream API</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="api/the-stream-api/parallelism.html" class="xref page">Parallelism</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="concepts/concepts.html" class="xref page">Concepts</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="concepts/microservices.html" class="xref page">Microservices</a></p>
-</li>
-<li>
-<p><a href="concepts/reactive-programming.html" class="xref page">Reactive Programming</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cheat_sheet"><a class="anchor" href="#_cheat_sheet"></a>Cheat Sheet</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_files_exists_vs_file_exists"><a class="anchor" href="#_files_exists_vs_file_exists"></a><code>Files.exists</code> vs <code>file.exists</code></h3>
-<div class="paragraph">
-<p><code>🔴 java.nio.file.Files</code> is part of the newer, more efficient NIO.2 API introduced in Java 7, which is designed for better performance and scalability.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/Files.html#exists(java.nio.file.Path,java.nio.file.LinkOption...)" target="_blank" rel="noopener"><code>Files#exists(Path path, LinkOption&#8230;&#8203; options)</code></a>
-is optimized for different file systems, because it uses the
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/nio/file/spi/FileSystemProvider.html#checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)" target="_blank" rel="noopener"><code>🟠 FileSystemProvider#checkAccess(Path path, AccessMode&#8230;&#8203; modes)</code></a>
-under the hood, allowing different implementations to optimize the file existence check based on the underlying file system. This makes it more efficient compared to
-<a href="https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/io/File.html#exists()" target="_blank" rel="noopener"><code>file#exists()</code></a>
-, which relies on the older I/O mechanisms.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Before Java 11
-Path someFile = Paths.get("/tmp/some-file.txt");
-// After Java 11
-someFile = Paths.of("/tmp/some-file.txt");
-
-assertTrue(Files.exists(someFile));</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Stay away from the legacy <code>🟢 java.io.File</code> class. Better check <a href="https://dev.java/learn/modernio/" target="_blank" rel="noopener">Common I/O Tasks in Modern Java</a>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
+<p><span class="image"><a class="image" href="https://kafka.apache.org/documentation" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Kafka%20Docs-2088E9?logo=quickLook&amp;logoColor=white" alt="Kafka%20Docs 2088E9?logo=quickLook&amp;logoColor=white"></a></span>
+<span class="image"><a class="image" href="https://kafka.apache.org/40/javadoc" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Kafka%20API%20Docs-DF7716?logo=devbox&amp;logoColor=white" alt="Kafka%20API%20Docs DF7716?logo=devbox&amp;logoColor=white"></a></span></p>
 </div>
 </article>
   </div>
