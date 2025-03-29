@@ -1,0 +1,3 @@
+= pass:a[<span class="image category-logo"><img src="{site-url}/reference/{imagesdir}/cloud.svg"></span>] Cloud
+
+include::cloud:partial$nav.adoc[lines=2..-1]
