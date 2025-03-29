@@ -1,0 +1,3 @@
+= pass:a[<span class="image category-logo"><img src="{site-url}/reference/{imagesdir}/messaging.svg"></span>] Messaging
+
+include::messaging:partial$nav.adoc[lines=2..-1]
