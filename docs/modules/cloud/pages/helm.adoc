@@ -1,0 +1,5 @@
+= image:https://www.vectorlogo.zone/logos/helmsh/helmsh-icon.svg[role=category-logo] Helm
+
+image:https://img.shields.io/badge/Artifact%20Hub-0F1689?logo=helm&logoColor=white[link="{artifact-hub}",window=_blank]
+
+image:https://img.shields.io/badge/Helm%20Docs-2088E9?logo=quickLook&logoColor=white[link="{helm-docs}",window=_blank]

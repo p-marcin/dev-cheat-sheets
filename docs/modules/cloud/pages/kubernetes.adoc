@@ -1,0 +1,15 @@
+= image:https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg[role=category-logo] Kubernetes
+
+image:https://img.shields.io/badge/Kubernetes%20Docs-2088E9?logo=quickLook&logoColor=white[link="{kubernetes-docs}",window=_blank]
+image:https://img.shields.io/badge/Kubernetes%20Reference-DF7716?logo=devbox&logoColor=white[link="{kubernetes-reference}",window=_blank]
+image:https://img.shields.io/badge/Awesome%20Kubernetes-FC60A8?logo=awesomelists&logoColor=white[link="{awesome-kubernetes}",window=_blank]
+
+image:https://img.shields.io/badge/Krew%20Docs-2088E9?logo=quickLook&logoColor=white[link="{krew-docs}",window=_blank]
+
+image:https://img.shields.io/badge/K3s%20Docs-2088E9?logo=quickLook&logoColor=white[link="{k3s-docs}",window=_blank]
+
+image:https://img.shields.io/badge/K3d%20Docs-2088E9?logo=quickLook&logoColor=white[link="{k3d-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Nginx%20Ingress%20Controller%20Docs-2088E9?logo=quickLook&logoColor=white[link="{nginx-ingress-controller-docs}",window=_blank]
+
+image:https://img.shields.io/badge/Traefik%20Ingress%20Controller%20Docs-2088E9?logo=quickLook&logoColor=white[link="{traefik-ingress-controller-docs}",window=_blank]
