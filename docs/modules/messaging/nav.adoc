@@ -1,0 +1,2 @@
+* xref:messaging:index.adoc[]
+** xref:messaging:kafka.adoc[]
