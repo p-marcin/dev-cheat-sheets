@@ -5,7 +5,7 @@ docsearch({
     inputSelector: '#search-input',
     autocompleteOptions: {
         hint: false,
-        minLength: 5
+        minLength: 4
     },
     algoliaOptions: {
         advancedSyntax: true,
