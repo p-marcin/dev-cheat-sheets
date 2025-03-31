@@ -33,6 +33,10 @@
     padding: .125em .25em;
 }
 
+body.hidden .doc > h1.page:first-child + aside.toc.embedded {
+    margin-top: 1rem;
+}
+
 body.hidden .doc > h1.page:first-child  {
     display: none;
 }
