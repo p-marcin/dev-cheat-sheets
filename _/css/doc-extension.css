@@ -51,10 +51,6 @@
     font-size: 1.9rem;
 }
 
-.doc > h1.page:first-child .main-logo img {
-    margin-bottom: 7px;
-}
-
 .doc > h1.page:first-child .category-logo img {
     vertical-align: middle;
     height: 44px;
@@ -63,6 +59,12 @@
 .doc .category-logo img {
     vertical-align: middle;
     height: 21px;
+}
+
+.doc .main-logo img {
+    vertical-align: middle;
+    height: 34px;
+    margin-bottom: 7px;
 }
 
 .buy-me-a-coffee img {
