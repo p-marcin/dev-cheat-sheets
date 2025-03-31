@@ -33,22 +33,22 @@
     padding: .125em .25em;
 }
 
+body.hidden .doc > h1.page:first-child  {
+    display: none;
+}
+
+.doc > h1.page:first-child {
+    font-size: 1.9rem;
+}
+
 .nav-menu .category-logo img {
     vertical-align: text-bottom;
     height: 19px;
 }
 
-.breadcrumbs .main-logo img {
-    margin-bottom: 2px;
-}
-
 .breadcrumbs .category-logo img {
     vertical-align: text-bottom;
     height: 18px;
-}
-
-.doc > h1.page:first-child {
-    font-size: 1.9rem;
 }
 
 .doc > h1.page:first-child .category-logo img {
@@ -59,6 +59,10 @@
 .doc .category-logo img {
     vertical-align: middle;
     height: 21px;
+}
+
+.breadcrumbs .main-logo img {
+    margin-bottom: 2px;
 }
 
 .doc .main-logo img {
